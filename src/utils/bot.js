@@ -1,4 +1,4 @@
-export async function getBotResponse(input, audioBlob = null) {
+export async function getBotResponse(input, audioBlob = null, imageFile = null) {
   try {
     const formData = new FormData();
     if (input) formData.append("text", input);
@@ -6,6 +6,10 @@ export async function getBotResponse(input, audioBlob = null) {
 
     if (audioBlob) {
       formData.append("audio", audioBlob, "recording.webm");
+    }
+
+    if (imageFile) {
+      formData.append("image", imageFile);
     }
 
     const res = await fetch("http://localhost:8000/api/v1/chat", {

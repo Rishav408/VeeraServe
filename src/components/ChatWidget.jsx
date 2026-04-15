@@ -1,4 +1,4 @@
-import { ChefHat, Mic, Square, SendHorizontal } from "lucide-react";
+import { ChefHat, Mic, Square, SendHorizontal, Paperclip, X } from "lucide-react";
 import { useState, useRef } from "react";
 import { useChat } from "../context/ChatContext";
 
@@ -7,16 +7,19 @@ const quickReplies = ["Show menu", "Recommend", "Spicy dishes", "Track order"];
 export default function ChatWidget({ compact = false }) {
   const [input, setInput] = useState("");
   const [isRecording, setIsRecording] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
+  const fileInputRef = useRef(null);
 
   const { messages, typing, sendMessage } = useChat();
 
   const submit = (event) => {
     event.preventDefault();
-    if (!input.trim() && !isRecording) return;
-    sendMessage(input.trim());
+    if (!input.trim() && !isRecording && !selectedImage) return;
+    sendMessage(input.trim(), null, selectedImage);
     setInput("");
+    setSelectedImage(null);
   };
 
   const sendQuick = (text) => sendMessage(text);
@@ -114,13 +117,44 @@ export default function ChatWidget({ compact = false }) {
         ))}
       </div>
 
-      <form onSubmit={submit} className="border-t border-primary/10 bg-white p-3">
-        <div className="relative">
+      <form onSubmit={submit} className="relative border-t border-primary/10 bg-white p-3">
+        {selectedImage && (
+          <div className="absolute bottom-full left-4 mb-2 z-10 transition-all">
+            <div className="relative inline-block rounded-lg shadow-soft bg-white p-1 border border-primary/10">
+              <img src={URL.createObjectURL(selectedImage)} alt="Preview" className="h-16 w-16 rounded object-cover" />
+              <button
+                type="button"
+                onClick={() => setSelectedImage(null)}
+                className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white hover:bg-red-600 shadow"
+              >
+                <X size={12} />
+              </button>
+            </div>
+          </div>
+        )}
+        <div className="relative w-full">
           <input
             value={input}
             onChange={(event) => setInput(event.target.value)}
-            placeholder="Ask for spicy/light/veg..."
-            className="w-full rounded-pill border border-primary/20 bg-cream py-3 pl-4 pr-24 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+            placeholder="Ask or attach image..."
+            className="w-full rounded-pill border border-primary/20 bg-cream py-3 pl-12 pr-24 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+          />
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="absolute left-2 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-cream text-primary"
+          >
+            <Paperclip size={16} />
+          </button>
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            className="hidden"
+            onChange={(e) => {
+              if (e.target.files?.[0]) setSelectedImage(e.target.files[0]);
+              e.target.value = null;
+            }}
           />
           <button
             type="button"

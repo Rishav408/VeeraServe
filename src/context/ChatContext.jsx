@@ -33,14 +33,17 @@ export function ChatProvider({ children }) {
   const { addToCart } = useCart();
   const { menuItems } = useAppData();
 
-  const sendMessage = async (text, audioBlob = null) => {
-    const displayMessage = text || "🎤 Audio Message";
+  const sendMessage = async (text, audioBlob = null, imageFile = null) => {
+    let displayMessage = text;
+    if (!text && audioBlob) displayMessage = "🎤 Audio Message";
+    else if (!text && imageFile) displayMessage = "🖼️ Image Attachment";
+
     dispatch({
       type: "ADD_USER_MESSAGE",
       payload: { id: `u-${Date.now()}`, sender: "user", text: displayMessage, createdAt: Date.now() }
     });
 
-    const response = await getBotResponse(text, audioBlob);
+    const response = await getBotResponse(text, audioBlob, imageFile);
 
     if (response.action?.type === "add_to_cart") {
       const item = menuItems.find((menuItem) => menuItem.id === response.action.itemId);
