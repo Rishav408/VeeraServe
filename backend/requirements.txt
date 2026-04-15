@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+pydantic
+langchain
+langchain-ollama
+python-multipart
+faster-whisper

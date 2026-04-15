@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #FF6B00;
+  --secondary: #5D4037;
+  --gold: #FFB300;
+  --cream: #FFF3E0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+  background: radial-gradient(ellipse at 15% 0%, rgba(255,107,0,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 100%, rgba(255,179,0,0.10) 0%, transparent 50%),
+    linear-gradient(160deg, #FFF8F0 0%, #FFF3E0 50%, #FFF8EC 100%);
+  background-attachment: fixed;
+  color: #1A1A1A;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(255,243,224,0.5); }
+::-webkit-scrollbar-thumb { background: rgba(255,107,0,0.4); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,107,0,0.7); }
+
+/* Glass card utility */
+.glass-card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,107,0,0.12);
+}
+
+/* Premium card */
+.card-3d {
+  background: linear-gradient(145deg, #FFFFFF 0%, #FFF8F0 100%);
+  box-shadow: 0 2px 4px rgba(93,64,55,0.06), 0 8px 24px rgba(93,64,55,0.12), 0 20px 48px rgba(93,64,55,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-3d:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 4px 8px rgba(93,64,55,0.08), 0 16px 40px rgba(93,64,55,0.18), 0 32px 64px rgba(93,64,55,0.10);
+}
+
+/* Primary button */
+.btn-primary {
+  background: linear-gradient(135deg, #FF8C3A 0%, #FF6B00 100%);
+  box-shadow: 0 4px 6px rgba(255,107,0,0.25), 0 8px 20px rgba(255,107,0,0.35), inset 0 1px 0 rgba(255,255,255,0.20);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 14px;
+  padding: 12px 24px;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(255,107,0,0.35), 0 12px 28px rgba(255,107,0,0.45); }
+.btn-primary:active { transform: translateY(1px); box-shadow: 0 1px 3px rgba(255,107,0,0.20); }
+
+/* Category chips */
+.category-chip {
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1.5px solid rgba(255,107,0,0.2);
+  background: rgba(255,255,255,0.8);
+  color: #5D4037;
+}
+.category-chip:hover { background: rgba(255,107,0,0.08); border-color: rgba(255,107,0,0.4); }
+.category-chip.active {
+  background: linear-gradient(135deg, #FF8C3A, #FF6B00);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(255,107,0,0.40);
+}
+
+/* Veg/NonVeg dot */
+.veg-dot { width: 10px; height: 10px; border-radius: 50%; background: #2E7D32; box-shadow: 0 0 6px rgba(46,125,50,0.5); }
+.nonveg-dot { width: 10px; height: 10px; border-radius: 50%; background: #C62828; box-shadow: 0 0 6px rgba(198,40,40,0.5); }
+
+/* Spice chilli */
+.spice-icon { display: inline-block; font-size: 12px; }
+
+/* Shimmer loading */
+.shimmer-bg {
+  background: linear-gradient(90deg, #f0e6d9 25%, #fff5eb 50%, #f0e6d9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+/* Toast */
+.toast-enter { animation: slideUp 0.35s ease-out; }
+
+/* Page fade */
+.page-enter { animation: slideUp 0.3s ease-out; }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
