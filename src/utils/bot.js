@@ -1,8 +1,12 @@
-export async function getBotResponse(input) {
+export async function getBotResponse(input, audioBlob = null) {
   try {
     const formData = new FormData();
-    formData.append("text", input);
+    if (input) formData.append("text", input);
     formData.append("session_id", "my_user_session");
+
+    if (audioBlob) {
+      formData.append("audio", audioBlob, "recording.webm");
+    }
 
     const res = await fetch("http://localhost:8000/api/v1/chat", {
       method: "POST",

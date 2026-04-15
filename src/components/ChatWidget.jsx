@@ -1,21 +1,59 @@
-import { ChefHat, Mic, SendHorizontal } from "lucide-react";
-import { useState } from "react";
+import { ChefHat, Mic, Square, SendHorizontal } from "lucide-react";
+import { useState, useRef } from "react";
 import { useChat } from "../context/ChatContext";
 
 const quickReplies = ["Show menu", "Recommend", "Spicy dishes", "Track order"];
 
 export default function ChatWidget({ compact = false }) {
   const [input, setInput] = useState("");
+  const [isRecording, setIsRecording] = useState(false);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
+
   const { messages, typing, sendMessage } = useChat();
 
   const submit = (event) => {
     event.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() && !isRecording) return;
     sendMessage(input.trim());
     setInput("");
   };
 
   const sendQuick = (text) => sendMessage(text);
+
+  const toggleRecording = async () => {
+    if (isRecording) {
+      if (mediaRecorderRef.current) {
+        mediaRecorderRef.current.stop();
+      }
+      setIsRecording(false);
+    } else {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorderRef.current = mediaRecorder;
+        audioChunksRef.current = [];
+
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            audioChunksRef.current.push(event.data);
+          }
+        };
+
+        mediaRecorder.onstop = () => {
+          const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
+          sendMessage("", audioBlob);
+          stream.getTracks().forEach((track) => track.stop());
+        };
+
+        mediaRecorder.start();
+        setIsRecording(true);
+      } catch (err) {
+        console.error("Error accessing microphone:", err);
+        alert("Microphone access denied or unavailable.");
+      }
+    }
+  };
 
   return (
     <section className={`card-3d overflow-hidden rounded-[20px] p-0 ${compact ? "h-[28rem]" : "h-[34rem]"}`}>
@@ -86,9 +124,10 @@ export default function ChatWidget({ compact = false }) {
           />
           <button
             type="button"
-            className="absolute right-12 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-cream text-primary"
+            onClick={toggleRecording}
+            className={`absolute right-12 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full ${isRecording ? "bg-red-500 animate-pulse text-white" : "bg-cream text-primary"}`}
           >
-            <Mic size={14} />
+            {isRecording ? <Square size={14} fill="currentColor" /> : <Mic size={14} />}
           </button>
           <button
             type="submit"

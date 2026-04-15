@@ -33,13 +33,14 @@ export function ChatProvider({ children }) {
   const { addToCart } = useCart();
   const { menuItems } = useAppData();
 
-  const sendMessage = async (text) => {
+  const sendMessage = async (text, audioBlob = null) => {
+    const displayMessage = text || "🎤 Audio Message";
     dispatch({
       type: "ADD_USER_MESSAGE",
-      payload: { id: `u-${Date.now()}`, sender: "user", text, createdAt: Date.now() }
+      payload: { id: `u-${Date.now()}`, sender: "user", text: displayMessage, createdAt: Date.now() }
     });
 
-    const response = await getBotResponse(text);
+    const response = await getBotResponse(text, audioBlob);
 
     if (response.action?.type === "add_to_cart") {
       const item = menuItems.find((menuItem) => menuItem.id === response.action.itemId);
