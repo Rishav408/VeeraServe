@@ -4,7 +4,7 @@ import uuid
 from fastapi import UploadFile
 
 # Temp storage for processing audio and image
-TMP_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "tmp")
+TMP_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "tmp")
 os.makedirs(TMP_DIR, exist_ok=True)
 
 def save_upload_file_tmp(upload_file: UploadFile) -> str:

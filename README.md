@@ -76,12 +76,13 @@ pip install -r requirements.txt
 python main.py                  # available at http://localhost:8000
 ```
 
-> The backend is being restructured into an `app/` package (Phase P1) and will run with
-> `uvicorn app.main:app`.
+> The backend is a package under `backend/app/`; `python main.py` (or `uvicorn app.main:app` from
+> `backend/`) starts it.
 
 ### Frontend
 
 ```bash
+cd frontend
 npm install
 npm run dev                     # available at http://localhost:5173
 ```
@@ -90,17 +91,17 @@ npm run dev                     # available at http://localhost:5173
 
 ```text
 VeeraServe/
-├── backend/            # FastAPI backend (prototype layout)
-│   ├── routes/         # API endpoints (chat, voice)
-│   ├── services/       # AI + transcription logic
-│   └── main.py         # entry point
-├── src/                # React front end
+├── frontend/           # React front end (Vite app)
+│   ├── src/            # components, screens, context, data
+│   └── package.json
+├── backend/            # FastAPI backend
+│   ├── main.py         # thin entry point (uvicorn app.main:app)
+│   └── app/            # application package (api, core, services, models, schemas)
 ├── data/               # menu data (being consolidated into data/menu.seed.json)
-├── docs/               # project documentation
-└── package.json
+└── docs/               # project documentation
 ```
 
-The target structure (`frontend/` + `backend/app/` + `evaluation/` + `infra/`) is defined in
+The target structure is defined in
 [`docs/architecture/FOLDER_STRUCTURE.md`](docs/architecture/FOLDER_STRUCTURE.md).
 
 ## Documentation

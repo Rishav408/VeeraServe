@@ -49,7 +49,7 @@ Example: `Update - P1.2 - move frontend and reshape backend`
 
 ## Phase P1 — Repository Restructure (move-only; no logic change)
 
-- [ ] **P1.1 — Frontend move & backend package reshape** _(move-only commit)_
+- [x] **P1.1 — Frontend move & backend package reshape** _(move-only commit)_
   - Move the Vite app into `frontend/` using `git mv` (preserve history); fix relative paths; update run instructions.
   - Reshape the backend into `backend/app/` (`main.py`, `api/`, `core/`, `services/`, `models/`, `schemas/`) and a thin `backend/main.py` entry (`uvicorn app.main:app`).
   Commit: `Update - P1.1 - move frontend and reshape backend`

@@ -2,9 +2,9 @@ from fastapi import APIRouter, File, Form, UploadFile, HTTPException
 from typing import Optional
 import time
 
-from services.audio_service import transcribe_audio
-from services.ai_service import process_chat
-from utils.file_handler import save_upload_file_tmp, delete_tmp_file
+from app.services.audio_service import transcribe_audio
+from app.services.ai_service import process_chat
+from app.core.file_handler import save_upload_file_tmp, delete_tmp_file
 
 router = APIRouter()
 
