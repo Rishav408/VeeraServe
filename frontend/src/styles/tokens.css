@@ -1,0 +1,30 @@
+:root {
+  /* Brand */
+  --primary: #ff6b00;
+  --primary-light: #ff8c3a;
+  --primary-dark: #cc5500;
+  --gold: #ffb300;
+  --gold-light: #ffd54f;
+  --gold-dark: #e65100;
+
+  /* Warm surfaces */
+  --cream: #fff3e0;
+  --cream-dark: #ffe0b2;
+  --cream-deeper: #ffccbc;
+
+  /* Text / secondary */
+  --ink: #1a1a1a;
+  --ink-soft: #3d2b1f;
+  --ink-muted: #6d4c41;
+  --secondary: #5d4037;
+
+  /* Status */
+  --success: #2e7d32;
+  --danger: #c62828;
+
+  /* Radius scale */
+  --radius-card: 20px;
+  --radius-btn: 14px;
+  --radius-chip: 10px;
+  --radius-pill: 999px;
+}

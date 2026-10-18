@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import type { FormEvent } from "react";
+import { Button, Input } from "../components/ui";
 import { useAppData } from "../context/AppDataContext";
 
 export default function AdminMenuScreen() {
@@ -32,20 +33,20 @@ export default function AdminMenuScreen() {
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <label className="block sm:col-span-2">
             <span className="text-sm font-semibold text-ink-soft">Dish Name</span>
-            <input
+            <Input
               placeholder="e.g., Paneer Butter Masala"
               value={name}
               onChange={(event) => setName(event.target.value)}
-              className="mt-1.5 w-full rounded-[12px] border border-primary/20 bg-cream px-4 py-3 text-sm outline-none transition focus:border-primary"
+              className="mt-1.5"
             />
           </label>
           <label className="block">
             <span className="text-sm font-semibold text-ink-soft">Price (₹)</span>
-            <input
+            <Input
               type="number"
               value={price}
               onChange={(event) => setPrice(Number(event.target.value))}
-              className="mt-1.5 w-full rounded-[12px] border border-primary/20 bg-cream px-4 py-3 text-sm outline-none transition focus:border-primary"
+              className="mt-1.5"
             />
           </label>
           <label className="block">
@@ -73,9 +74,9 @@ export default function AdminMenuScreen() {
             />
           </label>
         </div>
-        <button type="submit" className="btn-primary mt-4 flex items-center gap-2 text-sm">
+        <Button type="submit" className="mt-4 flex items-center gap-2 text-sm">
           <Plus size={16} /> Add Item
-        </button>
+        </Button>
       </form>
 
       <div className="space-y-2">

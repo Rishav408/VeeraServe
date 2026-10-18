@@ -1,14 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;0,700;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import './styles/tokens.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --primary: #FF6B00;
-  --secondary: #5D4037;
-  --gold: #FFB300;
-  --cream: #FFF3E0;
-}
 
 * { box-sizing: border-box; }
 
@@ -19,7 +13,7 @@ body {
     radial-gradient(ellipse at 85% 100%, rgba(255,179,0,0.10) 0%, transparent 50%),
     linear-gradient(160deg, #FFF8F0 0%, #FFF3E0 50%, #FFF8EC 100%);
   background-attachment: fixed;
-  color: #1A1A1A;
+  color: var(--ink);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
 }
@@ -51,7 +45,7 @@ body {
 
 /* Primary button */
 .btn-primary {
-  background: linear-gradient(135deg, #FF8C3A 0%, #FF6B00 100%);
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
   box-shadow: 0 4px 6px rgba(255,107,0,0.25), 0 8px 20px rgba(255,107,0,0.35), inset 0 1px 0 rgba(255,255,255,0.20);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   color: white;
@@ -66,7 +60,7 @@ body {
 
 /* Category chips */
 .category-chip {
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   padding: 8px 20px;
   font-size: 13px;
   font-weight: 600;
@@ -76,7 +70,7 @@ body {
   cursor: pointer;
   border: 1.5px solid rgba(255,107,0,0.2);
   background: rgba(255,255,255,0.8);
-  color: #5D4037;
+  color: var(--secondary);
 }
 .category-chip:hover { background: rgba(255,107,0,0.08); border-color: rgba(255,107,0,0.4); }
 .category-chip.active {

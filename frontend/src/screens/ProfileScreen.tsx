@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Clock, Heart, Settings, Star } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Badge, Button, EmptyState, OrderStatusBadge, buttonClasses } from "../components/ui";
 import { useAppData } from "../context/AppDataContext";
 
 export default function ProfileScreen() {
@@ -57,22 +58,18 @@ export default function ProfileScreen() {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm text-ink-muted">Role</span>
-              <span className="rounded-pill bg-primary/10 px-3 py-1 text-xs font-semibold capitalize text-primary">
+              <Badge tone="primary" className="capitalize">
                 {currentUser.role}
-              </span>
+              </Badge>
             </div>
           </div>
           <div className="mt-5 flex flex-wrap gap-3">
-            <Link to="/login" className="btn-primary inline-flex items-center gap-2 text-sm">
+            <Link to="/login" className={buttonClasses("primary", "inline-flex items-center gap-2 text-sm")}>
               Switch User
             </Link>
-            <button
-              type="button"
-              onClick={logout}
-              className="rounded-btn border border-primary/20 bg-white px-4 py-2 text-sm font-semibold text-ink-soft transition hover:bg-primary/5"
-            >
+            <Button variant="outline" onClick={logout}>
               Logout
-            </button>
+            </Button>
           </div>
         </motion.div>
       )}
@@ -80,9 +77,14 @@ export default function ProfileScreen() {
       {activeTab === "orders" && (
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
           {userOrders.length === 0 ? (
-            <div className="card-3d rounded-[16px] p-6 text-center text-sm text-ink-muted">
-              No orders yet. <Link to="/menu" className="font-semibold text-primary">Browse menu</Link>
-            </div>
+            <EmptyState
+              title="No orders yet."
+              action={
+                <Link to="/menu" className="font-semibold text-primary">
+                  Browse menu
+                </Link>
+              }
+            />
           ) : (
             userOrders.map((order) => (
               <article key={order.id} className="card-3d rounded-[16px] p-4">
@@ -92,9 +94,7 @@ export default function ProfileScreen() {
                     <p className="text-xs text-ink-muted">{new Date(order.createdAt).toLocaleDateString()}</p>
                   </div>
                   <div className="text-right">
-                    <span className="rounded-pill bg-gold/20 px-3 py-1 text-xs font-semibold capitalize text-[#E65100]">
-                      {order.status}
-                    </span>
+                    <OrderStatusBadge status={order.status} />
                     <p className="mt-1 text-sm font-bold text-ink">₹{order.total}</p>
                   </div>
                 </div>

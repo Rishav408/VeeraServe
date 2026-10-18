@@ -3,6 +3,7 @@ import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAppData } from "../context/AppDataContext";
+import { Badge, Button, EmptyState, buttonClasses } from "../components/ui";
 
 export default function CartScreen() {
   const { items, subtotal, updateQuantity, removeFromCart } = useCart();
@@ -17,19 +18,17 @@ export default function CartScreen() {
 
   if (items.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-16">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="mb-6 flex h-24 w-24 animate-float items-center justify-center rounded-full bg-cream text-5xl"
-        >
-          🛒
-        </motion.div>
-        <h2 className="font-display text-2xl text-ink-soft">Your cart is empty</h2>
-        <p className="mt-2 text-sm text-ink-muted">Looks like you haven't added anything yet.</p>
-        <Link to="/menu" className="btn-primary mt-6 inline-flex items-center gap-2 text-sm">
-          Explore the Menu <ShoppingCart size={16} />
-        </Link>
+      <div className="py-16">
+        <EmptyState
+          icon="🛒"
+          title="Your cart is empty"
+          description="Looks like you haven't added anything yet."
+          action={
+            <Link to="/menu" className={buttonClasses("primary", "inline-flex items-center gap-2 text-sm")}>
+              Explore the Menu <ShoppingCart size={16} />
+            </Link>
+          }
+        />
       </div>
     );
   }
@@ -70,9 +69,9 @@ export default function CartScreen() {
               <h3 className="text-base font-semibold text-ink-soft">{entry.item.name}</h3>
               <div className="mt-1 flex flex-wrap gap-1.5">
                 {(entry.item.tags || []).map((tag) => (
-                  <span key={tag} className="rounded-pill bg-gold/20 px-2 py-0.5 text-[11px] font-semibold text-[#E65100]">
+                  <Badge key={tag} tone="gold" className="text-[11px]">
                     {tag}
-                  </span>
+                  </Badge>
                 ))}
               </div>
               <p className="mt-1 text-xs text-ink-muted">₹{entry.item.price} each</p>
@@ -149,9 +148,7 @@ export default function CartScreen() {
               placeholder="Promo code"
               className="flex-1 rounded-pill border border-primary/20 bg-white px-4 py-2 text-sm outline-none focus:border-primary"
             />
-            <button type="button" className="rounded-btn bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-              Apply
-            </button>
+            <Button variant="ghost">Apply</Button>
           </div>
         </div>
 

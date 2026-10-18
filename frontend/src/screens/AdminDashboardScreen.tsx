@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { BadgeIndianRupee, ClipboardList, Flame, UtensilsCrossed } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useAppData } from "../context/AppDataContext";
+import { Card, OrderStatusBadge } from "../components/ui";
 
 export default function AdminDashboardScreen() {
   const { orders, menuItems, currentUser } = useAppData();
@@ -73,9 +74,10 @@ export default function AdminDashboardScreen() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {kpis.map(({ label, value, icon: Icon, accent }) => (
-          <article
+          <Card
+            as="article"
             key={label}
-            className={`card-3d relative overflow-hidden rounded-[16px] bg-gradient-to-br ${accentStyles[accent]} p-5`}
+            className={`relative overflow-hidden rounded-[16px] bg-gradient-to-br ${accentStyles[accent]} p-5`}
           >
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -87,7 +89,7 @@ export default function AdminDashboardScreen() {
               </span>
             </div>
             <span className="absolute -bottom-6 -right-6 h-16 w-16 rounded-full bg-primary/10" />
-          </article>
+          </Card>
         ))}
       </div>
 
@@ -113,29 +115,17 @@ export default function AdminDashboardScreen() {
       <div className="space-y-3">
         <h3 className="font-display text-xl text-ink">Recent Orders</h3>
         {orders.slice(0, 5).map((order) => (
-          <article key={order.id} className="card-3d rounded-[14px] p-4 transition hover:shadow-card-hover">
+          <Card as="article" key={order.id} className="rounded-[14px] p-4 transition hover:shadow-card-hover">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="font-display text-lg font-bold text-primary">{order.id}</p>
               <p className="text-sm text-ink-soft">{order.customerName}</p>
-              <span
-                className={`rounded-pill px-3 py-1 text-xs font-semibold capitalize ${
-                  order.status === "served"
-                    ? "bg-success/10 text-success"
-                    : order.status === "preparing"
-                      ? "bg-primary/10 text-primary"
-                      : order.status === "ready"
-                        ? "bg-gold/10 text-gold-dark"
-                        : "bg-cream text-ink-muted"
-                }`}
-              >
-                {order.status}
-              </span>
+              <OrderStatusBadge status={order.status} />
               <p className="text-sm font-bold text-ink">₹{order.total}</p>
               <Link to={`/track/${order.id}`} className="text-xs font-semibold text-primary hover:underline">
                 Advance Status →
               </Link>
             </div>
-          </article>
+          </Card>
         ))}
       </div>
     </div>

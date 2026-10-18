@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import FoodCard from "../components/FoodCard";
+import { EmptyState } from "../components/ui";
 import { useAppData } from "../context/AppDataContext";
 import { useUI } from "../context/UIContext";
 import { categoryTabs } from "../data/menu";
@@ -80,13 +81,15 @@ export default function MenuScreen() {
 
       {/* Content */}
       {filtered.length === 0 ? (
-        <div className="flex h-[200px] flex-col items-center justify-center rounded-[20px] card-3d text-center">
-          <div className="text-5xl">🍽️</div>
-          <h3 className="mt-2 font-display text-[22px] text-ink-soft">Nothing found</h3>
-          <button type="button" onClick={() => setSearch("")} className="mt-2 text-sm font-semibold text-primary hover:underline">
-            Clear search
-          </button>
-        </div>
+        <EmptyState
+          icon="🍽️"
+          title="Nothing found"
+          action={
+            <button type="button" onClick={() => setSearch("")} className="text-sm font-semibold text-primary hover:underline">
+              Clear search
+            </button>
+          }
+        />
       ) : (
         <div className="space-y-8">
           {grouped.map((group) => (

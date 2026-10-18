@@ -86,9 +86,10 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - UI domain types landed in P2.1 (`types/domain.ts`); this task adds the API/DTO layer `types/api.ts` (`MenuSeedDto`, `MenuItemDto`, `CategoryDto`, `HealthResponse`, `ChatResponse`) mirroring the documented data model, and wires `data/menu.ts` + `utils/bot.ts` to it. Order/user/feedback DTOs are deferred to the phase that introduces their endpoints (P3+).
   Commit: `Update - P2.2 - domain types`
 
-- [ ] **P2.3 — Design tokens & shared UI primitives**
+- [x] **P2.3 — Design tokens & shared UI primitives**
   - Consolidate colour/spacing/typography tokens per `architecture/DESIGN.md`.
   - Build shared `ui/` primitives (`Button`, `Card`, `Badge`, `Modal`, `Input`, `Spinner`, `EmptyState`) and replace per-screen duplicates.
+  - Tokens centralised in `src/styles/tokens.css`; primitives under `src/components/ui/` (plus `OrderStatusBadge`, which removes the duplicated order-status pill logic). Adopted across screens/components (empty states, status badges, buttons, inputs, card wrappers). `tsc`, lint, and build pass.
   Commit: `Update - P2.3 - design tokens and UI primitives`
 
 - [ ] **P2.4 — Server-state management & typecheck pass**

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { CheckCircle, CreditCard, IndianRupee, Smartphone } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Card, Input } from "../components/ui";
 import { useCart } from "../context/CartContext";
 import { useAppData } from "../context/AppDataContext";
 import { useUI } from "../context/UIContext";
@@ -46,26 +47,23 @@ export default function CheckoutScreen() {
 
       <div className="grid gap-5 lg:grid-cols-[1fr,380px]">
         <div className="space-y-4">
-          <section className="card-3d rounded-[16px] p-5">
+          <Card as="section" className="rounded-[16px] p-5">
             <h3 className="font-label text-base font-semibold text-ink">Where are you seated?</h3>
             <div className="mt-4 flex items-center gap-3">
-              <input
+              <Input
                 type="number"
                 value={tableNumber}
                 onChange={(e) => setTableNumber(e.target.value)}
                 placeholder="Table #"
-                className="h-[60px] w-full rounded-[12px] border-2 border-primary/30 bg-cream px-4 text-center text-3xl font-bold text-primary outline-none transition focus:border-primary"
+                className="h-[60px] rounded-[12px] border-2 border-primary/30 px-4 text-center text-3xl font-bold text-primary"
               />
-              <button
-                type="button"
-                className="shrink-0 rounded-pill border border-primary px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary/10"
-              >
+              <Button variant="outline" className="shrink-0 rounded-pill border border-primary px-4 py-2 text-primary">
                 Scan QR
-              </button>
+              </Button>
             </div>
-          </section>
+          </Card>
 
-          <section className="card-3d rounded-[16px] p-5">
+          <Card as="section" className="rounded-[16px] p-5">
             <h3 className="font-label text-base font-semibold text-ink">How to pay?</h3>
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
               {paymentOptions.map((option) => {
@@ -88,9 +86,9 @@ export default function CheckoutScreen() {
                 );
               })}
             </div>
-          </section>
+          </Card>
 
-          <section className="card-3d rounded-[16px] p-5">
+          <Card as="section" className="rounded-[16px] p-5">
             <h3 className="font-label text-base font-semibold text-ink">Special instructions? <span className="font-normal text-ink-muted">(optional)</span></h3>
             <textarea
               value={instructions}
@@ -98,7 +96,7 @@ export default function CheckoutScreen() {
               placeholder="Extra napkins, less spicy, etc."
               className="mt-3 h-20 w-full rounded-[12px] border border-primary/20 bg-cream p-3 text-sm outline-none transition focus:border-primary"
             />
-          </section>
+          </Card>
 
           <motion.button
             type="button"
@@ -110,7 +108,7 @@ export default function CheckoutScreen() {
           </motion.button>
         </div>
 
-        <aside className="card-3d rounded-[16px] p-5 lg:sticky lg:top-24">
+        <Card as="aside" className="rounded-[16px] p-5 lg:sticky lg:top-24">
           <h3 className="font-display text-lg text-ink">Order Summary</h3>
           <div className="mt-3 space-y-2">
             {items.map((entry) => (
@@ -138,7 +136,7 @@ export default function CheckoutScreen() {
               <span className="font-display text-2xl font-bold text-primary">₹{grandTotal}</span>
             </div>
           </div>
-        </aside>
+        </Card>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import type { LucideIcon } from "lucide-react";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useAppData } from "../context/AppDataContext";
+import { OrderStatusBadge } from "../components/ui";
 import type { OrderStatus } from "../types/domain";
 
 type StageColor = "gold" | "primary" | "success";
@@ -54,9 +55,7 @@ export default function TrackOrderScreen() {
     <div className="mx-auto max-w-lg space-y-5">
       <div className="flex items-center gap-3">
         <h1 className="font-display text-2xl text-ink">Order {order.id}</h1>
-        <span className="rounded-pill bg-gold/20 px-3 py-1 text-xs font-semibold text-[#E65100] capitalize">
-          {order.status}
-        </span>
+        <OrderStatusBadge status={order.status} />
       </div>
 
       <motion.div

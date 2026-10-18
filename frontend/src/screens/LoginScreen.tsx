@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Input } from "../components/ui";
 import { useAppData } from "../context/AppDataContext";
 import type { UserRole } from "../types/domain";
 
@@ -63,32 +64,32 @@ export default function LoginScreen() {
             <>
               <label className="block">
                 <span className="text-sm font-semibold text-ink-soft">Your Name</span>
-                <input
-                  className="mt-1.5 w-full rounded-[12px] border border-primary/20 bg-cream px-4 py-3 text-sm outline-none transition focus:border-primary"
+                <Input
+                  className="mt-1.5"
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                   placeholder="Enter your name"
                 />
               </label>
-              <button type="submit" className="btn-primary flex h-[52px] w-full items-center justify-center text-base font-semibold">
+              <Button type="submit" className="flex h-[52px] w-full items-center justify-center text-base font-semibold">
                 Continue →
-              </button>
+              </Button>
             </>
           ) : (
             <>
               <label className="block">
                 <span className="text-sm font-semibold text-ink-soft">Email</span>
-                <input
+                <Input
                   type="email"
-                  className="mt-1.5 w-full rounded-[12px] border border-primary/20 bg-cream px-4 py-3 text-sm outline-none transition focus:border-primary"
+                  className="mt-1.5"
                   placeholder="admin@veeradhabha.com"
                 />
               </label>
               <label className="block">
                 <span className="text-sm font-semibold text-ink-soft">Password</span>
-                <input
+                <Input
                   type="password"
-                  className="mt-1.5 w-full rounded-[12px] border border-primary/20 bg-cream px-4 py-3 text-sm outline-none transition focus:border-primary"
+                  className="mt-1.5"
                   placeholder="••••••••"
                 />
               </label>
@@ -103,9 +104,9 @@ export default function LoginScreen() {
                   <option value="admin">Admin</option>
                 </select>
               </label>
-              <button type="submit" className="btn-primary flex h-[52px] w-full items-center justify-center text-base font-semibold">
+              <Button type="submit" className="flex h-[52px] w-full items-center justify-center text-base font-semibold">
                 Sign In
-              </button>
+              </Button>
             </>
           )}
         </form>

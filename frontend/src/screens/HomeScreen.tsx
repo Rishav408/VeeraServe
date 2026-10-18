@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Flame, Sparkles, Star, Utensils } from "lucide-react";
 import FoodCard from "../components/FoodCard";
+import { Card } from "../components/ui";
 import { useAppData } from "../context/AppDataContext";
 import { useUI } from "../context/UIContext";
 
@@ -87,7 +88,7 @@ export default function HomeScreen() {
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {kpis.map(({ label, value, icon: Icon }) => (
-          <article key={label} className="card-3d relative overflow-hidden rounded-[16px] p-5">
+          <Card as="article" key={label} className="relative overflow-hidden rounded-[16px] p-5">
             <div className="flex items-start justify-between">
               <div>
                 <p className="font-display text-[32px] font-bold text-primary">{value}</p>
@@ -98,7 +99,7 @@ export default function HomeScreen() {
               </div>
             </div>
             <span className="absolute -bottom-6 -right-5 h-16 w-16 rounded-full bg-primary/5" />
-          </article>
+          </Card>
         ))}
       </section>
 

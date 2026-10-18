@@ -1,12 +1,13 @@
 import { Minus, Plus, ShoppingBag, ShoppingCart, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { Card, buttonClasses } from "./ui";
 
 export default function MiniCart() {
   const { items, subtotal, updateQuantity, removeFromCart } = useCart();
 
   return (
-    <section className="card-3d rounded-[20px] p-4">
+    <Card as="section" className="rounded-[20px] p-4">
       <div className="mb-3 flex items-center justify-between">
         <h3 className="font-display text-lg text-ink">Your Order</h3>
         <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -78,11 +79,11 @@ export default function MiniCart() {
         </div>
         <Link
           to="/checkout"
-          className="btn-primary mt-3 flex w-full items-center justify-center gap-2 text-sm shadow-glow-orange"
+          className={buttonClasses("primary", "mt-3 flex w-full items-center justify-center gap-2 text-sm shadow-glow-orange")}
         >
           <ShoppingCart size={16} /> Checkout →
         </Link>
       </div>
-    </section>
+    </Card>
   );
 }

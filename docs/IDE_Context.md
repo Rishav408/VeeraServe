@@ -116,6 +116,7 @@ These are known and must be fixed during the indicated phase:
 | Database models | `backend/app/models/` | Not implemented |
 | Admin console | `frontend/src/features/admin/` | Mock present |
 | Frontend types | `frontend/src/types/` | Domain (P2.1) + API DTOs (P2.2) |
+| Design system | `frontend/src/components/ui/`, `frontend/src/styles/tokens.css` | Tokens + primitives (P2.3) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -145,6 +146,12 @@ These are known and must be fixed during the indicated phase:
   DTO layer `src/types/api.ts` and wired `data/menu.ts` + `utils/bot.ts` to it. `tsc --noEmit`, lint,
   and build pass.
 - **Next:** P2.3 (design tokens & UI primitives), P2.4 (server-state & typecheck pass).
+
+### Session 4 — Design system (P2.3)
+- Centralised design tokens in `src/styles/tokens.css`; added shared primitives in
+  `src/components/ui/` and adopted them across screens/components (empty states, status badges,
+  buttons, inputs, card wrappers). `tsc`, lint, and build pass.
+- **Next:** P2.4 (server-state & typecheck pass), then Phase P3 (data layer & read APIs).
 
 ---
 
