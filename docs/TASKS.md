@@ -123,11 +123,12 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `backend/app/schemas/menu.py` (`CategoryOut`, `MenuItemOut`) and `backend/app/api/menu.py`, wired into the app under `/api/v1`.
   Commit: `Update - P3.3 - read endpoints`
 
-- [ ] **P3.4 — Read API tests**
+- [x] **P3.4 — Read API tests**
   - Read API tests with pytest + httpx (happy path, filters, 404).
+  - Added `backend/tests/conftest.py` (in-memory SQLite + seeded `get_db` override) and `backend/tests/test_api/test_menu.py` (categories, menu happy path, filters, detail, 404). `pytest` passes (9 tests).
   Commit: `Update - P3.4 - read API tests`
 
-**Checkpoint — Gate 3:** Read APIs are implemented, documented in OpenAPI, and tested; the menu is served from the database.
+**Checkpoint — Gate 3 (met):** Read APIs are implemented, documented in OpenAPI, and tested; the menu is served from the database.
 
 ---
 

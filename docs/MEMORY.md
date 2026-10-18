@@ -115,6 +115,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P3.1: added the SQLAlchemy data layer (`backend/app/db/`: `base.py`, `session.py`, `init_db.py`) and all eight models (`users`, `categories`, `menu_items`, `orders`, `order_items`, `feedback`, `sessions`, `reservations`); dev `create_all` runs on startup; schema test added. | TASKS P3.1 |
 | (rev) | Phase P3.2: added an idempotent seeder (`backend/app/db/seed.py`, upsert by seed id, runnable as `python -m app.db.seed` and invoked on startup) and `MenuService` (`backend/app/services/menu.py`) with category/item reads and category/veg/max-price/search filters; seeder/filter tests added. | TASKS P3.2 |
 | (rev) | Phase P3.3: added read endpoints `GET /api/v1/categories`, `GET /api/v1/menu` (category/veg/max-price/search filters), and `GET /api/v1/menu/{id}` (404 on unknown id) with Pydantic response models (`backend/app/schemas/menu.py`, `backend/app/api/menu.py`). | TASKS P3.3 |
+| (rev) | Phase P3.4: added read API tests (`backend/tests/conftest.py` with an in-memory SQLite + seeded `get_db` override, and `backend/tests/test_api/test_menu.py` covering happy path, filters, and 404). Gate 3 met; `pytest` passes (9 tests). | TASKS P3.4 |
 
 ---
 
@@ -235,6 +236,17 @@ YYYY-MM-DD — Session summary
   models so they appear in the OpenAPI schema.
 - **Open items opened/closed:** none.
 - **Next:** Phase P3.4 (read API tests).
+
+### Session 9 — Read API tests (P3.4)
+
+- **Completed:** Phase P3.4 — added `backend/tests/conftest.py` (in-memory SQLite engine with a seeded
+  `get_db` dependency override) and `backend/tests/test_api/test_menu.py` covering the categories list,
+  the menu happy path, the `veg`/`max_price`/`search`/`category` filters, item detail, and the 404 case.
+  `pytest` passes (9 tests). **Gate 3 met.**
+- **Decisions:** API tests run against an isolated in-memory SQLite database seeded from
+  `data/menu.seed.json`, so they never touch the dev database file.
+- **Open items opened/closed:** none.
+- **Next:** Phase P4 (auth & write APIs).
 
 ---
 

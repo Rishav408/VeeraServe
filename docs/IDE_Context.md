@@ -123,6 +123,7 @@ These are known and must be fixed during the indicated phase:
 | Database models | `backend/app/db/`, `backend/app/models/` | SQLAlchemy base + 8 models, dev `create_all` (P3.1) |
 | Menu service | `backend/app/services/menu.py`, `backend/app/db/seed.py` | Idempotent seeder + `MenuService` (P3.2) |
 | Menu read APIs | `backend/app/api/menu.py`, `backend/app/schemas/menu.py` | Categories/menu/read endpoints (P3.3) |
+| API tests | `backend/tests/conftest.py`, `backend/tests/test_api/` | In-memory seeded client (P3.4) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -179,6 +180,11 @@ These are known and must be fixed during the indicated phase:
 - Added `GET /api/v1/categories`, `GET /api/v1/menu` (category/veg/max-price/search), and
   `GET /api/v1/menu/{id}` (404) with Pydantic response models, backed by `MenuService`.
 - **Next:** P3.4 (read API tests).
+
+### Session 9 — Read API tests (P3.4)
+- Added `backend/tests/conftest.py` (in-memory SQLite + seeded `get_db` override) and read API tests
+  (happy path, filters, 404). `pytest` passes (9 tests). **Gate 3 met.**
+- **Next:** Phase P4 (auth & write APIs).
 
 ---
 
