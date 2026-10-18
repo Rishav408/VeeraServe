@@ -120,6 +120,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P4.2: added server-side role enforcement (`backend/app/api/deps.py`: `get_current_user`, `get_optional_user`, `require_roles(*roles)` with 401/403) and `GET /api/v1/auth/me` as the first protected route. | TASKS P4.2 |
 | (rev) | Phase P4.3: added the orders API (`backend/app/schemas/order.py`, `backend/app/services/order.py`, `backend/app/api/orders.py`) — server-validated totals (menu-priced subtotal + 5% GST, `gst_rate` config), guest-friendly placement, scoped listing/detail with ownership, and staff/admin-only `pending→preparing→ready→served` transitions. | TASKS P4.3 |
 | (rev) | Phase P4.4: added the feedback and reservations APIs (`backend/app/api/{feedback,reservations}.py`) — feedback with 1–5 rating validation and admin-only listing, and reservations (party size ≥ 1, valid time) with guest submissions and scoped listing. | TASKS P4.4 |
+| (rev) | Phase P4.5: added auth/write-path tests (`backend/tests/test_auth/`, `backend/tests/test_api/test_orders.py`, `backend/tests/test_api/test_feedback.py`) covering hashing/JWT, 401/403 RBAC, ownership, server-side totals, status transitions, and rating bounds. Gate 4 met; `pytest` passes (26 tests). | TASKS P4.5 |
 
 ---
 
@@ -303,6 +304,19 @@ YYYY-MM-DD — Session summary
   and reservations accept guests (nullable `user_id`) but require auth to list.
 - **Open items opened/closed:** none.
 - **Next:** Phase P4.5 (auth & write-path tests).
+
+### Session 14 — Auth & write-path tests (P4.5)
+
+- **Completed:** Phase P4.5 — added `backend/tests/test_auth/` (bcrypt/JWT round-trip plus
+  register/login/duplicate-email/401 cases) and write-path tests `backend/tests/test_api/test_orders.py`
+  and `backend/tests/test_api/test_feedback.py`. Coverage includes server-side total computation,
+  guest ordering, scoped listing, ownership 403, staff-only status transitions with forward-only rules,
+  rating-bound 422s, and admin-only feedback listing. Added shared `create_user`/`auth_headers` fixtures.
+  `pytest` passes (26 tests). **Gate 4 met — the backend is complete and testable via curl/Postman.**
+- **Decisions:** role-specific accounts are created directly in tests via the shared `create_user`
+  fixture (roles are never self-assigned through the API).
+- **Open items opened/closed:** none.
+- **Next:** Phase P5 (front-end integration, ordering MVP).
 
 ---
 

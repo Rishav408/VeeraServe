@@ -128,6 +128,7 @@ These are known and must be fixed during the indicated phase:
 | Auth guards | `backend/app/api/deps.py` | `get_current_user` / `require_roles` (P4.2) |
 | Orders API | `backend/app/api/orders.py`, `backend/app/services/order.py` | Server-priced orders + status (P4.3) |
 | Feedback/reservations | `backend/app/api/feedback.py`, `backend/app/api/reservations.py` | 1–5 ratings, admin listing (P4.4) |
+| Backend tests | `backend/tests/` | Auth + read/write API suites (26 tests, P4.5) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -210,6 +211,12 @@ These are known and must be fixed during the indicated phase:
 - Added `POST/GET /api/v1/feedback` (1–5 ratings, admin-only listing) and `POST/GET
   /api/v1/reservations` (party size ≥ 1, scoped listing).
 - **Next:** P4.5 (auth & write-path tests).
+
+### Session 14 — Auth & write-path tests (P4.5)
+- Added `backend/tests/test_auth/` and write-path tests (orders, feedback/reservations) covering
+  hashing/JWT, 401/403 RBAC, ownership, server-side totals, transitions, and rating bounds. `pytest`
+  passes (26 tests). **Gate 4 met — backend complete.**
+- **Next:** Phase P5 (front-end integration, ordering MVP).
 
 ---
 

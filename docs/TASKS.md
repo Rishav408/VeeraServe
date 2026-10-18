@@ -159,11 +159,12 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `backend/app/schemas/{feedback,reservation}.py`, `backend/app/services/{feedback,reservation}.py`, and `backend/app/api/{feedback,reservations}.py`. Ratings are validated to 1–5 (422 otherwise); feedback listing is admin-only; reservations accept guests and listing is scoped.
   Commit: `Update - P4.4 - feedback and reservations APIs`
 
-- [ ] **P4.5 — Auth/write tests & security cases**
+- [x] **P4.5 — Auth/write tests & security cases**
   - Auth/write tests including security cases (401/403, RBAC).
+  - Added `backend/tests/test_auth/` (hashing/token round-trip + register/login/duplicate/401 cases) and write-path tests (`backend/tests/test_api/test_orders.py`, `backend/tests/test_api/test_feedback.py`) covering server-side totals, ownership, RBAC, status transitions, and rating bounds. Shared `create_user`/`auth_headers` fixtures added. `pytest` passes (26 tests).
   Commit: `Update - P4.5 - auth and write-path tests`
 
-**Checkpoint — Gate 4:** Real authentication and write APIs are implemented and tested; the backend is complete and testable via curl/Postman.
+**Checkpoint — Gate 4 (met):** Real authentication and write APIs are implemented and tested; the backend is complete and testable via curl/Postman.
 
 ---
 
