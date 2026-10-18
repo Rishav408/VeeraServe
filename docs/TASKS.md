@@ -33,7 +33,7 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Add root `.gitignore` (Python + Node + OS + editor) and `.editorconfig`.
   Commit: `Update - P0.2 - repo hygiene`
 
-- [ ] **P0.3 — Environment samples & pinned dependencies**
+- [x] **P0.3 — Environment samples & pinned dependencies**
   - Commit the frontend lockfile and add a root `.env.example` with `VITE_API_URL`.
   - Add pinned `backend/requirements.txt` and `backend/.env.example` (`DATABASE_URL`, `JWT_SECRET`, `LLM_BASE_URL`, `LLM_MODEL`, `EMBEDDING_MODEL`, `LLM_API_KEY`, CORS origins, upload limits).
   Commit: `Update - P0.3 - env samples and pinned deps`
