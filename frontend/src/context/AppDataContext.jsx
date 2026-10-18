@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useReducer, useRef } from "react";
-import { initialFeedback, initialOrders, initialUsers, menuItems } from "../data/mockData";
+import { initialFeedback, initialOrders, initialUsers } from "../data/demoData";
+import { menuItems } from "../data/menu";
 import { STORAGE_KEYS } from "../utils/storageKeys";
 
 const ORDER_STAGES = [

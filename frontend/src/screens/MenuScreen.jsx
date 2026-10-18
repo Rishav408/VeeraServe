@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import FoodCard from "../components/FoodCard";
 import { useAppData } from "../context/AppDataContext";
 import { useUI } from "../context/UIContext";
-import { categoryTabs } from "../data/mockData";
+import { categoryTabs } from "../data/menu";
 
 const categoryLabels = {
   all: "All",

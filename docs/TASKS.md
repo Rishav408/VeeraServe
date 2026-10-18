@@ -54,7 +54,7 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Reshape the backend into `backend/app/` (`main.py`, `api/`, `core/`, `services/`, `models/`, `schemas/`) and a thin `backend/main.py` entry (`uvicorn app.main:app`).
   Commit: `Update - P1.1 - move frontend and reshape backend`
 
-- [ ] **P1.2 — Canonical menu seed**
+- [x] **P1.2 — Canonical menu seed**
   - Convert `src/data/mockData.js` + `data/menu.md` into the canonical `data/menu.seed.json` with `data/menu.schema.json` and a one-off converter script; validate every item against the schema.
   - Switch the app's menu source to the seed, then delete `mockData.js` and `data/menu.md`; grep confirms no remaining `mockData` imports.
   Commit: `Update - P1.2 - canonical menu seed`

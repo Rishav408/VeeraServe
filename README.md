@@ -97,7 +97,7 @@ VeeraServe/
 ├── backend/            # FastAPI backend
 │   ├── main.py         # thin entry point (uvicorn app.main:app)
 │   └── app/            # application package (api, core, services, models, schemas)
-├── data/               # menu data (being consolidated into data/menu.seed.json)
+├── data/               # canonical menu seed (menu.seed.json) + schema
 └── docs/               # project documentation
 ```
 

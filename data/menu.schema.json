@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://veeraserve.local/schemas/menu.seed.schema.json",
+  "title": "VeeraServe canonical menu seed",
+  "type": "object",
+  "required": ["version", "currency", "categories", "items"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "currency": {
+      "type": "string",
+      "enum": ["INR"]
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "sort_order"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sort_order": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "category",
+          "description",
+          "price",
+          "happy_hour_price",
+          "is_veg",
+          "spice_level",
+          "tags",
+          "rating",
+          "prep_time",
+          "is_available",
+          "image_url",
+          "is_alcoholic"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "description": {
+            "type": ["string", "null"]
+          },
+          "price": {
+            "type": ["integer", "null"],
+            "minimum": 0
+          },
+          "happy_hour_price": {
+            "type": ["integer", "null"],
+            "minimum": 0
+          },
+          "is_veg": {
+            "type": "boolean"
+          },
+          "spice_level": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "rating": {
+            "type": ["number", "null"],
+            "minimum": 0,
+            "maximum": 5
+          },
+          "prep_time": {
+            "type": ["string", "null"]
+          },
+          "is_available": {
+            "type": "boolean"
+          },
+          "image_url": {
+            "type": ["string", "null"]
+          },
+          "is_alcoholic": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

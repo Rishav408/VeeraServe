@@ -76,9 +76,10 @@ Versions are pinned when the environment is created; exact versions are recorded
 
 - **Documentation:** v1.0 suite present (16 documents). The previous unrelated documentation has been
   removed.
-- **Code:** the original prototype codebase is present but **not yet restructured**. It still contains
-  the original JavaScript front end, the mock data module, and the chat-only FastAPI service. None of
-  the revamp phases below have been executed yet.
+- **Code:** Phases P0 (hygiene) and P1.1–P1.2 (restructure) are complete. The Vite app lives in
+  `frontend/`, the backend is a package under `backend/app/`, and the menu is sourced solely from
+  `data/menu.seed.json`. The front end is still JavaScript (TypeScript migration is Phase P2) and the
+  AI is not yet grounded (Phase P6).
 
 ### 3.2 Verified defects carried from the prototype
 
@@ -86,7 +87,7 @@ These are known and must be fixed during the indicated phase:
 
 | Defect | Fix phase |
 |---|---|
-| Menu duplicated across `mockData.js` and `data/menu.md`. | P1/P3 |
+| Menu duplicated across `mockData.js` and `data/menu.md`. | **Resolved — P1.2** |
 | Committed `__pycache__`, unused assets, editor config, dead stylesheet. | P0 |
 | AI is not grounded in the menu; `add_to_cart` path is dead. | P6 |
 | Random revenue / mock charts in admin. | P7 |
@@ -101,8 +102,9 @@ These are known and must be fixed during the indicated phase:
 | Module | Target location | Status |
 |---|---|---|
 | Documentation suite | `docs/` | Implemented (baseline) |
-| Frontend app | `frontend/` | Prototype present (not restructured) |
-| Backend API | `backend/app/` | Chat-only prototype present |
+| Canonical menu | `data/menu.seed.json` | Implemented (P1.2) |
+| Frontend app | `frontend/` | Present; moved in P1.1 (still JavaScript) |
+| Backend API | `backend/app/` | Chat-only prototype; package layout added in P1.1 |
 | Agent service | `backend/app/services/agent/` | Not implemented |
 | RAG / vector store | `backend/app/services/rag/` | Not implemented |
 | Database models | `backend/app/models/` | Not implemented |
@@ -118,6 +120,12 @@ These are known and must be fixed during the indicated phase:
 - Removed unrelated documentation; created the VeeraServe documentation suite.
 - Established decisions D-1…D-10 and open items O-1…O-8 in `MEMORY.md`.
 - **Next:** begin Phase P0 (repository hygiene) and P1 (restructure).
+
+### Session 1 — Restructure (P0–P1.2)
+- Completed Phase P0 (hygiene) and Phase P1.1–P1.2 (restructure); see `MEMORY.md` §7.
+- Front end moved to `frontend/`; backend is a package under `backend/app/`; menu sourced only from
+  `data/menu.seed.json`.
+- **Next:** P1.3 (Docker skeleton + centralised config), P1.4 (minimal app + health endpoint).
 
 ---
 

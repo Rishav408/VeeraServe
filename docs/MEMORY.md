@@ -103,6 +103,9 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (baseline) | Canonical naming and local-first AI strategy fixed. | D-1, D-2 |
 | (rev) | Local model runtime changed from Ollama to **LM Studio** (OpenAI-compatible local server) across the documentation suite. | D-11 |
 | (rev) | `TASKS.md` reformatted as a granular, one-task-per-commit checklist (phases P0–P9, `Update - <phase>.<task>` commit messages, phase checkpoints). | `TASKS.md` |
+| (rev) | Phase P0 complete: repository hygiene, pinned backend deps, env samples, README rewrite; tagged `docs-baseline`. | `TASKS.md`, `README.md` |
+| (rev) | Phase P1.1: Vite app moved to `frontend/`; backend reshaped into `backend/app/` with a thin `backend/main.py` entry. | `TASKS.md` |
+| (rev) | Phase P1.2: canonical `data/menu.seed.json` (+ `menu.schema.json`) created by one-off `scripts/convert_menu.mjs`; legacy `mockData.js` and `data/menu.md` retired; front end reads the seed. | D-7 |
 
 ---
 
@@ -134,6 +137,15 @@ YYYY-MM-DD — Session summary
 - **Decisions:** Added D-11 (LM Studio runtime); D-2 reworded to be runtime-agnostic.
 - **Open items updated:** O-1/O-2 restated in LM Studio GGUF terms; all others unchanged.
 - **Next:** Phase P0 (repository hygiene), then P1 (restructure).
+
+### Session 2 — Repository restructure (P0–P1.2)
+
+- **Completed:** Phase P0 (hygiene: junk/asset removal, `.gitignore`, `.editorconfig`, pinned backend
+  dependencies, env samples, README, `docs-baseline` tag); Phase P1.1 (front end moved to `frontend/`,
+  backend reshaped into `backend/app/` with a thin entry point); Phase P1.2 (canonical menu seed).
+- **Decisions:** none new. Menu single source of truth realised for D-7.
+- **Open items opened/closed:** none.
+- **Next:** P1.3 (Docker skeleton + centralised config), P1.4 (minimal app + health endpoint).
 
 ---
 
