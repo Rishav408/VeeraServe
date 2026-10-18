@@ -117,6 +117,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P3.3: added read endpoints `GET /api/v1/categories`, `GET /api/v1/menu` (category/veg/max-price/search filters), and `GET /api/v1/menu/{id}` (404 on unknown id) with Pydantic response models (`backend/app/schemas/menu.py`, `backend/app/api/menu.py`). | TASKS P3.3 |
 | (rev) | Phase P3.4: added read API tests (`backend/tests/conftest.py` with an in-memory SQLite + seeded `get_db` override, and `backend/tests/test_api/test_menu.py` covering happy path, filters, and 404). Gate 3 met; `pytest` passes (9 tests). | TASKS P3.4 |
 | (rev) | Phase P4.1: added the auth core — bcrypt password hashing and PyJWT issuance (`backend/app/core/security.py`), user service, auth schemas, and `POST /api/v1/auth/register` + `POST /api/v1/auth/login`; pinned `bcrypt`/`PyJWT`; aligned user role default to `user`. | TASKS P4.1 |
+| (rev) | Phase P4.2: added server-side role enforcement (`backend/app/api/deps.py`: `get_current_user`, `get_optional_user`, `require_roles(*roles)` with 401/403) and `GET /api/v1/auth/me` as the first protected route. | TASKS P4.2 |
 
 ---
 
@@ -262,6 +263,17 @@ YYYY-MM-DD — Session summary
   ≥32-byte placeholder to satisfy HMAC key-length guidance.
 - **Open items opened/closed:** none.
 - **Next:** Phase P4.2 (server-side role enforcement).
+
+### Session 11 — Role enforcement (P4.2)
+
+- **Completed:** Phase P4.2 — added `backend/app/api/deps.py` with `get_current_user`,
+  `get_optional_user`, and `require_roles(*roles)`, plus `CurrentUser`/`OptionalUser` aliases. Invalid or
+  missing tokens yield 401; a disallowed role yields 403. Added `GET /api/v1/auth/me` as the first
+  protected route.
+- **Decisions:** roles are enforced exclusively server-side from the JWT `sub`/`role` claims; the
+  client can never elevate its own role (fixes the original dropdown-escalation defect).
+- **Open items opened/closed:** none.
+- **Next:** Phase P4.3 (orders API).
 
 ---
 

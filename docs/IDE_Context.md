@@ -125,6 +125,7 @@ These are known and must be fixed during the indicated phase:
 | Menu read APIs | `backend/app/api/menu.py`, `backend/app/schemas/menu.py` | Categories/menu/read endpoints (P3.3) |
 | API tests | `backend/tests/conftest.py`, `backend/tests/test_api/` | In-memory seeded client (P3.4) |
 | Auth core | `backend/app/core/security.py`, `backend/app/api/auth.py` | bcrypt + JWT register/login (P4.1) |
+| Auth guards | `backend/app/api/deps.py` | `get_current_user` / `require_roles` (P4.2) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -191,6 +192,11 @@ These are known and must be fixed during the indicated phase:
 - Added bcrypt hashing + PyJWT tokens (`backend/app/core/security.py`) and `POST /api/v1/auth/register`
   / `POST /api/v1/auth/login`; pinned `bcrypt`/`PyJWT`.
 - **Next:** P4.2 (server-side role enforcement).
+
+### Session 11 — Role enforcement (P4.2)
+- Added `backend/app/api/deps.py` (`get_current_user`, `get_optional_user`, `require_roles`) and
+  `GET /api/v1/auth/me`; missing/invalid tokens → 401, wrong role → 403.
+- **Next:** P4.3 (orders API).
 
 ---
 

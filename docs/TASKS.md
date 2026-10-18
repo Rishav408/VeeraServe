@@ -141,8 +141,9 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `backend/app/core/security.py` (bcrypt hashing, PyJWT issue/decode), `backend/app/services/user.py`, `backend/app/schemas/auth.py`, and `backend/app/api/auth.py`. Register creates a `user`-role account (409 on duplicate); login returns a bearer token (401 on bad credentials). Pinned `bcrypt`/`PyJWT`.
   Commit: `Update - P4.1 - auth core`
 
-- [ ] **P4.2 — Server-side role enforcement**
+- [x] **P4.2 — Server-side role enforcement**
   - Role dependency (`guest`/`user`/`staff`/`admin`) enforced **server-side** (fixes dropdown escalation).
+  - Added `backend/app/api/deps.py` (`get_current_user`, `get_optional_user`, `require_roles(*roles)` with 401/403) and `GET /api/v1/auth/me` as the first protected route.
   Commit: `Update - P4.2 - server-side role enforcement`
 
 - [ ] **P4.3 — Orders API**
