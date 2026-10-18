@@ -116,10 +116,11 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `backend/app/db/seed.py` (upsert by seed id, wired into startup + runnable as `python -m app.db.seed`) and `backend/app/services/menu.py`. Idempotency/filter tests added; `pytest` passes.
   Commit: `Update - P3.2 - seeder and menu service`
 
-- [ ] **P3.3 — Read endpoints**
+- [x] **P3.3 — Read endpoints**
   - `GET /api/v1/categories` with Pydantic response models.
   - `GET /api/v1/menu` with filters (category, veg, max price, search).
   - `GET /api/v1/menu/{id}` returning item details (404 on unknown id).
+  - Added `backend/app/schemas/menu.py` (`CategoryOut`, `MenuItemOut`) and `backend/app/api/menu.py`, wired into the app under `/api/v1`.
   Commit: `Update - P3.3 - read endpoints`
 
 - [ ] **P3.4 — Read API tests**

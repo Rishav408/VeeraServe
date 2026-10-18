@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.health import router as health_router
+from app.api.menu import router as menu_router
 from app.core.config import get_settings
 from app.db.init_db import init_db
 from app.db.seed import seed_menu
@@ -36,6 +37,7 @@ app.add_middleware(
 )
 
 app.include_router(health_router, prefix="/api/v1", tags=["Health"])
+app.include_router(menu_router, prefix="/api/v1", tags=["Menu"])
 
 
 @app.get("/")

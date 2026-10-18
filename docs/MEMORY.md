@@ -114,6 +114,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P2.4: adopted TanStack Query (`QueryClientProvider`), added `src/lib/{apiClient,queryClient}.ts` and `src/hooks/useHealth.ts`, and surfaced backend status in the right rail; `tsc`, lint, and build pass (Gate 2 met). | TASKS P2.4 |
 | (rev) | Phase P3.1: added the SQLAlchemy data layer (`backend/app/db/`: `base.py`, `session.py`, `init_db.py`) and all eight models (`users`, `categories`, `menu_items`, `orders`, `order_items`, `feedback`, `sessions`, `reservations`); dev `create_all` runs on startup; schema test added. | TASKS P3.1 |
 | (rev) | Phase P3.2: added an idempotent seeder (`backend/app/db/seed.py`, upsert by seed id, runnable as `python -m app.db.seed` and invoked on startup) and `MenuService` (`backend/app/services/menu.py`) with category/item reads and category/veg/max-price/search filters; seeder/filter tests added. | TASKS P3.2 |
+| (rev) | Phase P3.3: added read endpoints `GET /api/v1/categories`, `GET /api/v1/menu` (category/veg/max-price/search filters), and `GET /api/v1/menu/{id}` (404 on unknown id) with Pydantic response models (`backend/app/schemas/menu.py`, `backend/app/api/menu.py`). | TASKS P3.3 |
 
 ---
 
@@ -223,6 +224,17 @@ YYYY-MM-DD — Session summary
   seeding is idempotent, so re-runs are safe.
 - **Open items opened/closed:** none.
 - **Next:** Phase P3.3 (read endpoints over `MenuService`).
+
+### Session 8 — Read endpoints (P3.3)
+
+- **Completed:** Phase P3.3 — added `backend/app/schemas/menu.py` (`CategoryOut`, `MenuItemOut` with
+  `from_attributes`) and `backend/app/api/menu.py` exposing `GET /api/v1/categories`,
+  `GET /api/v1/menu` (filters: `category`, `veg`, `max_price`, `search`), and `GET /api/v1/menu/{id}`
+  (404 on unknown id); wired the router into the app.
+- **Decisions:** read endpoints delegate all data access to `MenuService`; response shapes are Pydantic
+  models so they appear in the OpenAPI schema.
+- **Open items opened/closed:** none.
+- **Next:** Phase P3.4 (read API tests).
 
 ---
 
