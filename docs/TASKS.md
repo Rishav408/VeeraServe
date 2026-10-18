@@ -64,7 +64,7 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Add `backend/app/core/config.py` (Pydantic `BaseSettings`) reading all env vars; remove the hard-coded `http://localhost:8000/...` URL from the front end.
   Commit: `Update - P1.3 - docker skeleton and config`
 
-- [ ] **P1.4 — Minimal FastAPI app, health endpoint & test**
+- [x] **P1.4 — Minimal FastAPI app, health endpoint & test**
   - Add the minimal FastAPI app (`backend/app/main.py`) and `GET /api/v1/health` returning `{"status": "ok"}`; confirm `uvicorn app.main:app` runs.
   - Add `backend/tests/test_api/test_health.py` — one test for the health endpoint.
   Commit: `Update - P1.4 - minimal app, health endpoint and test`

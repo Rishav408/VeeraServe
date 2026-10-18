@@ -76,11 +76,12 @@ Versions are pinned when the environment is created; exact versions are recorded
 
 - **Documentation:** v1.0 suite present (16 documents). The previous unrelated documentation has been
   removed.
-- **Code:** Phases P0 (hygiene) and P1.1–P1.3 (restructure) are complete. The Vite app lives in
+- **Code:** Phases P0 (hygiene) and P1.1–P1.4 (restructure) are complete. The Vite app lives in
   `frontend/`, the backend is a package under `backend/app/` with centralised settings in
-  `backend/app/core/config.py`, the menu is sourced solely from `data/menu.seed.json`, and a
-  `docker-compose.yml` skeleton exists. The front end is still JavaScript (TypeScript migration is
-  Phase P2) and the AI is not yet grounded (Phase P6).
+  `backend/app/core/config.py`, the menu is sourced solely from `data/menu.seed.json`, a
+  `docker-compose.yml` skeleton exists, and the backend exposes `GET /api/v1/health` (with a test).
+  The legacy Ollama chat router is unwired pending its rebuild in P6. The front end is still
+  JavaScript (TypeScript migration is Phase P2).
 
 ### 3.2 Verified defects carried from the prototype
 
@@ -95,7 +96,7 @@ These are known and must be fixed during the indicated phase:
 | Cosmetic login / dropdown privilege escalation. | P4 |
 | Checkout discards table, payment, instructions. | P4/P5 |
 | Feedback rating can compute 15/5. | P4/P5 |
-| Hard-coded backend URL; no `.env`. | P1/P5 |
+| Hard-coded backend URL; no `.env`. | **Resolved — P1.3** |
 | No tests, CI, Docker, or pinned Python deps. | P0/P8 |
 
 ### 3.3 Module status matrix
@@ -105,8 +106,9 @@ These are known and must be fixed during the indicated phase:
 | Documentation suite | `docs/` | Implemented (baseline) |
 | Canonical menu | `data/menu.seed.json` | Implemented (P1.2) |
 | Frontend app | `frontend/` | Present; moved in P1.1 (still JavaScript) |
-| Backend API | `backend/app/` | Chat-only prototype; package layout added in P1.1 |
+| Backend API | `backend/app/` | Minimal app + `/api/v1/health` (P1.4); chat router unwired pending P6 |
 | Backend config | `backend/app/core/config.py` | Implemented (P1.3) |
+| Backend tests | `backend/tests/` | Health test added (P1.4) |
 | Docker skeleton | `docker-compose.yml` | Skeleton added in P1.3 (Dockerfiles in P9) |
 | Agent service | `backend/app/services/agent/` | Not implemented |
 | RAG / vector store | `backend/app/services/rag/` | Not implemented |
