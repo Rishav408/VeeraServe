@@ -24,11 +24,11 @@ Example: `Update - P1.1 - move frontend into frontend/`
 
 - [x] P0.1 — Create the 16-document `docs/` suite (root + `architecture/` + `ai/` + `evaluation/`) with working `INDEX.md` cross-links — **done**
   Commit: `Update - P0.1 - documentation suite`
-- [ ] P0.2 — Remove committed junk: `__pycache__/` and `*.pyc`, `.qwen/`, dead `App.css`; untrack them. Do **not** delete `data/menu.md` yet (P1.3 converts it)
+- [x] P0.2 — Remove committed junk: `__pycache__/` and `*.pyc`, `.qwen/`, dead `App.css`; untrack them. Do **not** delete `data/menu.md` yet (P1.3 converts it)
   Commit: `Update - P0.2 - remove committed junk`
-- [ ] P0.3 — Remove unused static assets (`react.svg`, `vite.svg`, `hero.png`, `icons.svg`) after grep-confirming they are not imported
+- [x] P0.3 — Remove unused static assets (`react.svg`, `vite.svg`, `hero.png`, `icons.svg`) after grep-confirming they are not imported
   Commit: `Update - P0.3 - remove unused assets`
-- [ ] P0.4 — Add root `.gitignore` (Python + Node + OS + editor) and `.editorconfig`
+- [x] P0.4 — Add root `.gitignore` (Python + Node + OS + editor) and `.editorconfig`
   Commit: `Update - P0.4 - gitignore and editorconfig`
 - [ ] P0.5 — Commit the frontend lockfile and add `frontend/.env.example` with `VITE_API_URL`
   Commit: `Update - P0.5 - pin frontend deps and env example`

@@ -1,4 +1,10 @@
-# Logs
+# --- OS ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Logs ---
 logs
 *.log
 npm-debug.log*
@@ -7,18 +13,48 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# --- Node ---
+node_modules/
+dist/
+dist-ssr/
+build/
+coverage/
 *.local
 
-# Editor directories and files
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+ENV/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Environment / secrets ---
+.env
+.env.*
+!.env.example
+
+# --- Databases ---
+*.sqlite
+*.sqlite3
+*.db
+
+# --- Editor directories and files ---
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.code-workspace
+
+# --- Local AI tooling ---
+.qwen/
