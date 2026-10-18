@@ -82,7 +82,9 @@ Versions are pinned when the environment is created; exact versions are recorded
   `docker-compose.yml` skeleton exists, and the backend exposes `GET /api/v1/health` (with a test).
   The legacy Ollama chat router is unwired pending its rebuild in P6. The front end is now TypeScript
   (`strict`; migrated in P2.1) with shared domain types in `frontend/src/types/domain.ts`; `tsc --noEmit`,
-  lint, and build pass.
+  lint, and build pass. The front end also uses a shared design system (`frontend/src/components/ui/`,
+  tokens in `frontend/src/styles/tokens.css`) and TanStack Query server-state tooling
+  (`frontend/src/lib/`, `frontend/src/hooks/`). Gate 2 is met.
 
 ### 3.2 Verified defects carried from the prototype
 
@@ -117,6 +119,7 @@ These are known and must be fixed during the indicated phase:
 | Admin console | `frontend/src/features/admin/` | Mock present |
 | Frontend types | `frontend/src/types/` | Domain (P2.1) + API DTOs (P2.2) |
 | Design system | `frontend/src/components/ui/`, `frontend/src/styles/tokens.css` | Tokens + primitives (P2.3) |
+| Server-state | `frontend/src/lib/`, `frontend/src/hooks/` | TanStack Query + typed API client (P2.4) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -152,6 +155,11 @@ These are known and must be fixed during the indicated phase:
   `src/components/ui/` and adopted them across screens/components (empty states, status badges,
   buttons, inputs, card wrappers). `tsc`, lint, and build pass.
 - **Next:** P2.4 (server-state & typecheck pass), then Phase P3 (data layer & read APIs).
+
+### Session 5 — Server-state tooling (P2.4)
+- Added TanStack Query + typed API client (`src/lib/`), `useHealth` hook (`src/hooks/`), and a
+  backend-status indicator in the right rail. `tsc`, lint, and build pass; Gate 2 met.
+- **Next:** Phase P3 (data layer & read APIs).
 
 ---
 

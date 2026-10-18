@@ -1,4 +1,4 @@
-import { API_URL } from "./config";
+import { apiPostForm } from "../lib/apiClient";
 import type { BotResponse } from "../types/domain";
 import type { ChatResponse } from "../types/api";
 
@@ -20,16 +20,7 @@ export async function getBotResponse(
       formData.append("image", imageFile);
     }
 
-    const res = await fetch(`${API_URL}/chat`, {
-      method: "POST",
-      body: formData,
-    });
-
-    if (!res.ok) {
-        throw new Error("Backend error");
-    }
-
-    const data = (await res.json()) as ChatResponse;
+    const data = await apiPostForm<ChatResponse>("/chat", formData);
     return { message: data.response, action: null };
   } catch {
     return { message: "Oops, something went wrong with the AI connection! Make sure the backend is running.", action: null };

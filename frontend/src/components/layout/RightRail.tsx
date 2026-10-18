@@ -1,11 +1,14 @@
 import { useMemo } from "react";
 import { useAppData } from "../../context/AppDataContext";
 import { useCart } from "../../context/CartContext";
+import { useHealth } from "../../hooks/useHealth";
+import { Spinner } from "../ui";
 import MiniCart from "../MiniCart";
 
 export default function RightRail() {
   const { orders, feedback, menuItems } = useAppData();
   const { addToCart } = useCart();
+  const health = useHealth();
 
   const pendingOrders = useMemo(
     () => orders.filter((order) => ["pending", "preparing", "ready"].includes(order.status)).length,
@@ -17,6 +20,15 @@ export default function RightRail() {
   return (
     <aside className="hidden space-y-3 xl:block">
       <MiniCart />
+
+      <div className="flex items-center gap-2 rounded-pill bg-cream px-3 py-2 text-[13px] font-semibold text-ink-soft">
+        {health.isPending ? (
+          <Spinner size={14} />
+        ) : (
+          <span className={`h-2.5 w-2.5 rounded-full ${health.isSuccess ? "bg-success" : "bg-danger"}`} />
+        )}
+        AI backend: {health.isPending ? "checking…" : health.isSuccess ? "online" : "offline"}
+      </div>
 
       <div className="flex gap-2">
         <div className="flex-1 rounded-pill bg-cream px-3 py-2 text-[13px] font-semibold text-ink-soft">

@@ -111,6 +111,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P2.1: front end migrated to TypeScript (`.ts`/`.tsx`, `strict`); added `typescript`, `@types/*`, `typescript-eslint`, a `typecheck` script, `src/vite-env.d.ts`, and `src/types/domain.ts`; the ESLint flat config now lints `{ts,tsx}`. `tsc --noEmit`, lint, and build all pass. | TASKS P2.1 |
 | (rev) | Phase P2.2: added `frontend/src/types/api.ts` (API DTOs mirroring the documented data model/seed — `MenuSeedDto`, `MenuItemDto`, `CategoryDto`, `HealthResponse`, `ChatResponse`); `data/menu.ts` and `utils/bot.ts` now use them instead of inline types. | TASKS P2.2 |
 | (rev) | Phase P2.3: design tokens centralised in `frontend/src/styles/tokens.css`; added shared primitives under `frontend/src/components/ui/` (`Button`, `Card`, `Badge`, `OrderStatusBadge`, `Input`, `Spinner`, `EmptyState`, `Modal`) and adopted them across screens/components, removing duplicated status-pill, empty-state, button, input, and card-wrapper markup. | TASKS P2.3 |
+| (rev) | Phase P2.4: adopted TanStack Query (`QueryClientProvider`), added `src/lib/{apiClient,queryClient}.ts` and `src/hooks/useHealth.ts`, and surfaced backend status in the right rail; `tsc`, lint, and build pass (Gate 2 met). | TASKS P2.4 |
 
 ---
 
@@ -182,6 +183,18 @@ YYYY-MM-DD — Session summary
   P2.3) and will be adopted as loading/modal surfaces are introduced.
 - **Open items opened/closed:** none.
 - **Next:** Phase P2.4 (server-state management & typecheck pass), then Phase P3 (data layer & read APIs).
+
+### Session 5 — Server-state tooling (P2.4)
+
+- **Completed:** Phase P2.4 — added `@tanstack/react-query`; introduced a typed fetch wrapper
+  (`frontend/src/lib/apiClient.ts` with `apiGet`/`apiPost`/`apiPostForm` and `ApiError`) and a
+  configured `QueryClient` (`frontend/src/lib/queryClient.ts`); wrapped the app in
+  `QueryClientProvider`; added the typed `useHealth` hook (`frontend/src/hooks/useHealth.ts`) and
+  surfaced the AI-backend status (with the `Spinner` primitive) in the right rail; routed `utils/bot.ts`
+  through `apiPostForm`. `tsc --noEmit`, `npm run lint`, and `npm run build` all pass.
+- **Decisions:** none new. Gate 2 (fully TypeScript, type-checks clean, shared design system) is met.
+- **Open items opened/closed:** none.
+- **Next:** Phase P3 (data layer & read APIs) — database models, seeder/menu service, read endpoints, and the typed front-end query hooks against them.
 
 ---
 

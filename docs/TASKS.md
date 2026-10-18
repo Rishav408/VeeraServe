@@ -92,12 +92,13 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Tokens centralised in `src/styles/tokens.css`; primitives under `src/components/ui/` (plus `OrderStatusBadge`, which removes the duplicated order-status pill logic). Adopted across screens/components (empty states, status badges, buttons, inputs, card wrappers). `tsc`, lint, and build pass.
   Commit: `Update - P2.3 - design tokens and UI primitives`
 
-- [ ] **P2.4 — Server-state management & typecheck pass**
+- [x] **P2.4 — Server-state management & typecheck pass**
   - Add TanStack Query (`QueryClient` + typed query/mutation hooks); keep client state minimal and local.
   - Verify `npx tsc --noEmit` and lint pass clean.
+  - Added `@tanstack/react-query`, a typed fetch wrapper `src/lib/apiClient.ts` and `src/lib/queryClient.ts`, and a typed hook `src/hooks/useHealth.ts`; wrapped the app in `QueryClientProvider` and surfaced backend status in the right rail. `tsc`, lint, and build pass.
   Commit: `Update - P2.4 - server-state and typecheck pass`
 
-**Checkpoint — Gate 2:** Front end is fully TypeScript, type-checks clean, and uses the shared design system.
+**Checkpoint — Gate 2 (met):** Front end is fully TypeScript, type-checks clean, and uses the shared design system.
 
 ---
 
