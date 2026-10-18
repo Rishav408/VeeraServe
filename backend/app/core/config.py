@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     ]
 
     database_url: str = "sqlite:///./veeraserve.db"
+    menu_seed_path: str = "../data/menu.seed.json"
 
     jwt_secret: str = "change-me-in-your-env"
     jwt_algorithm: str = "HS256"

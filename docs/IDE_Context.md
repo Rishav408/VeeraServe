@@ -121,6 +121,7 @@ These are known and must be fixed during the indicated phase:
 | Design system | `frontend/src/components/ui/`, `frontend/src/styles/tokens.css` | Tokens + primitives (P2.3) |
 | Server-state | `frontend/src/lib/`, `frontend/src/hooks/` | TanStack Query + typed API client (P2.4) |
 | Database models | `backend/app/db/`, `backend/app/models/` | SQLAlchemy base + 8 models, dev `create_all` (P3.1) |
+| Menu service | `backend/app/services/menu.py`, `backend/app/db/seed.py` | Idempotent seeder + `MenuService` (P3.2) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -166,6 +167,12 @@ These are known and must be fixed during the indicated phase:
 - Added the SQLAlchemy data layer (`backend/app/db/`) and all eight ORM models; dev `create_all` runs
   on startup; schema test added. `pytest` passes.
 - **Next:** P3.2 (seeder + `MenuService`), P3.3 (read endpoints), P3.4 (read API tests).
+
+### Session 7 — Menu service (P3.2)
+- Added an idempotent seeder (`backend/app/db/seed.py`, upsert by seed id, runs on startup and via
+  `python -m app.db.seed`) and `MenuService` (`backend/app/services/menu.py`) with category/veg/max-price/
+  search filters. `pytest` passes (4 tests).
+- **Next:** P3.3 (read endpoints), P3.4 (read API tests).
 
 ---
 

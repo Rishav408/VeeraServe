@@ -110,9 +110,10 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `backend/app/db/` (`base.py`, `session.py`, `init_db.py`) and the eight models; `init_db()` (dev `create_all`) runs on app startup. Schema test added; `pytest` passes.
   Commit: `Update - P3.1 - database models and init`
 
-- [ ] **P3.2 — Seeder & menu service**
+- [x] **P3.2 — Seeder & menu service**
   - Idempotent seeder that loads `data/menu.seed.json` (upsert by stable id/slug; safe to re-run).
   - `MenuService` — the single menu accessor shared by the API and (later) the agent.
+  - Added `backend/app/db/seed.py` (upsert by seed id, wired into startup + runnable as `python -m app.db.seed`) and `backend/app/services/menu.py`. Idempotency/filter tests added; `pytest` passes.
   Commit: `Update - P3.2 - seeder and menu service`
 
 - [ ] **P3.3 — Read endpoints**

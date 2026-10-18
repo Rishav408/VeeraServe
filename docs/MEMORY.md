@@ -113,6 +113,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P2.3: design tokens centralised in `frontend/src/styles/tokens.css`; added shared primitives under `frontend/src/components/ui/` (`Button`, `Card`, `Badge`, `OrderStatusBadge`, `Input`, `Spinner`, `EmptyState`, `Modal`) and adopted them across screens/components, removing duplicated status-pill, empty-state, button, input, and card-wrapper markup. | TASKS P2.3 |
 | (rev) | Phase P2.4: adopted TanStack Query (`QueryClientProvider`), added `src/lib/{apiClient,queryClient}.ts` and `src/hooks/useHealth.ts`, and surfaced backend status in the right rail; `tsc`, lint, and build pass (Gate 2 met). | TASKS P2.4 |
 | (rev) | Phase P3.1: added the SQLAlchemy data layer (`backend/app/db/`: `base.py`, `session.py`, `init_db.py`) and all eight models (`users`, `categories`, `menu_items`, `orders`, `order_items`, `feedback`, `sessions`, `reservations`); dev `create_all` runs on startup; schema test added. | TASKS P3.1 |
+| (rev) | Phase P3.2: added an idempotent seeder (`backend/app/db/seed.py`, upsert by seed id, runnable as `python -m app.db.seed` and invoked on startup) and `MenuService` (`backend/app/services/menu.py`) with category/item reads and category/veg/max-price/search filters; seeder/filter tests added. | TASKS P3.2 |
 
 ---
 
@@ -209,6 +210,19 @@ YYYY-MM-DD — Session summary
   phase if migrations are needed; `menu_items`/`categories` use the seed's stable string ids as PKs.
 - **Open items opened/closed:** none.
 - **Next:** Phase P3.2 (idempotent seeder + `MenuService`).
+
+### Session 7 — Menu service (P3.2)
+
+- **Completed:** Phase P3.2 — added `backend/app/db/seed.py`, an idempotent seeder that loads
+  `data/menu.seed.json` (path from the new `menu_seed_path` setting) and upserts categories/items by
+  their stable seed ids; it runs on app startup and can be run manually as `python -m app.db.seed`.
+  Added `backend/app/services/menu.py` (`MenuService`) as the single menu accessor with category/item
+  reads and `category`/`veg`/`max_price`/`search` filters. Added idempotency and filter tests; `pytest`
+  passes (4 tests).
+- **Decisions:** the seeder runs at startup so a fresh dev database always matches the canonical seed;
+  seeding is idempotent, so re-runs are safe.
+- **Open items opened/closed:** none.
+- **Next:** Phase P3.3 (read endpoints over `MenuService`).
 
 ---
 

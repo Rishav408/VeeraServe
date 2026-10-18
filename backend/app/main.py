@@ -6,6 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.health import router as health_router
 from app.core.config import get_settings
 from app.db.init_db import init_db
+from app.db.seed import seed_menu
+from app.db.session import SessionLocal
 
 settings = get_settings()
 
@@ -13,6 +15,8 @@ settings = get_settings()
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     init_db()
+    with SessionLocal() as db:
+        seed_menu(db)
     yield
 
 
