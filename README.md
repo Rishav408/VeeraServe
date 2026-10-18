@@ -64,8 +64,8 @@ If LM Studio is not running, the ordering app still works; only the AI features 
 ### Environment files
 
 ```bash
-cp .env.example .env            # frontend (VITE_API_URL)
-cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env    # frontend (VITE_API_URL)
+cp backend/.env.example backend/.env      # backend (DB, JWT, LLM)
 ```
 
 ### Backend
@@ -86,6 +86,16 @@ cd frontend
 npm install
 npm run dev                     # available at http://localhost:5173
 ```
+
+### Containerized (skeleton)
+
+```bash
+docker compose up
+```
+
+This is a skeleton defined in `docker-compose.yml` (frontend, backend, chroma, db). Image
+`Dockerfile`s are added in Phase P9. **LM Studio is not containerized** — it runs on the host, and the
+backend reaches it at `LLM_BASE_URL=http://host.docker.internal:1234/v1`.
 
 ## Project structure (current)
 

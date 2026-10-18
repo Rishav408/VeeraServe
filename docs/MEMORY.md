@@ -106,6 +106,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P0 complete: repository hygiene, pinned backend deps, env samples, README rewrite; tagged `docs-baseline`. | `TASKS.md`, `README.md` |
 | (rev) | Phase P1.1: Vite app moved to `frontend/`; backend reshaped into `backend/app/` with a thin `backend/main.py` entry. | `TASKS.md` |
 | (rev) | Phase P1.2: canonical `data/menu.seed.json` (+ `menu.schema.json`) created by one-off `scripts/convert_menu.mjs`; legacy `mockData.js` and `data/menu.md` retired; front end reads the seed. | D-7 |
+| (rev) | Phase P1.3: added `docker-compose.yml` skeleton (frontend, backend, chroma, db) with `LLM_BASE_URL=http://host.docker.internal:1234/v1`; added `backend/app/core/config.py` (Pydantic BaseSettings) and removed the hard-coded API URL from the front end. | D-11, TECH_STACK §7 |
 
 ---
 

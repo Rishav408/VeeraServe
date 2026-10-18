@@ -59,7 +59,7 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Switch the app's menu source to the seed, then delete `mockData.js` and `data/menu.md`; grep confirms no remaining `mockData` imports.
   Commit: `Update - P1.2 - canonical menu seed`
 
-- [ ] **P1.3 — Docker skeleton & centralised config**
+- [x] **P1.3 — Docker skeleton & centralised config**
   - Add `docker-compose.yml` skeleton (`frontend`, `backend`, `chroma`, `db`) with `LLM_BASE_URL=http://host.docker.internal:1234/v1`; document that LM Studio runs on the host.
   - Add `backend/app/core/config.py` (Pydantic `BaseSettings`) reading all env vars; remove the hard-coded `http://localhost:8000/...` URL from the front end.
   Commit: `Update - P1.3 - docker skeleton and config`

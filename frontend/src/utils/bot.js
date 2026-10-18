@@ -1,3 +1,5 @@
+import { API_URL } from "./config";
+
 export async function getBotResponse(input, audioBlob = null, imageFile = null) {
   try {
     const formData = new FormData();
@@ -12,7 +14,7 @@ export async function getBotResponse(input, audioBlob = null, imageFile = null) 
       formData.append("image", imageFile);
     }
 
-    const res = await fetch("http://localhost:8000/api/v1/chat", {
+    const res = await fetch(`${API_URL}/chat`, {
       method: "POST",
       body: formData,
     });

@@ -76,10 +76,11 @@ Versions are pinned when the environment is created; exact versions are recorded
 
 - **Documentation:** v1.0 suite present (16 documents). The previous unrelated documentation has been
   removed.
-- **Code:** Phases P0 (hygiene) and P1.1–P1.2 (restructure) are complete. The Vite app lives in
-  `frontend/`, the backend is a package under `backend/app/`, and the menu is sourced solely from
-  `data/menu.seed.json`. The front end is still JavaScript (TypeScript migration is Phase P2) and the
-  AI is not yet grounded (Phase P6).
+- **Code:** Phases P0 (hygiene) and P1.1–P1.3 (restructure) are complete. The Vite app lives in
+  `frontend/`, the backend is a package under `backend/app/` with centralised settings in
+  `backend/app/core/config.py`, the menu is sourced solely from `data/menu.seed.json`, and a
+  `docker-compose.yml` skeleton exists. The front end is still JavaScript (TypeScript migration is
+  Phase P2) and the AI is not yet grounded (Phase P6).
 
 ### 3.2 Verified defects carried from the prototype
 
@@ -105,6 +106,8 @@ These are known and must be fixed during the indicated phase:
 | Canonical menu | `data/menu.seed.json` | Implemented (P1.2) |
 | Frontend app | `frontend/` | Present; moved in P1.1 (still JavaScript) |
 | Backend API | `backend/app/` | Chat-only prototype; package layout added in P1.1 |
+| Backend config | `backend/app/core/config.py` | Implemented (P1.3) |
+| Docker skeleton | `docker-compose.yml` | Skeleton added in P1.3 (Dockerfiles in P9) |
 | Agent service | `backend/app/services/agent/` | Not implemented |
 | RAG / vector store | `backend/app/services/rag/` | Not implemented |
 | Database models | `backend/app/models/` | Not implemented |

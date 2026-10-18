@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from app.api.chat import router as chat_router
+from app.core.config import get_settings
+
+settings = get_settings()
 
 app = FastAPI(
     title="VeeraServe AI Backend",
@@ -8,17 +12,16 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS for the frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Restrict this to the frontend origin in production (e.g., http://localhost:5173)
+    allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# API routes
 app.include_router(chat_router, prefix="/api/v1", tags=["Chat"])
+
 
 @app.get("/")
 def read_root():
