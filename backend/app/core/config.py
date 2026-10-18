@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./veeraserve.db"
     menu_seed_path: str = "../data/menu.seed.json"
 
+    gst_rate: float = 0.05
+    payment_methods: Annotated[list[str], NoDecode] = ["cash", "upi", "card"]
+
     jwt_secret: str = "change-me-in-your-env-min-32-bytes-long"
     jwt_algorithm: str = "HS256"
     jwt_access_token_expire_minutes: int = 1440
@@ -30,7 +33,7 @@ class Settings(BaseSettings):
     max_upload_mb: int = 10
     allowed_upload_types: Annotated[list[str], NoDecode] = ["audio/*", "image/*"]
 
-    @field_validator("cors_origins", "allowed_upload_types", mode="before")
+    @field_validator("cors_origins", "allowed_upload_types", "payment_methods", mode="before")
     @classmethod
     def _split_comma_separated(cls, value: object) -> object:
         if isinstance(value, str):

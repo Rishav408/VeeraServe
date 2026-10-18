@@ -118,6 +118,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P3.4: added read API tests (`backend/tests/conftest.py` with an in-memory SQLite + seeded `get_db` override, and `backend/tests/test_api/test_menu.py` covering happy path, filters, and 404). Gate 3 met; `pytest` passes (9 tests). | TASKS P3.4 |
 | (rev) | Phase P4.1: added the auth core — bcrypt password hashing and PyJWT issuance (`backend/app/core/security.py`), user service, auth schemas, and `POST /api/v1/auth/register` + `POST /api/v1/auth/login`; pinned `bcrypt`/`PyJWT`; aligned user role default to `user`. | TASKS P4.1 |
 | (rev) | Phase P4.2: added server-side role enforcement (`backend/app/api/deps.py`: `get_current_user`, `get_optional_user`, `require_roles(*roles)` with 401/403) and `GET /api/v1/auth/me` as the first protected route. | TASKS P4.2 |
+| (rev) | Phase P4.3: added the orders API (`backend/app/schemas/order.py`, `backend/app/services/order.py`, `backend/app/api/orders.py`) — server-validated totals (menu-priced subtotal + 5% GST, `gst_rate` config), guest-friendly placement, scoped listing/detail with ownership, and staff/admin-only `pending→preparing→ready→served` transitions. | TASKS P4.3 |
 
 ---
 
@@ -274,6 +275,20 @@ YYYY-MM-DD — Session summary
   client can never elevate its own role (fixes the original dropdown-escalation defect).
 - **Open items opened/closed:** none.
 - **Next:** Phase P4.3 (orders API).
+
+### Session 12 — Orders API (P4.3)
+
+- **Completed:** Phase P4.3 — added `backend/app/schemas/order.py`, `backend/app/services/order.py`, and
+  `backend/app/api/orders.py`. `POST /api/v1/orders` prices every line from the database menu (client
+  never sends money), computes `subtotal`, 5% `gst` (config `gst_rate`), `discount` (0 for now), and
+  `total`, and accepts guest orders (`user_id` null). `GET /api/v1/orders` is scoped (staff/admin see all;
+  diners see their own); `GET /api/v1/orders/{id}` enforces ownership; `PATCH /api/v1/orders/{id}/status`
+  is staff/admin-only and follows `pending→preparing→ready→served`. Added `payment_methods` config.
+- **Decisions:** totals are always recomputed server-side from persisted menu prices (fixes the
+  discarded-checkout defect); the status machine is forward-only; guests may place orders but must
+  authenticate to list/detail.
+- **Open items opened/closed:** none.
+- **Next:** Phase P4.4 (feedback & reservations APIs).
 
 ---
 

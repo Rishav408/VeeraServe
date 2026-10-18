@@ -126,6 +126,7 @@ These are known and must be fixed during the indicated phase:
 | API tests | `backend/tests/conftest.py`, `backend/tests/test_api/` | In-memory seeded client (P3.4) |
 | Auth core | `backend/app/core/security.py`, `backend/app/api/auth.py` | bcrypt + JWT register/login (P4.1) |
 | Auth guards | `backend/app/api/deps.py` | `get_current_user` / `require_roles` (P4.2) |
+| Orders API | `backend/app/api/orders.py`, `backend/app/services/order.py` | Server-priced orders + status (P4.3) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -197,6 +198,12 @@ These are known and must be fixed during the indicated phase:
 - Added `backend/app/api/deps.py` (`get_current_user`, `get_optional_user`, `require_roles`) and
   `GET /api/v1/auth/me`; missing/invalid tokens → 401, wrong role → 403.
 - **Next:** P4.3 (orders API).
+
+### Session 12 — Orders API (P4.3)
+- Added server-priced orders (`backend/app/api/orders.py`, `backend/app/services/order.py`):
+  `POST /orders` (guests allowed), scoped `GET /orders`, ownership-enforced `GET /orders/{id}`, and
+  staff/admin-only `PATCH /orders/{id}/status` (`pending→preparing→ready→served`).
+- **Next:** P4.4 (feedback & reservations APIs).
 
 ---
 

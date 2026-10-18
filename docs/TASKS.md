@@ -146,10 +146,11 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `backend/app/api/deps.py` (`get_current_user`, `get_optional_user`, `require_roles(*roles)` with 401/403) and `GET /api/v1/auth/me` as the first protected route.
   Commit: `Update - P4.2 - server-side role enforcement`
 
-- [ ] **P4.3 — Orders API**
+- [x] **P4.3 — Orders API**
   - `POST /api/v1/orders` — persist table number, payment method, and instructions; validate totals server-side (fixes discarded-checkout defect).
   - `GET /api/v1/orders` (scoped) and `GET /api/v1/orders/{id}` (ownership enforced).
   - `PATCH /api/v1/orders/{id}/status` with staff/admin-only transitions.
+  - Added `backend/app/schemas/order.py`, `backend/app/services/order.py` (server-computed subtotal/GST/discount/total, `pending→preparing→ready→served` transitions), and `backend/app/api/orders.py`. Guests may order; listing/detail are scoped, and status changes are staff/admin-only.
   Commit: `Update - P4.3 - orders API`
 
 - [ ] **P4.4 — Feedback & reservations APIs**
