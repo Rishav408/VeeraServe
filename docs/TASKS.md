@@ -104,9 +104,10 @@ Example: `Update - P1.2 - move frontend and reshape backend`
 
 ## Phase P3 — Data Layer & Read APIs
 
-- [ ] **P3.1 — Database models & init/migrations**
+- [x] **P3.1 — Database models & init/migrations**
   - SQLAlchemy base + models: `users`, `categories`, `menu_items`, `orders`, `order_items`, `feedback`, `sessions`, `reservations` (fields per `architecture/ARCHITECTURE.md` §6).
   - Database init/migration path (Alembic, or `create_all` for dev); schema creates cleanly.
+  - Added `backend/app/db/` (`base.py`, `session.py`, `init_db.py`) and the eight models; `init_db()` (dev `create_all`) runs on app startup. Schema test added; `pytest` passes.
   Commit: `Update - P3.1 - database models and init`
 
 - [ ] **P3.2 — Seeder & menu service**

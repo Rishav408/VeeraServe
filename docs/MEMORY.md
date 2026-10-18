@@ -112,6 +112,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P2.2: added `frontend/src/types/api.ts` (API DTOs mirroring the documented data model/seed — `MenuSeedDto`, `MenuItemDto`, `CategoryDto`, `HealthResponse`, `ChatResponse`); `data/menu.ts` and `utils/bot.ts` now use them instead of inline types. | TASKS P2.2 |
 | (rev) | Phase P2.3: design tokens centralised in `frontend/src/styles/tokens.css`; added shared primitives under `frontend/src/components/ui/` (`Button`, `Card`, `Badge`, `OrderStatusBadge`, `Input`, `Spinner`, `EmptyState`, `Modal`) and adopted them across screens/components, removing duplicated status-pill, empty-state, button, input, and card-wrapper markup. | TASKS P2.3 |
 | (rev) | Phase P2.4: adopted TanStack Query (`QueryClientProvider`), added `src/lib/{apiClient,queryClient}.ts` and `src/hooks/useHealth.ts`, and surfaced backend status in the right rail; `tsc`, lint, and build pass (Gate 2 met). | TASKS P2.4 |
+| (rev) | Phase P3.1: added the SQLAlchemy data layer (`backend/app/db/`: `base.py`, `session.py`, `init_db.py`) and all eight models (`users`, `categories`, `menu_items`, `orders`, `order_items`, `feedback`, `sessions`, `reservations`); dev `create_all` runs on startup; schema test added. | TASKS P3.1 |
 
 ---
 
@@ -195,6 +196,19 @@ YYYY-MM-DD — Session summary
 - **Decisions:** none new. Gate 2 (fully TypeScript, type-checks clean, shared design system) is met.
 - **Open items opened/closed:** none.
 - **Next:** Phase P3 (data layer & read APIs) — database models, seeder/menu service, read endpoints, and the typed front-end query hooks against them.
+
+### Session 6 — Data layer (P3.1)
+
+- **Completed:** Phase P3.1 — added `backend/app/db/` (`base.py` with the SQLAlchemy 2.0
+  `DeclarativeBase`, `session.py` with the engine/`SessionLocal`/`get_db`, `init_db.py` with a dev
+  `create_all`) and the eight ORM models per `ARCHITECTURE.md` §6 using typed `Mapped[...]` columns
+  (`users`, `categories`, `menu_items`, `orders`, `order_items`, `feedback`, `sessions`,
+  `reservations`). `init_db()` is invoked from a FastAPI lifespan so the schema is created on startup.
+  Added `tests/test_db/test_schema.py`; `pytest` passes (2 tests).
+- **Decisions:** dev database uses `create_all` (no Alembic yet) — Alembic can be introduced in a later
+  phase if migrations are needed; `menu_items`/`categories` use the seed's stable string ids as PKs.
+- **Open items opened/closed:** none.
+- **Next:** Phase P3.2 (idempotent seeder + `MenuService`).
 
 ---
 

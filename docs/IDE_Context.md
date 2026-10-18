@@ -120,6 +120,7 @@ These are known and must be fixed during the indicated phase:
 | Frontend types | `frontend/src/types/` | Domain (P2.1) + API DTOs (P2.2) |
 | Design system | `frontend/src/components/ui/`, `frontend/src/styles/tokens.css` | Tokens + primitives (P2.3) |
 | Server-state | `frontend/src/lib/`, `frontend/src/hooks/` | TanStack Query + typed API client (P2.4) |
+| Database models | `backend/app/db/`, `backend/app/models/` | SQLAlchemy base + 8 models, dev `create_all` (P3.1) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -160,6 +161,11 @@ These are known and must be fixed during the indicated phase:
 - Added TanStack Query + typed API client (`src/lib/`), `useHealth` hook (`src/hooks/`), and a
   backend-status indicator in the right rail. `tsc`, lint, and build pass; Gate 2 met.
 - **Next:** Phase P3 (data layer & read APIs).
+
+### Session 6 — Data layer (P3.1)
+- Added the SQLAlchemy data layer (`backend/app/db/`) and all eight ORM models; dev `create_all` runs
+  on startup; schema test added. `pytest` passes.
+- **Next:** P3.2 (seeder + `MenuService`), P3.3 (read endpoints), P3.4 (read API tests).
 
 ---
 
