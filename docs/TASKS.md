@@ -75,9 +75,10 @@ Example: `Update - P1.2 - move frontend and reshape backend`
 
 ## Phase P2 — TypeScript Migration & Design System
 
-- [ ] **P2.1 — TypeScript setup & component migration**
+- [x] **P2.1 — TypeScript setup & component migration**
   - Add `tsconfig.json` (`strict: true`), rename the entry files to `.tsx`; confirm `npm run dev` still runs.
   - Migrate components `.jsx` → `.tsx` folder by folder, keeping the app running throughout.
+  - Added `typescript`/`@types/*`/`typescript-eslint`, `typecheck` script, `vite-env.d.ts`, and a minimal `types/domain.ts` (prerequisite for strict mode); updated the ESLint flat config to lint `{ts,tsx}`.
   Commit: `Update - P2.1 - TypeScript setup and component migration`
 
 - [ ] **P2.2 — Domain types**

@@ -1,14 +1,33 @@
 import { createContext, useContext, useMemo, useReducer } from "react";
+import type { ReactNode } from "react";
 
-const UIContext = createContext(null);
+interface UIState {
+  activeCategory: string;
+  showCart: boolean;
+  toast: string | null;
+}
 
-const initialState = {
+interface UIContextValue extends UIState {
+  setCategory: (category: string) => void;
+  toggleCart: () => void;
+  showToast: (message: string) => void;
+}
+
+type UIAction =
+  | { type: "SET_CATEGORY"; payload: string }
+  | { type: "TOGGLE_CART" }
+  | { type: "SHOW_TOAST"; payload: string }
+  | { type: "CLEAR_TOAST" };
+
+const UIContext = createContext<UIContextValue | null>(null);
+
+const initialState: UIState = {
   activeCategory: "all",
   showCart: false,
   toast: null
 };
 
-function reducer(state, action) {
+function reducer(state: UIState, action: UIAction): UIState {
   switch (action.type) {
     case "SET_CATEGORY":
       return { ...state, activeCategory: action.payload };
@@ -23,15 +42,15 @@ function reducer(state, action) {
   }
 }
 
-export function UIProvider({ children }) {
+export function UIProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const value = useMemo(
+  const value = useMemo<UIContextValue>(
     () => ({
       ...state,
-      setCategory: (category) => dispatch({ type: "SET_CATEGORY", payload: category }),
+      setCategory: (category: string) => dispatch({ type: "SET_CATEGORY", payload: category }),
       toggleCart: () => dispatch({ type: "TOGGLE_CART" }),
-      showToast: (message) => {
+      showToast: (message: string) => {
         dispatch({ type: "SHOW_TOAST", payload: message });
         setTimeout(() => dispatch({ type: "CLEAR_TOAST" }), 2000);
       }
@@ -42,7 +61,7 @@ export function UIProvider({ children }) {
   return <UIContext.Provider value={value}>{children}</UIContext.Provider>;
 }
 
-export function useUI() {
+export function useUI(): UIContextValue {
   const context = useContext(UIContext);
   if (!context) {
     throw new Error("useUI must be used inside UIProvider");

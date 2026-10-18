@@ -108,6 +108,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P1.2: canonical `data/menu.seed.json` (+ `menu.schema.json`) created by one-off `scripts/convert_menu.mjs`; legacy `mockData.js` and `data/menu.md` retired; front end reads the seed. | D-7 |
 | (rev) | Phase P1.3: added `docker-compose.yml` skeleton (frontend, backend, chroma, db) with `LLM_BASE_URL=http://host.docker.internal:1234/v1`; added `backend/app/core/config.py` (Pydantic BaseSettings) and removed the hard-coded API URL from the front end. | D-11, TECH_STACK §7 |
 | (rev) | Phase P1.4: minimalist FastAPI app + `GET /api/v1/health` and the first backend test; the legacy Ollama chat router is unwired pending its rebuild in P6. | D-11, TASKS P1.4 |
+| (rev) | Phase P2.1: front end migrated to TypeScript (`.ts`/`.tsx`, `strict`); added `typescript`, `@types/*`, `typescript-eslint`, a `typecheck` script, `src/vite-env.d.ts`, and `src/types/domain.ts`; the ESLint flat config now lints `{ts,tsx}`. `tsc --noEmit`, lint, and build all pass. | TASKS P2.1 |
 
 ---
 
@@ -150,6 +151,20 @@ YYYY-MM-DD — Session summary
 - **Decisions:** none new. Menu single source of truth realised for D-7.
 - **Open items opened/closed:** none.
 - **Next:** Phase P2 (TypeScript migration & design system).
+
+### Session 3 — TypeScript migration (P2.1)
+
+- **Completed:** Phase P2.1 — added `tsconfig.json` (`strict: true`), `typescript`/`@types/react`/
+  `@types/node`/`typescript-eslint` (aligned `@types/react` to React 18), a `typecheck` script, and
+  `src/vite-env.d.ts`; renamed all `src` files `.jsx`→`.tsx` / `.js`→`.ts` and `vite.config.js`→
+  `.ts`; updated `index.html`. Typed the shared layer (contexts, `utils`, `data`) and added a minimal
+  `src/types/domain.ts` to satisfy strict mode, then typed the components and screens. Extended the
+  ESLint flat config to lint `{ts,tsx}` via `typescript-eslint`. `tsc --noEmit`, `npm run lint`, and
+  `npm run build` all pass.
+- **Decisions:** none new. Domain types were pulled forward from P2.2 as a strict-mode prerequisite;
+  P2.2 will now focus on API-contract (DTO) types mirroring the backend schemas.
+- **Open items opened/closed:** none.
+- **Next:** Phase P2.2 (domain/API types), then P2.3 (design tokens & UI primitives).
 
 ---
 

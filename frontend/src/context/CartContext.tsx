@@ -1,13 +1,35 @@
 import { createContext, useContext, useEffect, useMemo, useReducer } from "react";
+import type { ReactNode } from "react";
 import { STORAGE_KEYS } from "../utils/storageKeys";
+import type { CartEntry, MenuItem } from "../types/domain";
 
-const CartContext = createContext(null);
+interface CartState {
+  items: CartEntry[];
+}
 
-const initialState = {
+type CartAction =
+  | { type: "LOAD"; payload: CartState }
+  | { type: "ADD_ITEM"; payload: MenuItem }
+  | { type: "REMOVE_ITEM"; payload: string }
+  | { type: "UPDATE_QTY"; payload: { id: string; quantity: number } }
+  | { type: "CLEAR" };
+
+interface CartContextValue {
+  items: CartEntry[];
+  subtotal: number;
+  addToCart: (item: MenuItem) => void;
+  removeFromCart: (id: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;
+  clearCart: () => void;
+}
+
+const CartContext = createContext<CartContextValue | null>(null);
+
+const initialState: CartState = {
   items: []
 };
 
-function reducer(state, action) {
+function reducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case "LOAD":
       return action.payload;
@@ -41,13 +63,13 @@ function reducer(state, action) {
   }
 }
 
-export function CartProvider({ children }) {
+export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.cart);
     if (saved) {
-      dispatch({ type: "LOAD", payload: JSON.parse(saved) });
+      dispatch({ type: "LOAD", payload: JSON.parse(saved) as CartState });
     }
   }, []);
 
@@ -57,13 +79,14 @@ export function CartProvider({ children }) {
 
   const subtotal = state.items.reduce((sum, entry) => sum + entry.item.price * entry.quantity, 0);
 
-  const value = useMemo(
+  const value = useMemo<CartContextValue>(
     () => ({
       items: state.items,
       subtotal,
-      addToCart: (item) => dispatch({ type: "ADD_ITEM", payload: item }),
-      removeFromCart: (id) => dispatch({ type: "REMOVE_ITEM", payload: id }),
-      updateQuantity: (id, quantity) => dispatch({ type: "UPDATE_QTY", payload: { id, quantity } }),
+      addToCart: (item: MenuItem) => dispatch({ type: "ADD_ITEM", payload: item }),
+      removeFromCart: (id: string) => dispatch({ type: "REMOVE_ITEM", payload: id }),
+      updateQuantity: (id: string, quantity: number) =>
+        dispatch({ type: "UPDATE_QTY", payload: { id, quantity } }),
       clearCart: () => dispatch({ type: "CLEAR" })
     }),
     [state.items, subtotal]
@@ -72,7 +95,7 @@ export function CartProvider({ children }) {
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
-export function useCart() {
+export function useCart(): CartContextValue {
   const context = useContext(CartContext);
   if (!context) {
     throw new Error("useCart must be used inside CartProvider");

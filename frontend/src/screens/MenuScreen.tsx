@@ -6,7 +6,7 @@ import { useAppData } from "../context/AppDataContext";
 import { useUI } from "../context/UIContext";
 import { categoryTabs } from "../data/menu";
 
-const categoryLabels = {
+const categoryLabels: Record<string, string> = {
   all: "All",
   "world-plates": "World Plates",
   "rice-noodles": "Rice & Noodles",

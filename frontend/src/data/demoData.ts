@@ -1,4 +1,6 @@
-export const initialOrders = [
+import type { Feedback, Order, User } from "../types/domain";
+
+export const initialOrders: Order[] = [
   {
     id: "ORD-1001",
     customerName: "Ananya",
@@ -9,7 +11,7 @@ export const initialOrders = [
   }
 ];
 
-export const initialFeedback = [
+export const initialFeedback: Feedback[] = [
   {
     id: "FDB-1",
     user: "Rahul",
@@ -19,7 +21,7 @@ export const initialFeedback = [
   }
 ];
 
-export const initialUsers = [
+export const initialUsers: User[] = [
   { id: "U-guest", name: "Guest", role: "guest" },
   { id: "U-admin", name: "Admin", role: "admin" }
 ];

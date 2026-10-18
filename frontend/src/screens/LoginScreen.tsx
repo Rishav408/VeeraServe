@@ -1,16 +1,18 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import type { FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppData } from "../context/AppDataContext";
+import type { UserRole } from "../types/domain";
 
 export default function LoginScreen() {
   const [name, setName] = useState("Guest");
-  const [role, setRole] = useState("guest");
+  const [role, setRole] = useState<UserRole>("guest");
   const [activeTab, setActiveTab] = useState("guest");
   const { login } = useAppData();
   const navigate = useNavigate();
 
-  const submit = (event) => {
+  const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     login(name || "Guest", role);
     navigate("/profile");
@@ -94,7 +96,7 @@ export default function LoginScreen() {
                 <span className="text-sm font-semibold text-ink-soft">Role</span>
                 <select
                   value={role}
-                  onChange={(event) => setRole(event.target.value)}
+                  onChange={(event) => setRole(event.target.value as UserRole)}
                   className="mt-1.5 w-full rounded-[12px] border border-primary/20 bg-cream px-4 py-3 text-sm outline-none transition focus:border-primary"
                 >
                   <option value="guest">Guest</option>

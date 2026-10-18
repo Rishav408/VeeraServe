@@ -61,7 +61,7 @@ export default function CartScreen() {
             </button>
 
             <img
-              src={entry.item.image}
+              src={entry.item.image ?? undefined}
               alt={entry.item.name}
               className="h-[60px] w-[60px] shrink-0 rounded-full border-2 border-cream object-cover"
             />
@@ -111,7 +111,7 @@ export default function CartScreen() {
               <div key={item.id} className="min-w-[220px]">
                 <Link to={`/menu/${item.id}`} className="card-3d block rounded-[16px] p-4 transition hover:shadow-card-hover">
                   <div className="flex items-center gap-3">
-                    <img src={item.image} alt={item.name} className="h-[72px] w-[72px] rounded-xl object-cover" />
+                    <img src={item.image ?? undefined} alt={item.name} className="h-[72px] w-[72px] rounded-xl object-cover" />
                     <div className="min-w-0">
                       <p className="truncate text-sm font-semibold text-ink-soft">{item.name}</p>
                       <p className="text-sm font-bold text-primary">₹{item.price}</p>

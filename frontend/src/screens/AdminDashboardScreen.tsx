@@ -1,6 +1,8 @@
 import { useMemo } from "react";
+import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { BadgeIndianRupee, ClipboardList, Flame, UtensilsCrossed } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useAppData } from "../context/AppDataContext";
 
 export default function AdminDashboardScreen() {
@@ -26,18 +28,6 @@ export default function AdminDashboardScreen() {
     );
   }
 
-  const kpis = [
-    { label: "Revenue (Fake)", value: `₹${revenue}`, icon: BadgeIndianRupee, accent: "gold" },
-    { label: "Total Orders", value: orders.length, icon: ClipboardList, accent: "brand" },
-    {
-      label: "Live Orders",
-      value: orders.filter((order) => order.status !== "served").length,
-      icon: Flame,
-      accent: "green"
-    },
-    { label: "Menu Items", value: menuItems.length, icon: UtensilsCrossed, accent: "brand" }
-  ];
-
   const accentStyles = {
     gold: "from-gold/25 to-gold/10",
     green: "from-success/20 to-success/10",
@@ -49,6 +39,20 @@ export default function AdminDashboardScreen() {
     green: "text-success",
     brand: "text-primary"
   };
+
+  type Accent = keyof typeof accentStyles;
+
+  const kpis: { label: string; value: ReactNode; icon: LucideIcon; accent: Accent }[] = [
+    { label: "Revenue (Fake)", value: `₹${revenue}`, icon: BadgeIndianRupee, accent: "gold" },
+    { label: "Total Orders", value: orders.length, icon: ClipboardList, accent: "brand" },
+    {
+      label: "Live Orders",
+      value: orders.filter((order) => order.status !== "served").length,
+      icon: Flame,
+      accent: "green"
+    },
+    { label: "Menu Items", value: menuItems.length, icon: UtensilsCrossed, accent: "brand" }
+  ];
 
   return (
     <div className="space-y-6">

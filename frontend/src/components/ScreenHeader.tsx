@@ -1,4 +1,14 @@
-export default function ScreenHeader({ title, subtitle, action }) {
+import type { ReactNode } from "react";
+
+export default function ScreenHeader({
+  title,
+  subtitle,
+  action
+}: {
+  title: string;
+  subtitle?: string;
+  action?: ReactNode;
+}) {
   return (
     <header className="mb-5 flex flex-wrap items-end justify-between gap-3">
       <div>

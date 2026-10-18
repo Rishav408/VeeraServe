@@ -1,20 +1,21 @@
 import { ChefHat, Mic, Square, SendHorizontal, Paperclip, X } from "lucide-react";
 import { useState, useRef } from "react";
+import type { FormEvent } from "react";
 import { useChat } from "../context/ChatContext";
 
 const quickReplies = ["Show menu", "Recommend", "Spicy dishes", "Track order"];
 
-export default function ChatWidget({ compact = false }) {
+export default function ChatWidget({ compact = false }: { compact?: boolean }) {
   const [input, setInput] = useState("");
   const [isRecording, setIsRecording] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const mediaRecorderRef = useRef(null);
-  const audioChunksRef = useRef([]);
-  const fileInputRef = useRef(null);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const { messages, typing, sendMessage } = useChat();
 
-  const submit = (event) => {
+  const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!input.trim() && !isRecording && !selectedImage) return;
     sendMessage(input.trim(), null, selectedImage);
@@ -22,7 +23,7 @@ export default function ChatWidget({ compact = false }) {
     setSelectedImage(null);
   };
 
-  const sendQuick = (text) => sendMessage(text);
+  const sendQuick = (text: string) => sendMessage(text);
 
   const toggleRecording = async () => {
     if (isRecording) {
@@ -153,7 +154,7 @@ export default function ChatWidget({ compact = false }) {
             className="hidden"
             onChange={(e) => {
               if (e.target.files?.[0]) setSelectedImage(e.target.files[0]);
-              e.target.value = null;
+              e.target.value = "";
             }}
           />
           <button

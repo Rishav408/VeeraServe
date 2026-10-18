@@ -1,6 +1,11 @@
 import { API_URL } from "./config";
+import type { BotResponse } from "../types/domain";
 
-export async function getBotResponse(input, audioBlob = null, imageFile = null) {
+export async function getBotResponse(
+  input: string,
+  audioBlob: Blob | null = null,
+  imageFile: File | null = null
+): Promise<BotResponse> {
   try {
     const formData = new FormData();
     if (input) formData.append("text", input);
@@ -23,9 +28,9 @@ export async function getBotResponse(input, audioBlob = null, imageFile = null) 
         throw new Error("Backend error");
     }
 
-    const data = await res.json();
+    const data = (await res.json()) as { response: string };
     return { message: data.response, action: null };
-  } catch (error) {
+  } catch {
     return { message: "Oops, something went wrong with the AI connection! Make sure the backend is running.", action: null };
   }
 }

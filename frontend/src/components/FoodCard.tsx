@@ -2,8 +2,9 @@ import { motion } from "framer-motion";
 import { Clock3, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import type { MenuItem } from "../types/domain";
 
-export default function FoodCard({ item, compact = false }) {
+export default function FoodCard({ item, compact = false }: { item: MenuItem; compact?: boolean }) {
   const { addToCart, items } = useCart();
   const inCart = items.some((entry) => entry.item.id === item.id);
 
@@ -16,7 +17,7 @@ export default function FoodCard({ item, compact = false }) {
   if (compact) {
     return (
       <article className="card-3d flex items-center gap-3 rounded-[16px] p-3">
-        <img src={item.image} alt={item.name} className="h-[72px] w-[72px] rounded-xl border border-primary/15 object-cover" />
+        <img src={item.image ?? undefined} alt={item.name} className="h-[72px] w-[72px] rounded-xl border border-primary/15 object-cover" />
         <div className="min-w-0 flex-1">
           <p className="truncate font-semibold text-ink-soft">{item.name}</p>
           <p className="text-sm font-bold text-primary">₹{item.price}</p>
@@ -38,7 +39,7 @@ export default function FoodCard({ item, compact = false }) {
     >
       <div className="relative h-[200px] overflow-hidden">
         <img
-          src={item.image}
+          src={item.image ?? undefined}
           alt={item.name}
           className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
         />

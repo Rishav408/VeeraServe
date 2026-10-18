@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import type { FormEvent } from "react";
 import { useAppData } from "../context/AppDataContext";
 
 export default function AdminMenuScreen() {
@@ -10,7 +11,7 @@ export default function AdminMenuScreen() {
   const [category, setCategory] = useState("mains");
   const [description, setDescription] = useState("");
 
-  const submit = (event) => {
+  const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!name.trim()) return;
     addMenuItem({ name, price: Number(price), category, spiceLevel: 2, isVeg: true, description: description || "New mock dish." });
@@ -43,7 +44,7 @@ export default function AdminMenuScreen() {
             <input
               type="number"
               value={price}
-              onChange={(event) => setPrice(event.target.value)}
+              onChange={(event) => setPrice(Number(event.target.value))}
               className="mt-1.5 w-full rounded-[12px] border border-primary/20 bg-cream px-4 py-3 text-sm outline-none transition focus:border-primary"
             />
           </label>
@@ -86,7 +87,7 @@ export default function AdminMenuScreen() {
             className="card-3d flex flex-wrap items-center justify-between gap-3 rounded-[14px] p-4"
           >
             <div className="flex items-center gap-3">
-              <img src={item.image} alt={item.name} className="h-12 w-12 rounded-xl object-cover" />
+              <img src={item.image ?? undefined} alt={item.name} className="h-12 w-12 rounded-xl object-cover" />
               <div>
                 <p className="text-sm font-semibold text-ink-soft">{item.name}</p>
                 <p className="text-xs text-ink-muted capitalize">{item.category}</p>

@@ -1,8 +1,9 @@
 import { CheckCircle } from "lucide-react";
+import type { OrderStatus } from "../types/domain";
 
-const STAGES = ["pending", "preparing", "ready", "served"];
+const STAGES: OrderStatus[] = ["pending", "preparing", "ready", "served"];
 
-export default function OrderTimeline({ status, compact = false }) {
+export default function OrderTimeline({ status, compact = false }: { status: OrderStatus; compact?: boolean }) {
   const activeIndex = STAGES.indexOf(status);
 
   return (

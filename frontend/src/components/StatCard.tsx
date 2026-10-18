@@ -1,4 +1,6 @@
 import { BadgeIndianRupee, ClipboardList, Flame, MessageSquare } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
 const accentStyles = {
   gold: "from-gold/25 to-gold/10 text-gold-dark",
@@ -6,13 +8,25 @@ const accentStyles = {
   brand: "from-primary/20 to-primary/10 text-primary"
 };
 
-const accentIcons = {
+const accentIcons: Record<keyof typeof accentStyles, LucideIcon> = {
   gold: BadgeIndianRupee,
   green: MessageSquare,
   brand: ClipboardList
 };
 
-export default function StatCard({ label, value, accent = "brand", icon }) {
+type Accent = keyof typeof accentStyles;
+
+export default function StatCard({
+  label,
+  value,
+  accent = "brand",
+  icon
+}: {
+  label: string;
+  value: ReactNode;
+  accent?: Accent;
+  icon?: LucideIcon;
+}) {
   const Icon = icon || accentIcons[accent] || Flame;
 
   return (

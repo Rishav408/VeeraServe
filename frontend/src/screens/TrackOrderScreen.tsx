@@ -1,18 +1,22 @@
 import { motion } from "framer-motion";
 import { Bell, CheckCircle, ChefHat, Clock } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useAppData } from "../context/AppDataContext";
+import type { OrderStatus } from "../types/domain";
 
-const STAGES = [
+type StageColor = "gold" | "primary" | "success";
+
+const STAGES: { key: OrderStatus; label: string; icon: LucideIcon; color: StageColor }[] = [
   { key: "pending", label: "Order Placed", icon: Clock, color: "gold" },
   { key: "preparing", label: "Preparing", icon: ChefHat, color: "primary" },
   { key: "ready", label: "Ready", icon: Bell, color: "success" },
   { key: "served", label: "Served", icon: CheckCircle, color: "success" }
 ];
 
-const STATUS_PERCENTAGE = { pending: 25, preparing: 50, ready: 75, served: 100 };
-const STATUS_SUBTEXT = {
+const STATUS_PERCENTAGE: Record<OrderStatus, number> = { pending: 25, preparing: 50, ready: 75, served: 100 };
+const STATUS_SUBTEXT: Record<OrderStatus, string> = {
   pending: "Waiting for kitchen confirmation",
   preparing: "Estimated time: ~15 minutes",
   ready: "Your order is ready for pickup!",
@@ -38,7 +42,7 @@ export default function TrackOrderScreen() {
   const currentStage = STAGES[activeIndex] || STAGES[0];
   const StatusIcon = currentStage.icon;
 
-  const colorMap = {
+  const colorMap: Record<StageColor, { bg: string; text: string; pulse: string }> = {
     gold: { bg: "bg-gold/20", text: "text-gold", pulse: "animate-pulse-glow" },
     primary: { bg: "bg-primary/20", text: "text-primary", pulse: "animate-pulse-glow" },
     success: { bg: "bg-success/20", text: "text-success", pulse: "" }

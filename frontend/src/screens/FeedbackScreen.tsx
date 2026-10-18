@@ -1,15 +1,18 @@
 import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import { useState } from "react";
+import type { FormEvent } from "react";
 import { useAppData } from "../context/AppDataContext";
+
+type RatingKey = "food" | "service" | "ai";
 
 export default function FeedbackScreen() {
   const [comment, setComment] = useState("");
-  const [ratings, setRatings] = useState({ food: 0, service: 0, ai: 0 });
+  const [ratings, setRatings] = useState<Record<RatingKey, number>>({ food: 0, service: 0, ai: 0 });
   const [submitted, setSubmitted] = useState(false);
   const { feedback, addFeedback } = useAppData();
 
-  const submit = (event) => {
+  const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!comment.trim()) return;
 
@@ -24,11 +27,11 @@ export default function FeedbackScreen() {
     setSubmitted(true);
   };
 
-  const setRating = (category, value) => {
+  const setRating = (category: RatingKey, value: number) => {
     setRatings((prev) => ({ ...prev, [category]: value }));
   };
 
-  const ratingRows = [
+  const ratingRows: { key: RatingKey; label: string }[] = [
     { key: "food", label: "Food 🍛" },
     { key: "service", label: "Service 🧑‍🍳" },
     { key: "ai", label: "AI Experience 🤖" }

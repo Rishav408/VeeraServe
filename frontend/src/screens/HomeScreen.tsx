@@ -68,7 +68,7 @@ export default function HomeScreen() {
             {heroImages.map((item, idx) => (
               <img
                 key={item.id}
-                src={item.image}
+                src={item.image ?? undefined}
                 alt={item.name}
                 className="absolute h-[64px] w-[64px] animate-float rounded-full border-2 border-white object-cover shadow-card md:h-[72px] md:w-[72px]"
                 style={{

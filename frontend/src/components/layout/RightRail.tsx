@@ -31,7 +31,7 @@ export default function RightRail() {
         <article className="card-3d rounded-[16px] bg-gradient-to-br from-gold/20 to-primary/10 p-4">
           <h3 className="font-display text-base text-ink">Today's Special</h3>
           <div className="mt-3 flex items-center gap-3">
-            <img src={specialItem.image} alt={specialItem.name} className="h-14 w-14 rounded-xl object-cover" />
+            <img src={specialItem.image ?? undefined} alt={specialItem.name} className="h-14 w-14 rounded-xl object-cover" />
             <div className="flex-1">
               <p className="text-sm font-semibold text-ink-soft">{specialItem.name}</p>
               <p className="text-sm font-bold text-primary">₹{specialItem.price}</p>

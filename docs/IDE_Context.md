@@ -80,8 +80,9 @@ Versions are pinned when the environment is created; exact versions are recorded
   `frontend/`, the backend is a package under `backend/app/` with centralised settings in
   `backend/app/core/config.py`, the menu is sourced solely from `data/menu.seed.json`, a
   `docker-compose.yml` skeleton exists, and the backend exposes `GET /api/v1/health` (with a test).
-  The legacy Ollama chat router is unwired pending its rebuild in P6. The front end is still
-  JavaScript (TypeScript migration is Phase P2).
+  The legacy Ollama chat router is unwired pending its rebuild in P6. The front end is now TypeScript
+  (`strict`; migrated in P2.1) with shared domain types in `frontend/src/types/domain.ts`; `tsc --noEmit`,
+  lint, and build pass.
 
 ### 3.2 Verified defects carried from the prototype
 
@@ -105,7 +106,7 @@ These are known and must be fixed during the indicated phase:
 |---|---|---|
 | Documentation suite | `docs/` | Implemented (baseline) |
 | Canonical menu | `data/menu.seed.json` | Implemented (P1.2) |
-| Frontend app | `frontend/` | Present; moved in P1.1 (still JavaScript) |
+| Frontend app | `frontend/` | Present; moved in P1.1; TypeScript in P2.1 (`strict`, typecheck passes) |
 | Backend API | `backend/app/` | Minimal app + `/api/v1/health` (P1.4); chat router unwired pending P6 |
 | Backend config | `backend/app/core/config.py` | Implemented (P1.3) |
 | Backend tests | `backend/tests/` | Health test added (P1.4) |
@@ -131,6 +132,17 @@ These are known and must be fixed during the indicated phase:
 - Front end moved to `frontend/`; backend is a package under `backend/app/`; menu sourced only from
   `data/menu.seed.json`.
 - **Next:** P1.3 (Docker skeleton + centralised config), P1.4 (minimal app + health endpoint).
+
+### Session 2 — Restructure (P1.3–P1.4)
+- Completed P1.3 (Docker skeleton + `backend/app/core/config.py`) and P1.4 (minimal FastAPI app +
+  `GET /api/v1/health` + first test); see `MEMORY.md` §7.
+- **Next:** Phase P2 (TypeScript migration & design system).
+
+### Session 3 — TypeScript migration (P2.1)
+- Migrated the front end to TypeScript (`strict`); added tooling (`typescript`, `@types/*`,
+  `typescript-eslint`), `typecheck` script, `vite-env.d.ts`, and `src/types/domain.ts`. `tsc --noEmit`,
+  lint, and build pass.
+- **Next:** P2.2 (domain/API types), P2.3 (design tokens & UI primitives).
 
 ---
 

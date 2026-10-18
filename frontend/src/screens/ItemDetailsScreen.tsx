@@ -2,13 +2,14 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Clock3, Star } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import type { MenuItem } from "../types/domain";
 import FoodCard from "../components/FoodCard";
 import { useAppData } from "../context/AppDataContext";
 import { useCart } from "../context/CartContext";
 import { useUI } from "../context/UIContext";
 
 const customisations = ["Extra spicy", "No onion", "No garlic", "Extra cheese"];
-const categoryLabels = {
+const categoryLabels: Record<string, string> = {
   starters: "Starters",
   mains: "Main Course",
   rice: "Rice",
@@ -24,11 +25,11 @@ export default function ItemDetailsScreen() {
   const { addToCart } = useCart();
   const { showToast } = useUI();
   const [quantity, setQuantity] = useState(1);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState<string[]>([]);
 
   const item = useMemo(() => menuItems.find((menuItem) => menuItem.id === id), [menuItems, id]);
 
-  const related = useMemo(() => {
+  const related = useMemo<MenuItem[]>(() => {
     if (!item) return [];
     return menuItems.filter((entry) => entry.category === item.category && entry.id !== item.id).slice(0, 3);
   }, [item, menuItems]);
@@ -41,7 +42,7 @@ export default function ItemDetailsScreen() {
     );
   }
 
-  const toggleCustom = (label) => {
+  const toggleCustom = (label: string) => {
     setSelected((current) =>
       current.includes(label) ? current.filter((entry) => entry !== label) : [...current, label]
     );
@@ -69,7 +70,7 @@ export default function ItemDetailsScreen() {
         animate={{ opacity: 1, scale: 1 }}
         className="relative h-[300px] overflow-hidden rounded-[20px]"
       >
-        <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+        <img src={item.image ?? undefined} alt={item.name} className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
         <h1 className="absolute bottom-5 left-5 font-display text-[32px] font-bold text-white">{item.name}</h1>
         <span className="absolute right-4 top-4 rounded-pill bg-primary px-3 py-1 text-[13px] font-semibold text-white">
