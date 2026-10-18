@@ -119,6 +119,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P4.1: added the auth core — bcrypt password hashing and PyJWT issuance (`backend/app/core/security.py`), user service, auth schemas, and `POST /api/v1/auth/register` + `POST /api/v1/auth/login`; pinned `bcrypt`/`PyJWT`; aligned user role default to `user`. | TASKS P4.1 |
 | (rev) | Phase P4.2: added server-side role enforcement (`backend/app/api/deps.py`: `get_current_user`, `get_optional_user`, `require_roles(*roles)` with 401/403) and `GET /api/v1/auth/me` as the first protected route. | TASKS P4.2 |
 | (rev) | Phase P4.3: added the orders API (`backend/app/schemas/order.py`, `backend/app/services/order.py`, `backend/app/api/orders.py`) — server-validated totals (menu-priced subtotal + 5% GST, `gst_rate` config), guest-friendly placement, scoped listing/detail with ownership, and staff/admin-only `pending→preparing→ready→served` transitions. | TASKS P4.3 |
+| (rev) | Phase P4.4: added the feedback and reservations APIs (`backend/app/api/{feedback,reservations}.py`) — feedback with 1–5 rating validation and admin-only listing, and reservations (party size ≥ 1, valid time) with guest submissions and scoped listing. | TASKS P4.4 |
 
 ---
 
@@ -289,6 +290,19 @@ YYYY-MM-DD — Session summary
   authenticate to list/detail.
 - **Open items opened/closed:** none.
 - **Next:** Phase P4.4 (feedback & reservations APIs).
+
+### Session 13 — Feedback & reservations (P4.4)
+
+- **Completed:** Phase P4.4 — added `backend/app/schemas/{feedback,reservation}.py`,
+  `backend/app/services/{feedback,reservation}.py`, and `backend/app/api/{feedback,reservations}.py`.
+  `POST /api/v1/feedback` validates `food_rating`/`service_rating`/`ai_rating` to 1–5 (422 otherwise;
+  fixes the old 15/5 defect) and allows guests; `GET /api/v1/feedback` is admin-only.
+  `POST /api/v1/reservations` enforces party size ≥ 1 and a valid time and allows guests;
+  `GET /api/v1/reservations` is scoped (staff/admin see all, diners their own).
+- **Decisions:** ratings model uses three 1–5 dimensions (food/service/ai) matching the model; feedback
+  and reservations accept guests (nullable `user_id`) but require auth to list.
+- **Open items opened/closed:** none.
+- **Next:** Phase P4.5 (auth & write-path tests).
 
 ---
 

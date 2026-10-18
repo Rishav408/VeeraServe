@@ -4,9 +4,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.auth import router as auth_router
+from app.api.feedback import router as feedback_router
 from app.api.health import router as health_router
 from app.api.menu import router as menu_router
 from app.api.orders import router as orders_router
+from app.api.reservations import router as reservations_router
 from app.core.config import get_settings
 from app.db.init_db import init_db
 from app.db.seed import seed_menu
@@ -42,6 +44,8 @@ app.include_router(health_router, prefix="/api/v1", tags=["Health"])
 app.include_router(menu_router, prefix="/api/v1", tags=["Menu"])
 app.include_router(auth_router, prefix="/api/v1", tags=["Auth"])
 app.include_router(orders_router, prefix="/api/v1", tags=["Orders"])
+app.include_router(feedback_router, prefix="/api/v1", tags=["Feedback"])
+app.include_router(reservations_router, prefix="/api/v1", tags=["Reservations"])
 
 
 @app.get("/")

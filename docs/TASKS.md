@@ -153,9 +153,10 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `backend/app/schemas/order.py`, `backend/app/services/order.py` (server-computed subtotal/GST/discount/total, `pending→preparing→ready→served` transitions), and `backend/app/api/orders.py`. Guests may order; listing/detail are scoped, and status changes are staff/admin-only.
   Commit: `Update - P4.3 - orders API`
 
-- [ ] **P4.4 — Feedback & reservations APIs**
+- [x] **P4.4 — Feedback & reservations APIs**
   - `POST /api/v1/feedback` and `GET /api/v1/feedback` (admin) with 1–5 rating validation (fixes the 15/5 defect).
   - `POST /api/v1/reservations` and list (party size ≥ 1; valid time).
+  - Added `backend/app/schemas/{feedback,reservation}.py`, `backend/app/services/{feedback,reservation}.py`, and `backend/app/api/{feedback,reservations}.py`. Ratings are validated to 1–5 (422 otherwise); feedback listing is admin-only; reservations accept guests and listing is scoped.
   Commit: `Update - P4.4 - feedback and reservations APIs`
 
 - [ ] **P4.5 — Auth/write tests & security cases**

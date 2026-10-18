@@ -127,6 +127,7 @@ These are known and must be fixed during the indicated phase:
 | Auth core | `backend/app/core/security.py`, `backend/app/api/auth.py` | bcrypt + JWT register/login (P4.1) |
 | Auth guards | `backend/app/api/deps.py` | `get_current_user` / `require_roles` (P4.2) |
 | Orders API | `backend/app/api/orders.py`, `backend/app/services/order.py` | Server-priced orders + status (P4.3) |
+| Feedback/reservations | `backend/app/api/feedback.py`, `backend/app/api/reservations.py` | 1–5 ratings, admin listing (P4.4) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -204,6 +205,11 @@ These are known and must be fixed during the indicated phase:
   `POST /orders` (guests allowed), scoped `GET /orders`, ownership-enforced `GET /orders/{id}`, and
   staff/admin-only `PATCH /orders/{id}/status` (`pending→preparing→ready→served`).
 - **Next:** P4.4 (feedback & reservations APIs).
+
+### Session 13 — Feedback & reservations (P4.4)
+- Added `POST/GET /api/v1/feedback` (1–5 ratings, admin-only listing) and `POST/GET
+  /api/v1/reservations` (party size ≥ 1, scoped listing).
+- **Next:** P4.5 (auth & write-path tests).
 
 ---
 
