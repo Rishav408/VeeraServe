@@ -116,6 +116,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P3.2: added an idempotent seeder (`backend/app/db/seed.py`, upsert by seed id, runnable as `python -m app.db.seed` and invoked on startup) and `MenuService` (`backend/app/services/menu.py`) with category/item reads and category/veg/max-price/search filters; seeder/filter tests added. | TASKS P3.2 |
 | (rev) | Phase P3.3: added read endpoints `GET /api/v1/categories`, `GET /api/v1/menu` (category/veg/max-price/search filters), and `GET /api/v1/menu/{id}` (404 on unknown id) with Pydantic response models (`backend/app/schemas/menu.py`, `backend/app/api/menu.py`). | TASKS P3.3 |
 | (rev) | Phase P3.4: added read API tests (`backend/tests/conftest.py` with an in-memory SQLite + seeded `get_db` override, and `backend/tests/test_api/test_menu.py` covering happy path, filters, and 404). Gate 3 met; `pytest` passes (9 tests). | TASKS P3.4 |
+| (rev) | Phase P4.1: added the auth core — bcrypt password hashing and PyJWT issuance (`backend/app/core/security.py`), user service, auth schemas, and `POST /api/v1/auth/register` + `POST /api/v1/auth/login`; pinned `bcrypt`/`PyJWT`; aligned user role default to `user`. | TASKS P4.1 |
 
 ---
 
@@ -247,6 +248,20 @@ YYYY-MM-DD — Session summary
   `data/menu.seed.json`, so they never touch the dev database file.
 - **Open items opened/closed:** none.
 - **Next:** Phase P4 (auth & write APIs).
+
+### Session 10 — Auth core (P4.1)
+
+- **Completed:** Phase P4.1 — added `backend/app/core/security.py` (bcrypt password hashing with a
+  72-byte clamp, `verify_password`, and PyJWT `create_access_token`/`decode_access_token`),
+  `backend/app/services/user.py` (register/authenticate/get-by-email), `backend/app/schemas/auth.py`,
+  and `backend/app/api/auth.py` (`POST /api/v1/auth/register` → 201 + token, 409 on duplicate email;
+  `POST /api/v1/auth/login` → bearer token, 401 on bad credentials). Pinned `bcrypt==5.0.0` and
+  `PyJWT==2.15.1`. Aligned the `users.role` default to the canonical `user`.
+- **Decisions:** registration always creates a `user`-role account (privileged roles are never
+  self-assigned); passwords are never stored or logged in plaintext; the dev `JWT_SECRET` default is a
+  ≥32-byte placeholder to satisfy HMAC key-length guidance.
+- **Open items opened/closed:** none.
+- **Next:** Phase P4.2 (server-side role enforcement).
 
 ---
 

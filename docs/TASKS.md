@@ -134,10 +134,11 @@ Example: `Update - P1.2 - move frontend and reshape backend`
 
 ## Phase P4 — Auth & Write APIs
 
-- [ ] **P4.1 — Auth core (hashing, register, login, JWT)**
+- [x] **P4.1 — Auth core (hashing, register, login, JWT)**
   - Password hashing utility (Argon2/bcrypt); no plaintext storage.
   - `POST /api/v1/auth/register`.
   - `POST /api/v1/auth/login` + JWT issuance.
+  - Added `backend/app/core/security.py` (bcrypt hashing, PyJWT issue/decode), `backend/app/services/user.py`, `backend/app/schemas/auth.py`, and `backend/app/api/auth.py`. Register creates a `user`-role account (409 on duplicate); login returns a bearer token (401 on bad credentials). Pinned `bcrypt`/`PyJWT`.
   Commit: `Update - P4.1 - auth core`
 
 - [ ] **P4.2 — Server-side role enforcement**

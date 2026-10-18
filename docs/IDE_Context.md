@@ -124,6 +124,7 @@ These are known and must be fixed during the indicated phase:
 | Menu service | `backend/app/services/menu.py`, `backend/app/db/seed.py` | Idempotent seeder + `MenuService` (P3.2) |
 | Menu read APIs | `backend/app/api/menu.py`, `backend/app/schemas/menu.py` | Categories/menu/read endpoints (P3.3) |
 | API tests | `backend/tests/conftest.py`, `backend/tests/test_api/` | In-memory seeded client (P3.4) |
+| Auth core | `backend/app/core/security.py`, `backend/app/api/auth.py` | bcrypt + JWT register/login (P4.1) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -185,6 +186,11 @@ These are known and must be fixed during the indicated phase:
 - Added `backend/tests/conftest.py` (in-memory SQLite + seeded `get_db` override) and read API tests
   (happy path, filters, 404). `pytest` passes (9 tests). **Gate 3 met.**
 - **Next:** Phase P4 (auth & write APIs).
+
+### Session 10 — Auth core (P4.1)
+- Added bcrypt hashing + PyJWT tokens (`backend/app/core/security.py`) and `POST /api/v1/auth/register`
+  / `POST /api/v1/auth/login`; pinned `bcrypt`/`PyJWT`.
+- **Next:** P4.2 (server-side role enforcement).
 
 ---
 
