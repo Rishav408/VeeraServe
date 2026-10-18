@@ -38,7 +38,7 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Add pinned `backend/requirements.txt` and `backend/.env.example` (`DATABASE_URL`, `JWT_SECRET`, `LLM_BASE_URL`, `LLM_MODEL`, `EMBEDDING_MODEL`, `LLM_API_KEY`, CORS origins, upload limits).
   Commit: `Update - P0.3 - env samples and pinned deps`
 
-- [ ] **P0.4 — README & baseline checkpoint**
+- [x] **P0.4 — README & baseline checkpoint**
   - Rewrite `README.md` to match reality (accurate; LM Studio setup; links `docs/INDEX.md`).
   - Baseline checkpoint: frontend lint + build pass, clean tree, tag `docs-baseline`.
   Commit: `Update - P0.4 - README and baseline checkpoint`
