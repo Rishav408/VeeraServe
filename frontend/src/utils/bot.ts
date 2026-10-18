@@ -1,5 +1,6 @@
 import { API_URL } from "./config";
 import type { BotResponse } from "../types/domain";
+import type { ChatResponse } from "../types/api";
 
 export async function getBotResponse(
   input: string,
@@ -28,7 +29,7 @@ export async function getBotResponse(
         throw new Error("Backend error");
     }
 
-    const data = (await res.json()) as { response: string };
+    const data = (await res.json()) as ChatResponse;
     return { message: data.response, action: null };
   } catch {
     return { message: "Oops, something went wrong with the AI connection! Make sure the backend is running.", action: null };

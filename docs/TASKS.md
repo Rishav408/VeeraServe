@@ -81,8 +81,9 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `typescript`/`@types/*`/`typescript-eslint`, `typecheck` script, `vite-env.d.ts`, and a minimal `types/domain.ts` (prerequisite for strict mode); updated the ESLint flat config to lint `{ts,tsx}`.
   Commit: `Update - P2.1 - TypeScript setup and component migration`
 
-- [ ] **P2.2 — Domain types**
+- [x] **P2.2 — Domain types**
   - Add domain types in `frontend/src/types/` mirroring the API schemas (no `any` in domain types).
+  - UI domain types landed in P2.1 (`types/domain.ts`); this task adds the API/DTO layer `types/api.ts` (`MenuSeedDto`, `MenuItemDto`, `CategoryDto`, `HealthResponse`, `ChatResponse`) mirroring the documented data model, and wires `data/menu.ts` + `utils/bot.ts` to it. Order/user/feedback DTOs are deferred to the phase that introduces their endpoints (P3+).
   Commit: `Update - P2.2 - domain types`
 
 - [ ] **P2.3 — Design tokens & shared UI primitives**

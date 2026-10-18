@@ -115,6 +115,7 @@ These are known and must be fixed during the indicated phase:
 | RAG / vector store | `backend/app/services/rag/` | Not implemented |
 | Database models | `backend/app/models/` | Not implemented |
 | Admin console | `frontend/src/features/admin/` | Mock present |
+| Frontend types | `frontend/src/types/` | Domain (P2.1) + API DTOs (P2.2) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -138,11 +139,12 @@ These are known and must be fixed during the indicated phase:
   `GET /api/v1/health` + first test); see `MEMORY.md` §7.
 - **Next:** Phase P2 (TypeScript migration & design system).
 
-### Session 3 — TypeScript migration (P2.1)
+### Session 3 — TypeScript migration (P2.1–P2.2)
 - Migrated the front end to TypeScript (`strict`); added tooling (`typescript`, `@types/*`,
-  `typescript-eslint`), `typecheck` script, `vite-env.d.ts`, and `src/types/domain.ts`. `tsc --noEmit`,
-  lint, and build pass.
-- **Next:** P2.2 (domain/API types), P2.3 (design tokens & UI primitives).
+  `typescript-eslint`), `typecheck` script, `vite-env.d.ts`, and `src/types/domain.ts`. Added the API
+  DTO layer `src/types/api.ts` and wired `data/menu.ts` + `utils/bot.ts` to it. `tsc --noEmit`, lint,
+  and build pass.
+- **Next:** P2.3 (design tokens & UI primitives), P2.4 (server-state & typecheck pass).
 
 ---
 
