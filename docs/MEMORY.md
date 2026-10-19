@@ -134,6 +134,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P6.4: added `app/agent/{state,intents,memory,nodes,graph,runner}.py` — a LangGraph supervisor→guardrails→specialist graph (rule-based routing), deterministic grounded replies, confirmation-gated preference memory, and an `InMemorySaver` checkpointer via `run_agent`. | TASKS P6.4 |
 | (rev) | Phase P6.5: added the SSE chat endpoint (`POST /api/v1/chat`, `app/api/chat.py` + `app/agent/streaming.py`), vision (`app/llm/vision.py`), voice (`app/services/transcription.py`), and verification-gated response polishing (`app/agent/polish.py`); rewired the chat UI to stream tokens/tool events/cart with optional TTS. | TASKS P6.5 |
 | (rev) | Phase P7.1: added admin-only menu CRUD (`POST/PATCH/DELETE /api/v1/menu[/{id}]`, `POST /api/v1/categories`) with slug ids and validation, made startup seeding add-only, and re-indexed Chroma from the DB; rebuilt the admin menu screen on the API (`useAdminMenu`). | TASKS P7.1, D-14 |
+| (rev) | Phase P7.2: added a `status` filter to `GET /api/v1/orders` (validated) and rebuilt the admin order screen on the API with status filter tabs, timelines, and forward-only "Mark <next>" transitions. | TASKS P7.2 |
 
 ---
 
@@ -506,6 +507,18 @@ YYYY-MM-DD — Session summary
   the vector store is re-indexed from the DB (refines D-7).
 - **Open items opened/closed:** none (O-1/O-2 unchanged).
 - **Verification:** backend `pytest` 96 passed + 3 live skipped; frontend `tsc`/lint/build pass, 11 tests.
+
+### Session 26 — Order management (P7.2)
+
+- **Completed:** Phase P7.2 — staff order management on real data. Backend: `GET /api/v1/orders`
+  gained a validated `status` query filter (`list_orders(..., status=...)`, 400 on unknown status);
+  staff/admin already list all orders and `PATCH /orders/{id}/status` enforces forward-only transitions.
+  Front end: rebuilt `AdminOrdersScreen` on `useOrders` (status filter + 5s polling) and
+  `useUpdateOrderStatus` — filter tabs, per-order item lines resolved to names, `OrderTimeline`, and a
+  "Mark <next>" action limited to legal transitions.
+- **Decisions:** none new (uses D-14's DB-as-source-of-truth and the P4.3 status machine).
+- **Open items opened/closed:** none.
+- **Verification:** backend `pytest` 98 passed + 3 live skipped; frontend `tsc`/lint/build pass, 11 tests.
 
 ---
 

@@ -296,6 +296,13 @@ These are known and must be fixed during the indicated phase:
   typecheck/lint/build pass, 11 tests.
 - **Next:** P7.2 (order management: staff UI + listing over the existing status endpoint).
 
+### Session 26 — Order management (P7.2)
+- Added a validated `status` filter to `GET /api/v1/orders` and rebuilt `AdminOrdersScreen` on the API
+  (`useOrders` status filter + polling, `useUpdateOrderStatus`) with filter tabs, item-name resolution,
+  timelines, and forward-only "Mark <next>" actions. Backend `pytest` 98 passed + 3 live skipped;
+  frontend typecheck/lint/build pass, 11 tests.
+- **Next:** P7.3 (real analytics API + dashboard; remove mock chart data).
+
 ---
 
 ## Section 5 — Resumption instructions for IDE agents

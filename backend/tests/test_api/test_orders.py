@@ -130,3 +130,42 @@ def test_status_change_requires_staff_and_follows_forward_transitions(
         json={"status": "served"},
     )
     assert skipped.status_code == 400
+
+
+def test_staff_can_filter_orders_by_status(
+    client: TestClient, create_user: Callable[..., int], auth_headers: Callable[..., dict[str, str]]
+) -> None:
+    create_user("diner@example.com")
+    create_user("staff@example.com", role="staff")
+    items = _priced_items(client)
+    staff_headers = auth_headers("staff@example.com")
+
+    first = _place(client, items, auth_headers("diner@example.com")).json()
+    _place(client, items, auth_headers("diner@example.com"))
+
+    client.patch(
+        f"/api/v1/orders/{first['id']}/status",
+        headers=staff_headers,
+        json={"status": "preparing"},
+    )
+
+    pending = client.get("/api/v1/orders", params={"status": "pending"}, headers=staff_headers).json()
+    preparing = client.get(
+        "/api/v1/orders", params={"status": "preparing"}, headers=staff_headers
+    ).json()
+
+    assert [order["id"] for order in preparing] == [first["id"]]
+    assert all(order["status"] == "pending" for order in pending)
+    assert first["id"] not in [order["id"] for order in pending]
+
+
+def test_order_status_filter_rejects_unknown_value(
+    client: TestClient, create_user: Callable[..., int], auth_headers: Callable[..., dict[str, str]]
+) -> None:
+    create_user("staff@example.com", role="staff")
+
+    response = client.get(
+        "/api/v1/orders", params={"status": "cancelled"}, headers=auth_headers("staff@example.com")
+    )
+
+    assert response.status_code == 400

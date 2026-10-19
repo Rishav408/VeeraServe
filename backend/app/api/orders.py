@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 
 from app.api.deps import CurrentUser, OptionalUser, require_roles
@@ -35,8 +35,15 @@ def place_order(
 
 
 @router.get("/orders", response_model=list[OrderOut])
-def read_orders(current_user: CurrentUser, db: Session = Depends(get_db)) -> list[OrderOut]:
-    return list_orders(db, user=current_user)
+def read_orders(
+    current_user: CurrentUser,
+    status_filter: str | None = Query(default=None, alias="status"),
+    db: Session = Depends(get_db),
+) -> list[OrderOut]:
+    try:
+        return list_orders(db, user=current_user, status=status_filter)
+    except OrderValidationError as exc:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))
 
 
 @router.get("/orders/{order_id}", response_model=OrderOut)

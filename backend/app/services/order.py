@@ -69,7 +69,9 @@ def create_order(
     return order
 
 
-def list_orders(db: Session, *, user: User) -> list[Order]:
+def list_orders(db: Session, *, user: User, status: str | None = None) -> list[Order]:
+    if status is not None and status not in ORDER_STATUSES:
+        raise OrderValidationError(f"Unknown status: {status}")
     statement = (
         select(Order)
         .options(selectinload(Order.items))
@@ -77,6 +79,8 @@ def list_orders(db: Session, *, user: User) -> list[Order]:
     )
     if user.role not in STAFF_ROLES:
         statement = statement.where(Order.user_id == user.id)
+    if status is not None:
+        statement = statement.where(Order.status == status)
     return list(db.scalars(statement))
 
 

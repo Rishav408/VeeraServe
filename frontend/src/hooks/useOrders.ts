@@ -1,19 +1,20 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { apiGet, apiPatch, apiPost } from "../lib/apiClient";
-import type { OrderCreate, OrderDto, OrderStatusUpdate } from "../types/api";
+import type { OrderCreate, OrderDto, OrderStatusDto, OrderStatusUpdate } from "../types/api";
 
 const ORDERS_KEY = "orders";
 
 export const orderKeys = {
   all: [ORDERS_KEY] as const,
-  list: [ORDERS_KEY, "list"] as const,
+  list: (status?: OrderStatusDto) => [ORDERS_KEY, "list", status ?? "all"] as const,
   detail: (id: number) => [ORDERS_KEY, "detail", id] as const
 };
 
-export function useOrders(options: { poll?: boolean } = {}) {
+export function useOrders(options: { poll?: boolean; status?: OrderStatusDto } = {}) {
   return useQuery({
-    queryKey: orderKeys.list,
-    queryFn: () => apiGet<OrderDto[]>("/orders"),
+    queryKey: orderKeys.list(options.status),
+    queryFn: () =>
+      apiGet<OrderDto[]>(`/orders${options.status ? `?status=${options.status}` : ""}`),
     refetchInterval: options.poll ? 5000 : false
   });
 }

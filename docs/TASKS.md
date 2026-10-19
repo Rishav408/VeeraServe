@@ -273,8 +273,11 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Tests: `tests/test_api/test_menu_admin.py` (10) + `tests/test_db/test_seed.py::test_seed_preserves_existing_items` (95 + 3 live backend).
   Commit: `Update - P7.1 - menu CRUD and management UI`
 
-- [ ] **P7.2 — Order management**
+- [x] **P7.2 — Order management**
   - Order management endpoints + staff UI with status transitions.
+  - Backend: `GET /api/v1/orders?status=<status>` filter added to `list_orders` (validated; 400 on unknown status); staff/admin already see all orders and `PATCH /orders/{id}/status` enforces forward-only transitions.
+  - Frontend: rebuilt `AdminOrdersScreen` on the API (`useOrders` with `status` filter + polling, `useUpdateOrderStatus`) — status filter tabs, per-order item lines with names, timeline, and a "Mark <next>" action.
+  - Tests: `tests/test_api/test_orders.py` (+2: status filter, invalid-status 400).
   Commit: `Update - P7.2 - order management`
 
 - [ ] **P7.3 — Real analytics (API & UI)**
