@@ -4,9 +4,10 @@ import { useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import type { MenuItem } from "../types/domain";
 import FoodCard from "../components/FoodCard";
-import { useAppData } from "../context/AppDataContext";
+import { Spinner } from "../components/ui";
 import { useCart } from "../context/CartContext";
 import { useUI } from "../context/UIContext";
+import { useMenuItem, useMenuItems } from "../hooks/useMenu";
 
 const customisations = ["Extra spicy", "No onion", "No garlic", "Extra cheese"];
 const categoryLabels: Record<string, string> = {
@@ -21,18 +22,26 @@ const categoryLabels: Record<string, string> = {
 export default function ItemDetailsScreen() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { menuItems } = useAppData();
   const { addToCart } = useCart();
   const { showToast } = useUI();
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState<string[]>([]);
 
-  const item = useMemo(() => menuItems.find((menuItem) => menuItem.id === id), [menuItems, id]);
+  const { data: item, isPending } = useMenuItem(id);
+  const { data: sameCategory = [] } = useMenuItems(item ? { category: item.category } : {});
 
   const related = useMemo<MenuItem[]>(() => {
     if (!item) return [];
-    return menuItems.filter((entry) => entry.category === item.category && entry.id !== item.id).slice(0, 3);
-  }, [item, menuItems]);
+    return sameCategory.filter((entry) => entry.id !== item.id).slice(0, 3);
+  }, [item, sameCategory]);
+
+  if (isPending) {
+    return (
+      <div className="flex justify-center py-16">
+        <Spinner />
+      </div>
+    );
+  }
 
   if (!item) {
     return (

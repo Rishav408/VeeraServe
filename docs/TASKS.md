@@ -176,9 +176,10 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Reworked `src/lib/apiClient.ts` (token header, typed `ApiError` with parsed `detail`, `apiGet`/`apiPost`/`apiPatch`/`apiDelete`/`apiPostForm`), added `src/lib/authToken.ts` and `src/context/AuthContext.tsx`, real login/register `LoginScreen` (no role dropdown), and `RequireAuth`/`RequireRole` guards on `/profile`, `/orders`, and `/admin*`. `tsc`, lint, and build pass.
   Commit: `Update - P5.1 - API client, auth context and protected routes`
 
-- [ ] **P5.2 — Catalog & cart wired to the API**
+- [x] **P5.2 — Catalog & cart wired to the API**
   - Catalog wired to the API (menu, categories, filters).
   - Cart wired to the backend (server-validated totals).
+  - Added `src/hooks/useMenu.ts` (+ `src/utils/menuMapper.ts`) and wired `MenuScreen` (server-side category/search filters), `HomeScreen`, `ItemDetailsScreen`, `CartScreen`, `RightRail`, and `ChatContext` to the API menu/categories. Cart items now carry server menu ids/prices; totals are re-validated server-side at order time (P5.3). Admin menu stays on mock data until P7.
   Commit: `Update - P5.2 - wire catalog and cart`
 
 - [ ] **P5.3 — Checkout, tracking & order history**

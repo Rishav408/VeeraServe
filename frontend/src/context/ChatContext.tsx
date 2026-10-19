@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react";
 import type { ReactNode } from "react";
 import { useCart } from "./CartContext";
-import { useAppData } from "./AppDataContext";
+import { useMenuItems } from "../hooks/useMenu";
 import { getBotResponse } from "../utils/bot";
 import type { ChatMessage } from "../types/domain";
 
@@ -44,7 +44,7 @@ function reducer(state: ChatState, action: ChatAction): ChatState {
 export function ChatProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { addToCart } = useCart();
-  const { menuItems } = useAppData();
+  const { data: menuItems = [] } = useMenuItems();
 
   const sendMessage = async (
     text: string,

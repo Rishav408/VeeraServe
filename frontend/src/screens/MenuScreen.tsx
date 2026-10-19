@@ -2,45 +2,39 @@ import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import FoodCard from "../components/FoodCard";
-import { EmptyState } from "../components/ui";
-import { useAppData } from "../context/AppDataContext";
+import { EmptyState, Spinner } from "../components/ui";
 import { useUI } from "../context/UIContext";
-import { categoryTabs } from "../data/menu";
-
-const categoryLabels: Record<string, string> = {
-  all: "All",
-  "world-plates": "World Plates",
-  "rice-noodles": "Rice & Noodles",
-  breads: "Indian Breads",
-  mains: "Mains",
-  "appetizers-veg": "Veg Appetizers",
-  "appetizers-nonveg": "Non-Veg Appetizers",
-  beverages: "Beverages"
-};
+import { useCategories, useMenuItems } from "../hooks/useMenu";
 
 export default function MenuScreen() {
   const { activeCategory, setCategory } = useUI();
-  const { menuItems } = useAppData();
   const [search, setSearch] = useState("");
 
-  const searchFiltered = useMemo(() => {
-    const query = search.trim().toLowerCase();
-    if (!query) return menuItems;
-    return menuItems.filter((item) => `${item.name} ${item.description}`.toLowerCase().includes(query));
-  }, [menuItems, search]);
+  const { data: categories = [] } = useCategories();
+  const { data: allItems = [] } = useMenuItems();
+  const filters = useMemo(
+    () => ({
+      category: activeCategory === "all" ? undefined : activeCategory,
+      search: search.trim() || undefined
+    }),
+    [activeCategory, search]
+  );
+  const { data: items = [], isPending } = useMenuItems(filters);
 
-  const filtered = useMemo(() => {
-    if (activeCategory === "all") return searchFiltered;
-    return searchFiltered.filter((item) => item.category === activeCategory);
-  }, [activeCategory, searchFiltered]);
+  const tabs = useMemo(() => ["all", ...categories.map((category) => category.id)], [categories]);
+
+  const labelFor = (id: string) =>
+    id === "all" ? "All" : categories.find((category) => category.id === id)?.label ?? id;
 
   const grouped = useMemo(() => {
-    if (activeCategory !== "all") return [{ key: activeCategory, items: filtered }];
-    return categoryTabs
+    if (activeCategory !== "all") {
+      return [{ key: activeCategory, items }];
+    }
+    return tabs
       .filter((tab) => tab !== "all")
-      .map((tab) => ({ key: tab, items: filtered.filter((item) => item.category === tab) }))
+      .map((tab) => ({ key: tab, items: items.filter((item) => item.category === tab) }))
       .filter((group) => group.items.length > 0);
-  }, [activeCategory, filtered]);
+  }, [activeCategory, items, tabs]);
 
   return (
     <div className="space-y-4">
@@ -63,8 +57,8 @@ export default function MenuScreen() {
       {/* Category tabs */}
       <div className="scrollbar-hide sticky top-[68px] z-10 rounded-b-[12px] bg-white/60 px-3 py-2 backdrop-blur sm:px-4">
         <div className="flex gap-2">
-          {categoryTabs.map((tab) => {
-            const count = tab === "all" ? menuItems.length : menuItems.filter((item) => item.category === tab).length;
+          {tabs.map((tab) => {
+            const count = tab === "all" ? allItems.length : allItems.filter((item) => item.category === tab).length;
             return (
               <button
                 key={tab}
@@ -72,7 +66,7 @@ export default function MenuScreen() {
                 onClick={() => setCategory(tab)}
                 className={`category-chip shrink-0 whitespace-nowrap text-xs sm:text-sm ${activeCategory === tab ? "active shadow-glow-orange" : ""}`}
               >
-                {categoryLabels[tab]} ({count})
+                {labelFor(tab)} ({count})
               </button>
             );
           })}
@@ -80,7 +74,11 @@ export default function MenuScreen() {
       </div>
 
       {/* Content */}
-      {filtered.length === 0 ? (
+      {isPending ? (
+        <div className="flex justify-center py-16">
+          <Spinner />
+        </div>
+      ) : items.length === 0 ? (
         <EmptyState
           icon="🍽️"
           title="Nothing found"
@@ -95,7 +93,7 @@ export default function MenuScreen() {
           {grouped.map((group) => (
             <section key={group.key} className="space-y-4">
               <div className="flex items-center gap-3">
-                <h2 className="font-display text-xl text-ink">{categoryLabels[group.key]}</h2>
+                <h2 className="font-display text-xl text-ink">{labelFor(group.key)}</h2>
                 <span className="rounded-pill bg-gold px-2.5 py-0.5 text-xs font-semibold text-secondary-dark">
                   {group.items.length}
                 </span>

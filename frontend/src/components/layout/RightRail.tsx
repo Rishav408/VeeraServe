@@ -2,11 +2,13 @@ import { useMemo } from "react";
 import { useAppData } from "../../context/AppDataContext";
 import { useCart } from "../../context/CartContext";
 import { useHealth } from "../../hooks/useHealth";
+import { useMenuItems } from "../../hooks/useMenu";
 import { Spinner } from "../ui";
 import MiniCart from "../MiniCart";
 
 export default function RightRail() {
-  const { orders, feedback, menuItems } = useAppData();
+  const { orders, feedback } = useAppData();
+  const { data: menuItems = [] } = useMenuItems();
   const { addToCart } = useCart();
   const health = useHealth();
 

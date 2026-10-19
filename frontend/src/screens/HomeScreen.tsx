@@ -5,9 +5,11 @@ import FoodCard from "../components/FoodCard";
 import { Card } from "../components/ui";
 import { useAppData } from "../context/AppDataContext";
 import { useUI } from "../context/UIContext";
+import { useMenuItems } from "../hooks/useMenu";
 
 export default function HomeScreen() {
-  const { orders, menuItems, currentUser } = useAppData();
+  const { orders, currentUser } = useAppData();
+  const { data: menuItems = [] } = useMenuItems();
   const { setCategory } = useUI();
   const navigate = useNavigate();
   const MotionSection = motion.section;

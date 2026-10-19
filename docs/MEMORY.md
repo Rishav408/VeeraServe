@@ -122,6 +122,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P4.4: added the feedback and reservations APIs (`backend/app/api/{feedback,reservations}.py`) — feedback with 1–5 rating validation and admin-only listing, and reservations (party size ≥ 1, valid time) with guest submissions and scoped listing. | TASKS P4.4 |
 | (rev) | Phase P4.5: added auth/write-path tests (`backend/tests/test_auth/`, `backend/tests/test_api/test_orders.py`, `backend/tests/test_api/test_feedback.py`) covering hashing/JWT, 401/403 RBAC, ownership, server-side totals, status transitions, and rating bounds. Gate 4 met; `pytest` passes (26 tests). | TASKS P4.5 |
 | (rev) | Phase P5.1: built the typed API client (auth-token attachment + typed `ApiError`), `AuthContext`, real login/register UI, and `RequireAuth`/`RequireRole` route guards; widened `UserRole`; moved identity out of `AppDataContext`. `tsc`, lint, and build pass. | TASKS P5.1 |
+| (rev) | Phase P5.2: wired the diner catalog to the API — added `src/hooks/useMenu.ts` + `src/utils/menuMapper.ts` and switched `MenuScreen`/`HomeScreen`/`ItemDetailsScreen`/`CartScreen`/`RightRail`/`ChatContext` to server menu/categories with server-side filters; cart carries API ids/prices. Admin menu remains mock until P7. | TASKS P5.2 |
 
 ---
 
@@ -333,6 +334,19 @@ YYYY-MM-DD — Session summary
   chosen in the UI.
 - **Open items opened/closed:** none.
 - **Next:** Phase P5.2 (wire catalog & cart to the API).
+
+### Session 16 — Catalog & cart on the API (P5.2)
+
+- **Completed:** Phase P5.2 — added `frontend/src/hooks/useMenu.ts` (`useCategories`, `useMenuItems`,
+  `useMenuItem`) with `frontend/src/utils/menuMapper.ts` mapping API `MenuItemDto` -> domain `MenuItem`
+  (hiding bar/alcoholic/unpriced items) and switched the diner surfaces (`MenuScreen` with server-side
+  category/search filters, `HomeScreen`, `ItemDetailsScreen`, `CartScreen`, `RightRail`, `ChatContext`)
+  from the local seed to the API. Cart entries now reference server menu ids and prices; totals are
+  recomputed by the API at order time (P5.3).
+- **Decisions:** the diner catalog reads the API; admin menu management keeps the mock store until P7,
+  so `data/menu.ts` remains only for admin screens in the interim.
+- **Open items opened/closed:** none.
+- **Next:** Phase P5.3 (checkout, tracking & order history).
 
 ---
 

@@ -130,6 +130,7 @@ These are known and must be fixed during the indicated phase:
 | Feedback/reservations | `backend/app/api/feedback.py`, `backend/app/api/reservations.py` | 1–5 ratings, admin listing (P4.4) |
 | Backend tests | `backend/tests/` | Auth + read/write API suites (26 tests, P4.5) |
 | Frontend auth | `frontend/src/context/AuthContext.tsx`, `frontend/src/lib/apiClient.ts` | JWT client + guards (P5.1) |
+| Catalog hooks | `frontend/src/hooks/useMenu.ts`, `frontend/src/utils/menuMapper.ts` | API menu/categories (P5.2) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -223,6 +224,11 @@ These are known and must be fixed during the indicated phase:
 - Reworked the API client (token header + typed errors), added `AuthContext` and real login/register UI,
   and guarded `/profile`, `/orders`, `/admin*`. `tsc`, lint, build pass.
 - **Next:** P5.2 (wire catalog & cart to the API).
+
+### Session 16 — Catalog & cart on the API (P5.2)
+- Added `useMenu`/`menuMapper` and switched the diner catalog surfaces to the API (server-side
+  category/search filters); cart carries API ids/prices. `tsc`, lint, build pass.
+- **Next:** P5.3 (checkout, tracking & order history).
 
 ---
 

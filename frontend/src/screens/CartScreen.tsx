@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import { useAppData } from "../context/AppDataContext";
+import { useMenuItems } from "../hooks/useMenu";
 import { Badge, Button, EmptyState, buttonClasses } from "../components/ui";
 
 export default function CartScreen() {
   const { items, subtotal, updateQuantity, removeFromCart } = useCart();
-  const { menuItems } = useAppData();
+  const { data: menuItems = [] } = useMenuItems();
   const gst = Math.round(subtotal * 0.05);
   const grandTotal = subtotal + gst;
 
