@@ -195,11 +195,16 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added backend `PATCH /api/v1/auth/me/preferences` (`UserPreferences` schema, `update_preferences` service, preferences on `UserOut`) and frontend `src/hooks/useProfile.ts` + `src/hooks/useFeedback.ts`; `AuthContext` gained `updateUser`.
   Commit: `Update - P5.4 - feedback form and preferences`
 
-- [ ] **P5.5 — Ordering flow tests**
+- [x] **P5.5 — Ordering flow tests**
   - Front-end tests for the cart→checkout→order flow.
+  - Added Vitest + Testing Library (`vitest`, `jsdom`, `@testing-library/react`, `@testing-library/jest-dom`, `@testing-library/user-event`); `vite.config.ts` test block + `src/test/setup.ts`.
+  - `src/screens/CheckoutScreen.test.tsx` covers totals, order submission/clearing/navigation, table/payment/instructions, empty-cart blocking, and API-error surfacing. Run with `npm run test`.
   Commit: `Update - P5.5 - ordering flow tests`
 
-**Checkpoint — Gate 5 (MVP-minus-AI):** A diner can browse, order, track, and give feedback against the real backend, with admin routes role-guarded. This is the checkpoint before any AI work begins.
+**Checkpoint — Gate 5 (MVP-minus-AI):** A diner can browse, order, track, and give feedback against the real backend, with admin routes role-guarded. This is the checkpoint before any AI work begins. **[MET]**
+  - Diner: catalog from API (P5.2), checkout + tracking + history against the API (P5.3), feedback + preferences (P5.4).
+  - Admin: role-guarded client-side (`RequireRole`) and server-side; admin screens remain on mock data until P7.
+  - Verification: frontend `npm run typecheck` / `npm run lint` / `npm run build` / `npm run test` (5 tests) and backend `python -m pytest -q` (29 tests) all pass.
 
 ---
 

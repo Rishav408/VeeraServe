@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url'
-import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vitest/config'
 
 const repoRoot = fileURLToPath(new URL('..', import.meta.url))
 
@@ -11,5 +11,10 @@ export default defineConfig({
     fs: {
       allow: [repoRoot],
     },
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test/setup.ts'],
   },
 })

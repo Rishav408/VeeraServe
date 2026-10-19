@@ -133,6 +133,7 @@ These are known and must be fixed during the indicated phase:
 | Catalog hooks | `frontend/src/hooks/useMenu.ts`, `frontend/src/utils/menuMapper.ts` | API menu/categories (P5.2) |
 | Order hooks | `frontend/src/hooks/useOrders.ts` | Create/track/list orders (P5.3) |
 | Profile/feedback hooks | `frontend/src/hooks/{useProfile,useFeedback}.ts` | Preferences + feedback (P5.4) |
+| Frontend tests | `frontend/src/test/setup.ts`, `frontend/src/screens/CheckoutScreen.test.tsx` | Vitest + Testing Library (P5.5) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -242,6 +243,11 @@ These are known and must be fixed during the indicated phase:
   feedback form (three 1–5 ratings) and profile preferences to the API. `tsc`, lint, build, and
   backend tests (29 passed) all pass.
 - **Next:** P5.5 (ordering flow tests).
+
+### Session 19 — Ordering flow tests (P5.5) & Gate 5
+- Added Vitest 5 + Testing Library, `src/test/setup.ts`, and `CheckoutScreen.test.tsx` (5 tests).
+  Frontend `npm run test`, `typecheck`, `lint`, `build` and backend `pytest` (29) all pass. Gate 5 met.
+- **Next:** P6 (Agentic AI core).
 
 ---
 

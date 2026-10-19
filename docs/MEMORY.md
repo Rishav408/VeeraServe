@@ -125,6 +125,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P5.2: wired the diner catalog to the API — added `src/hooks/useMenu.ts` + `src/utils/menuMapper.ts` and switched `MenuScreen`/`HomeScreen`/`ItemDetailsScreen`/`CartScreen`/`RightRail`/`ChatContext` to server menu/categories with server-side filters; cart carries API ids/prices. Admin menu remains mock until P7. | TASKS P5.2 |
 | (rev) | Phase P5.3: added `src/hooks/useOrders.ts` and wired checkout (persists table number/payment/instructions via `POST /orders`), order tracking (polling `GET /orders/{id}` with a summary), the orders list, and profile order history to the API. | TASKS P5.3 |
 | (rev) | Phase P5.4: added `PATCH /api/v1/auth/me/preferences` (`UserPreferences`, `update_preferences`, preferences on `UserOut`) and wired the feedback form (three 1–5 ratings validated, guest-friendly) and profile preferences (veg/spice/allergies) to the API. | TASKS P5.4 |
+| (rev) | Phase P5.5: added the frontend test stack (Vitest 5 + Testing Library, `vite.config.ts` test block, `src/test/setup.ts`) and `CheckoutScreen.test.tsx` covering the cart→checkout→order flow (`npm run test`, 5 tests). Gate 5 met. | TASKS P5.5 |
 
 ---
 
@@ -373,6 +374,19 @@ YYYY-MM-DD — Session summary
   after a profile write; `GET /feedback` stays admin-only, so the diner screen no longer lists it.
 - **Open items opened/closed:** none.
 - **Next:** Phase P5.5 (ordering flow tests).
+
+### Session 19 — Ordering flow tests (P5.5) & Gate 5
+
+- **Completed:** Phase P5.5 — added the frontend test stack (Vitest 5 pinned for Vite 8
+  compatibility, `jsdom`, Testing Library + jest-dom/user-event), a test block in `vite.config.ts`,
+  `src/test/setup.ts` (jest-dom matchers, `matchMedia` stub, cleanup), and
+  `src/screens/CheckoutScreen.test.tsx` covering totals, order submission → cart clear → navigation,
+  table/payment/instructions, empty-cart blocking, and API-error surfacing. Added `npm run test`/
+  `test:watch` scripts. **Gate 5 (MVP-minus-AI) met.**
+- **Decisions:** mocks the `apiClient` module in tests (deterministic) rather than `fetch`; Vitest is
+  pinned to v5 so it shares the project's Vite 8 (v2 nested an older Vite and broke `tsc`).
+- **Open items opened/closed:** none.
+- **Next:** Phase P6 (Agentic AI core).
 
 ---
 
