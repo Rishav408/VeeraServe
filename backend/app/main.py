@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+import logging
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -13,7 +14,9 @@ from app.core.config import get_settings
 from app.db.init_db import init_db
 from app.db.seed import seed_menu
 from app.db.session import SessionLocal
+from app.rag.ingest import ensure_menu_indexed
 
+logger = logging.getLogger(__name__)
 settings = get_settings()
 
 
@@ -22,6 +25,10 @@ async def lifespan(app: FastAPI):
     init_db()
     with SessionLocal() as db:
         seed_menu(db)
+    try:
+        ensure_menu_indexed()
+    except Exception as exc:
+        logger.warning("Menu index unavailable (LM Studio not running?): %s", exc)
     yield
 
 

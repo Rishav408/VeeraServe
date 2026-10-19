@@ -47,3 +47,17 @@ def chat_completion(
         raise LLMError(f"Local model request failed: {exc}") from exc
 
     return response.choices[0].message.content or ""
+
+
+def embed_texts(texts: list[str], *, model: str | None = None) -> list[list[float]]:
+    """Embed texts with the local embedding model, preserving input order."""
+    settings = get_settings()
+    try:
+        response = _get_client().embeddings.create(
+            model=model or settings.llm_embedding_model,
+            input=texts,
+        )
+    except Exception as exc:
+        raise LLMError(f"Local embedding request failed: {exc}") from exc
+
+    return [item.embedding for item in response.data]

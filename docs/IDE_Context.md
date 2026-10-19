@@ -135,6 +135,7 @@ These are known and must be fixed during the indicated phase:
 | Profile/feedback hooks | `frontend/src/hooks/{useProfile,useFeedback}.ts` | Preferences + feedback (P5.4) |
 | Frontend tests | `frontend/src/test/setup.ts`, `frontend/src/screens/CheckoutScreen.test.tsx` | Vitest + Testing Library (P5.5) |
 | LLM runtime | `backend/app/llm/{client,health}.py` | LM Studio client + readiness probe (P6.1) |
+| RAG | `backend/app/rag/{ingest,retriever}.py` | Chroma index + grounded retrieval (P6.2) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -255,6 +256,12 @@ These are known and must be fixed during the indicated phase:
   and `GET /api/v1/health/llm`; pinned chat/vision/embedding model defaults; removed the superseded
   Ollama `ai_service.py` and unwired `chat.py`. Backend `pytest` passes (36 tests).
 - **Next:** P6.2 (RAG grounding).
+
+### Session 21 — RAG grounding (P6.2)
+- Added `backend/app/rag/{ingest,retriever}.py` (Chroma + LM Studio embeddings, idempotent menu
+  indexing, DB-validated top-k retrieval), `embed_texts`, Chroma config, and startup indexing with
+  graceful degradation. Chroma chosen (D-12). Backend `pytest` passes (42 tests).
+- **Next:** P6.3 (tool layer).
 
 ---
 

@@ -35,6 +35,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | D-9 | Documentation is grouped under `docs/` with uppercase filenames and topical subfolders. | Readability and professional structure. | Accepted |
 | D-10 | Kitchen/order status is **simulated** but explicitly labelled, unless a real integration is added. | Honest about scope while still demoable. | Accepted |
 | D-11 | Local model runtime is **LM Studio**, accessed through its **OpenAI-compatible local server** (`LLM_BASE_URL`, default `http://localhost:1234/v1`); the app uses a standard OpenAI client, not an Ollama-specific client. Supersedes the Ollama runtime assumption in D-2. | Chosen platform; keeps the backend runtime-agnostic and OpenAI-compatible while remaining fully local and zero-cost. | Accepted |
+| D-12 | RAG vector store is **Chroma** (persistent local client), embeddings from LM Studio (`nomic-embed-text`). | Persistent, zero-service, Python-native; simplest path to grounded retrieval (resolves O-3). | Accepted |
 
 ### Superseded decisions
 
@@ -48,7 +49,6 @@ running changelog. If a material choice is made, it is recorded here before it i
 |---|---|---|---|
 | O-1 | Final chat model loaded in LM Studio: Qwen2.5-VL-3B vs Qwen2.5-7B-Instruct vs Llama-3.1-8B (GGUF quantisations). | Phase P6 | Default pinned to `qwen2.5-vl-3b-instruct` (P6.1); confirm against real hardware/tool-calling in P6.4–P6.5. |
 | O-2 | Embedding model in LM Studio: `nomic-embed-text` vs `mxbai-embed-large`. | Phase P6 | Default pinned to `nomic-embed-text` (P6.1); validate retrieval quality in P6.2. |
-| O-3 | Vector store: Chroma vs FAISS. | Phase P6 | Default proposal: Chroma (persistent, simple). |
 | O-4 | Text-to-speech: browser `SpeechSynthesis` vs local Piper. | Phase P6 | Browser is zero-install; Piper is more natural but heavier. |
 | O-5 | Auth mechanism: custom JWT vs server session cookie. | Phase P4 | Default proposal: JWT for API simplicity. |
 | O-6 | Demo deployment scope: strictly local Docker vs a hosted demo link. | Phase P8 | Hosted demo complicates the "zero-cost local model" story. |
@@ -127,6 +127,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P5.4: added `PATCH /api/v1/auth/me/preferences` (`UserPreferences`, `update_preferences`, preferences on `UserOut`) and wired the feedback form (three 1–5 ratings validated, guest-friendly) and profile preferences (veg/spice/allergies) to the API. | TASKS P5.4 |
 | (rev) | Phase P5.5: added the frontend test stack (Vitest 5 + Testing Library, `vite.config.ts` test block, `src/test/setup.ts`) and `CheckoutScreen.test.tsx` covering the cart→checkout→order flow (`npm run test`, 5 tests). Gate 5 met. | TASKS P5.5 |
 | (rev) | Phase P6.1: added `app/llm/{client,health}.py` + `GET /api/v1/health/llm`, pinned chat/vision/embedding model defaults, and removed the superseded Ollama AI plumbing. | TASKS P6.1 |
+| (rev) | Phase P6.2: added `app/rag/{ingest,retriever}.py` (Chroma + LM Studio embeddings, idempotent seeding, DB-validated retrieval) and backend startup indexing with graceful degradation. | TASKS P6.2 |
 
 ---
 
@@ -404,6 +405,21 @@ YYYY-MM-DD — Session summary
   is missing.
 - **Open items opened/closed:** none (O-1/O-2 defaults pinned, final confirmation deferred to P6.4/P6.5).
 - **Next:** Phase P6.2 (RAG grounding).
+
+### Session 21 — RAG grounding (P6.2)
+
+- **Completed:** Phase P6.2 — added `backend/app/rag/ingest.py` (renders each menu item to compact
+  text, embeds via the LM Studio embeddings endpoint through `app/llm/client.embed_texts`, upserts
+  into a persistent Chroma collection with item metadata, removes stale ids, and skips re-indexing
+  when the seed version is unchanged) and `backend/app/rag/retriever.py` (`retrieve_menu_items`
+  top-k with optional category/veg/price/spice filters that only returns ids validated against the
+  database). Wired `ensure_menu_indexed()` into the app lifespan with graceful degradation when
+  LM Studio is down. Added `chromadb==1.5.9` (and bumped the `pydantic` pin to 2.14.1) plus
+  `vector_store_path`/`rag_collection_name`/`rag_top_k` config.
+- **Decisions:** **D-12 — vector store is Chroma** (resolves O-3); retrieval is defence-in-depth,
+  dropping any vector-store id that is not a real `menu_items` row.
+- **Open items opened/closed:** closed **O-3**.
+- **Next:** Phase P6.3 (tool layer).
 
 ---
 

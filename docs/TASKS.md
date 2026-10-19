@@ -219,10 +219,11 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Added `app/llm/{client,health}.py` (`chat_completion`, `LLMError`, `probe_llm`/`LLMStatus`), `GET /api/v1/health/llm`, and pinned `llm_chat_model`/`llm_vision_model`/`llm_embedding_model`/`llm_context_length`. Removed the superseded Ollama `app/services/ai_service.py` and the unwired `app/api/chat.py` placeholder.
   Commit: `Update - P6.1 - LLM client and LM Studio readiness`
 
-- [ ] **P6.2 — RAG grounding**
+- [x] **P6.2 — RAG grounding**
   - `backend/app/rag/ingest.py` — render each menu item to compact text, embed via the LM Studio embeddings endpoint, and upsert into Chroma with item-id metadata; idempotent re-ingest.
   - `backend/app/rag/retriever.py` — top-k retrieval with optional structured filters; returns only real items.
   - RAG tests (ingest is idempotent; retrieval returns only real items).
+  - Added `app/rag/{ingest,retriever}.py` (`render_item`, `ingest_items`, `ensure_menu_indexed`, `retrieve_menu_items`), `embed_texts` in the LLM client, Chroma config, startup indexing (graceful when LM Studio is down), and `chromadb==1.5.9`. Vector store decided: **Chroma (D-12)**.
   Commit: `Update - P6.2 - RAG grounding`
 
 - [ ] **P6.3 — Tool layer (validated contracts)**

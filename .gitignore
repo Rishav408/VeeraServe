@@ -58,3 +58,7 @@ ENV/
 
 # --- Local AI tooling ---
 .qwen/
+
+# --- Local RAG vector store / temp uploads ---
+chroma_db/
+tmp/
