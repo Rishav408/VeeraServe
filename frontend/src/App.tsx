@@ -17,6 +17,7 @@ import ChatScreen from "./screens/ChatScreen";
 import AdminDashboardScreen from "./screens/AdminDashboardScreen";
 import AdminMenuScreen from "./screens/AdminMenuScreen";
 import AdminOrdersScreen from "./screens/AdminOrdersScreen";
+import AdminFeedbackScreen from "./screens/AdminFeedbackScreen";
 import NotFoundScreen from "./screens/NotFoundScreen";
 
 function AnimatedRoutes() {
@@ -81,6 +82,14 @@ function AnimatedRoutes() {
               element={
                 <RequireRole roles={["staff", "admin"]}>
                   <AdminOrdersScreen />
+                </RequireRole>
+              }
+            />
+            <Route
+              path="/admin/feedback"
+              element={
+                <RequireRole roles={["admin"]}>
+                  <AdminFeedbackScreen />
                 </RequireRole>
               }
             />

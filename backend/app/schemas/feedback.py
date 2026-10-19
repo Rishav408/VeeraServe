@@ -21,4 +21,5 @@ class FeedbackOut(BaseModel):
     service_rating: int
     ai_rating: int
     comment: str | None
+    acknowledged: bool
     created_at: datetime

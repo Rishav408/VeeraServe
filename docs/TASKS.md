@@ -288,12 +288,15 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Tests: `tests/test_api/test_analytics.py` (3: RBAC, aggregation, empty state).
   Commit: `Update - P7.3 - analytics from DB`
 
-- [ ] **P7.4 — Feedback inbox & admin tests**
+- [x] **P7.4 — Feedback inbox & admin tests**
   - Feedback inbox endpoint + UI (read + acknowledge).
   - Admin tests (menu CRUD, RBAC, status transitions, analytics aggregation).
+  - Backend: `Feedback.acknowledged` column (+ idempotent startup backfill in `db/init_db.py` for existing SQLite dev databases), `PATCH /api/v1/feedback/{id}/acknowledge` (admin), and an acknowledged filter in `list_feedback`.
+  - Frontend: `useAdminFeedback`/`useAcknowledgeFeedback`, new `AdminFeedbackScreen` (`/admin/feedback`) with pending filter and acknowledge actions, and role-gated admin navigation in `SidebarNav` (staff see order management only).
+  - Tests: `tests/test_api/test_feedback.py::test_admin_can_acknowledge_feedback` and `src/screens/AdminFeedbackScreen.test.tsx` (3). Admin coverage now includes menu CRUD/RBAC (`test_menu_admin.py`), status transitions/filtering (`test_orders.py`), analytics aggregation (`test_analytics.py`), and feedback acknowledgement.
   Commit: `Update - P7.4 - feedback inbox and admin tests`
 
-**Checkpoint — Gate 7:** All admin operations affect real data end-to-end, and no fabricated analytics remain.
+**Checkpoint — Gate 7:** All admin operations affect real data end-to-end, and no fabricated analytics remain. **Met** — menu CRUD, order management, analytics and feedback all read/write the database (the mock store was removed in P7.3).
 
 ---
 

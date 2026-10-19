@@ -54,6 +54,12 @@ export default function AdminDashboardScreen() {
           >
             Manage Orders
           </Link>
+          <Link
+            to="/admin/feedback"
+            className="rounded-btn border border-primary/20 bg-white px-4 py-2 text-xs font-semibold text-ink-soft transition hover:bg-primary/5"
+          >
+            Feedback Inbox
+          </Link>
         </div>
       </div>
 

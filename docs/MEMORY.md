@@ -136,6 +136,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P7.1: added admin-only menu CRUD (`POST/PATCH/DELETE /api/v1/menu[/{id}]`, `POST /api/v1/categories`) with slug ids and validation, made startup seeding add-only, and re-indexed Chroma from the DB; rebuilt the admin menu screen on the API (`useAdminMenu`). | TASKS P7.1, D-14 |
 | (rev) | Phase P7.2: added a `status` filter to `GET /api/v1/orders` (validated) and rebuilt the admin order screen on the API with status filter tabs, timelines, and forward-only "Mark <next>" transitions. | TASKS P7.2 |
 | (rev) | Phase P7.3: added `GET /api/v1/analytics/dashboard` (`app/services/analytics.py`, admin-only) computing revenue, order counts, 7-day trend, top items, peak hours and ratings from the DB; rebuilt `AdminDashboardScreen` on it and deleted the random charts and the mock store (`AppDataContext`, `data/demoData.ts`, `data/menu.ts`). | TASKS P7.3 |
+| (rev) | Phase P7.4: added a persisted `Feedback.acknowledged` flag (with a startup column backfill for existing SQLite dev DBs) and `PATCH /api/v1/feedback/{id}/acknowledge`; built the admin feedback inbox and role-gated admin navigation. Gate 7 met. | TASKS P7.4 |
 
 ---
 
@@ -535,6 +536,22 @@ YYYY-MM-DD — Session summary
 - **Decisions:** none new (reinforces D-14: the DB is the source of truth; no fabricated analytics).
 - **Open items opened/closed:** none.
 - **Verification:** backend `pytest` 101 passed + 3 live skipped; frontend `tsc`/lint/build pass, 11 tests (bundle shrank as the mock data was deleted).
+
+### Session 28 — Feedback inbox & Gate 7 (P7.4)
+
+- **Completed:** Phase P7.4 — the admin console is fully API-backed. Backend: persisted
+  `Feedback.acknowledged` (with an idempotent `ALTER TABLE` backfill in `db/init_db.py` so existing
+  SQLite dev DBs keep working), `PATCH /api/v1/feedback/{id}/acknowledge` (admin), and an acknowledged
+  filter in `list_feedback`. Front end: `useAdminFeedback`/`useAcknowledgeFeedback`, `AdminFeedbackScreen`
+  (`/admin/feedback`, pending filter + acknowledge), and role-gated admin links in `SidebarNav`
+  (`staff` sees Manage Orders; `admin` sees the whole console). Added `utils/format.ts::timeAgo`
+  shared by the order and feedback screens.
+- **Decisions:** none new (acknowledgement is persisted, not a mock).
+- **Open items opened/closed:** none.
+- **Gate 7 met:** menu CRUD, order management, analytics and feedback all read/write the database; no
+  fabricated analytics remain (random charts and the mock store were deleted in P7.3).
+- **Verification:** backend `pytest` 102 passed + 3 live skipped; frontend `tsc`/lint/build pass,
+  14 tests (3 new feedback-inbox tests).
 
 ---
 

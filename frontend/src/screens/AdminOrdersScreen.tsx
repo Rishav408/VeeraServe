@@ -4,6 +4,7 @@ import OrderTimeline from "../components/OrderTimeline";
 import { Badge, Button, Card, EmptyState, OrderStatusBadge, Spinner } from "../components/ui";
 import { useAdminMenuItems } from "../hooks/useAdminMenu";
 import { useOrders, useUpdateOrderStatus } from "../hooks/useOrders";
+import { timeAgo } from "../utils/format";
 import type { OrderDto, OrderStatusDto } from "../types/api";
 
 const FILTERS: { label: string; value: OrderStatusDto | "all" }[] = [
@@ -20,14 +21,6 @@ const NEXT_STATUS: Record<OrderStatusDto, OrderStatusDto | null> = {
   ready: "served",
   served: null
 };
-
-function timeAgo(iso: string): string {
-  const minutes = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000));
-  if (minutes < 1) return "just now";
-  if (minutes < 60) return `${minutes} min ago`;
-  const hours = Math.round(minutes / 60);
-  return `${hours} h ago`;
-}
 
 export default function AdminOrdersScreen() {
   const [filter, setFilter] = useState<OrderStatusDto | "all">("all");

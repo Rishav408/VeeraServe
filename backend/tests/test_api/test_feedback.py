@@ -36,6 +36,41 @@ def test_feedback_listing_is_admin_only(
     assert len(admin_list.json()) == 1
 
 
+def test_admin_can_acknowledge_feedback(
+    client: TestClient, create_user: Callable[..., int], auth_headers: Callable[..., dict[str, str]]
+) -> None:
+    create_user("diner@example.com")
+    create_user("admin@example.com", role="admin")
+    created = client.post(
+        "/api/v1/feedback",
+        json={"food_rating": 5, "service_rating": 5, "ai_rating": 5, "comment": "great"},
+    ).json()
+    assert created["acknowledged"] is False
+
+    admin_headers = auth_headers("admin@example.com")
+    assert (
+        client.patch(f"/api/v1/feedback/{created['id']}/acknowledge").status_code == 401
+    )
+    assert (
+        client.patch(
+            f"/api/v1/feedback/{created['id']}/acknowledge",
+            headers=auth_headers("diner@example.com"),
+        ).status_code
+        == 403
+    )
+
+    acknowledged = client.patch(
+        f"/api/v1/feedback/{created['id']}/acknowledge", headers=admin_headers
+    )
+    assert acknowledged.status_code == 200
+    assert acknowledged.json()["acknowledged"] is True
+
+    listed = client.get("/api/v1/feedback", headers=admin_headers).json()
+    assert listed[0]["acknowledged"] is True
+
+    assert client.patch("/api/v1/feedback/999999/acknowledge", headers=admin_headers).status_code == 404
+
+
 def test_reservation_party_size_and_listing(
     client: TestClient, create_user: Callable[..., int], auth_headers: Callable[..., dict[str, str]]
 ) -> None:

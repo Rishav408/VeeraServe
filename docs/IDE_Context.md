@@ -116,8 +116,9 @@ These are known and must be fixed during the indicated phase:
 | Agent service | `backend/app/services/agent/` | Not implemented |
 | RAG / vector store | `backend/app/services/rag/` | Not implemented |
 | Database models | `backend/app/models/` | Not implemented |
-| Admin console | `frontend/src/screens/Admin*.tsx`, `frontend/src/hooks/useAdminMenu.ts` | Menu (P7.1), orders (P7.2) and analytics (P7.3) on the API; feedback inbox next |
+| Admin console | `frontend/src/screens/Admin*.tsx`, `frontend/src/hooks/{useAdminMenu,useAnalytics}.ts` | Menu (P7.1), orders (P7.2), analytics (P7.3) and feedback inbox (P7.4) on the API |
 | Analytics | `backend/app/services/analytics.py`, `backend/app/api/analytics.py`, `frontend/src/hooks/useAnalytics.ts` | DB-derived dashboard metrics (P7.3) |
+| Feedback inbox | `backend/app/api/feedback.py`, `frontend/src/screens/AdminFeedbackScreen.tsx` | Persisted acknowledgement (P7.4) |
 | Frontend types | `frontend/src/types/` | Domain (P2.1) + API DTOs (P2.2) |
 | Design system | `frontend/src/components/ui/`, `frontend/src/styles/tokens.css` | Tokens + primitives (P2.3) |
 | Server-state | `frontend/src/lib/`, `frontend/src/hooks/` | TanStack Query + typed API client (P2.4) |
@@ -311,6 +312,14 @@ These are known and must be fixed during the indicated phase:
   `data/menu.ts`); `HomeScreen`/`RightRail` now use the API + `AuthContext`. Backend `pytest` 101 passed
   + 3 live skipped; frontend typecheck/lint/build pass, 11 tests.
 - **Next:** P7.4 (feedback inbox API + UI; admin tests; remove leftover mock references).
+
+### Session 28 — Feedback inbox (P7.4) & Gate 7
+- Added persisted `Feedback.acknowledged` (with a startup column backfill for existing SQLite dev DBs),
+  `PATCH /api/v1/feedback/{id}/acknowledge`, and the `AdminFeedbackScreen` inbox; added role-gated
+  admin nav links in `SidebarNav`. Admin coverage spans menu CRUD/RBAC, order transitions/filtering,
+  analytics aggregation and feedback acknowledgement. Backend `pytest` 102 passed + 3 live skipped;
+  frontend 14 tests, typecheck/lint/build pass. **Gate 7 met.**
+- **Next:** Phase P8 (evaluation harness + metrics M-1..M-9; completes Gate 6's groundedness metric).
 
 ---
 

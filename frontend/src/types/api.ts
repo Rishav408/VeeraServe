@@ -226,6 +226,7 @@ export interface FeedbackDto {
   service_rating: number;
   ai_rating: number;
   comment: string | null;
+  acknowledged: boolean;
   created_at: string;
 }
 
