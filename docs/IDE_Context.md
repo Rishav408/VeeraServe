@@ -95,7 +95,7 @@ These are known and must be fixed during the indicated phase:
 | Menu duplicated across `mockData.js` and `data/menu.md`. | **Resolved — P1.2** |
 | Committed `__pycache__`, unused assets, editor config, dead stylesheet. | P0 |
 | AI is not grounded in the menu; `add_to_cart` path is dead. | P6 |
-| Random revenue / mock charts in admin. | P7 |
+| Random revenue / mock charts in admin. | **Resolved — P7.3** |
 | Cosmetic login / dropdown privilege escalation. | P4 |
 | Checkout discards table, payment, instructions. | P4/P5 |
 | Feedback rating can compute 15/5. | P4/P5 |
@@ -116,7 +116,8 @@ These are known and must be fixed during the indicated phase:
 | Agent service | `backend/app/services/agent/` | Not implemented |
 | RAG / vector store | `backend/app/services/rag/` | Not implemented |
 | Database models | `backend/app/models/` | Not implemented |
-| Admin console | `frontend/src/screens/Admin*.tsx`, `frontend/src/hooks/useAdminMenu.ts` | Menu on API (P7.1); orders/analytics/feedback next |
+| Admin console | `frontend/src/screens/Admin*.tsx`, `frontend/src/hooks/useAdminMenu.ts` | Menu (P7.1), orders (P7.2) and analytics (P7.3) on the API; feedback inbox next |
+| Analytics | `backend/app/services/analytics.py`, `backend/app/api/analytics.py`, `frontend/src/hooks/useAnalytics.ts` | DB-derived dashboard metrics (P7.3) |
 | Frontend types | `frontend/src/types/` | Domain (P2.1) + API DTOs (P2.2) |
 | Design system | `frontend/src/components/ui/`, `frontend/src/styles/tokens.css` | Tokens + primitives (P2.3) |
 | Server-state | `frontend/src/lib/`, `frontend/src/hooks/` | TanStack Query + typed API client (P2.4) |
@@ -302,6 +303,14 @@ These are known and must be fixed during the indicated phase:
   timelines, and forward-only "Mark <next>" actions. Backend `pytest` 98 passed + 3 live skipped;
   frontend typecheck/lint/build pass, 11 tests.
 - **Next:** P7.3 (real analytics API + dashboard; remove mock chart data).
+
+### Session 27 — Real analytics (P7.3)
+- Added `GET /api/v1/analytics/dashboard` (admin-only; `app/services/analytics.py` + schema) and rebuilt
+  `AdminDashboardScreen` on `useAnalytics` (KPIs, 7-day trend, ratings, top items, peak hours, recent
+  orders). Deleted the random/mock charts and the mock store (`AppDataContext`, `data/demoData.ts`,
+  `data/menu.ts`); `HomeScreen`/`RightRail` now use the API + `AuthContext`. Backend `pytest` 101 passed
+  + 3 live skipped; frontend typecheck/lint/build pass, 11 tests.
+- **Next:** P7.4 (feedback inbox API + UI; admin tests; remove leftover mock references).
 
 ---
 

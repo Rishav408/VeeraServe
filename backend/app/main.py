@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.auth import router as auth_router
+from app.api.analytics import router as analytics_router
 from app.api.chat import router as chat_router
 from app.api.feedback import router as feedback_router
 from app.api.health import router as health_router
@@ -55,6 +56,7 @@ app.include_router(orders_router, prefix="/api/v1", tags=["Orders"])
 app.include_router(feedback_router, prefix="/api/v1", tags=["Feedback"])
 app.include_router(reservations_router, prefix="/api/v1", tags=["Reservations"])
 app.include_router(chat_router, prefix="/api/v1", tags=["Chat"])
+app.include_router(analytics_router, prefix="/api/v1", tags=["Analytics"])
 
 
 @app.get("/")

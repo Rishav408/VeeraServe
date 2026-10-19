@@ -1,19 +1,26 @@
 import { useMemo } from "react";
-import { useAppData } from "../../context/AppDataContext";
+import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
 import { useHealth } from "../../hooks/useHealth";
 import { useMenuItems } from "../../hooks/useMenu";
+import { useOrders } from "../../hooks/useOrders";
 import { Spinner } from "../ui";
 import MiniCart from "../MiniCart";
 
 export default function RightRail() {
-  const { orders, feedback } = useAppData();
+  const { user } = useAuth();
+  const { data: orders = [] } = useOrders({ poll: true, enabled: Boolean(user) });
   const { data: menuItems = [] } = useMenuItems();
   const { addToCart } = useCart();
   const health = useHealth();
 
-  const pendingOrders = useMemo(
+  const activeOrders = useMemo(
     () => orders.filter((order) => ["pending", "preparing", "ready"].includes(order.status)).length,
+    [orders]
+  );
+
+  const servedOrders = useMemo(
+    () => orders.filter((order) => order.status === "served").length,
     [orders]
   );
 
@@ -34,10 +41,10 @@ export default function RightRail() {
 
       <div className="flex gap-2">
         <div className="flex-1 rounded-pill bg-cream px-3 py-2 text-[13px] font-semibold text-ink-soft">
-          Active orders: {pendingOrders}
+          Active orders: {activeOrders}
         </div>
         <div className="flex-1 rounded-pill bg-cream px-3 py-2 text-[13px] font-semibold text-ink-soft">
-          Feedback: {feedback.length}
+          Served: {servedOrders}
         </div>
       </div>
 

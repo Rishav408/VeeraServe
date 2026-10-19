@@ -164,6 +164,52 @@ export interface OrderStatusUpdate {
   status: OrderStatusDto;
 }
 
+export interface StatusCount {
+  status: OrderStatusDto;
+  count: number;
+}
+
+export interface DayRevenue {
+  date: string;
+  weekday: string;
+  orders: number;
+  revenue: number;
+}
+
+export interface TopItemDto {
+  menu_item_id: string;
+  name: string;
+  quantity: number;
+  revenue: number;
+}
+
+export interface HourCount {
+  hour: number;
+  orders: number;
+}
+
+export interface RatingSummary {
+  food: number;
+  service: number;
+  ai: number;
+  overall: number;
+  count: number;
+}
+
+export interface DashboardAnalytics {
+  total_orders: number;
+  total_revenue: number;
+  avg_order_value: number;
+  active_orders: number;
+  menu_items: number;
+  available_items: number;
+  orders_by_status: StatusCount[];
+  revenue_by_day: DayRevenue[];
+  top_items: TopItemDto[];
+  peak_hours: HourCount[];
+  ratings: RatingSummary;
+}
+
 export interface FeedbackCreate {
   order_id?: number | null;
   food_rating: number;

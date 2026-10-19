@@ -3,12 +3,14 @@ import { motion } from "framer-motion";
 import { ArrowRight, Flame, Sparkles, Star, Utensils } from "lucide-react";
 import FoodCard from "../components/FoodCard";
 import { Card } from "../components/ui";
-import { useAppData } from "../context/AppDataContext";
+import { useAuth } from "../context/AuthContext";
 import { useUI } from "../context/UIContext";
 import { useMenuItems } from "../hooks/useMenu";
+import { useOrders } from "../hooks/useOrders";
 
 export default function HomeScreen() {
-  const { orders, currentUser } = useAppData();
+  const { user } = useAuth();
+  const { data: orders = [] } = useOrders({ enabled: Boolean(user) });
   const { data: menuItems = [] } = useMenuItems();
   const { setCategory } = useUI();
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ export default function HomeScreen() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="font-display text-3xl text-ink sm:text-4xl">Welcome, {currentUser.name}</h1>
+        <h1 className="font-display text-3xl text-ink sm:text-4xl">Welcome, {user?.name ?? "Guest"}</h1>
         <p className="text-sm text-ink-muted">Homepage is your menu-first ordering surface.</p>
       </header>
 

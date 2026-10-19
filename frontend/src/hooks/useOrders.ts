@@ -10,12 +10,13 @@ export const orderKeys = {
   detail: (id: number) => [ORDERS_KEY, "detail", id] as const
 };
 
-export function useOrders(options: { poll?: boolean; status?: OrderStatusDto } = {}) {
+export function useOrders(options: { poll?: boolean; status?: OrderStatusDto; enabled?: boolean } = {}) {
   return useQuery({
     queryKey: orderKeys.list(options.status),
     queryFn: () =>
       apiGet<OrderDto[]>(`/orders${options.status ? `?status=${options.status}` : ""}`),
-    refetchInterval: options.poll ? 5000 : false
+    refetchInterval: options.poll ? 5000 : false,
+    enabled: options.enabled ?? true
   });
 }
 

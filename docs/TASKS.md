@@ -280,9 +280,12 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Tests: `tests/test_api/test_orders.py` (+2: status filter, invalid-status 400).
   Commit: `Update - P7.2 - order management`
 
-- [ ] **P7.3 — Real analytics (API & UI)**
+- [x] **P7.3 — Real analytics (API & UI)**
   - Real analytics endpoints (orders, revenue, top items, peak hours) computed from the DB.
   - Analytics UI; delete all random/mock chart data.
+  - Backend: `app/services/analytics.py` (`compute_dashboard`) + `app/schemas/analytics.py` + admin-only `GET /api/v1/analytics/dashboard` (revenue, avg order value, active orders, menu counts, status breakdown, 7-day orders/revenue, top items, 24-hour peak hours, rating summary).
+  - Frontend: `src/hooks/useAnalytics.ts` and a rebuilt `AdminDashboardScreen` (live KPIs, 7-day chart, ratings, top items, peak hours, recent orders). Deleted the random/mock chart data and the mock store: removed `context/AppDataContext.tsx`, `data/demoData.ts`, `data/menu.ts`; `HomeScreen`, `RightRail` and the dashboard now read the API and `AuthContext`.
+  - Tests: `tests/test_api/test_analytics.py` (3: RBAC, aggregation, empty state).
   Commit: `Update - P7.3 - analytics from DB`
 
 - [ ] **P7.4 — Feedback inbox & admin tests**

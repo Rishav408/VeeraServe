@@ -79,7 +79,7 @@ function AnimatedRoutes() {
             <Route
               path="/admin/orders"
               element={
-                <RequireRole roles={["admin"]}>
+                <RequireRole roles={["staff", "admin"]}>
                   <AdminOrdersScreen />
                 </RequireRole>
               }
