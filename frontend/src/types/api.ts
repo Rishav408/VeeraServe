@@ -8,11 +8,18 @@ export interface ChatResponse {
 
 export type UserRoleDto = "guest" | "user" | "staff" | "admin";
 
+export interface UserPreferences {
+  veg?: boolean | null;
+  spice_level?: number | null;
+  allergies?: string[];
+}
+
 export interface UserDto {
   id: number;
   name: string;
   email: string;
   role: UserRoleDto;
+  preferences?: UserPreferences | null;
 }
 
 export interface RegisterRequest {

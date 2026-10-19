@@ -124,6 +124,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P5.1: built the typed API client (auth-token attachment + typed `ApiError`), `AuthContext`, real login/register UI, and `RequireAuth`/`RequireRole` route guards; widened `UserRole`; moved identity out of `AppDataContext`. `tsc`, lint, and build pass. | TASKS P5.1 |
 | (rev) | Phase P5.2: wired the diner catalog to the API — added `src/hooks/useMenu.ts` + `src/utils/menuMapper.ts` and switched `MenuScreen`/`HomeScreen`/`ItemDetailsScreen`/`CartScreen`/`RightRail`/`ChatContext` to server menu/categories with server-side filters; cart carries API ids/prices. Admin menu remains mock until P7. | TASKS P5.2 |
 | (rev) | Phase P5.3: added `src/hooks/useOrders.ts` and wired checkout (persists table number/payment/instructions via `POST /orders`), order tracking (polling `GET /orders/{id}` with a summary), the orders list, and profile order history to the API. | TASKS P5.3 |
+| (rev) | Phase P5.4: added `PATCH /api/v1/auth/me/preferences` (`UserPreferences`, `update_preferences`, preferences on `UserOut`) and wired the feedback form (three 1–5 ratings validated, guest-friendly) and profile preferences (veg/spice/allergies) to the API. | TASKS P5.4 |
 
 ---
 
@@ -359,6 +360,19 @@ YYYY-MM-DD — Session summary
   tracking polls every 4–5s and stops once the order is served.
 - **Open items opened/closed:** none.
 - **Next:** Phase P5.4 (feedback form & profile preferences).
+
+### Session 18 — Feedback form & preferences (P5.4)
+
+- **Completed:** Phase P5.4 — added backend `PATCH /api/v1/auth/me/preferences` (`UserPreferences`
+  schema with `spice_level` 0–4, `update_preferences` service, `preferences` on `UserOut`) and
+  frontend `useUpdatePreferences`/`useSubmitFeedback` hooks; rewrote `FeedbackScreen` to POST three
+  1–5 ratings (guest-friendly, no public list) and wired the `ProfileScreen` preferences tab
+  (veg/spice/allergies) to persist. `AuthContext` gained `updateUser`.
+- **Decisions:** users' preferences live in the existing JSON column and are surfaced on the user
+  object so the agent can read them later; `AuthContext` exposes `updateUser` for in-place refresh
+  after a profile write; `GET /feedback` stays admin-only, so the diner screen no longer lists it.
+- **Open items opened/closed:** none.
+- **Next:** Phase P5.5 (ordering flow tests).
 
 ---
 

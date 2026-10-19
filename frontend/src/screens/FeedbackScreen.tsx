@@ -2,40 +2,57 @@ import { motion } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { useAppData } from "../context/AppDataContext";
+import { useUI } from "../context/UIContext";
+import { useSubmitFeedback } from "../hooks/useFeedback";
+import { ApiError } from "../lib/apiClient";
 
 type RatingKey = "food" | "service" | "ai";
 
+const RATING_ROWS: { key: RatingKey; label: string }[] = [
+  { key: "food", label: "Food 🍛" },
+  { key: "service", label: "Service 🧑‍🍳" },
+  { key: "ai", label: "AI Experience 🤖" }
+];
+
 export default function FeedbackScreen() {
+  const { showToast } = useUI();
+  const submitFeedback = useSubmitFeedback();
   const [comment, setComment] = useState("");
   const [ratings, setRatings] = useState<Record<RatingKey, number>>({ food: 0, service: 0, ai: 0 });
   const [submitted, setSubmitted] = useState(false);
-  const { feedback, addFeedback } = useAppData();
+
+  const complete = RATING_ROWS.every((row) => ratings[row.key] >= 1);
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!comment.trim()) return;
+    if (!complete) {
+      showToast("Please rate food, service, and the AI experience.");
+      return;
+    }
 
-    const avgRating = Math.round(
-      ([ratings.food, ratings.service, ratings.ai].filter((r) => r > 0).reduce((a, b) => a + b, 0) || 15) /
-        Math.max([ratings.food, ratings.service, ratings.ai].filter((r) => r > 0).length, 1)
+    submitFeedback.mutate(
+      {
+        food_rating: ratings.food,
+        service_rating: ratings.service,
+        ai_rating: ratings.ai,
+        comment: comment.trim() || null
+      },
+      {
+        onSuccess: () => {
+          setComment("");
+          setRatings({ food: 0, service: 0, ai: 0 });
+          setSubmitted(true);
+        },
+        onError: (error) => {
+          showToast(error instanceof ApiError ? error.message : "Could not send feedback.");
+        }
+      }
     );
-
-    addFeedback({ rating: avgRating, comment });
-    setComment("");
-    setRatings({ food: 0, service: 0, ai: 0 });
-    setSubmitted(true);
   };
 
   const setRating = (category: RatingKey, value: number) => {
     setRatings((prev) => ({ ...prev, [category]: value }));
   };
-
-  const ratingRows: { key: RatingKey; label: string }[] = [
-    { key: "food", label: "Food 🍛" },
-    { key: "service", label: "Service 🧑‍🍳" },
-    { key: "ai", label: "AI Experience 🤖" }
-  ];
 
   if (submitted) {
     return (
@@ -66,7 +83,7 @@ export default function FeedbackScreen() {
 
       <form onSubmit={submit} className="card-3d rounded-[20px] p-6">
         <div className="space-y-5">
-          {ratingRows.map(({ key, label }) => (
+          {RATING_ROWS.map(({ key, label }) => (
             <div key={key} className="flex items-center justify-between">
               <span className="text-sm font-semibold text-ink-soft">{label}</span>
               <div className="flex gap-1">
@@ -101,43 +118,14 @@ export default function FeedbackScreen() {
           <p className="mt-1 text-right text-xs text-ink-muted">{comment.length}/280</p>
         </div>
 
-        <button type="submit" className="btn-primary mt-4 flex w-full items-center justify-center gap-2 text-sm shadow-glow-orange">
-          Submit Feedback →
+        <button
+          type="submit"
+          disabled={submitFeedback.isPending || !complete}
+          className="btn-primary mt-4 flex w-full items-center justify-center gap-2 text-sm shadow-glow-orange disabled:opacity-60"
+        >
+          {submitFeedback.isPending ? "Sending…" : "Submit Feedback →"}
         </button>
       </form>
-
-      {feedback.length > 0 && (
-        <section className="space-y-3">
-          <h3 className="font-display text-lg text-ink">Recent Feedback</h3>
-          {feedback.slice(0, 5).map((item) => (
-            <article key={item.id} className="card-3d rounded-[14px] p-4">
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
-                    {item.user[0]}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-ink-soft">{item.user}</p>
-                    <div className="mt-0.5 flex gap-0.5">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <Star
-                          key={star}
-                          size={12}
-                          className={star <= item.rating ? "fill-gold text-gold" : "text-cream-deeper"}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <span className="text-xs text-ink-muted">
-                  {new Date(item.createdAt).toLocaleDateString()}
-                </span>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-ink-soft">{item.comment}</p>
-            </article>
-          ))}
-        </section>
-      )}
     </div>
   );
 }

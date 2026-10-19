@@ -132,6 +132,7 @@ These are known and must be fixed during the indicated phase:
 | Frontend auth | `frontend/src/context/AuthContext.tsx`, `frontend/src/lib/apiClient.ts` | JWT client + guards (P5.1) |
 | Catalog hooks | `frontend/src/hooks/useMenu.ts`, `frontend/src/utils/menuMapper.ts` | API menu/categories (P5.2) |
 | Order hooks | `frontend/src/hooks/useOrders.ts` | Create/track/list orders (P5.3) |
+| Profile/feedback hooks | `frontend/src/hooks/{useProfile,useFeedback}.ts` | Preferences + feedback (P5.4) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -235,6 +236,12 @@ These are known and must be fixed during the indicated phase:
 - Added `useOrders` and wired checkout, tracking (polling), the orders list, and profile history to the
   API. `tsc`, lint, build pass.
 - **Next:** P5.4 (feedback form & profile preferences).
+
+### Session 18 — Feedback form & preferences (P5.4)
+- Added `PATCH /auth/me/preferences` (backend) and `useProfile`/`useFeedback` hooks; wired the
+  feedback form (three 1–5 ratings) and profile preferences to the API. `tsc`, lint, build, and
+  backend tests (29 passed) all pass.
+- **Next:** P5.5 (ordering flow tests).
 
 ---
 

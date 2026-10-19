@@ -1,3 +1,5 @@
+from collections.abc import Callable
+
 from fastapi.testclient import TestClient
 
 CREDENTIALS = {"name": "Asha", "email": "Asha@Example.com", "password": "secret123"}
@@ -47,3 +49,47 @@ def test_protected_route_requires_valid_token(client: TestClient) -> None:
         client.get("/api/v1/auth/me", headers={"Authorization": "Bearer not-a-token"}).status_code
         == 401
     )
+
+
+def test_update_preferences_roundtrip(
+    client: TestClient,
+    create_user: Callable[..., int],
+    auth_headers: Callable[..., dict[str, str]],
+) -> None:
+    email = "prefs@example.com"
+    create_user(email)
+    headers = auth_headers(email)
+
+    response = client.patch(
+        "/api/v1/auth/me/preferences",
+        json={"veg": True, "spice_level": 2, "allergies": ["peanut"]},
+        headers=headers,
+    )
+    assert response.status_code == 200, response.text
+    assert response.json()["preferences"] == {
+        "veg": True,
+        "spice_level": 2,
+        "allergies": ["peanut"],
+    }
+
+    me = client.get("/api/v1/auth/me", headers=headers)
+    assert me.json()["preferences"]["veg"] is True
+
+
+def test_preferences_reject_out_of_range_spice(
+    client: TestClient,
+    create_user: Callable[..., int],
+    auth_headers: Callable[..., dict[str, str]],
+) -> None:
+    email = "prefs2@example.com"
+    create_user(email)
+    response = client.patch(
+        "/api/v1/auth/me/preferences",
+        json={"spice_level": 9},
+        headers=auth_headers(email),
+    )
+    assert response.status_code == 422
+
+
+def test_preferences_require_auth(client: TestClient) -> None:
+    assert client.patch("/api/v1/auth/me/preferences", json={}).status_code == 401

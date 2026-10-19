@@ -4,16 +4,48 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Button, EmptyState, OrderStatusBadge, buttonClasses } from "../components/ui";
 import { useAuth } from "../context/AuthContext";
+import { useUI } from "../context/UIContext";
 import { useOrders } from "../hooks/useOrders";
+import { useUpdatePreferences } from "../hooks/useProfile";
 import type { UserDto } from "../types/api";
 
 const FALLBACK_USER: UserDto = { id: 0, name: "Guest", email: "", role: "guest" };
 
+const SPICE_LEVELS = [
+  { value: 1, label: "Mild 🌶️" },
+  { value: 2, label: "Medium 🌶️🌶️" },
+  { value: 3, label: "Spicy 🌶️🌶️🌶️" },
+  { value: 4, label: "Fire 🌶️🌶️🌶️🌶️" }
+];
+
+const ALLERGY_OPTIONS = ["peanut", "dairy", "gluten", "soy", "nuts"];
+
 export default function ProfileScreen() {
   const { user, logout } = useAuth();
   const { data: orders = [] } = useOrders();
+  const { showToast } = useUI();
+  const updatePreferences = useUpdatePreferences();
   const currentUser = user ?? FALLBACK_USER;
   const [activeTab, setActiveTab] = useState("profile");
+  const [veg, setVeg] = useState<boolean>(currentUser.preferences?.veg ?? false);
+  const [spiceLevel, setSpiceLevel] = useState<number>(currentUser.preferences?.spice_level ?? 0);
+  const [allergies, setAllergies] = useState<string[]>(currentUser.preferences?.allergies ?? []);
+
+  const toggleAllergy = (allergy: string) => {
+    setAllergies((prev) =>
+      prev.includes(allergy) ? prev.filter((entry) => entry !== allergy) : [...prev, allergy]
+    );
+  };
+
+  const savePreferences = () => {
+    updatePreferences.mutate(
+      { veg, spice_level: spiceLevel, allergies },
+      {
+        onSuccess: () => showToast("Preferences saved."),
+        onError: () => showToast("Could not save preferences.")
+      }
+    );
+  };
 
   const tabs = [
     { key: "profile", label: "Profile", icon: Settings },
@@ -121,33 +153,59 @@ export default function ProfileScreen() {
           <div className="mt-4 space-y-5">
             <div>
               <span className="text-sm font-semibold text-ink-soft">Spice Level</span>
-              <div className="mt-2 flex gap-2">
-                {["Mild 🌶️", "Medium 🌶️🌶️", "Spicy 🌶️🌶️🌶️", "Fire 🌶️🌶️🌶️🌶️"].map((level) => (
+              <div className="mt-2 flex flex-wrap gap-2">
+                {SPICE_LEVELS.map((level) => (
                   <button
-                    key={level}
+                    key={level.value}
                     type="button"
-                    className="category-chip flex-1 whitespace-normal px-2 py-2 text-xs"
+                    onClick={() => setSpiceLevel(level.value)}
+                    className={`category-chip whitespace-normal px-3 py-2 text-xs ${
+                      spiceLevel === level.value ? "active" : ""
+                    }`}
                   >
-                    {level}
+                    {level.label}
                   </button>
                 ))}
               </div>
             </div>
             <div>
               <span className="text-sm font-semibold text-ink-soft">Dietary</span>
-              <div className="mt-2 flex gap-2">
-                {["🥗 Veg Only", "🍗 Non-Veg", "🚫 No Onion", "🧀 Extra Cheese"].map((chip) => (
+              <div className="mt-2 flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={() => setVeg((prev) => !prev)}
+                  className={`category-chip whitespace-nowrap ${veg ? "active" : ""}`}
+                >
+                  🥗 Veg Only
+                </button>
+              </div>
+            </div>
+            <div>
+              <span className="text-sm font-semibold text-ink-soft">Allergies</span>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {ALLERGY_OPTIONS.map((allergy) => (
                   <button
-                    key={chip}
+                    key={allergy}
                     type="button"
-                    className="category-chip whitespace-nowrap"
+                    onClick={() => toggleAllergy(allergy)}
+                    className={`category-chip whitespace-nowrap capitalize ${
+                      allergies.includes(allergy) ? "active" : ""
+                    }`}
                   >
-                    {chip}
+                    {allergy}
                   </button>
                 ))}
               </div>
             </div>
           </div>
+          <Button
+            variant="primary"
+            className="mt-5 inline-flex items-center gap-2 text-sm"
+            onClick={savePreferences}
+            disabled={updatePreferences.isPending}
+          >
+            {updatePreferences.isPending ? "Saving…" : "Save Preferences"}
+          </Button>
         </motion.div>
       )}
     </div>

@@ -12,6 +12,12 @@ class LoginRequest(BaseModel):
     password: str = Field(min_length=1, max_length=128)
 
 
+class UserPreferences(BaseModel):
+    veg: bool | None = None
+    spice_level: int | None = Field(default=None, ge=0, le=4)
+    allergies: list[str] = Field(default_factory=list)
+
+
 class UserOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -19,6 +25,7 @@ class UserOut(BaseModel):
     name: str
     email: str
     role: str
+    preferences: UserPreferences | None = None
 
 
 class TokenResponse(BaseModel):

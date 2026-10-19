@@ -189,9 +189,10 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `src/hooks/useOrders.ts` (`useOrders`, `useOrder` with polling, `useCreateOrder`, `useUpdateOrderStatus`) and wired `CheckoutScreen` (posts the server-priced order), `TrackOrderScreen` (polling + summary), `OrdersScreen`, and `ProfileScreen` history to the API.
   Commit: `Update - P5.3 - checkout, tracking and history`
 
-- [ ] **P5.4 — Feedback form & profile preferences**
-  - Feedback form wired to the API.
+- [x] **P5.4 — Feedback form & profile preferences**
+  - Feedback form wired to the API (three 1–5 ratings validated; guest-friendly; no public feedback list).
   - Profile preferences (veg, spice, allergies) persisted (feeds agent memory later).
+  - Added backend `PATCH /api/v1/auth/me/preferences` (`UserPreferences` schema, `update_preferences` service, preferences on `UserOut`) and frontend `src/hooks/useProfile.ts` + `src/hooks/useFeedback.ts`; `AuthContext` gained `updateUser`.
   Commit: `Update - P5.4 - feedback form and preferences`
 
 - [ ] **P5.5 — Ordering flow tests**
