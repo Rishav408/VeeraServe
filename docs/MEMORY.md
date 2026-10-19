@@ -37,6 +37,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | D-11 | Local model runtime is **LM Studio**, accessed through its **OpenAI-compatible local server** (`LLM_BASE_URL`, default `http://localhost:1234/v1`); the app uses a standard OpenAI client, not an Ollama-specific client. Supersedes the Ollama runtime assumption in D-2. | Chosen platform; keeps the backend runtime-agnostic and OpenAI-compatible while remaining fully local and zero-cost. | Accepted |
 | D-12 | RAG vector store is **Chroma** (persistent local client), embeddings from LM Studio (`nomic-embed-text`). | Persistent, zero-service, Python-native; simplest path to grounded retrieval (resolves O-3). | Accepted |
 | D-13 | Chat replies stream over **SSE** (`POST /api/v1/chat`); the deterministic graph reply is authoritative and any LLM rephrasing is **verification-gated** (fallback to the template when it introduces an ungrounded price). Voice is **faster-whisper** in-process; TTS is browser `speechSynthesis`. | Keeps the demo honest and offline: streamed, grounded output that degrades safely when the model is unavailable (implements D-8). | Accepted |
+| D-14 | The **database is the runtime source of truth** for the menu. Startup seeding is **add-only** (bootstrap from `data/menu.seed.json`, never overwrite existing rows), and Chroma is re-indexed **from the DB** (`reindex_menu`) after seeding and after every admin mutation. Refines D-7 (the seed stays the canonical *initial* catalogue). | Admin CRUD edits must persist and propagate to the diner menu and the agent; keeps a single definition of menu data while making it editable at runtime. | Accepted |
 
 ### Superseded decisions
 
@@ -132,6 +133,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P6.3: added the validated tool layer (`app/agent/tools/`, 12 tools) with a session cart; `place_order` is confirmation-gated and cart/offer tools mutate real state. | TASKS P6.3 |
 | (rev) | Phase P6.4: added `app/agent/{state,intents,memory,nodes,graph,runner}.py` — a LangGraph supervisor→guardrails→specialist graph (rule-based routing), deterministic grounded replies, confirmation-gated preference memory, and an `InMemorySaver` checkpointer via `run_agent`. | TASKS P6.4 |
 | (rev) | Phase P6.5: added the SSE chat endpoint (`POST /api/v1/chat`, `app/api/chat.py` + `app/agent/streaming.py`), vision (`app/llm/vision.py`), voice (`app/services/transcription.py`), and verification-gated response polishing (`app/agent/polish.py`); rewired the chat UI to stream tokens/tool events/cart with optional TTS. | TASKS P6.5 |
+| (rev) | Phase P7.1: added admin-only menu CRUD (`POST/PATCH/DELETE /api/v1/menu[/{id}]`, `POST /api/v1/categories`) with slug ids and validation, made startup seeding add-only, and re-indexed Chroma from the DB; rebuilt the admin menu screen on the API (`useAdminMenu`). | TASKS P7.1, D-14 |
 
 ---
 
@@ -488,6 +490,22 @@ YYYY-MM-DD — Session summary
 - **Gate 6 (partial):** scripted order scenarios complete end-to-end and defence-in-depth grounding is
   verified in tests; the groundedness metric from `evaluation/EVALUATION.md` is produced by the P8/P9
   harness. Backend `pytest` 85 passed + 3 live skipped; frontend 11 tests, typecheck/lint/build pass.
+
+### Session 25 — Admin menu CRUD (P7.1)
+
+- **Completed:** Phase P7.1 — the admin console now writes real data. Backend: `POST /api/v1/menu`,
+  `PATCH /api/v1/menu/{id}`, `DELETE /api/v1/menu/{id}`, and `POST /api/v1/categories`
+  (all `require_roles("admin")`), new `CategoryCreate`/`MenuItemCreate`/`MenuItemUpdate` schemas,
+  and `MenuService.create_category/create_item/update_item/delete_item` (slug ids via `_unique_id`,
+  `MenuValidationError` on unknown categories). Startup seeding is now add-only and `main.py` calls the
+  new `reindex_menu(db)` (DB → Chroma) at startup and after each mutation (failures are logged, not
+  fatal). Front end: `src/hooks/useAdminMenu.ts` (list/categories + create/update/delete/create-category
+  mutations invalidating the shared `["menu"]` cache) and a rebuilt `AdminMenuScreen` (API-backed create
+  form, availability toggle, edit modal, delete, category creation).
+- **Decisions:** **D-14** — the database is the runtime source of truth; seeding is bootstrap-only and
+  the vector store is re-indexed from the DB (refines D-7).
+- **Open items opened/closed:** none (O-1/O-2 unchanged).
+- **Verification:** backend `pytest` 96 passed + 3 live skipped; frontend `tsc`/lint/build pass, 11 tests.
 
 ---
 

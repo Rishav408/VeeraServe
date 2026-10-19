@@ -116,13 +116,13 @@ These are known and must be fixed during the indicated phase:
 | Agent service | `backend/app/services/agent/` | Not implemented |
 | RAG / vector store | `backend/app/services/rag/` | Not implemented |
 | Database models | `backend/app/models/` | Not implemented |
-| Admin console | `frontend/src/features/admin/` | Mock present |
+| Admin console | `frontend/src/screens/Admin*.tsx`, `frontend/src/hooks/useAdminMenu.ts` | Menu on API (P7.1); orders/analytics/feedback next |
 | Frontend types | `frontend/src/types/` | Domain (P2.1) + API DTOs (P2.2) |
 | Design system | `frontend/src/components/ui/`, `frontend/src/styles/tokens.css` | Tokens + primitives (P2.3) |
 | Server-state | `frontend/src/lib/`, `frontend/src/hooks/` | TanStack Query + typed API client (P2.4) |
 | Database models | `backend/app/db/`, `backend/app/models/` | SQLAlchemy base + 8 models, dev `create_all` (P3.1) |
-| Menu service | `backend/app/services/menu.py`, `backend/app/db/seed.py` | Idempotent seeder + `MenuService` (P3.2) |
-| Menu read APIs | `backend/app/api/menu.py`, `backend/app/schemas/menu.py` | Categories/menu/read endpoints (P3.3) |
+| Menu service | `backend/app/services/menu.py`, `backend/app/db/seed.py` | Add-only seeder + `MenuService` reads + admin writes (P3.2, P7.1) |
+| Menu APIs | `backend/app/api/menu.py`, `backend/app/schemas/menu.py` | Read (P3.3) + admin CRUD (P7.1) |
 | API tests | `backend/tests/conftest.py`, `backend/tests/test_api/` | In-memory seeded client (P3.4) |
 | Auth core | `backend/app/core/security.py`, `backend/app/api/auth.py` | bcrypt + JWT register/login (P4.1) |
 | Auth guards | `backend/app/api/deps.py` | `get_current_user` / `require_roles` (P4.2) |
@@ -287,6 +287,14 @@ These are known and must be fixed during the indicated phase:
   `ChatWidget` to stream tokens/tool events/cart with optional TTS. Backend `pytest` 85 passed
   (+3 live skipped); frontend 11 tests; typecheck/lint/build pass. Gate 6 partial (harness pending).
 - **Next:** Phase P7 (admin console).
+
+### Session 25 — Admin menu CRUD (P7.1)
+- Added admin-only menu CRUD (`POST/PATCH/DELETE /api/v1/menu[/{id}]`, `POST /api/v1/categories`)
+  with slug ids + validation; made startup seeding add-only and re-indexed Chroma **from the DB**
+  (`reindex_menu`) at startup and after each mutation (D-14). Rebuilt `AdminMenuScreen` on the API via
+  `frontend/src/hooks/useAdminMenu.ts`. Backend `pytest` 96 passed + 3 live skipped; frontend
+  typecheck/lint/build pass, 11 tests.
+- **Next:** P7.2 (order management: staff UI + listing over the existing status endpoint).
 
 ---
 

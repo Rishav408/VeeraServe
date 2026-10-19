@@ -265,9 +265,12 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
 
 ## Phase P7 — Admin Console
 
-- [ ] **P7.1 — Menu CRUD API & management UI**
+- [x] **P7.1 — Menu CRUD API & management UI**
   - Admin-only menu CRUD endpoints (categories, price + happy-hour, availability).
   - Menu management UI (create/update/delete, price + happy-hour, availability toggle); changes propagate to the diner menu and the agent.
+  - Backend: `POST/PATCH/DELETE /api/v1/menu[/{id}]` + `POST /api/v1/categories` guarded by `require_roles("admin")`; `MenuService` create/update/delete with slug ids + `MenuValidationError`; new `CategoryCreate`/`MenuItemCreate`/`MenuItemUpdate` schemas. Menu writes trigger `reindex_menu` (DB → Chroma). Startup seeding is now add-only and the lifespan re-indexes from the database (the DB is the runtime source of truth).
+  - Frontend: `src/hooks/useAdminMenu.ts` (list/categories + create/update/delete/create-category mutations that invalidate the shared `["menu"]` cache) and a rebuilt `AdminMenuScreen` (API-backed create form, inline availability toggle, edit modal, delete, category creation).
+  - Tests: `tests/test_api/test_menu_admin.py` (10) + `tests/test_db/test_seed.py::test_seed_preserves_existing_items` (95 + 3 live backend).
   Commit: `Update - P7.1 - menu CRUD and management UI`
 
 - [ ] **P7.2 — Order management**

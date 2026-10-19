@@ -34,6 +34,21 @@ def test_seed_is_idempotent(db: Session) -> None:
     assert first_items > 0
 
 
+def test_seed_preserves_existing_items(db: Session) -> None:
+    seed_menu(db)
+    item = db.scalars(select(MenuItem)).first()
+    assert item is not None
+    item.price = 1234
+    item.is_available = False
+    db.commit()
+
+    seed_menu(db)
+
+    db.refresh(item)
+    assert item.price == 1234
+    assert item.is_available is False
+
+
 def test_menu_service_filters(db: Session) -> None:
     seed_menu(db)
     service = MenuService(db)

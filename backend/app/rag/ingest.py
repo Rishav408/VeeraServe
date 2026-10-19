@@ -1,4 +1,4 @@
-"""Render the canonical menu into the local vector store (Chroma)."""
+"""Render the menu into the local vector store (Chroma)."""
 
 import json
 import logging
@@ -9,6 +9,7 @@ from typing import Any
 import chromadb
 from chromadb.api import ClientAPI
 from chromadb.api.models.Collection import Collection
+from sqlalchemy.orm import Session
 
 from app.core.config import get_settings
 from app.llm.client import embed_texts
@@ -16,6 +17,7 @@ from app.llm.client import embed_texts
 logger = logging.getLogger(__name__)
 
 EmbedFn = Callable[[list[str]], list[list[float]]]
+LIVE_VERSION = "live"
 
 
 def get_store(path: str | None = None) -> ClientAPI:
@@ -120,6 +122,41 @@ def ensure_menu_indexed(
     store.modify(metadata=updated)
     logger.info("Indexed %d menu items (seed %s)", len(items), version)
     return True
+
+
+def item_to_document_dict(item: Any) -> dict[str, Any]:
+    return {
+        "id": item.id,
+        "name": item.name,
+        "category": item.category_id,
+        "price": item.price,
+        "happy_hour_price": item.happy_hour_price,
+        "is_veg": item.is_veg,
+        "spice_level": item.spice_level,
+        "tags": list(item.tags or []),
+        "description": item.description,
+        "is_alcoholic": item.is_alcoholic,
+    }
+
+
+def reindex_menu(
+    db: Session,
+    *,
+    collection: Collection | None = None,
+    embed_fn: EmbedFn = embed_texts,
+) -> int:
+    """Re-index the vector store from the live database (source of truth at runtime)."""
+    from app.services.menu import MenuService
+
+    store = collection or get_menu_collection()
+    items = [item_to_document_dict(item) for item in MenuService(db).list_items()]
+    count = ingest_items(store, items, embed_fn=embed_fn)
+    updated = dict(store.metadata or {})
+    updated.pop("hnsw:space", None)
+    updated["seed_version"] = LIVE_VERSION
+    store.modify(metadata=updated)
+    logger.info("Re-indexed %d menu items from database", count)
+    return count
 
 
 def main() -> None:

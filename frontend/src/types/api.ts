@@ -59,6 +59,11 @@ export interface CategoryDto {
   sort_order: number;
 }
 
+export interface CategoryCreate {
+  label: string;
+  sort_order?: number;
+}
+
 export interface MenuItemDto {
   id: string;
   name: string;
@@ -75,6 +80,24 @@ export interface MenuItemDto {
   image_url: string | null;
   is_alcoholic: boolean;
 }
+
+export interface MenuItemCreate {
+  name: string;
+  category_id: string;
+  description?: string | null;
+  price?: number | null;
+  happy_hour_price?: number | null;
+  is_veg?: boolean;
+  spice_level?: number;
+  tags?: string[];
+  rating?: number | null;
+  prep_time?: string | null;
+  is_available?: boolean;
+  image_url?: string | null;
+  is_alcoholic?: boolean;
+}
+
+export type MenuItemUpdate = Partial<MenuItemCreate>;
 
 export interface MenuSeedItemDto {
   id: string;

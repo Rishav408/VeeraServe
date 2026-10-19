@@ -37,8 +37,7 @@ def seed_menu(db: Session) -> None:
     data = load_seed_data()
 
     for category in data["categories"]:
-        existing = db.get(Category, category["id"])
-        if existing is None:
+        if db.get(Category, category["id"]) is None:
             db.add(
                 Category(
                     id=category["id"],
@@ -46,19 +45,11 @@ def seed_menu(db: Session) -> None:
                     sort_order=category["sort_order"],
                 )
             )
-        else:
-            existing.label = category["label"]
-            existing.sort_order = category["sort_order"]
 
     for item in data["items"]:
-        existing = db.get(MenuItem, item["id"])
-        values = {field: item[field] for field in ITEM_FIELDS}
-        if existing is None:
+        if db.get(MenuItem, item["id"]) is None:
+            values = {field: item[field] for field in ITEM_FIELDS}
             db.add(MenuItem(id=item["id"], category_id=item["category"], **values))
-        else:
-            existing.category_id = item["category"]
-            for field, value in values.items():
-                setattr(existing, field, value)
 
     db.commit()
 
