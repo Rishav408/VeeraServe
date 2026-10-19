@@ -40,6 +40,8 @@ class Settings(BaseSettings):
     happy_hour_start: int = 16
     happy_hour_end: int = 18
 
+    alcohol_enabled: bool = True
+
     max_upload_mb: int = 10
     allowed_upload_types: Annotated[list[str], NoDecode] = ["audio/*", "image/*"]
 

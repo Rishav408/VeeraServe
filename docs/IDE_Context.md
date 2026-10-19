@@ -137,6 +137,7 @@ These are known and must be fixed during the indicated phase:
 | LLM runtime | `backend/app/llm/{client,health}.py` | LM Studio client + readiness probe (P6.1) |
 | RAG | `backend/app/rag/{ingest,retriever}.py` | Chroma index + grounded retrieval (P6.2) |
 | Tool layer | `backend/app/agent/tools/` | Validated tool contracts + session cart (P6.3) |
+| Agent graph | `backend/app/agent/{state,intents,memory,nodes,graph,runner}.py` | LangGraph supervisor/specialists + guardrails + memory (P6.4) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -268,6 +269,13 @@ These are known and must be fixed during the indicated phase:
 - Added `backend/app/agent/tools/` — 12 strict-contract tools over a per-session cart; `place_order`
   is confirmation-gated; `registry.call_tool` validates args. Backend `pytest` passes (55 tests).
 - **Next:** P6.4 (agent graph).
+
+### Session 23 — Agent graph, memory & guardrails (P6.4)
+- Added `backend/app/agent/{state,intents,memory,nodes,graph,runner}.py` — a LangGraph
+  `load_memory→supervisor→guardrails→specialist→record` graph with an `InMemorySaver` checkpointer
+  (`run_agent`), deterministic grounded replies, confirmation-gated ordering/preference memory, and
+  guardrails (injection/off-topic/alcohol). Backend `pytest` passes (66 tests).
+- **Next:** P6.5 (streaming chat API, voice/vision, chat UI).
 
 ---
 

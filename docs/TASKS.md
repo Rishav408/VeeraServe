@@ -236,7 +236,7 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Added `app/agent/tools/` (`schemas.py` strict `extra="forbid"` models, `context.py` session cart, `catalog`/`cart`/`offers`/`ordering` handlers, `registry.py` with `call_tool`/`openai_tool_schemas`); `create_order` gained `discount_rate`; added `happy_hour_start`/`happy_hour_end` config. All 12 tools registered.
   Commit: `Update - P6.3 - tool layer`
 
-- [ ] **P6.4 — Agent nodes, memory, guardrails & graph wiring** _(build each node before wiring the graph)_
+- [x] **P6.4 — Agent nodes, memory, guardrails & graph wiring** _(build each node before wiring the graph)_
   - LangGraph state schema (`backend/app/agent/state.py`) — session/user, messages, retrieved, intent, tool_calls, cart snapshot, pending confirmation, reply.
   - Greeter/Menu specialist node + test.
   - Recommendation specialist node + test.
@@ -247,6 +247,7 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Memory: session checkpointer + long-term preference load/update (confirmation-gated) + test.
   - Guardrails node — refuse fabrication and off-topic requests, enforce price authority and alcohol policy + test.
   - Wire the full agent graph + integration test ("order X" completes end-to-end).
+  - Added `app/agent/{state,intents,memory,nodes,graph,runner}.py`: `AgentState`, rule-based intent classifier, confirmation-gated preference memory, deterministic grounded specialist replies (greeter/menu/recommend/ordering/status/vision/preference), guardrails (injection/off-topic/alcohol policy), `build_graph` with an `InMemorySaver` checkpointer, and `run_agent`. Added `alcohol_enabled` config + `langchain-core==1.6.12`. 11 new tests (66 total).
   Commit: `Update - P6.4 - agent graph`
 
 - [ ] **P6.5 — Streaming, voice, vision & chat UI**

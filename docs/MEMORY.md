@@ -129,6 +129,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P6.1: added `app/llm/{client,health}.py` + `GET /api/v1/health/llm`, pinned chat/vision/embedding model defaults, and removed the superseded Ollama AI plumbing. | TASKS P6.1 |
 | (rev) | Phase P6.2: added `app/rag/{ingest,retriever}.py` (Chroma + LM Studio embeddings, idempotent seeding, DB-validated retrieval) and backend startup indexing with graceful degradation. | TASKS P6.2 |
 | (rev) | Phase P6.3: added the validated tool layer (`app/agent/tools/`, 12 tools) with a session cart; `place_order` is confirmation-gated and cart/offer tools mutate real state. | TASKS P6.3 |
+| (rev) | Phase P6.4: added `app/agent/{state,intents,memory,nodes,graph,runner}.py` — a LangGraph supervisor→guardrails→specialist graph (rule-based routing), deterministic grounded replies, confirmation-gated preference memory, and an `InMemorySaver` checkpointer via `run_agent`. | TASKS P6.4 |
 
 ---
 
@@ -438,6 +439,28 @@ YYYY-MM-DD — Session summary
   (deterministic, no embeddings), so the tool layer is testable without LM Studio.
 - **Open items opened/closed:** none.
 - **Next:** Phase P6.4 (agent nodes, memory, guardrails & graph wiring).
+
+---
+
+### Session 23 — Agent graph, memory & guardrails (P6.4)
+
+- **Completed:** Phase P6.4 — added `backend/app/agent/{state,intents,memory,nodes,graph,runner}.py`.
+  `AgentState` carries session/user, message, image, intent, retrieved items, tool results, cart
+  snapshot, pending confirmation/preference, memory, history and reply. A rule-based supervisor
+  classifies the turn (greeting/menu/recommend/order/status/vision/preference + confirm/cancel) and
+  a guardrails node blocks prompt-injection, off-topic and (when `alcohol_enabled` is false)
+  alcohol requests. Specialist nodes produce deterministic replies grounded in the tool layer
+  (menu/recommend lookups, name+quantity order matching, order status, vision-by-text); the ordering
+  node stages a cart summary and only calls `place_order` on explicit confirmation. Preference memory
+  loads on every turn and is saved only after confirmation. `build_graph` wires
+  `START→load_memory→supervisor→guardrails→(specialist)→record→END` with an `InMemorySaver` checkpointer
+  keyed by `thread_id`; `run_agent(db, message, …)` is the entry point.
+- **Decisions:** routing is deterministic keyword rules (small local models are unreliable routers;
+  risk R-1) with model reasoning reserved for P6.5 reply generation. Catalog/ordering nodes call the
+  DB-backed tools directly, so the whole graph is testable headless without LM Studio. The `llm`
+  handle is threaded through `config["configurable"]` but unused until P6.5.
+- **Open items opened/closed:** none (O-1/O-2 remain pending final confirmation in P6.5).
+- **Next:** Phase P6.5 (streaming chat API, voice/vision, chat UI).
 
 ---
 
