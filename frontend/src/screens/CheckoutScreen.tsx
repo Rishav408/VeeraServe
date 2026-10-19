@@ -4,14 +4,16 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Input } from "../components/ui";
 import { useCart } from "../context/CartContext";
-import { useAppData } from "../context/AppDataContext";
 import { useUI } from "../context/UIContext";
+import { useCreateOrder } from "../hooks/useOrders";
+import { ApiError } from "../lib/apiClient";
+import type { OrderCreate } from "../types/api";
 
 export default function CheckoutScreen() {
   const navigate = useNavigate();
   const { items, subtotal, clearCart } = useCart();
-  const { placeOrder } = useAppData();
   const { showToast } = useUI();
+  const createOrder = useCreateOrder();
   const [tableNumber, setTableNumber] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [instructions, setInstructions] = useState("");
@@ -25,14 +27,23 @@ export default function CheckoutScreen() {
       return;
     }
 
-    const order = placeOrder({
-      items: items.map((entry) => ({ itemId: entry.item.id, quantity: entry.quantity })),
-      total: grandTotal
-    });
+    const payload: OrderCreate = {
+      table_number: tableNumber ? Number(tableNumber) : null,
+      payment_method: paymentMethod,
+      instructions: instructions.trim() || null,
+      items: items.map((entry) => ({ menu_item_id: entry.item.id, quantity: entry.quantity }))
+    };
 
-    clearCart();
-    showToast(`Order ${order.id} placed. Status: pending.`);
-    navigate(`/track/${order.id}`);
+    createOrder.mutate(payload, {
+      onSuccess: (order) => {
+        clearCart();
+        showToast(`Order ${order.id} placed. Status: ${order.status}.`);
+        navigate(`/track/${order.id}`);
+      },
+      onError: (error) => {
+        showToast(error instanceof ApiError ? error.message : "Could not place the order.");
+      }
+    });
   };
 
   const paymentOptions = [
@@ -101,10 +112,11 @@ export default function CheckoutScreen() {
           <motion.button
             type="button"
             onClick={place}
+            disabled={createOrder.isPending}
             whileTap={{ scale: 0.98 }}
-            className="btn-primary flex h-14 w-full items-center justify-center gap-2 text-base font-semibold shadow-glow-orange"
+            className="btn-primary flex h-14 w-full items-center justify-center gap-2 text-base font-semibold shadow-glow-orange disabled:opacity-60"
           >
-            <CheckCircle size={20} /> Confirm Order →
+            <CheckCircle size={20} /> {createOrder.isPending ? "Placing order…" : "Confirm Order →"}
           </motion.button>
         </div>
 

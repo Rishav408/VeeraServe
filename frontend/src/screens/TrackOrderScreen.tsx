@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Bell, CheckCircle, ChefHat, Clock } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { useAppData } from "../context/AppDataContext";
-import { OrderStatusBadge } from "../components/ui";
+import { OrderStatusBadge, Spinner } from "../components/ui";
+import { useMenuItems } from "../hooks/useMenu";
+import { useOrder } from "../hooks/useOrders";
 import type { OrderStatus } from "../types/domain";
 
 type StageColor = "gold" | "primary" | "success";
@@ -26,9 +26,20 @@ const STATUS_SUBTEXT: Record<OrderStatus, string> = {
 
 export default function TrackOrderScreen() {
   const { id } = useParams();
-  const { orders } = useAppData();
+  const orderId = Number(id);
+  const { data: order, isPending } = useOrder(Number.isFinite(orderId) ? orderId : undefined);
+  const { data: menuItems = [] } = useMenuItems();
 
-  const order = useMemo(() => orders.find((entry) => entry.id === id), [orders, id]);
+  const nameFor = (menuItemId: string) =>
+    menuItems.find((item) => item.id === menuItemId)?.name ?? `Item ${menuItemId}`;
+
+  if (isPending) {
+    return (
+      <div className="flex justify-center py-16">
+        <Spinner />
+      </div>
+    );
+  }
 
   if (!order) {
     return (
@@ -125,6 +136,34 @@ export default function TrackOrderScreen() {
               </div>
             );
           })}
+        </div>
+      </div>
+
+      <div className="card-3d rounded-[20px] p-5">
+        <h3 className="font-display text-lg text-ink">Order Summary</h3>
+        <div className="mt-3 space-y-2">
+          {order.items.map((line) => (
+            <div key={line.menu_item_id} className="flex items-center justify-between text-sm">
+              <span className="text-ink-soft">
+                {nameFor(line.menu_item_id)} × {line.quantity}
+              </span>
+              <span className="font-semibold text-ink">₹{line.unit_price * line.quantity}</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-4 space-y-1 border-t border-primary/15 pt-3 text-sm">
+          <div className="flex items-center justify-between">
+            <span className="text-ink-muted">Subtotal</span>
+            <span className="font-semibold text-ink">₹{order.subtotal}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-ink-muted">GST</span>
+            <span className="font-semibold text-ink">₹{order.gst}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="font-display text-base text-ink-soft">Total</span>
+            <span className="font-display text-lg font-bold text-primary">₹{order.total}</span>
+          </div>
         </div>
       </div>
 

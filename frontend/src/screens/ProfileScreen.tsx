@@ -3,19 +3,17 @@ import { Clock, Heart, Settings, Star } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Button, EmptyState, OrderStatusBadge, buttonClasses } from "../components/ui";
-import { useAppData } from "../context/AppDataContext";
 import { useAuth } from "../context/AuthContext";
+import { useOrders } from "../hooks/useOrders";
 import type { UserDto } from "../types/api";
 
 const FALLBACK_USER: UserDto = { id: 0, name: "Guest", email: "", role: "guest" };
 
 export default function ProfileScreen() {
-  const { orders } = useAppData();
   const { user, logout } = useAuth();
+  const { data: orders = [] } = useOrders();
   const currentUser = user ?? FALLBACK_USER;
   const [activeTab, setActiveTab] = useState("profile");
-
-  const userOrders = orders.filter((o) => o.customerName === currentUser.name);
 
   const tabs = [
     { key: "profile", label: "Profile", icon: Settings },
@@ -86,7 +84,7 @@ export default function ProfileScreen() {
 
       {activeTab === "orders" && (
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
-          {userOrders.length === 0 ? (
+          {orders.length === 0 ? (
             <EmptyState
               title="No orders yet."
               action={
@@ -96,12 +94,12 @@ export default function ProfileScreen() {
               }
             />
           ) : (
-            userOrders.map((order) => (
+            orders.map((order) => (
               <article key={order.id} className="card-3d rounded-[16px] p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-display text-lg font-bold text-primary">{order.id}</p>
-                    <p className="text-xs text-ink-muted">{new Date(order.createdAt).toLocaleDateString()}</p>
+                    <p className="font-display text-lg font-bold text-primary">Order #{order.id}</p>
+                    <p className="text-xs text-ink-muted">{new Date(order.created_at).toLocaleString()}</p>
                   </div>
                   <div className="text-right">
                     <OrderStatusBadge status={order.status} />

@@ -182,10 +182,11 @@ Example: `Update - P1.2 - move frontend and reshape backend`
   - Added `src/hooks/useMenu.ts` (+ `src/utils/menuMapper.ts`) and wired `MenuScreen` (server-side category/search filters), `HomeScreen`, `ItemDetailsScreen`, `CartScreen`, `RightRail`, and `ChatContext` to the API menu/categories. Cart items now carry server menu ids/prices; totals are re-validated server-side at order time (P5.3). Admin menu stays on mock data until P7.
   Commit: `Update - P5.2 - wire catalog and cart`
 
-- [ ] **P5.3 — Checkout, tracking & order history**
+- [x] **P5.3 — Checkout, tracking & order history**
   - Checkout wired (table number, payment method, instructions persisted).
   - Order tracking screen (status via polling).
   - Order history for registered diners.
+  - Added `src/hooks/useOrders.ts` (`useOrders`, `useOrder` with polling, `useCreateOrder`, `useUpdateOrderStatus`) and wired `CheckoutScreen` (posts the server-priced order), `TrackOrderScreen` (polling + summary), `OrdersScreen`, and `ProfileScreen` history to the API.
   Commit: `Update - P5.3 - checkout, tracking and history`
 
 - [ ] **P5.4 — Feedback form & profile preferences**

@@ -131,6 +131,7 @@ These are known and must be fixed during the indicated phase:
 | Backend tests | `backend/tests/` | Auth + read/write API suites (26 tests, P4.5) |
 | Frontend auth | `frontend/src/context/AuthContext.tsx`, `frontend/src/lib/apiClient.ts` | JWT client + guards (P5.1) |
 | Catalog hooks | `frontend/src/hooks/useMenu.ts`, `frontend/src/utils/menuMapper.ts` | API menu/categories (P5.2) |
+| Order hooks | `frontend/src/hooks/useOrders.ts` | Create/track/list orders (P5.3) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -229,6 +230,11 @@ These are known and must be fixed during the indicated phase:
 - Added `useMenu`/`menuMapper` and switched the diner catalog surfaces to the API (server-side
   category/search filters); cart carries API ids/prices. `tsc`, lint, build pass.
 - **Next:** P5.3 (checkout, tracking & order history).
+
+### Session 17 — Checkout, tracking & history (P5.3)
+- Added `useOrders` and wired checkout, tracking (polling), the orders list, and profile history to the
+  API. `tsc`, lint, build pass.
+- **Next:** P5.4 (feedback form & profile preferences).
 
 ---
 

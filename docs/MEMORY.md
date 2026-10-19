@@ -123,6 +123,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P4.5: added auth/write-path tests (`backend/tests/test_auth/`, `backend/tests/test_api/test_orders.py`, `backend/tests/test_api/test_feedback.py`) covering hashing/JWT, 401/403 RBAC, ownership, server-side totals, status transitions, and rating bounds. Gate 4 met; `pytest` passes (26 tests). | TASKS P4.5 |
 | (rev) | Phase P5.1: built the typed API client (auth-token attachment + typed `ApiError`), `AuthContext`, real login/register UI, and `RequireAuth`/`RequireRole` route guards; widened `UserRole`; moved identity out of `AppDataContext`. `tsc`, lint, and build pass. | TASKS P5.1 |
 | (rev) | Phase P5.2: wired the diner catalog to the API — added `src/hooks/useMenu.ts` + `src/utils/menuMapper.ts` and switched `MenuScreen`/`HomeScreen`/`ItemDetailsScreen`/`CartScreen`/`RightRail`/`ChatContext` to server menu/categories with server-side filters; cart carries API ids/prices. Admin menu remains mock until P7. | TASKS P5.2 |
+| (rev) | Phase P5.3: added `src/hooks/useOrders.ts` and wired checkout (persists table number/payment/instructions via `POST /orders`), order tracking (polling `GET /orders/{id}` with a summary), the orders list, and profile order history to the API. | TASKS P5.3 |
 
 ---
 
@@ -347,6 +348,17 @@ YYYY-MM-DD — Session summary
   so `data/menu.ts` remains only for admin screens in the interim.
 - **Open items opened/closed:** none.
 - **Next:** Phase P5.3 (checkout, tracking & order history).
+
+### Session 17 — Checkout, tracking & history (P5.3)
+
+- **Completed:** Phase P5.3 — added `frontend/src/hooks/useOrders.ts` and wired `CheckoutScreen`
+  (posts `POST /orders` with table number, payment method, and instructions; server prices the order),
+  `TrackOrderScreen` (polls `GET /orders/{id}` until served and shows a priced summary),
+  `OrdersScreen` (scoped list with polling), and the `ProfileScreen` order history to the API.
+- **Decisions:** order money values are always what the API returns (the client never sends totals);
+  tracking polls every 4–5s and stops once the order is served.
+- **Open items opened/closed:** none.
+- **Next:** Phase P5.4 (feedback form & profile preferences).
 
 ---
 
