@@ -26,9 +26,12 @@ class Settings(BaseSettings):
     jwt_access_token_expire_minutes: int = 1440
 
     llm_base_url: str = "http://localhost:1234/v1"
-    llm_model: str = "qwen2.5-vl-3b-instruct"
+    llm_chat_model: str = "qwen2.5-vl-3b-instruct"
+    llm_vision_model: str = "qwen2.5-vl-3b-instruct"
+    llm_embedding_model: str = "nomic-embed-text"
     llm_api_key: str = "lm-studio"
-    embedding_model: str = "nomic-embed-text"
+    llm_context_length: int = 8192
+    llm_request_timeout_seconds: float = 60.0
 
     max_upload_mb: int = 10
     allowed_upload_types: Annotated[list[str], NoDecode] = ["audio/*", "image/*"]

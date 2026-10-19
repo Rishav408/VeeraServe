@@ -212,10 +212,11 @@ Example: `Update - P1.2 - move frontend and reshape backend`
 
 Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIGN.md`), grounded in `data/menu.seed.json`.
 
-- [ ] **P6.1 — LLM client, LM Studio readiness & model pins**
+- [x] **P6.1 — LLM client, LM Studio readiness & model pins**
   - `backend/app/llm/client.py` — OpenAI-compatible wrapper (single function: prompt in, text out) targeting `LLM_BASE_URL`; unit test with a mocked response (no live call in CI).
   - `backend/app/llm/health.py` — LM Studio readiness probe; degrade to an "AI unavailable" state without crashing; record the loaded model id and context length.
   - Pin the default chat/vision model and embedding model in `config.py` and `.env.example` (no client-interface change).
+  - Added `app/llm/{client,health}.py` (`chat_completion`, `LLMError`, `probe_llm`/`LLMStatus`), `GET /api/v1/health/llm`, and pinned `llm_chat_model`/`llm_vision_model`/`llm_embedding_model`/`llm_context_length`. Removed the superseded Ollama `app/services/ai_service.py` and the unwired `app/api/chat.py` placeholder.
   Commit: `Update - P6.1 - LLM client and LM Studio readiness`
 
 - [ ] **P6.2 — RAG grounding**

@@ -134,6 +134,7 @@ These are known and must be fixed during the indicated phase:
 | Order hooks | `frontend/src/hooks/useOrders.ts` | Create/track/list orders (P5.3) |
 | Profile/feedback hooks | `frontend/src/hooks/{useProfile,useFeedback}.ts` | Preferences + feedback (P5.4) |
 | Frontend tests | `frontend/src/test/setup.ts`, `frontend/src/screens/CheckoutScreen.test.tsx` | Vitest + Testing Library (P5.5) |
+| LLM runtime | `backend/app/llm/{client,health}.py` | LM Studio client + readiness probe (P6.1) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -248,6 +249,12 @@ These are known and must be fixed during the indicated phase:
 - Added Vitest 5 + Testing Library, `src/test/setup.ts`, and `CheckoutScreen.test.tsx` (5 tests).
   Frontend `npm run test`, `typecheck`, `lint`, `build` and backend `pytest` (29) all pass. Gate 5 met.
 - **Next:** P6 (Agentic AI core).
+
+### Session 20 — LLM client & LM Studio readiness (P6.1)
+- Added `backend/app/llm/{client,health}.py` (`chat_completion`, `LLMError`, `probe_llm`/`LLMStatus`)
+  and `GET /api/v1/health/llm`; pinned chat/vision/embedding model defaults; removed the superseded
+  Ollama `ai_service.py` and unwired `chat.py`. Backend `pytest` passes (36 tests).
+- **Next:** P6.2 (RAG grounding).
 
 ---
 

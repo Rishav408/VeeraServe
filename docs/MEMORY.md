@@ -46,8 +46,8 @@ running changelog. If a material choice is made, it is recorded here before it i
 
 | ID | Open question | Needed by | Notes |
 |---|---|---|---|
-| O-1 | Final chat model loaded in LM Studio: Qwen2.5-VL-3B vs Qwen2.5-7B-Instruct vs Llama-3.1-8B (GGUF quantisations). | Phase P6 | Trade-off between vision capability, tool-calling reliability, and hardware. |
-| O-2 | Embedding model in LM Studio: `nomic-embed-text` vs `mxbai-embed-large`. | Phase P6 | Retrieval quality vs memory footprint. |
+| O-1 | Final chat model loaded in LM Studio: Qwen2.5-VL-3B vs Qwen2.5-7B-Instruct vs Llama-3.1-8B (GGUF quantisations). | Phase P6 | Default pinned to `qwen2.5-vl-3b-instruct` (P6.1); confirm against real hardware/tool-calling in P6.4–P6.5. |
+| O-2 | Embedding model in LM Studio: `nomic-embed-text` vs `mxbai-embed-large`. | Phase P6 | Default pinned to `nomic-embed-text` (P6.1); validate retrieval quality in P6.2. |
 | O-3 | Vector store: Chroma vs FAISS. | Phase P6 | Default proposal: Chroma (persistent, simple). |
 | O-4 | Text-to-speech: browser `SpeechSynthesis` vs local Piper. | Phase P6 | Browser is zero-install; Piper is more natural but heavier. |
 | O-5 | Auth mechanism: custom JWT vs server session cookie. | Phase P4 | Default proposal: JWT for API simplicity. |
@@ -126,6 +126,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P5.3: added `src/hooks/useOrders.ts` and wired checkout (persists table number/payment/instructions via `POST /orders`), order tracking (polling `GET /orders/{id}` with a summary), the orders list, and profile order history to the API. | TASKS P5.3 |
 | (rev) | Phase P5.4: added `PATCH /api/v1/auth/me/preferences` (`UserPreferences`, `update_preferences`, preferences on `UserOut`) and wired the feedback form (three 1–5 ratings validated, guest-friendly) and profile preferences (veg/spice/allergies) to the API. | TASKS P5.4 |
 | (rev) | Phase P5.5: added the frontend test stack (Vitest 5 + Testing Library, `vite.config.ts` test block, `src/test/setup.ts`) and `CheckoutScreen.test.tsx` covering the cart→checkout→order flow (`npm run test`, 5 tests). Gate 5 met. | TASKS P5.5 |
+| (rev) | Phase P6.1: added `app/llm/{client,health}.py` + `GET /api/v1/health/llm`, pinned chat/vision/embedding model defaults, and removed the superseded Ollama AI plumbing. | TASKS P6.1 |
 
 ---
 
@@ -387,6 +388,22 @@ YYYY-MM-DD — Session summary
   pinned to v5 so it shares the project's Vite 8 (v2 nested an older Vite and broke `tsc`).
 - **Open items opened/closed:** none.
 - **Next:** Phase P6 (Agentic AI core).
+
+### Session 20 — LLM client & LM Studio readiness (P6.1)
+
+- **Completed:** Phase P6.1 — added `backend/app/llm/client.py` (`chat_completion`, `LLMError`;
+  OpenAI-compatible wrapper that targets `LLM_BASE_URL` and turns runtime failures into a typed
+  error) and `backend/app/llm/health.py` (`probe_llm`/`LLMStatus` reading the loaded model id,
+  context length, and an explicit unavailable state). Exposed `GET /api/v1/health/llm`. Pinned
+  `llm_chat_model`/`llm_vision_model`/`llm_embedding_model`/`llm_context_length` in `config.py`
+  and `.env.example`. Removed the superseded Ollama `services/ai_service.py` and the unwired
+  `api/chat.py` placeholder (rebuilt in P6.4/P6.5).
+- **Decisions:** chat and vision share the low-end Qwen2.5-VL-3B default (O-1) with embeddings on
+  `nomic-embed-text` (O-2); the readiness probe uses the OpenAI `/models` endpoint for availability
+  and LM Studio's native `/api/v0/models` for `max_context_length`, degrading gracefully if either
+  is missing.
+- **Open items opened/closed:** none (O-1/O-2 defaults pinned, final confirmation deferred to P6.4/P6.5).
+- **Next:** Phase P6.2 (RAG grounding).
 
 ---
 
