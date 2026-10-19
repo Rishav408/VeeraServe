@@ -26,7 +26,7 @@ function messageFromDetail(status: number, detail: unknown): string {
   return `Request failed with status ${status}`;
 }
 
-function buildHeaders(headers?: HeadersInit): Headers {
+export function authHeaders(headers?: HeadersInit): Headers {
   const merged = new Headers(headers);
   const token = getToken();
   if (token) {
@@ -35,25 +35,28 @@ function buildHeaders(headers?: HeadersInit): Headers {
   return merged;
 }
 
-async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
-  const response = await fetch(`${API_URL}${path}`, {
-    ...init,
-    headers: buildHeaders(init.headers)
-  });
-
+export async function apiErrorFromResponse(response: Response): Promise<ApiError> {
   if (response.status === 401) {
     clearToken();
   }
+  let detail: unknown = null;
+  try {
+    const body = (await response.json()) as { detail?: unknown };
+    detail = body.detail ?? body;
+  } catch {
+    detail = null;
+  }
+  return new ApiError(response.status, messageFromDetail(response.status, detail), detail);
+}
+
+async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
+  const response = await fetch(`${API_URL}${path}`, {
+    ...init,
+    headers: authHeaders(init.headers)
+  });
 
   if (!response.ok) {
-    let detail: unknown = null;
-    try {
-      const body = (await response.json()) as { detail?: unknown };
-      detail = body.detail ?? body;
-    } catch {
-      detail = null;
-    }
-    throw new ApiError(response.status, messageFromDetail(response.status, detail), detail);
+    throw await apiErrorFromResponse(response);
   }
 
   if (response.status === 204) {
@@ -84,8 +87,4 @@ export function apiPatch<TBody, TResponse>(path: string, body: TBody): Promise<T
 
 export function apiDelete<TResponse>(path: string): Promise<TResponse> {
   return request<TResponse>(path, { method: "DELETE" });
-}
-
-export function apiPostForm<TResponse>(path: string, formData: FormData): Promise<TResponse> {
-  return request<TResponse>(path, { method: "POST", body: formData });
 }

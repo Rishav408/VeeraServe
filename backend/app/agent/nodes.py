@@ -11,6 +11,7 @@ from app.agent.tools.context import Cart, ToolContext
 from app.agent.tools.registry import call_tool
 from app.core.config import get_settings
 from app.models import MenuItem
+from app.rag.retriever import retrieve_menu_items
 from app.services.menu import MenuService
 
 INTENT_NODES = {
@@ -142,7 +143,7 @@ def menu_node(state: AgentState, config: RunnableConfig) -> AgentState:
     result = call_tool("search_menu", ctx, {"query": query})
 
     items = (result.data or {}).get("items", [])
-    state["tool_results"] = [result.model_dump()]
+    state["tool_results"] = [{"tool": "search_menu", **result.model_dump()}]
     state["retrieved"] = items[:5]
     if not items:
         state["reply"] = (
@@ -173,7 +174,7 @@ def recommend_node(state: AgentState, config: RunnableConfig) -> AgentState:
         "get_recommendations", ctx, {"dietary": dietary, "spice_pref": spice_pref}
     )
     recs = (result.data or {}).get("recommendations", [])
-    state["tool_results"] = [result.model_dump()]
+    state["tool_results"] = [{"tool": "get_recommendations", **result.model_dump()}]
     state["retrieved"] = recs
     if not recs:
         state["reply"] = "I couldn't find a match — tell me your taste and I'll try again."
@@ -201,7 +202,7 @@ def ordering_node(state: AgentState, config: RunnableConfig) -> AgentState:
     if pending and intents.is_affirmative(message):
         ctx.confirmed = True
         result = call_tool("place_order", ctx, pending.get("order_args", {}))
-        state["tool_results"] = [result.model_dump()]
+        state["tool_results"] = [{"tool": "place_order", **result.model_dump()}]
         if result.ok:
             order = (result.data or {}).get("order", {})
             state["reply"] = (
@@ -232,6 +233,7 @@ def ordering_node(state: AgentState, config: RunnableConfig) -> AgentState:
     _save_cart(state, ctx)
 
     summary_result = call_tool("place_order", ctx, {"payment_method": "cash"})
+    state["tool_results"] = [{"tool": "add_to_cart", **summary_result.model_dump()}]
     summary = (summary_result.data or {}).get("summary", {})
     state["pending_confirmation"] = {
         "summary": summary,
@@ -251,7 +253,7 @@ def status_node(state: AgentState, config: RunnableConfig) -> AgentState:
     db = _db(config)
     ctx = _context(state, db)
     result = call_tool("get_order_status", ctx, {})
-    state["tool_results"] = [result.model_dump()]
+    state["tool_results"] = [{"tool": "get_order_status", **result.model_dump()}]
     if result.ok:
         data = result.data or {}
         state["reply"] = f"Your order #{data.get('order_id')} is currently '{data.get('status')}'."
@@ -262,23 +264,53 @@ def status_node(state: AgentState, config: RunnableConfig) -> AgentState:
     return state
 
 
+def _image_candidates(db: Session, description: str) -> list[dict[str, Any]]:
+    try:
+        retrieved = retrieve_menu_items(description, db=db)
+    except Exception:
+        return []
+
+    service = MenuService(db)
+    candidates: list[dict[str, Any]] = []
+    for match in retrieved:
+        item = service.get_item(match.id)
+        if item is None or not item.is_available:
+            continue
+        candidates.append(
+            {
+                "item_id": item.id,
+                "name": item.name,
+                "price": item.price,
+                "is_veg": item.is_veg,
+            }
+        )
+    return candidates
+
+
 def vision_node(state: AgentState, config: RunnableConfig) -> AgentState:
     db = _db(config)
     ctx = _context(state, db)
     description = state.get("image_query") or "dish photo"
-    result = call_tool("search_menu", ctx, {"query": description})
-    matches = (result.data or {}).get("items", [])
-    state["tool_results"] = [result.model_dump()]
-    state["retrieved"] = matches[:3]
-    if not matches:
+
+    candidates = _image_candidates(db, description)
+    if candidates:
+        tool_record: dict[str, Any] = {"tool": "get_recommendations", "ok": True, "data": None}
+    else:
+        result = call_tool("search_menu", ctx, {"query": description})
+        candidates = (result.data or {}).get("items", [])
+        tool_record = {"tool": "search_menu", **result.model_dump()}
+
+    state["tool_results"] = [tool_record]
+    state["retrieved"] = candidates[:3]
+    if not candidates:
         state["reply"] = (
             "I couldn't match that photo to a dish on our menu, but tell me the flavours "
             "you like and I'll suggest something."
         )
         return state
 
-    best = matches[0]
-    others = ", ".join(item["name"] for item in matches[1:3])
+    best = candidates[0]
+    others = ", ".join(item["name"] for item in candidates[1:3])
     state["reply"] = (
         f"I think this looks closest to {_describe_item(best)} — want to try it?"
         + (f" Other close matches: {others}." if others else "")

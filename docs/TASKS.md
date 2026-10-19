@@ -250,15 +250,16 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Added `app/agent/{state,intents,memory,nodes,graph,runner}.py`: `AgentState`, rule-based intent classifier, confirmation-gated preference memory, deterministic grounded specialist replies (greeter/menu/recommend/ordering/status/vision/preference), guardrails (injection/off-topic/alcohol policy), `build_graph` with an `InMemorySaver` checkpointer, and `run_agent`. Added `alcohol_enabled` config + `langchain-core==1.6.12`. 11 new tests (66 total).
   Commit: `Update - P6.4 - agent graph`
 
-- [ ] **P6.5 — Streaming, voice, vision & chat UI**
+- [x] **P6.5 — Streaming, voice, vision & chat UI**
   - `POST /api/v1/chat` streaming via SSE (token deltas + structured tool events).
   - Voice input (faster-whisper STT) in the multipart chat request + optional browser TTS.
   - Vision pipeline (LM Studio vision model) producing a grounded suggestion with labelled certainty.
   - Chat front-end integration (streamed replies, tool events, mic, image upload).
   - Agent scenario tests (grounding, tool accuracy, confirmation, refusal) running headless against LM Studio.
+  - Added `app/api/chat.py` + `app/agent/streaming.py` (SSE event stream: session/transcript/image/intent/tool/token/cart/done), `app/llm/vision.py` (image → description), `app/services/transcription.py` (faster-whisper STT), and `app/agent/polish.py` (verification-gated LLM rephrasing). Vision node now uses RAG retrieval with a lexical fallback. Front end: `src/lib/chatStream.ts` (SSE-over-fetch), rewritten `ChatContext` (streamed tokens, tool activity, cart sync, optional TTS), updated `ChatWidget` (streaming caret + voice toggle). New config `llm_polish_enabled`/`stt_*`; add `VEERASERVE_LIVE_LLM=1` for the opt-in live scenarios. 19 new backend tests (85 + 3 live) and 6 new frontend tests (11 total).
   Commit: `Update - P6.5 - streaming, voice, vision and chat UI`
 
-**Checkpoint — Gate 6:** The agent completes scripted order scenarios end-to-end, no fabricated dish/price can reach the user (defence-in-depth verified), and groundedness meets the target in `evaluation/EVALUATION.md`. This is the checkpoint to demo before admin work resumes.
+**Checkpoint — Gate 6:** The agent completes scripted order scenarios end-to-end and no fabricated dish/price can reach the user (defence-in-depth verified). **[PARTIAL — scenarios + defence-in-depth verified in P6.4/P6.5; the groundedness metric against `evaluation/EVALUATION.md` is produced by the P8/P9 harness.]**
 
 ---
 

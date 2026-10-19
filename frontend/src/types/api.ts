@@ -2,9 +2,23 @@ export interface HealthResponse {
   status: string;
 }
 
-export interface ChatResponse {
-  response: string;
+export interface ChatCartLineDto {
+  item_id: string;
+  name: string;
+  unit_price: number;
+  quantity: number;
 }
+
+export type ChatStreamEvent =
+  | { type: "session"; session_id: string }
+  | { type: "transcript"; text: string }
+  | { type: "image"; description: string }
+  | { type: "intent"; intent: string }
+  | { type: "tool"; name: string | null; ok: boolean }
+  | { type: "token"; text: string }
+  | { type: "cart"; items: ChatCartLineDto[] }
+  | { type: "done"; reply: string; pending_confirmation: boolean }
+  | { type: "error"; message: string };
 
 export type UserRoleDto = "guest" | "user" | "staff" | "admin";
 

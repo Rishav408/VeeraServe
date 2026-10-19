@@ -36,6 +36,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | D-10 | Kitchen/order status is **simulated** but explicitly labelled, unless a real integration is added. | Honest about scope while still demoable. | Accepted |
 | D-11 | Local model runtime is **LM Studio**, accessed through its **OpenAI-compatible local server** (`LLM_BASE_URL`, default `http://localhost:1234/v1`); the app uses a standard OpenAI client, not an Ollama-specific client. Supersedes the Ollama runtime assumption in D-2. | Chosen platform; keeps the backend runtime-agnostic and OpenAI-compatible while remaining fully local and zero-cost. | Accepted |
 | D-12 | RAG vector store is **Chroma** (persistent local client), embeddings from LM Studio (`nomic-embed-text`). | Persistent, zero-service, Python-native; simplest path to grounded retrieval (resolves O-3). | Accepted |
+| D-13 | Chat replies stream over **SSE** (`POST /api/v1/chat`); the deterministic graph reply is authoritative and any LLM rephrasing is **verification-gated** (fallback to the template when it introduces an ungrounded price). Voice is **faster-whisper** in-process; TTS is browser `speechSynthesis`. | Keeps the demo honest and offline: streamed, grounded output that degrades safely when the model is unavailable (implements D-8). | Accepted |
 
 ### Superseded decisions
 
@@ -130,6 +131,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P6.2: added `app/rag/{ingest,retriever}.py` (Chroma + LM Studio embeddings, idempotent seeding, DB-validated retrieval) and backend startup indexing with graceful degradation. | TASKS P6.2 |
 | (rev) | Phase P6.3: added the validated tool layer (`app/agent/tools/`, 12 tools) with a session cart; `place_order` is confirmation-gated and cart/offer tools mutate real state. | TASKS P6.3 |
 | (rev) | Phase P6.4: added `app/agent/{state,intents,memory,nodes,graph,runner}.py` — a LangGraph supervisor→guardrails→specialist graph (rule-based routing), deterministic grounded replies, confirmation-gated preference memory, and an `InMemorySaver` checkpointer via `run_agent`. | TASKS P6.4 |
+| (rev) | Phase P6.5: added the SSE chat endpoint (`POST /api/v1/chat`, `app/api/chat.py` + `app/agent/streaming.py`), vision (`app/llm/vision.py`), voice (`app/services/transcription.py`), and verification-gated response polishing (`app/agent/polish.py`); rewired the chat UI to stream tokens/tool events/cart with optional TTS. | TASKS P6.5 |
 
 ---
 
@@ -461,6 +463,31 @@ YYYY-MM-DD — Session summary
   handle is threaded through `config["configurable"]` but unused until P6.5.
 - **Open items opened/closed:** none (O-1/O-2 remain pending final confirmation in P6.5).
 - **Next:** Phase P6.5 (streaming chat API, voice/vision, chat UI).
+
+---
+
+### Session 24 — Streaming chat, voice & vision (P6.5)
+
+- **Completed:** Phase P6.5 — added the streaming chat API and multimodal pipelines:
+  `app/api/chat.py` (`POST /api/v1/chat`, multipart, SSE) + `app/agent/streaming.py`
+  (`iter_turn_events` emitting `session`/`transcript`/`image`/`intent`/`tool`/`token`/`cart`/`done`),
+  `app/llm/vision.py` (image → short dish description via the LM Studio vision model),
+  `app/services/transcription.py` (lazy faster-whisper STT), and `app/agent/polish.py` (LLM rephrasing
+  whose output is accepted only when `verify_grounded` finds no invented price). The vision node now
+  prefers RAG retrieval and falls back to lexical search. Front end: `src/lib/chatStream.ts`
+  (SSE-over-fetch generator), rewritten `ChatContext` (streamed tokens, tool-activity labels, cart
+  sync via `CartContext.replaceCart`, optional browser TTS), and an updated `ChatWidget` (streaming
+  caret + voice toggle); removed the old mock `utils/bot.ts`. Added config `llm_polish_enabled`,
+  `stt_model_size`/`stt_device`/`stt_compute_type`; the opt-in live scenarios run only with
+  `VEERASERVE_LIVE_LLM=1` and LM Studio up.
+- **Decisions:** **D-13** — replies stream over SSE; the deterministic graph reply is authoritative
+  and LLM rephrasing is verification-gated with template fallback; polish is **off by default**
+  (`LLM_POLISH_ENABLED`) so the default test suite stays fast, offline and deterministic. Upgrade
+  path: `langchain-core==1.6.12` (P6.4).
+- **Open items opened/closed:** none (O-1/O-2 confirmation still deferred to a real-hardware run).
+- **Gate 6 (partial):** scripted order scenarios complete end-to-end and defence-in-depth grounding is
+  verified in tests; the groundedness metric from `evaluation/EVALUATION.md` is produced by the P8/P9
+  harness. Backend `pytest` 85 passed + 3 live skipped; frontend 11 tests, typecheck/lint/build pass.
 
 ---
 

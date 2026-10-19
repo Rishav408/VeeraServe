@@ -32,6 +32,11 @@ class Settings(BaseSettings):
     llm_api_key: str = "lm-studio"
     llm_context_length: int = 8192
     llm_request_timeout_seconds: float = 60.0
+    llm_polish_enabled: bool = False
+
+    stt_model_size: str = "base"
+    stt_device: str = "cpu"
+    stt_compute_type: str = "int8"
 
     vector_store_path: str = "./chroma_db"
     rag_collection_name: str = "menu"

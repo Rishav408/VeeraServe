@@ -138,6 +138,9 @@ These are known and must be fixed during the indicated phase:
 | RAG | `backend/app/rag/{ingest,retriever}.py` | Chroma index + grounded retrieval (P6.2) |
 | Tool layer | `backend/app/agent/tools/` | Validated tool contracts + session cart (P6.3) |
 | Agent graph | `backend/app/agent/{state,intents,memory,nodes,graph,runner}.py` | LangGraph supervisor/specialists + guardrails + memory (P6.4) |
+| Chat streaming | `backend/app/api/chat.py`, `backend/app/agent/streaming.py` | SSE turn stream: tool/token/cart events (P6.5) |
+| Multimodal | `backend/app/llm/vision.py`, `backend/app/services/transcription.py` | Image → description; audio → text (P6.5) |
+| Chat UI | `frontend/src/lib/chatStream.ts`, `frontend/src/context/ChatContext.tsx` | Streamed chat client + cart sync (P6.5) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -276,6 +279,14 @@ These are known and must be fixed during the indicated phase:
   (`run_agent`), deterministic grounded replies, confirmation-gated ordering/preference memory, and
   guardrails (injection/off-topic/alcohol). Backend `pytest` passes (66 tests).
 - **Next:** P6.5 (streaming chat API, voice/vision, chat UI).
+
+### Session 24 — Streaming chat, voice & vision (P6.5)
+- Added the SSE chat endpoint (`app/api/chat.py` + `app/agent/streaming.py`), vision
+  (`app/llm/vision.py`), STT (`app/services/transcription.py`), and verification-gated polishing
+  (`app/agent/polish.py`); rewired `frontend/src/{lib/chatStream.ts,context/ChatContext.tsx}` and
+  `ChatWidget` to stream tokens/tool events/cart with optional TTS. Backend `pytest` 85 passed
+  (+3 live skipped); frontend 11 tests; typecheck/lint/build pass. Gate 6 partial (harness pending).
+- **Next:** Phase P7 (admin console).
 
 ---
 

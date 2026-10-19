@@ -63,14 +63,5 @@ export interface ChatMessage {
   sender: ChatSender;
   text: string;
   createdAt: number;
-}
-
-export interface BotAction {
-  type: string;
-  itemId?: string;
-}
-
-export interface BotResponse {
-  message: string;
-  action: BotAction | null;
+  streaming?: boolean;
 }

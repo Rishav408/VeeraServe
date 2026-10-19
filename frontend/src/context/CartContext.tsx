@@ -12,6 +12,7 @@ type CartAction =
   | { type: "ADD_ITEM"; payload: MenuItem }
   | { type: "REMOVE_ITEM"; payload: string }
   | { type: "UPDATE_QTY"; payload: { id: string; quantity: number } }
+  | { type: "REPLACE"; payload: CartEntry[] }
   | { type: "CLEAR" };
 
 interface CartContextValue {
@@ -20,6 +21,7 @@ interface CartContextValue {
   addToCart: (item: MenuItem) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
+  replaceCart: (items: CartEntry[]) => void;
   clearCart: () => void;
 }
 
@@ -56,6 +58,8 @@ function reducer(state: CartState, action: CartAction): CartState {
           )
           .filter((entry) => entry.quantity > 0)
       };
+    case "REPLACE":
+      return { items: action.payload };
     case "CLEAR":
       return initialState;
     default:
@@ -87,6 +91,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       removeFromCart: (id: string) => dispatch({ type: "REMOVE_ITEM", payload: id }),
       updateQuantity: (id: string, quantity: number) =>
         dispatch({ type: "UPDATE_QTY", payload: { id, quantity } }),
+      replaceCart: (items: CartEntry[]) => dispatch({ type: "REPLACE", payload: items }),
       clearCart: () => dispatch({ type: "CLEAR" })
     }),
     [state.items, subtotal]

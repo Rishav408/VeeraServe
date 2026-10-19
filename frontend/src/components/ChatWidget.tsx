@@ -1,4 +1,4 @@
-import { ChefHat, Mic, Square, SendHorizontal, Paperclip, X } from "lucide-react";
+import { ChefHat, Mic, Square, SendHorizontal, Paperclip, X, Volume2, VolumeX } from "lucide-react";
 import { useState, useRef } from "react";
 import type { FormEvent } from "react";
 import { useChat } from "../context/ChatContext";
@@ -13,7 +13,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
   const audioChunksRef = useRef<Blob[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const { messages, typing, sendMessage } = useChat();
+  const { messages, typing, activity, speechEnabled, toggleSpeech, sendMessage } = useChat();
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -71,9 +71,19 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
             <p className="text-xs text-white/70">Your AI Waiter</p>
           </div>
         </div>
-        <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleSpeech}
+            aria-pressed={speechEnabled}
+            title={speechEnabled ? "Disable voice replies" : "Enable voice replies"}
+            className={`inline-flex h-8 w-8 items-center justify-center rounded-full ${speechEnabled ? "bg-white/25" : "bg-white/10"}`}
+          >
+            {speechEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
+          </button>
+          <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
+        </div>
       </header>
-
       <div className="h-[65%] space-y-3 overflow-y-auto bg-cream p-3 scroll-smooth">
         {messages.map((message) => (
           <div key={message.id} className={`flex ${message.sender === "bot" ? "justify-start" : "justify-end"}`}>
@@ -82,7 +92,10 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
                 <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-primary">
                   <ChefHat size={14} />
                 </span>
-                <p className="rounded-[4px_16px_16px_16px] bg-white p-3 text-sm text-ink shadow-sm">{message.text}</p>
+                <p className="rounded-[4px_16px_16px_16px] bg-white p-3 text-sm text-ink shadow-sm">
+                  {message.text}
+                  {message.streaming && <span className="ml-0.5 animate-pulse">▍</span>}
+                </p>
               </div>
             ) : (
               <p className="max-w-[80%] rounded-[16px_4px_16px_16px] bg-gradient-to-r from-primary to-primary/80 p-3 text-sm text-white shadow-btn-primary">
@@ -93,7 +106,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
         ))}
 
         {typing && (
-          <div className="inline-flex items-center gap-1 rounded-[4px_16px_16px_16px] bg-white px-3 py-2">
+          <div className="inline-flex items-center gap-2 rounded-[4px_16px_16px_16px] bg-white px-3 py-2">
             {[0, 1, 2].map((index) => (
               <span
                 key={index}
@@ -101,6 +114,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
                 style={{ animation: `float 0.9s ease ${index * 0.15}s infinite` }}
               />
             ))}
+            {activity && <span className="text-xs text-ink/60">{activity}</span>}
           </div>
         )}
       </div>
