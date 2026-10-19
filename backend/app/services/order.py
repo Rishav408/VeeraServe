@@ -21,7 +21,13 @@ class OrderValidationError(ValueError):
     pass
 
 
-def create_order(db: Session, *, user_id: int | None, payload: OrderCreate) -> Order:
+def create_order(
+    db: Session,
+    *,
+    user_id: int | None,
+    payload: OrderCreate,
+    discount_rate: float = 0.0,
+) -> Order:
     if payload.payment_method not in settings.payment_methods:
         raise OrderValidationError("Unsupported payment method")
 
@@ -44,7 +50,7 @@ def create_order(db: Session, *, user_id: int | None, payload: OrderCreate) -> O
         )
 
     gst = round(subtotal * settings.gst_rate)
-    discount = 0
+    discount = round(subtotal * discount_rate)
     order = Order(
         user_id=user_id,
         table_number=payload.table_number,

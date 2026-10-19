@@ -37,6 +37,9 @@ class Settings(BaseSettings):
     rag_collection_name: str = "menu"
     rag_top_k: int = 5
 
+    happy_hour_start: int = 16
+    happy_hour_end: int = 18
+
     max_upload_mb: int = 10
     allowed_upload_types: Annotated[list[str], NoDecode] = ["audio/*", "image/*"]
 

@@ -226,13 +226,14 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Added `app/rag/{ingest,retriever}.py` (`render_item`, `ingest_items`, `ensure_menu_indexed`, `retrieve_menu_items`), `embed_texts` in the LLM client, Chroma config, startup indexing (graceful when LM Studio is down), and `chromadb==1.5.9`. Vector store decided: **Chroma (D-12)**.
   Commit: `Update - P6.2 - RAG grounding`
 
-- [ ] **P6.3 — Tool layer (validated contracts)**
+- [x] **P6.3 — Tool layer (validated contracts)**
   - `backend/app/agent/tools/schemas.py` + registry — strict types/enums; unknown fields rejected.
   - Tools: `search_menu`, `get_item`, `get_recommendations`.
   - Tools: `add_to_cart`, `update_cart`, `view_cart` — must really mutate cart state (fixes the dead `add_to_cart` path).
   - Tools: `apply_offer`, `list_offers`, `get_happy_hour_status`.
   - Tools: `place_order` (confirmation-gated), `get_order_status`, `book_table`.
   - Tool-layer validation tests (unknown `item_id` rejected with a recoverable error; qty > 0; idempotency).
+  - Added `app/agent/tools/` (`schemas.py` strict `extra="forbid"` models, `context.py` session cart, `catalog`/`cart`/`offers`/`ordering` handlers, `registry.py` with `call_tool`/`openai_tool_schemas`); `create_order` gained `discount_rate`; added `happy_hour_start`/`happy_hour_end` config. All 12 tools registered.
   Commit: `Update - P6.3 - tool layer`
 
 - [ ] **P6.4 — Agent nodes, memory, guardrails & graph wiring** _(build each node before wiring the graph)_

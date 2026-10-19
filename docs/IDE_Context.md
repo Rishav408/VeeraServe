@@ -136,6 +136,7 @@ These are known and must be fixed during the indicated phase:
 | Frontend tests | `frontend/src/test/setup.ts`, `frontend/src/screens/CheckoutScreen.test.tsx` | Vitest + Testing Library (P5.5) |
 | LLM runtime | `backend/app/llm/{client,health}.py` | LM Studio client + readiness probe (P6.1) |
 | RAG | `backend/app/rag/{ingest,retriever}.py` | Chroma index + grounded retrieval (P6.2) |
+| Tool layer | `backend/app/agent/tools/` | Validated tool contracts + session cart (P6.3) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -262,6 +263,11 @@ These are known and must be fixed during the indicated phase:
   indexing, DB-validated top-k retrieval), `embed_texts`, Chroma config, and startup indexing with
   graceful degradation. Chroma chosen (D-12). Backend `pytest` passes (42 tests).
 - **Next:** P6.3 (tool layer).
+
+### Session 22 — Tool layer (P6.3)
+- Added `backend/app/agent/tools/` — 12 strict-contract tools over a per-session cart; `place_order`
+  is confirmation-gated; `registry.call_tool` validates args. Backend `pytest` passes (55 tests).
+- **Next:** P6.4 (agent graph).
 
 ---
 

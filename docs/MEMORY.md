@@ -128,6 +128,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P5.5: added the frontend test stack (Vitest 5 + Testing Library, `vite.config.ts` test block, `src/test/setup.ts`) and `CheckoutScreen.test.tsx` covering the cart→checkout→order flow (`npm run test`, 5 tests). Gate 5 met. | TASKS P5.5 |
 | (rev) | Phase P6.1: added `app/llm/{client,health}.py` + `GET /api/v1/health/llm`, pinned chat/vision/embedding model defaults, and removed the superseded Ollama AI plumbing. | TASKS P6.1 |
 | (rev) | Phase P6.2: added `app/rag/{ingest,retriever}.py` (Chroma + LM Studio embeddings, idempotent seeding, DB-validated retrieval) and backend startup indexing with graceful degradation. | TASKS P6.2 |
+| (rev) | Phase P6.3: added the validated tool layer (`app/agent/tools/`, 12 tools) with a session cart; `place_order` is confirmation-gated and cart/offer tools mutate real state. | TASKS P6.3 |
 
 ---
 
@@ -420,6 +421,23 @@ YYYY-MM-DD — Session summary
   dropping any vector-store id that is not a real `menu_items` row.
 - **Open items opened/closed:** closed **O-3**.
 - **Next:** Phase P6.3 (tool layer).
+
+### Session 22 — Tool layer (P6.3)
+
+- **Completed:** Phase P6.3 — added `backend/app/agent/tools/` with strict `extra="forbid"` argument
+  schemas, a per-session `Cart`/`ToolContext`, and 12 handlers: `search_menu`, `get_item`,
+  `get_recommendations`, `add_to_cart`, `update_cart`, `view_cart`, `apply_offer`, `list_offers`,
+  `get_happy_hour_status`, `place_order` (confirmation-gated), `get_order_status`, `book_table`.
+  `registry.call_tool` validates args into typed models (unknown fields/invalid quantity rejected as
+  recoverable errors) and `openai_tool_schemas()` exposes them for function calling. `create_order`
+  gained an optional `discount_rate`; added `happy_hour_start`/`happy_hour_end` config and an
+  offer catalog (`WELCOME10`, `FEAST20`).
+- **Decisions:** tools mutate real server-side state — `add_to_cart`/`update_cart` operate on the
+  session cart (fixing the dead path), `place_order` only creates an order after explicit
+  confirmation and clears the cart so it cannot double-order. Catalog tools read the DB directly
+  (deterministic, no embeddings), so the tool layer is testable without LM Studio.
+- **Open items opened/closed:** none.
+- **Next:** Phase P6.4 (agent nodes, memory, guardrails & graph wiring).
 
 ---
 
