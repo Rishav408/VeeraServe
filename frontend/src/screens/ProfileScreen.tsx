@@ -4,9 +4,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Badge, Button, EmptyState, OrderStatusBadge, buttonClasses } from "../components/ui";
 import { useAppData } from "../context/AppDataContext";
+import { useAuth } from "../context/AuthContext";
+import type { UserDto } from "../types/api";
+
+const FALLBACK_USER: UserDto = { id: 0, name: "Guest", email: "", role: "guest" };
 
 export default function ProfileScreen() {
-  const { currentUser, logout, orders } = useAppData();
+  const { orders } = useAppData();
+  const { user, logout } = useAuth();
+  const currentUser = user ?? FALLBACK_USER;
   const [activeTab, setActiveTab] = useState("profile");
 
   const userOrders = orders.filter((o) => o.customerName === currentUser.name);
@@ -55,6 +61,10 @@ export default function ProfileScreen() {
             <div className="flex items-center justify-between border-b border-primary/10 pb-3">
               <span className="text-sm text-ink-muted">Name</span>
               <span className="text-sm font-semibold text-ink">{currentUser.name}</span>
+            </div>
+            <div className="flex items-center justify-between border-b border-primary/10 pb-3">
+              <span className="text-sm text-ink-muted">Email</span>
+              <span className="text-sm font-semibold text-ink">{currentUser.email || "—"}</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm text-ink-muted">Role</span>

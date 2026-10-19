@@ -170,9 +170,10 @@ Example: `Update - P1.2 - move frontend and reshape backend`
 
 ## Phase P5 — Front-end Integration (Ordering MVP, no AI)
 
-- [ ] **P5.1 — Typed API client, auth context & protected routes**
+- [x] **P5.1 — Typed API client, auth context & protected routes**
   - Typed API client using `VITE_API_URL` with auth-token attachment and typed errors.
   - Auth context + login/register UI + protected (role-guarded) routes.
+  - Reworked `src/lib/apiClient.ts` (token header, typed `ApiError` with parsed `detail`, `apiGet`/`apiPost`/`apiPatch`/`apiDelete`/`apiPostForm`), added `src/lib/authToken.ts` and `src/context/AuthContext.tsx`, real login/register `LoginScreen` (no role dropdown), and `RequireAuth`/`RequireRole` guards on `/profile`, `/orders`, and `/admin*`. `tsc`, lint, and build pass.
   Commit: `Update - P5.1 - API client, auth context and protected routes`
 
 - [ ] **P5.2 — Catalog & cart wired to the API**

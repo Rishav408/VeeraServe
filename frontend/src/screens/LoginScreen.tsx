@@ -1,23 +1,54 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Input } from "../components/ui";
-import { useAppData } from "../context/AppDataContext";
-import type { UserRole } from "../types/domain";
+import { useAuth } from "../context/AuthContext";
+import { ApiError } from "../lib/apiClient";
+
+type Mode = "login" | "register";
+
+interface LocationState {
+  from?: string;
+}
 
 export default function LoginScreen() {
-  const [name, setName] = useState("Guest");
-  const [role, setRole] = useState<UserRole>("guest");
-  const [activeTab, setActiveTab] = useState("guest");
-  const { login } = useAppData();
+  const { login, register } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const redirectTo = (location.state as LocationState | null)?.from ?? "/";
 
-  const submit = (event: FormEvent<HTMLFormElement>) => {
+  const [mode, setMode] = useState<Mode>("login");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    login(name || "Guest", role);
-    navigate("/profile");
+    setError(null);
+    setSubmitting(true);
+    try {
+      if (mode === "register") {
+        await register({ name, email, password });
+      } else {
+        await login({ email, password });
+      }
+      navigate(redirectTo, { replace: true });
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
+
+  const tabClass = (value: Mode) =>
+    `flex-1 rounded-pill py-2 text-sm font-semibold transition ${
+      mode === value
+        ? "bg-gradient-to-r from-primary to-primary/80 text-white shadow-btn-primary"
+        : "bg-cream text-ink-muted hover:bg-primary/10"
+    }`;
 
   return (
     <div className="flex items-center justify-center py-8">
@@ -35,81 +66,71 @@ export default function LoginScreen() {
         </div>
 
         <div className="mb-5 flex gap-2">
-          <button
-            type="button"
-            onClick={() => setActiveTab("guest")}
-            className={`flex-1 rounded-pill py-2 text-sm font-semibold transition ${
-              activeTab === "guest"
-                ? "bg-gradient-to-r from-primary to-primary/80 text-white shadow-btn-primary"
-                : "bg-cream text-ink-muted hover:bg-primary/10"
-            }`}
-          >
-            Guest
+          <button type="button" onClick={() => setMode("login")} className={tabClass("login")}>
+            Login
           </button>
-          <button
-            type="button"
-            onClick={() => setActiveTab("login")}
-            className={`flex-1 rounded-pill py-2 text-sm font-semibold transition ${
-              activeTab === "login"
-                ? "bg-gradient-to-r from-primary to-primary/80 text-white shadow-btn-primary"
-                : "bg-cream text-ink-muted hover:bg-primary/10"
-            }`}
-          >
-            Login / Admin
+          <button type="button" onClick={() => setMode("register")} className={tabClass("register")}>
+            Register
           </button>
         </div>
 
         <form onSubmit={submit} className="space-y-4">
-          {activeTab === "guest" ? (
-            <>
-              <label className="block">
-                <span className="text-sm font-semibold text-ink-soft">Your Name</span>
-                <Input
-                  className="mt-1.5"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                  placeholder="Enter your name"
-                />
-              </label>
-              <Button type="submit" className="flex h-[52px] w-full items-center justify-center text-base font-semibold">
-                Continue →
-              </Button>
-            </>
-          ) : (
-            <>
-              <label className="block">
-                <span className="text-sm font-semibold text-ink-soft">Email</span>
-                <Input
-                  type="email"
-                  className="mt-1.5"
-                  placeholder="admin@veeradhabha.com"
-                />
-              </label>
-              <label className="block">
-                <span className="text-sm font-semibold text-ink-soft">Password</span>
-                <Input
-                  type="password"
-                  className="mt-1.5"
-                  placeholder="••••••••"
-                />
-              </label>
-              <label className="block">
-                <span className="text-sm font-semibold text-ink-soft">Role</span>
-                <select
-                  value={role}
-                  onChange={(event) => setRole(event.target.value as UserRole)}
-                  className="mt-1.5 w-full rounded-[12px] border border-primary/20 bg-cream px-4 py-3 text-sm outline-none transition focus:border-primary"
-                >
-                  <option value="guest">Guest</option>
-                  <option value="admin">Admin</option>
-                </select>
-              </label>
-              <Button type="submit" className="flex h-[52px] w-full items-center justify-center text-base font-semibold">
-                Sign In
-              </Button>
-            </>
+          {mode === "register" && (
+            <label className="block">
+              <span className="text-sm font-semibold text-ink-soft">Name</span>
+              <Input
+                className="mt-1.5"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                placeholder="Your name"
+                required
+              />
+            </label>
           )}
+          <label className="block">
+            <span className="text-sm font-semibold text-ink-soft">Email</span>
+            <Input
+              type="email"
+              className="mt-1.5"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="you@example.com"
+              required
+            />
+          </label>
+          <label className="block">
+            <span className="text-sm font-semibold text-ink-soft">Password</span>
+            <Input
+              type="password"
+              className="mt-1.5"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="At least 8 characters"
+              minLength={mode === "register" ? 8 : undefined}
+              required
+            />
+          </label>
+
+          {error && (
+            <p className="rounded-[12px] bg-danger/10 px-3 py-2 text-sm font-medium text-danger">{error}</p>
+          )}
+
+          <Button
+            type="submit"
+            disabled={submitting}
+            className="flex h-[52px] w-full items-center justify-center text-base font-semibold"
+          >
+            {submitting ? "Please wait…" : mode === "register" ? "Create account" : "Sign In"}
+          </Button>
         </form>
+
+        <button
+          type="button"
+          onClick={() => navigate("/menu")}
+          className="mt-4 w-full text-center text-sm font-semibold text-ink-muted transition hover:text-primary"
+        >
+          Continue as guest →
+        </button>
       </motion.div>
     </div>
   );

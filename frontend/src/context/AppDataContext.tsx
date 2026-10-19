@@ -1,8 +1,8 @@
-import { createContext, useContext, useEffect, useReducer, useRef } from "react";
+import { createContext, useContext, useEffect, useMemo, useReducer, useRef } from "react";
 import type { ReactNode } from "react";
 import { initialFeedback, initialOrders, initialUsers } from "../data/demoData";
 import { menuItems } from "../data/menu";
-import { STORAGE_KEYS } from "../utils/storageKeys";
+import { useAuth } from "./AuthContext";
 import type {
   Feedback,
   MenuItem,
@@ -10,8 +10,7 @@ import type {
   Order,
   OrderItemRef,
   OrderStatus,
-  User,
-  UserRole
+  User
 } from "../types/domain";
 
 const ORDER_STAGES: { delay: number; status: OrderStatus }[] = [
@@ -27,7 +26,6 @@ interface AppDataState {
   orders: Order[];
   feedback: Feedback[];
   users: User[];
-  currentUser: User;
 }
 
 interface PlaceOrderInput {
@@ -41,8 +39,7 @@ interface FeedbackInput {
 }
 
 interface AppDataContextValue extends AppDataState {
-  login: (name: string, role?: UserRole) => void;
-  logout: () => void;
+  currentUser: User;
   placeOrder: (input: PlaceOrderInput) => Order;
   addFeedback: (input: FeedbackInput) => void;
   addMenuItem: (item: MenuItemInput) => void;
@@ -50,8 +47,6 @@ interface AppDataContextValue extends AppDataState {
 }
 
 type AppDataAction =
-  | { type: "AUTH_LOGIN"; payload: User }
-  | { type: "AUTH_LOGOUT" }
   | { type: "ORDER_CREATE"; payload: Order }
   | { type: "ORDER_STATUS_UPDATE"; payload: { orderId: string; status: OrderStatus } }
   | { type: "MENU_TOGGLE_AVAILABILITY"; payload: string }
@@ -64,16 +59,11 @@ const initialState: AppDataState = {
   menuItems,
   orders: initialOrders,
   feedback: initialFeedback,
-  users: initialUsers,
-  currentUser: GUEST_USER
+  users: initialUsers
 };
 
 function reducer(state: AppDataState, action: AppDataAction): AppDataState {
   switch (action.type) {
-    case "AUTH_LOGIN":
-      return { ...state, currentUser: action.payload };
-    case "AUTH_LOGOUT":
-      return { ...state, currentUser: GUEST_USER };
     case "ORDER_CREATE":
       return { ...state, orders: [action.payload, ...state.orders] };
     case "ORDER_STATUS_UPDATE":
@@ -102,13 +92,12 @@ function reducer(state: AppDataState, action: AppDataAction): AppDataState {
 export function AppDataProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { user } = useAuth();
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem(STORAGE_KEYS.user);
-    if (savedUser) {
-      dispatch({ type: "AUTH_LOGIN", payload: JSON.parse(savedUser) as User });
-    }
-  }, []);
+  const currentUser = useMemo<User>(
+    () => (user ? { id: String(user.id), name: user.name, role: user.role } : GUEST_USER),
+    [user]
+  );
 
   useEffect(() => {
     const timers = timersRef.current;
@@ -117,21 +106,10 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  const login = (name: string, role: UserRole = "guest") => {
-    const user: User = { id: `U-${name.toLowerCase()}`, name, role };
-    localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(user));
-    dispatch({ type: "AUTH_LOGIN", payload: user });
-  };
-
-  const logout = () => {
-    localStorage.removeItem(STORAGE_KEYS.user);
-    dispatch({ type: "AUTH_LOGOUT" });
-  };
-
   const placeOrder = ({ items, total }: PlaceOrderInput): Order => {
     const order: Order = {
       id: `ORD-${Math.floor(1000 + Math.random() * 9000)}`,
-      customerName: state.currentUser.name,
+      customerName: currentUser.name,
       items,
       total,
       status: "pending",
@@ -155,7 +133,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
       type: "FEEDBACK_ADD",
       payload: {
         id: `FDB-${Date.now()}`,
-        user: state.currentUser.name,
+        user: currentUser.name,
         rating,
         comment,
         createdAt: Date.now()
@@ -185,8 +163,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
 
   const value: AppDataContextValue = {
     ...state,
-    login,
-    logout,
+    currentUser,
     placeOrder,
     addFeedback,
     addMenuItem,

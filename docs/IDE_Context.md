@@ -129,6 +129,7 @@ These are known and must be fixed during the indicated phase:
 | Orders API | `backend/app/api/orders.py`, `backend/app/services/order.py` | Server-priced orders + status (P4.3) |
 | Feedback/reservations | `backend/app/api/feedback.py`, `backend/app/api/reservations.py` | 1–5 ratings, admin listing (P4.4) |
 | Backend tests | `backend/tests/` | Auth + read/write API suites (26 tests, P4.5) |
+| Frontend auth | `frontend/src/context/AuthContext.tsx`, `frontend/src/lib/apiClient.ts` | JWT client + guards (P5.1) |
 | Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
 
 ---
@@ -217,6 +218,11 @@ These are known and must be fixed during the indicated phase:
   hashing/JWT, 401/403 RBAC, ownership, server-side totals, transitions, and rating bounds. `pytest`
   passes (26 tests). **Gate 4 met — backend complete.**
 - **Next:** Phase P5 (front-end integration, ordering MVP).
+
+### Session 15 — API client & auth (P5.1)
+- Reworked the API client (token header + typed errors), added `AuthContext` and real login/register UI,
+  and guarded `/profile`, `/orders`, `/admin*`. `tsc`, lint, build pass.
+- **Next:** P5.2 (wire catalog & cart to the API).
 
 ---
 

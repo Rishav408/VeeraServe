@@ -1,4 +1,5 @@
 export const STORAGE_KEYS = {
   cart: "veeraserve_cart",
-  user: "veeraserve_user"
+  user: "veeraserve_user",
+  token: "veeraserve_token"
 };

@@ -1,6 +1,6 @@
 import seedData from "../../../data/menu.seed.json";
 import type { MenuItem } from "../types/domain";
-import type { MenuItemDto, MenuSeedDto } from "../types/api";
+import type { MenuSeedDto, MenuSeedItemDto } from "../types/api";
 
 const seed = seedData as MenuSeedDto;
 
@@ -8,7 +8,7 @@ const HIDDEN_CATEGORIES = ["bar"];
 
 export const menuItems: MenuItem[] = seed.items
   .filter(
-    (item): item is MenuItemDto & { price: number } =>
+    (item): item is MenuSeedItemDto & { price: number } =>
       item.price !== null &&
       !item.is_alcoholic &&
       !HIDDEN_CATEGORIES.includes(item.category)

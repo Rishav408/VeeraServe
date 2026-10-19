@@ -121,6 +121,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P4.3: added the orders API (`backend/app/schemas/order.py`, `backend/app/services/order.py`, `backend/app/api/orders.py`) — server-validated totals (menu-priced subtotal + 5% GST, `gst_rate` config), guest-friendly placement, scoped listing/detail with ownership, and staff/admin-only `pending→preparing→ready→served` transitions. | TASKS P4.3 |
 | (rev) | Phase P4.4: added the feedback and reservations APIs (`backend/app/api/{feedback,reservations}.py`) — feedback with 1–5 rating validation and admin-only listing, and reservations (party size ≥ 1, valid time) with guest submissions and scoped listing. | TASKS P4.4 |
 | (rev) | Phase P4.5: added auth/write-path tests (`backend/tests/test_auth/`, `backend/tests/test_api/test_orders.py`, `backend/tests/test_api/test_feedback.py`) covering hashing/JWT, 401/403 RBAC, ownership, server-side totals, status transitions, and rating bounds. Gate 4 met; `pytest` passes (26 tests). | TASKS P4.5 |
+| (rev) | Phase P5.1: built the typed API client (auth-token attachment + typed `ApiError`), `AuthContext`, real login/register UI, and `RequireAuth`/`RequireRole` route guards; widened `UserRole`; moved identity out of `AppDataContext`. `tsc`, lint, and build pass. | TASKS P5.1 |
 
 ---
 
@@ -317,6 +318,21 @@ YYYY-MM-DD — Session summary
   fixture (roles are never self-assigned through the API).
 - **Open items opened/closed:** none.
 - **Next:** Phase P5 (front-end integration, ordering MVP).
+
+### Session 15 — API client & auth (P5.1)
+
+- **Completed:** Phase P5.1 — reworked `frontend/src/lib/apiClient.ts` to attach a bearer token and
+  surface typed `ApiError`s (with the backend `detail`), added `src/lib/authToken.ts`, and added
+  `src/context/AuthContext.tsx` (login/register/logout with persisted token + user). Rewrote
+  `LoginScreen` as a real login/register form (guest continue preserved, role dropdown removed) and added
+  `RequireAuth`/`RequireRole` guards on `/profile`, `/orders`, and `/admin*`. Widened `UserRole` to
+  `guest|user|staff|admin` and removed mock auth from `AppDataContext` (identity now comes from
+  `AuthContext`). `tsc`, lint, and build pass.
+- **Decisions:** the JWT is stored under `STORAGE_KEYS.token` and attached by the API client; admin
+  routes are role-guarded on the client in addition to server enforcement; the user's role is never
+  chosen in the UI.
+- **Open items opened/closed:** none.
+- **Next:** Phase P5.2 (wire catalog & cart to the API).
 
 ---
 
