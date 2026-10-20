@@ -198,7 +198,13 @@ def _match_menu_items(db: Session, message: str) -> list[MenuItem]:
     items = MenuService(db).list_items()
     matches = [item for item in items if item.name.lower() in lowered]
     matches.sort(key=lambda item: len(item.name), reverse=True)
-    return matches
+    return [
+        item
+        for item in matches
+        if not any(
+            other is not item and item.name.lower() in other.name.lower() for other in matches
+        )
+    ]
 
 
 def ordering_node(state: AgentState, config: RunnableConfig) -> AgentState:
@@ -238,15 +244,17 @@ def ordering_node(state: AgentState, config: RunnableConfig) -> AgentState:
         return state
 
     quantity = intents.extract_quantity(message)
+    tool_results: list[dict[str, Any]] = []
     for item in matches:
-        call_tool("add_to_cart", ctx, {"item_id": item.id, "quantity": quantity})
+        result = call_tool("add_to_cart", ctx, {"item_id": item.id, "quantity": quantity})
+        tool_results.append({"tool": "add_to_cart", **result.model_dump()})
         _record_call(state, "add_to_cart", {"item_id": item.id, "quantity": quantity})
     _save_cart(state, ctx)
 
     summary_result = call_tool("place_order", ctx, {"payment_method": "cash"})
     _record_call(state, "place_order", {"payment_method": "cash"})
-    state["tool_results"] = [{"tool": "add_to_cart", **summary_result.model_dump()}]
     summary = (summary_result.data or {}).get("summary", {})
+    state["tool_results"] = tool_results
     state["pending_confirmation"] = {
         "summary": summary,
         "order_args": {"payment_method": "cash"},

@@ -105,7 +105,7 @@ These are known and must be fixed during the indicated phase:
 | Frontend app | `frontend/` | Present; moved in P1.1; TypeScript in P2.1 (`strict`, typecheck passes) |
 | Backend API | `backend/app/` | Minimal app + `/api/v1/health` (P1.4); chat router unwired pending P6 |
 | Backend config | `backend/app/core/config.py` | Implemented (P1.3) |
-| Backend tests | `backend/tests/` | 113 passed + 3 live skipped (P8.3) |
+| Backend tests | `backend/tests/` | 115 passed + 3 live skipped (P8.5) |
 | Admin console | `frontend/src/screens/Admin*.tsx`, `frontend/src/hooks/{useAdminMenu,useAnalytics}.ts` | Menu (P7.1), orders (P7.2), analytics (P7.3) and feedback inbox (P7.4) on the API |
 | Analytics | `backend/app/services/analytics.py`, `backend/app/api/analytics.py`, `frontend/src/hooks/useAnalytics.ts` | DB-derived dashboard metrics (P7.3) |
 | Feedback inbox | `backend/app/api/feedback.py`, `frontend/src/screens/AdminFeedbackScreen.tsx` | Persisted acknowledgement (P7.4) |
@@ -335,13 +335,28 @@ These are known and must be fixed during the indicated phase:
   to allow real alternative prices (D-15 revised, D-17 added); re-recorded all suites and populated
   `EVALUATION.md` §7 with hardware and limitations (M-5 target missed, M-6 not measured). Backend
   `pytest` 113 passed + 3 live skipped.
-- **Next:** P8.4 (CI + Docker end-to-end), then P8.5 (report, polish, release).
+- **Next:** P8.5 (report, polish, release).
 
 ### Session 32 — Docker/CI scope dropped
 - By user decision, P8.4 (CI + Docker end-to-end) is **removed** and the project stays local-only:
   `docker-compose.yml` deleted, docs updated to the local run (frontend + backend + LM Studio), and the
   P8.4/P9 containerisation items are no longer part of the v1 delivery. No code changes.
 - **Next:** P8.5 (academic report, accessibility pass, demo assets, tag `v1.0`).
+
+### Session 33 — Report, polish & release (P8.5) — COMPLETE
+- `ACADEMIC_REPORT.md` fully populated: results (M-1 1.000, M-2 0.000, M-3 1.000, M-4 1.000,
+  M-5 0.181 target missed, M-6 not measured, M-7/M-8 0.004/0.005 s, M-9 1.000), ablation, related
+  work with 9 references, limitations, conclusion. Placeholders removed (author/course fields left
+  for the student).
+- Frontend a11y/responsive pass: skip link, focus-visible outline, reduced-motion CSS, Modal focus
+  trap + restore, aria labels on icon-only controls, `role="alert"`/`role="log"`/`role="status"`,
+  `aria-pressed` toggles, heading hierarchy. 10 real demo screenshots captured headlessly into
+  `docs/demo/` (desktop 1440 px + mobile 390 px).
+- Polish fixes (D-19): cart restores from `localStorage` on reload; dish-name matching skips names
+  that are subsets of a matched specific name; ordering `tool_results` report real `add_to_cart`
+  outcomes. M-3/M-4 re-recorded at 1.000. P9 Docker phases dropped from `TASKS.md`.
+- **Verification:** backend 115 passed + 3 skipped; frontend lint/typecheck/14 tests/build clean;
+  tagged `v1.0`. Project is at the v1 release.
 
 ---
 

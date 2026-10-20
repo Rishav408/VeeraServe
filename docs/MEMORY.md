@@ -42,6 +42,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | D-16 | Task-success scenarios (M-4) are driven through the **live HTTP API** (chat + staff order-status endpoints) and judged on resulting state, not reply text alone. The STT baseline (M-5) uses **Windows SAPI-synthesised** clips because human recordings were unavailable; this is disclosed wherever the WER is reported and does not replace the protocol's human-recorded set. | Measures the product end to end and keeps every reported number reproducible offline; synthetic audio is a clean lower bound on WER, not a substitute for real speech. | Accepted |
 | D-17 | Evaluation runs may use **LM Studio models that are actually installed**, recorded via environment overrides, when a pinned checkpoint is unavailable. P8.3 used `qwen2.5-3b-instruct` (GGUF) and `text-embedding-nomic-embed-text-v1.5` for the ablation; the pinned `qwen2.5-vl-3b-instruct`/`nomic-embed-text` were not in the local catalogue. M-9 combines the 24-prompt `safety.json` set with the 16 grounding traps for the shipped agent. | Unblocks measurement without changing the shipped deterministic path (the agent does not call the chat model); every substitution is disclosed in EVALUATION §7. | Accepted |
 | D-18 | **v1 is local-only:** no Docker, Docker Compose, or CI. P8.4 was removed from the plan; the `docker-compose.yml` skeleton was deleted and delivery docs point to the local run (frontend + backend + LM Studio on one machine). Tests and lint run locally. | User decision during P8 (2026-10-20); avoids maintaining unused container/CI infrastructure and keeps the zero-cost local story simple. | Accepted |
+| D-19 | P8.5 polish fixes shipped with the release: (a) the diner cart restores from `localStorage` on full reload (a lazy reducer initialiser, replacing the StrictMode-sensitive load effect); (b) ordering skips menu names that are subsets of another matched name (e.g. `Naan` inside `Butter Garlic Naan`); (c) the ordering node's `tool_results` report the real `add_to_cart` outcomes instead of a mislabeled staged `place_order` result (SSE no longer shows `ok:false` for a successful cart add). Frontend a11y pass (skip link, focus trap, aria labels/live regions, reduced motion) ships in the same release; demo screenshots are committed in `docs/demo/`. | Found while walking `DEMONSTRATION_FLOW.md` headlessly before tagging v1.0; M-3/M-4 were re-recorded at 1.000 after the fixes. | Accepted |
 
 ### Superseded decisions
 
@@ -145,6 +146,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P8.2: added `run_scenarios.py` (25 API-driven goals, all passed), `run_stt.py` (25 SAPI clips; corpus WER 0.181, target 0.15 missed), and `run_latency.py` (36 turns; final median 0.004 s, p90 0.005 s). | TASKS P8.2, D-16 |
 | (rev) | Phase P8.3: ran the no-RAG vs RAG ablation (3 × 64 items): groundedness 0.000 → 1.000, hallucination 0.021 → 0.000, refusal 0.812 → 1.000; added `run_safety.py` + `safety.json` (24 prompts, 24/24 refused, 0 orders); calibrated the M-2 checker to allow real alternative prices (D-15 revised); recorded every suite in `evaluation/results/` and populated `EVALUATION.md` §7 (including the M-5 miss and unmeasured M-6). | TASKS P8.3, D-17 |
 | (rev) | Scope change: P8.4 (CI + Docker) removed and `docker-compose.yml` deleted; README/architecture/delivery docs now describe the local-only run. No application code changed. | D-18, O-6 |
+| (rev) | Phase P8.5: `ACADEMIC_REPORT.md` fully populated (results incl. M-5 miss, ablation, limitations, real references); a11y + responsive pass; cart-persistence restore, subset dish-name matching and honest `tool_results` fixed (D-19) with M-3/M-4 re-recorded at 1.000; 10 demo screenshots committed under `docs/demo/`; backend 115 passed + 3 skipped, frontend 14 passed, lint/typecheck/build clean. | TASKS P8.5, D-19 |
 
 ---
 
@@ -620,6 +622,24 @@ YYYY-MM-DD — Session summary
   ACADEMIC_REPORT, DEMONSTRATION_FLOW, INDEX, and IDE_Context now describe the local-only run.
 - **Decisions:** D-18 — v1 is local-only (no Docker/CI); O-6 closed as strictly local.
 - **Verification:** no application code changed; working tree only docs + compose deletion.
+
+### Session 33 — Report, polish & release (P8.5)
+
+- **Completed:** Phase P8.5 — report, accessibility/responsive pass, demo assets, release tag.
+  Populated `ACADEMIC_REPORT.md` (abstract results, implementation, related work + 9 references,
+  results/discussion, honest limitations; M-5 miss and unmeasured M-6 disclosed). Frontend a11y pass:
+  global focus-visible outline, skip link, reduced-motion support, Modal focus trap + restore +
+  `aria-labelledby`, aria labels on icon-only chat/cart/quantity/star controls, `role="alert"` errors,
+  `role="log"`/`role="status"` live regions, `aria-pressed` on toggles, heading hierarchy, sidebar
+  overflow. Cart persistence fixed to a lazy reducer initialiser (StrictMode reload wipe), dish-name
+  matching skips subsets of a specific name, ordering `tool_results` report real `add_to_cart`
+  outcomes (D-19). M-3/M-4 re-recorded at 1.000. Captured 10 real screenshots into `docs/demo/` by
+  driving the local stack headlessly and updated `DEMONSTRATION_FLOW.md` with verified phrasing and an
+  asset table. Dropped the now-defunct P9 Docker phases from `TASKS.md`.
+- **Decisions:** D-19 — release-polish fixes listed above.
+- **Open items opened/closed:** none (O-1/O-2/O-4/O-5 remain stale, deferred).
+- **Verification:** backend `pytest` 115 passed + 3 skipped; frontend lint/typecheck/`vitest` 14
+  passed/build all clean; results in `evaluation/results/`; tagged `v1.0`.
 
 ---
 

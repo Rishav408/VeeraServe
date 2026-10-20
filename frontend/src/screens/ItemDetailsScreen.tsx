@@ -145,6 +145,7 @@ export default function ItemDetailsScreen() {
                   key={option}
                   type="button"
                   onClick={() => toggleCustom(option)}
+                  aria-pressed={active}
                   className={`rounded-chip border p-2 text-left text-[13px] transition ${
                     active
                       ? "border-primary bg-primary/10 text-primary"
@@ -161,17 +162,22 @@ export default function ItemDetailsScreen() {
             <button
               type="button"
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+              aria-label="Decrease quantity"
               className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/30 bg-cream text-xl text-ink"
             >
-              −
+              <span aria-hidden="true">−</span>
             </button>
-            <span className="w-12 text-center font-display text-2xl text-primary">{quantity}</span>
+            <span className="w-12 text-center font-display text-2xl text-primary">
+              <span className="sr-only">Quantity </span>
+              {quantity}
+            </span>
             <button
               type="button"
               onClick={() => setQuantity((q) => q + 1)}
+              aria-label="Increase quantity"
               className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-primary/30 bg-cream text-xl text-ink"
             >
-              +
+              <span aria-hidden="true">+</span>
             </button>
           </div>
 

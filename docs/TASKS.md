@@ -330,42 +330,29 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Documented in `docs/evaluation/EVALUATION.md` §7 (summary, ablation, hardware, limitations).
   Commit: `Update - P8.3 - ablation and recorded results`
 
-- [ ] **P8.5 — Report, polish & release**
-  - Populate `ACADEMIC_REPORT.md` results and remove all "to be populated" placeholders.
-  - Accessibility + responsive pass across screens.
-  - Demo assets (screenshots/GIF) following `DEMONSTRATION_FLOW.md`.
-  - Final review: re-verify `INDEX.md` links and `RULES.md` compliance, update `MEMORY.md`, tag `v1.0`.
+- [x] **P8.5 — Report, polish & release**
+  - Populated `ACADEMIC_REPORT.md`: status, abstract results, related work with references, implementation summary, results (M-1–M-9 incl. the missed M-5 target and unmeasured M-6), discussion, expanded limitations, and a real reference list.
+  - Accessibility + responsive pass: focus-visible outline, skip link, reduced-motion support, modal focus trap/restore, `aria-label`s on icon-only controls (chat, cart, quantity, stars), `role="alert"` errors, `role="log"`/`role="status"` live regions, `aria-pressed` on toggles, heading hierarchy, sidebar overflow; mobile-menu screenshots captured at 390 px.
+  - Cart persistence fixed (restores from `localStorage` on reload; React StrictMode previously cleared it), dish-name matching no longer adds generic subsets of a specific dish, `tool_results` in the ordering node now report the real `add_to_cart` outcomes; 2 new tests (115 passed + 3 skipped), M-3 and M-4 re-recorded at 1.000/1.000.
+  - Demo assets: 10 real screenshots in `docs/demo/` (desktop + mobile) captured headlessly against the local stack; `DEMONSTRATION_FLOW.md` scenario B updated to phrases verified against the shipped agent.
+  - Final review: `INDEX.md` links checked, `RULES.md` compliance re-run (lint/typecheck/tests/build clean), `MEMORY.md` + `IDE_Context.md` updated.
   Commit: `Update - P8.5 - report, polish and release`
 
-**Checkpoint — Gate 8:** Metrics produced and written up honestly, report complete, and demo assets ready. CI/Docker are out of scope for v1 (project runs locally).
+**Checkpoint — Gate 8:** Metrics produced and written up honestly, report complete, and demo assets ready. CI/Docker are out of scope for v1 (project runs locally). ✅
 
 ---
 
-## Phase P9 — Deployment (last, not in parallel with feature work)
+## Phase P9 — Deployment (dropped for v1)
 
-Context: deployment is intentionally last and constrained — the LLM/embedding runtime (LM Studio) is a host desktop app, so a fully hosted demo would break the local-first, zero-cost story (see `MEMORY.md` O-6). Treat P9 as optional/limited.
-
-- [ ] **P9.1 — Dockerfiles**
-  - `infra/docker/backend.Dockerfile`.
-  - `infra/docker/frontend.Dockerfile`.
-  Commit: `Update - P9.1 - Dockerfiles`
-
-- [ ] **P9.2 — Local full-stack compose**
-  - `infra/docker-compose.yml` for a full local run (LM Studio on host documented).
-  Commit: `Update - P9.2 - docker-compose for local run`
-
-- [ ] **P9.3 — Deploy configs**
-  - Backend deploy config (document the host LM Studio dependency / O-6 decision).
-  - Frontend deploy config (`VITE_API_URL` pointed at the deployed backend).
-  Commit: `Update - P9.3 - deploy configs`
-
-**Checkpoint — Gate 9:** Deployment path documented; local-first constraints preserved.
+Per decision D-18 in `MEMORY.md`, the LLM/embedding runtime (LM Studio) is a host desktop app, so
+containerised deployment would break the local-first, zero-cost story. v1 ships local-only:
+frontend + backend + LM Studio on one machine (see `README.md`). P9 is deferred to future work.
 
 ---
 
 ## Notes on Pace
 
-- Each phase is capped at **4–5 commits** (P0 = 4, P1–P9 = 3–5); each commit bundles the steps listed under its unit. Steps are merged, never dropped.
+- Each phase is capped at **4–5 commits** (P0 = 4, P1–P8 = 3–5); each commit bundles the steps listed under its unit. Steps are merged, never dropped.
 - Backend (Phases P1–P4) is a hard gate before the integrated ordering MVP (P5), and P5 is a hard gate before the agentic core (P6). Do not build the agent until ordering works without AI.
 - Inside P6, build the tool layer (`P6.3`) before the nodes and graph (`P6.4`), even though they share one commit's scope.
 - The admin console (P7) comes **after** the agent so that availability/price changes can be verified against the agent's grounded responses.

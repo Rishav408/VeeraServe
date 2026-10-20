@@ -45,8 +45,8 @@ For a new reader (or a new AI IDE agent), read in this order:
 | `FEATURES.md` | Feature inventory with IDs and P0–P3 priorities. | Baseline |
 | `RULES.md` | Engineering, AI-agent, security, data, testing, and reproducibility rules. | Baseline |
 | `TASKS.md` | Phased implementation plan with gates and acceptance criteria. | Baseline |
-| `DEMONSTRATION_FLOW.md` | Scripted end-to-end demonstration scenarios. | Baseline |
-| `ACADEMIC_REPORT.md` | Graded academic report (standard academic structure). | Baseline (results pending) |
+| `DEMONSTRATION_FLOW.md` | Scripted end-to-end demonstration scenarios + committed screenshots in `demo/`. | Verified (P8.5) |
+| `ACADEMIC_REPORT.md` | Graded academic report (standard academic structure). | Final (P8.5) |
 | `MEMORY.md` | Decision log, open items, risk register, glossary, changelog. | Living |
 | `IDE_Context.md` | One-screen context snapshot and resumption guide for IDE agents. | Living |
 
@@ -69,7 +69,7 @@ For a new reader (or a new AI IDE agent), read in this order:
 
 | Document | Purpose | Status |
 |---|---|---|
-| `EVALUATION.md` | GenAI evaluation protocol, metrics, rubrics, and results. | Baseline (results pending) |
+| `EVALUATION.md` | GenAI evaluation protocol, metrics, rubrics, and results. | Final (P8.3) |
 
 ---
 

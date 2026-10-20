@@ -77,13 +77,20 @@ export default function TrackOrderScreen() {
         <div
           className={`mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full ${colors.bg} ${colors.text} ${colors.pulse}`}
         >
-          <StatusIcon size={36} />
+          <StatusIcon size={36} aria-hidden="true" />
         </div>
 
         <h2 className="font-display text-2xl font-bold text-ink">{currentStage.label}</h2>
         <p className="mt-2 text-sm text-ink-muted">{STATUS_SUBTEXT[order.status]}</p>
 
-        <div className="mt-6 h-2 w-full overflow-hidden rounded-full bg-cream">
+        <div
+          role="progressbar"
+          aria-label="Order progress"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={percentage}
+          className="mt-6 h-2 w-full overflow-hidden rounded-full bg-cream"
+        >
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${percentage}%` }}

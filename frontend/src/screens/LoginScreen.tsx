@@ -66,10 +66,20 @@ export default function LoginScreen() {
         </div>
 
         <div className="mb-5 flex gap-2">
-          <button type="button" onClick={() => setMode("login")} className={tabClass("login")}>
+          <button
+            type="button"
+            onClick={() => setMode("login")}
+            aria-pressed={mode === "login"}
+            className={tabClass("login")}
+          >
             Login
           </button>
-          <button type="button" onClick={() => setMode("register")} className={tabClass("register")}>
+          <button
+            type="button"
+            onClick={() => setMode("register")}
+            aria-pressed={mode === "register"}
+            className={tabClass("register")}
+          >
             Register
           </button>
         </div>
@@ -112,7 +122,9 @@ export default function LoginScreen() {
           </label>
 
           {error && (
-            <p className="rounded-[12px] bg-danger/10 px-3 py-2 text-sm font-medium text-danger">{error}</p>
+            <p role="alert" className="rounded-[12px] bg-danger/10 px-3 py-2 text-sm font-medium text-danger">
+              {error}
+            </p>
           )}
 
           <Button

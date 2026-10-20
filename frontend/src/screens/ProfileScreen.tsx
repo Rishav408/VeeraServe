@@ -159,6 +159,7 @@ export default function ProfileScreen() {
                     key={level.value}
                     type="button"
                     onClick={() => setSpiceLevel(level.value)}
+                    aria-pressed={spiceLevel === level.value}
                     className={`category-chip whitespace-normal px-3 py-2 text-xs ${
                       spiceLevel === level.value ? "active" : ""
                     }`}
@@ -174,6 +175,7 @@ export default function ProfileScreen() {
                 <button
                   type="button"
                   onClick={() => setVeg((prev) => !prev)}
+                  aria-pressed={veg}
                   className={`category-chip whitespace-nowrap ${veg ? "active" : ""}`}
                 >
                   🥗 Veg Only
@@ -188,6 +190,7 @@ export default function ProfileScreen() {
                     key={allergy}
                     type="button"
                     onClick={() => toggleAllergy(allergy)}
+                    aria-pressed={allergies.includes(allergy)}
                     className={`category-chip whitespace-nowrap capitalize ${
                       allergies.includes(allergy) ? "active" : ""
                     }`}

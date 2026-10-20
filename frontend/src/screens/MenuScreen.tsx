@@ -43,8 +43,16 @@ export default function MenuScreen() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <h1 className="font-display text-xl text-ink sm:text-2xl">Our Menu</h1>
           <div className="relative w-full sm:w-[280px]">
-            <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted" />
+            <Search
+              size={16}
+              aria-hidden="true"
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted"
+            />
+            <label htmlFor="menu-search" className="sr-only">
+              Search dishes
+            </label>
             <input
+              id="menu-search"
               value={search}
               onChange={(event) => setSearch(event.target.value)}
               placeholder="Search dishes..."
@@ -64,6 +72,7 @@ export default function MenuScreen() {
                 key={tab}
                 type="button"
                 onClick={() => setCategory(tab)}
+                aria-pressed={activeCategory === tab}
                 className={`category-chip shrink-0 whitespace-nowrap text-xs sm:text-sm ${activeCategory === tab ? "active shadow-glow-orange" : ""}`}
               >
                 {labelFor(tab)} ({count})

@@ -61,6 +61,7 @@ export default function AdminOrdersScreen() {
             key={option.value}
             type="button"
             onClick={() => setFilter(option.value)}
+            aria-pressed={filter === option.value}
             className={`rounded-pill px-3.5 py-1.5 text-sm font-semibold transition ${
               filter === option.value
                 ? "bg-primary text-white"

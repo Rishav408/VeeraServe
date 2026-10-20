@@ -9,6 +9,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
   const [input, setInput] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -32,6 +33,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
       }
       setIsRecording(false);
     } else {
+      setError(null);
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         const mediaRecorder = new MediaRecorder(stream);
@@ -54,7 +56,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
         setIsRecording(true);
       } catch (err) {
         console.error("Error accessing microphone:", err);
-        alert("Microphone access denied or unavailable.");
+        setError("Microphone access denied or unavailable.");
       }
     }
   };
@@ -64,7 +66,7 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
       <header className="flex items-center justify-between bg-dhaba-hero p-4 text-white">
         <div className="flex items-center gap-3">
           <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-            <ChefHat size={20} />
+            <ChefHat size={20} aria-hidden="true" />
           </span>
           <div>
             <p className="text-sm font-semibold">Veera Bot</p>
@@ -76,21 +78,27 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
             type="button"
             onClick={toggleSpeech}
             aria-pressed={speechEnabled}
+            aria-label={speechEnabled ? "Disable voice replies" : "Enable voice replies"}
             title={speechEnabled ? "Disable voice replies" : "Enable voice replies"}
             className={`inline-flex h-8 w-8 items-center justify-center rounded-full ${speechEnabled ? "bg-white/25" : "bg-white/10"}`}
           >
-            {speechEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
+            {speechEnabled ? <Volume2 size={16} aria-hidden="true" /> : <VolumeX size={16} aria-hidden="true" />}
           </button>
-          <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
+          <span className="h-2 w-2 animate-pulse rounded-full bg-green-400" aria-hidden="true" />
         </div>
       </header>
-      <div className="h-[65%] space-y-3 overflow-y-auto bg-cream p-3 scroll-smooth">
+      <div
+        role="log"
+        aria-live="polite"
+        aria-label="Conversation with Veera"
+        className="h-[65%] space-y-3 overflow-y-auto bg-cream p-3 scroll-smooth"
+      >
         {messages.map((message) => (
           <div key={message.id} className={`flex ${message.sender === "bot" ? "justify-start" : "justify-end"}`}>
             {message.sender === "bot" ? (
               <div className="flex max-w-[80%] items-start gap-2">
                 <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-primary">
-                  <ChefHat size={14} />
+                  <ChefHat size={14} aria-hidden="true" />
                 </span>
                 <p className="rounded-[4px_16px_16px_16px] bg-white p-3 text-sm text-ink shadow-sm">
                   {message.text}
@@ -106,10 +114,15 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
         ))}
 
         {typing && (
-          <div className="inline-flex items-center gap-2 rounded-[4px_16px_16px_16px] bg-white px-3 py-2">
+          <div
+            role="status"
+            aria-label={activity ? `Veera is ${activity}` : "Veera is typing"}
+            className="inline-flex items-center gap-2 rounded-[4px_16px_16px_16px] bg-white px-3 py-2"
+          >
             {[0, 1, 2].map((index) => (
               <span
                 key={index}
+                aria-hidden="true"
                 className="h-2 w-2 rounded-full bg-primary/60"
                 style={{ animation: `float 0.9s ease ${index * 0.15}s infinite` }}
               />
@@ -119,7 +132,11 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
         )}
       </div>
 
-      <div className="scrollbar-hide flex gap-2 overflow-x-auto border-t border-primary/10 bg-white px-3 py-2">
+      <div
+        role="group"
+        aria-label="Quick replies"
+        className="scrollbar-hide flex gap-2 overflow-x-auto border-t border-primary/10 bg-white px-3 py-2"
+      >
         {quickReplies.map((chip) => (
           <button
             key={chip}
@@ -136,19 +153,33 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
         {selectedImage && (
           <div className="absolute bottom-full left-4 mb-2 z-10 transition-all">
             <div className="relative inline-block rounded-lg shadow-soft bg-white p-1 border border-primary/10">
-              <img src={URL.createObjectURL(selectedImage)} alt="Preview" className="h-16 w-16 rounded object-cover" />
+              <img
+                src={URL.createObjectURL(selectedImage)}
+                alt="Selected attachment preview"
+                className="h-16 w-16 rounded object-cover"
+              />
               <button
                 type="button"
                 onClick={() => setSelectedImage(null)}
+                aria-label="Remove attached image"
                 className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white hover:bg-red-600 shadow"
               >
-                <X size={12} />
+                <X size={12} aria-hidden="true" />
               </button>
             </div>
           </div>
         )}
+        {error && (
+          <p role="alert" className="mb-2 rounded-[10px] bg-danger/10 px-3 py-1.5 text-xs font-medium text-danger">
+            {error}
+          </p>
+        )}
         <div className="relative w-full">
+          <label htmlFor="chat-message" className="sr-only">
+            Message Veera
+          </label>
           <input
+            id="chat-message"
             value={input}
             onChange={(event) => setInput(event.target.value)}
             placeholder="Ask or attach image..."
@@ -157,14 +188,17 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}
+            aria-label="Attach an image"
+            title="Attach an image"
             className="absolute left-2 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-cream text-primary"
           >
-            <Paperclip size={16} />
+            <Paperclip size={16} aria-hidden="true" />
           </button>
           <input
             type="file"
             accept="image/*"
             ref={fileInputRef}
+            aria-label="Attach an image"
             className="hidden"
             onChange={(e) => {
               if (e.target.files?.[0]) setSelectedImage(e.target.files[0]);
@@ -174,15 +208,24 @@ export default function ChatWidget({ compact = false }: { compact?: boolean }) {
           <button
             type="button"
             onClick={toggleRecording}
+            aria-pressed={isRecording}
+            aria-label={isRecording ? "Stop voice recording" : "Record a voice message"}
+            title={isRecording ? "Stop voice recording" : "Record a voice message"}
             className={`absolute right-12 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full ${isRecording ? "bg-red-500 animate-pulse text-white" : "bg-cream text-primary"}`}
           >
-            {isRecording ? <Square size={14} fill="currentColor" /> : <Mic size={14} />}
+            {isRecording ? (
+              <Square size={14} fill="currentColor" aria-hidden="true" />
+            ) : (
+              <Mic size={14} aria-hidden="true" />
+            )}
           </button>
           <button
             type="submit"
+            aria-label="Send message"
+            title="Send message"
             className="absolute right-2 top-1/2 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-white"
           >
-            <SendHorizontal size={14} />
+            <SendHorizontal size={14} aria-hidden="true" />
           </button>
         </div>
       </form>

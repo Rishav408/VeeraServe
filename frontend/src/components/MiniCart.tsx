@@ -10,7 +10,7 @@ export default function MiniCart() {
     <Card as="section" className="rounded-[20px] p-4">
       <div className="mb-3 flex items-center justify-between">
         <h3 className="font-display text-lg text-ink">Your Order</h3>
-        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary" aria-hidden="true">
           <ShoppingBag size={16} />
         </span>
       </div>
@@ -27,7 +27,7 @@ export default function MiniCart() {
             </div>
             <p className="text-sm font-semibold text-ink-soft">Nothing here yet</p>
             <Link to="/menu" className="mt-1 inline-block text-sm font-semibold text-primary hover:underline">
-              Browse Menu ?
+              Browse Menu →
             </Link>
           </div>
         ) : (
@@ -44,9 +44,10 @@ export default function MiniCart() {
                 <button
                   type="button"
                   onClick={() => removeFromCart(entry.item.id)}
+                  aria-label={`Remove ${entry.item.name} from cart`}
                   className="text-danger transition hover:scale-110"
                 >
-                  <Trash2 size={14} />
+                  <Trash2 size={14} aria-hidden="true" />
                 </button>
               </div>
 
@@ -54,17 +55,22 @@ export default function MiniCart() {
                 <button
                   type="button"
                   onClick={() => updateQuantity(entry.item.id, entry.quantity - 1)}
+                  aria-label={`Decrease quantity of ${entry.item.name}`}
                   className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-primary/20 bg-cream text-ink"
                 >
-                  <Minus size={12} />
+                  <Minus size={12} aria-hidden="true" />
                 </button>
-                <span className="w-6 text-center text-sm font-semibold">{entry.quantity}</span>
+                <span className="w-6 text-center text-sm font-semibold">
+                  <span className="sr-only">Quantity </span>
+                  {entry.quantity}
+                </span>
                 <button
                   type="button"
                   onClick={() => updateQuantity(entry.item.id, entry.quantity + 1)}
+                  aria-label={`Increase quantity of ${entry.item.name}`}
                   className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-primary/20 bg-cream text-ink"
                 >
-                  <Plus size={12} />
+                  <Plus size={12} aria-hidden="true" />
                 </button>
               </div>
             </div>

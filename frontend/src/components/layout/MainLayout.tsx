@@ -22,12 +22,20 @@ export default function MainLayout() {
   const cartCount = items.reduce((sum, entry) => sum + entry.quantity, 0);
 
   return (
-    <div className="mx-auto grid min-h-screen w-full max-w-[1600px] grid-cols-1 gap-4 p-3 pb-24 sm:p-4 sm:pb-24 lg:grid-cols-[260px,1fr] lg:pb-4 xl:grid-cols-[260px,1fr,300px]">
+    <>
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      <div className="mx-auto grid min-h-screen w-full max-w-[1600px] grid-cols-1 gap-4 p-3 pb-24 sm:p-4 sm:pb-24 lg:grid-cols-[260px,1fr] lg:pb-4 xl:grid-cols-[260px,1fr,300px]">
       <SidebarNav />
 
-      <main className="glass-card min-w-0 overflow-hidden rounded-[28px] p-4 shadow-card sm:p-6">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="glass-card min-w-0 overflow-hidden rounded-[28px] p-4 shadow-card sm:p-6"
+      >
         <div className="scrollbar-hide sticky top-0 z-20 -mx-4 mb-4 overflow-x-auto border-b border-primary/10 bg-white/80 px-4 pb-3 pt-2 backdrop-blur-md sm:-mx-6 sm:px-6 lg:hidden">
-          <div className="flex min-w-max gap-2">
+          <nav aria-label="Sections" className="flex min-w-max gap-2">
             {mobileLinks.map((link) => (
               <NavLink
                 key={link.to}
@@ -37,7 +45,7 @@ export default function MainLayout() {
                 {link.label}
               </NavLink>
             ))}
-          </div>
+          </nav>
         </div>
 
         <div className="page-enter">
@@ -47,7 +55,10 @@ export default function MainLayout() {
 
       <RightRail />
 
-      <nav className="fixed inset-x-3 bottom-3 z-40 flex items-center justify-between gap-1 rounded-2xl border border-primary/20 bg-white/90 p-2 shadow-card backdrop-blur-md lg:hidden">
+      <nav
+        aria-label="Primary"
+        className="fixed inset-x-3 bottom-3 z-40 flex items-center justify-between gap-1 rounded-2xl border border-primary/20 bg-white/90 p-2 shadow-card backdrop-blur-md lg:hidden"
+      >
         {mobileLinks.slice(0, 5).map((link) => {
           const Icon = link.icon;
           return (
@@ -60,7 +71,7 @@ export default function MainLayout() {
                 }`
               }
             >
-              <Icon size={16} />
+              <Icon size={16} aria-hidden="true" />
               {link.label}
               {link.to === "/cart" && cartCount > 0 && (
                 <motion.span
@@ -78,16 +89,19 @@ export default function MainLayout() {
         })}
       </nav>
 
-      {toast && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="toast-enter fixed bottom-20 left-4 z-50 inline-flex items-center gap-2 rounded-2xl bg-dhaba-hero px-6 py-4 text-sm font-semibold text-white shadow-glow-orange lg:bottom-6"
-        >
-          <CheckCircle size={18} />
-          {toast}
-        </motion.div>
-      )}
-    </div>
+        {toast && (
+          <motion.div
+            role="status"
+            aria-live="polite"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="toast-enter fixed bottom-20 left-4 z-50 inline-flex items-center gap-2 rounded-2xl bg-dhaba-hero px-6 py-4 text-sm font-semibold text-white shadow-glow-orange lg:bottom-6"
+          >
+            <CheckCircle size={18} aria-hidden="true" />
+            {toast}
+          </motion.div>
+        )}
+      </div>
+    </>
   );
 }

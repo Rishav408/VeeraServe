@@ -49,7 +49,7 @@ function SidebarLink({ to, label, icon: Icon, badge }: NavItem & { badge?: numbe
         }`
       }
     >
-      <Icon size={18} />
+      <Icon size={18} aria-hidden="true" />
       <span className="font-medium">{label}</span>
       {badge ? (
         <motion.span
@@ -76,18 +76,21 @@ export default function SidebarNav() {
   const isStaff = user?.role === "staff" || user?.role === "admin";
 
   return (
-    <aside className="sticky top-4 hidden h-[calc(100vh-2rem)] flex-col rounded-[24px] bg-gradient-to-b from-[#3E2723] via-[#5D4037] to-[#4E342E] p-4 text-white shadow-sidebar lg:flex">
+    <aside
+      aria-label="Sidebar"
+      className="sticky top-4 hidden h-[calc(100vh-2rem)] flex-col rounded-[24px] bg-gradient-to-b from-[#3E2723] via-[#5D4037] to-[#4E342E] p-4 text-white shadow-sidebar lg:flex"
+    >
       <div className="mb-6 flex items-center gap-3 rounded-2xl bg-white/10 p-3">
-        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-xl font-bold text-white shadow-glow-orange">
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-xl font-bold text-white shadow-glow-orange" aria-hidden="true">
           VD
         </div>
         <div>
-          <h1 className="font-display text-[20px] leading-tight text-white">Veera Dhabha</h1>
+          <p className="font-display text-[20px] leading-tight text-white">Veera Dhabha</p>
           <p className="font-label text-xs text-white/70">AI Ordering</p>
         </div>
       </div>
 
-      <nav className="flex-1 space-y-2">
+      <nav aria-label="Primary" className="flex-1 space-y-2 overflow-y-auto">
         {links.map((link) => (
           <SidebarLink key={link.to} {...link} badge={link.to === "/cart" ? cartCount : undefined} />
         ))}
@@ -104,7 +107,7 @@ export default function SidebarNav() {
 
       <div className="rounded-xl bg-white/10 p-3">
         <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-gold" />
+          <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-gold" aria-hidden="true" />
           <p className="text-[13px] text-white/80">Ask Veera Bot</p>
         </div>
       </div>

@@ -8,7 +8,6 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: "LOAD"; payload: CartState }
   | { type: "ADD_ITEM"; payload: MenuItem }
   | { type: "REMOVE_ITEM"; payload: string }
   | { type: "UPDATE_QTY"; payload: { id: string; quantity: number } }
@@ -33,8 +32,6 @@ const initialState: CartState = {
 
 function reducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
-    case "LOAD":
-      return action.payload;
     case "ADD_ITEM": {
       const existing = state.items.find((entry) => entry.item.id === action.payload.id);
       if (existing) {
@@ -67,15 +64,20 @@ function reducer(state: CartState, action: CartAction): CartState {
   }
 }
 
-export function CartProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  useEffect(() => {
+function loadState(): CartState {
+  try {
     const saved = localStorage.getItem(STORAGE_KEYS.cart);
     if (saved) {
-      dispatch({ type: "LOAD", payload: JSON.parse(saved) as CartState });
+      return JSON.parse(saved) as CartState;
     }
-  }, []);
+  } catch {
+    return initialState;
+  }
+  return initialState;
+}
+
+export function CartProvider({ children }: { children: ReactNode }) {
+  const [state, dispatch] = useReducer(reducer, undefined, loadState);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.cart, JSON.stringify(state));

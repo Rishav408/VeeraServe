@@ -5,9 +5,10 @@ mini-project. VeeraServe (persona "Veera") is grounded in the real menu, can tak
 (add to cart, place orders, check status), and accepts text, voice, and image input — all running on
 local, zero-cost open models.
 
-> **Status:** in active development. The repository currently contains the original prototype; the
-> documented revamp is planned and tracked in [`docs/TASKS.md`](docs/TASKS.md). This README describes
-> the current state and the target, and is kept honest as phases complete.
+> **Status:** v1.0 (tagged). All planned phases (P0–P8) are complete and verified; see
+> `docs/evaluation/EVALUATION.md` for the measured results and
+> `docs/demo/` for real demo screenshots. P9-style containerised deployment is out of scope for v1
+> (decision D-18 in `docs/MEMORY.md`) — the documented run is local.
 
 ## Overview
 
@@ -27,13 +28,11 @@ Target capabilities (see [`docs/FEATURES.md`](docs/FEATURES.md) for status and p
 - Agentic actions via tools: add/update cart, place order, order status, offers, reservations.
 - Voice input (faster-whisper) and image input (local vision model).
 - Complete ordering flow: menu, cart, checkout, order tracking, feedback.
-- Admin console with real (non-mock) menu and order management and analytics.
-
-## Tech stack
+- Admin console with real (non-mock) menu and order management and analytics.## Tech stack
 
 | Layer | Technology |
 |---|---|
-| Front end | React 18 + Vite + Tailwind CSS (TypeScript migration planned) |
+| Front end | React + Vite + Tailwind CSS (TypeScript, strict) |
 | Back end | Python 3.11 + FastAPI + SQLAlchemy + Pydantic |
 | Agent | LangGraph (grounded, tool-calling) |
 | Local LLM | **LM Studio** via its OpenAI-compatible local API |
@@ -50,12 +49,13 @@ The full rationale and versions are in [`docs/architecture/TECH_STACK.md`](docs/
 ### LM Studio setup
 
 1. Install [LM Studio](https://lmstudio.ai/) and open it.
-2. Download a chat/vision model (e.g. a Qwen2.5-VL GGUF) and an embedding model (e.g.
-   `nomic-embed-text`). The exact model is finalised in Phase P6 (see [`docs/MEMORY.md`](docs/MEMORY.md) O-1).
-3. Load the model, open the **Local Server** tab, and start the server (default
-   `http://localhost:1234`).
-4. Copy `backend/.env.example` to `backend/.env` and set `LLM_BASE_URL`, `LLM_MODEL`, and
-   `EMBEDDING_MODEL` to match what you loaded.
+2. Download a chat model (e.g. a Qwen2.5 GGUF) and an embedding model (e.g.
+   `text-embedding-nomic-embed-text-v1.5`); names must match `LLM_CHAT_MODEL` /
+   `LLM_EMBEDDING_MODEL` in `backend/.env`.
+3. Load the models, open the **Local Server** tab, and start the server (default
+   `http://localhost:1234/v1`).
+4. Copy `backend/.env.example` to `backend/.env` and set `LLM_BASE_URL`,
+   `LLM_CHAT_MODEL`, and `LLM_EMBEDDING_MODEL` to match what you loaded.
 
 If LM Studio is not running, the ordering app still works; only the AI features are unavailable.
 
@@ -119,16 +119,18 @@ The target structure is defined in
 | [`docs/FEATURES.md`](docs/FEATURES.md) | Feature inventory with status |
 | [`docs/architecture/ARCHITECTURE.md`](docs/architecture/ARCHITECTURE.md) | System design |
 | [`docs/ai/AGENT_DESIGN.md`](docs/ai/AGENT_DESIGN.md) | Agent, tools, RAG, memory |
-| [`docs/evaluation/EVALUATION.md`](docs/evaluation/EVALUATION.md) | Evaluation protocol |
+| [`docs/evaluation/EVALUATION.md`](docs/evaluation/EVALUATION.md) | Evaluation protocol + results |
+| [`docs/DEMONSTRATION_FLOW.md`](docs/DEMONSTRATION_FLOW.md) | Demo script + screenshot assets |
+| [`docs/ACADEMIC_REPORT.md`](docs/ACADEMIC_REPORT.md) | Academic report |
 | [`docs/TASKS.md`](docs/TASKS.md) | Phased implementation plan |
 
 ## Honesty notes
 
-Some behaviour is intentionally simulated and labelled as such, and some features are still mock:
-
-- Kitchen/order status is simulated unless a real integration is added.
-- Admin analytics currently use mock data and are replaced with real DB queries in Phase P7.
-- The AI is not yet grounded in the menu; grounding is implemented in Phase P6.
+- Kitchen/order status is simulated (labelled), not a real kitchen integration.
+- STT evaluation uses Windows SAPI-synthesised clips; the corpus WER (0.181) misses the 0.15 target
+  and is reported as such.
+- Vision usefulness (M-6) was not measured; the image path is functionally integrated only.
+- The pinned evaluation models were substituted with locally available ones and disclosed.
 
 See [`docs/IDE_Context.md`](docs/IDE_Context.md) for the current, verified state of the project.
 

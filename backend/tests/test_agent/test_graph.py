@@ -132,3 +132,21 @@ def test_vision_node_grounds_on_menu(db, item_with_price: MenuItem) -> None:
 
     assert result["intent"] == "vision"
     assert item_with_price.name in result["reply"]
+
+
+def test_ordering_skips_name_subsets(db, item_with_price: MenuItem) -> None:
+    super_item = db.scalars(select(MenuItem).where(MenuItem.name == "Butter Garlic Naan")).first()
+    assert super_item is not None
+
+    result = run_agent(db, "add butter garlic naan", session_id=uuid4().hex)
+
+    names = [line["name"] for line in result["cart"]]
+    assert "Butter Garlic Naan" in names
+    assert "Naan" not in names
+
+
+def test_ordering_reports_only_real_tool_results(db, item_with_price: MenuItem) -> None:
+    result = run_agent(db, f"add 1 {item_with_price.name}", session_id=uuid4().hex)
+
+    assert result["tool_results"]
+    assert all(entry["tool"] == "add_to_cart" and entry["ok"] for entry in result["tool_results"])

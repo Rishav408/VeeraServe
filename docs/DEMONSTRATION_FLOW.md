@@ -46,12 +46,14 @@ server-side.
 **Goal:** Show grounding + tool calling.
 
 1. Open **Chat**.
-2. Type: **"I'm veg and I want something spicy under ₹350."**
-   - VeeraServe replies with real, in-menu items (e.g., Thecha Paneer Chilli) and their prices.
+2. Type: **"Recommend something veg and spicy."**
+   - VeeraServe replies with real, in-menu veg dishes (e.g., Paneer Khurchan ₹350, Korean Chilli
+     Mushroom ₹310) at their real prices.
    - *Point out:* every dish exists in the menu; ask the evaluator to cross-check on the Menu page.
-3. Type: **"Add the first one and a butter garlic naan."**
-   - The agent calls `add_to_cart` twice; the cart badge updates.
-   - *Point out:* the agent **acted**, not just described.
+3. Type: **"Add Paneer Khurchan and a Butter Garlic Naan."**
+   - The agent calls `add_to_cart` for exactly those two dishes; the cart badge updates.
+   - *Point out:* the agent **acted**, not just described, and did not add the generic "Naan"
+     instead of the specific one.
 4. Ask a trap: **"Add a butter chicken pizza and a paneer sushi roll."**
    - The agent adds the real item and clearly states that "paneer sushi roll" isn't on the menu.
    - *Point out:* this is the anti-hallucination property — a naive chatbot would invent it.
@@ -126,7 +128,30 @@ about that.
 
 ---
 
-## 9. Closing summary slide / script
+## 9. Capture verification (P8.5)
+
+The flow above was executed end to end against the local stack (backend + frontend + LM Studio
+embedding model) and captured with headless Chrome. The screenshots are committed as evidence in
+`docs/demo/`:
+
+| File | Shows |
+|---|---|
+| `01-home.png` | Home, diner-visible menu stats, right-rail cart |
+| `02-menu.png` | Menu grouped by category with search |
+| `03-item-details.png` | Item details with price, spice, tags |
+| `10-chat-grounding.png` | Grounded menu + recommendation replies |
+| `04-chat-agent.png` | Add-to-cart action + confirmation prompt |
+| `05-cart.png` | Cart after the agent action (persists across reload) |
+| `06-checkout.png` | Checkout with server-side totals |
+| `07`–`09-mobile-*.png` | Mobile layout (390 px) home/menu/cart |
+
+The cart-persistence and chat screenshots verified two fixes made during this pass: cart state now
+restores from `localStorage` on full reload (React StrictMode previously cleared it), and specific
+dish names no longer also match their generic subsets.
+
+---
+
+## 10. Closing summary slide / script
 
 > "VeeraServe is a complete, local-first restaurant service. Its AI waiter is grounded in the real
 > menu, can take real actions, accepts voice and images, and its GenAI claims are measured with a
@@ -134,7 +159,7 @@ about that.
 
 ---
 
-## 10. Recovery / fallback notes
+## 11. Recovery / fallback notes
 
 - If the model is slow on first call, run a warm-up question before the audience arrives.
 - If tool-calling fails on a small model, demonstrate the JSON-schema fallback path (it still acts).

@@ -54,9 +54,10 @@ export default function CartScreen() {
             <button
               type="button"
               onClick={() => removeFromCart(entry.item.id)}
+              aria-label={`Remove ${entry.item.name} from cart`}
               className="absolute right-3 top-3 text-ink-muted transition hover:text-danger"
             >
-              <Trash2 size={16} />
+              <Trash2 size={16} aria-hidden="true" />
             </button>
 
             <img
@@ -81,17 +82,22 @@ export default function CartScreen() {
               <button
                 type="button"
                 onClick={() => updateQuantity(entry.item.id, entry.quantity - 1)}
+                aria-label={`Decrease quantity of ${entry.item.name}`}
                 className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-primary/30 bg-cream text-ink transition hover:border-primary"
               >
-                <Minus size={14} />
+                <Minus size={14} aria-hidden="true" />
               </button>
-              <span className="w-8 text-center font-display text-lg font-semibold text-primary">{entry.quantity}</span>
+              <span className="w-8 text-center font-display text-lg font-semibold text-primary">
+                <span className="sr-only">Quantity </span>
+                {entry.quantity}
+              </span>
               <button
                 type="button"
                 onClick={() => updateQuantity(entry.item.id, entry.quantity + 1)}
+                aria-label={`Increase quantity of ${entry.item.name}`}
                 className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-primary/30 bg-cream text-ink transition hover:border-primary"
               >
-                <Plus size={14} />
+                <Plus size={14} aria-hidden="true" />
               </button>
             </div>
 

@@ -63,12 +63,18 @@ export default function CheckoutScreen() {
             <div className="mt-4 flex items-center gap-3">
               <Input
                 type="number"
+                aria-label="Table number"
                 value={tableNumber}
                 onChange={(e) => setTableNumber(e.target.value)}
                 placeholder="Table #"
                 className="h-[60px] rounded-[12px] border-2 border-primary/30 px-4 text-center text-3xl font-bold text-primary"
               />
-              <Button variant="outline" className="shrink-0 rounded-pill border border-primary px-4 py-2 text-primary">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => showToast("QR scanning is not available in this demo.")}
+                className="shrink-0 rounded-pill border border-primary px-4 py-2 text-primary"
+              >
                 Scan QR
               </Button>
             </div>
@@ -84,13 +90,16 @@ export default function CheckoutScreen() {
                     key={option.key}
                     type="button"
                     onClick={() => setPaymentMethod(option.key)}
+                    aria-pressed={isSelected}
                     className={`card-3d cursor-pointer rounded-[12px] p-4 text-left transition ${
                       isSelected
                         ? "border-2 border-primary bg-primary/5 shadow-glow-orange"
                         : "border border-transparent hover:border-primary/20"
                     }`}
                   >
-                    <div className="mb-2 text-2xl">{option.emoji}</div>
+                    <div className="mb-2 text-2xl" aria-hidden="true">
+                      {option.emoji}
+                    </div>
                     <p className="text-sm font-semibold text-ink">{option.label}</p>
                     <p className="mt-0.5 text-xs text-ink-muted">{option.sublabel}</p>
                   </button>
@@ -101,7 +110,11 @@ export default function CheckoutScreen() {
 
           <Card as="section" className="rounded-[16px] p-5">
             <h3 className="font-label text-base font-semibold text-ink">Special instructions? <span className="font-normal text-ink-muted">(optional)</span></h3>
+            <label htmlFor="order-instructions" className="sr-only">
+              Special instructions
+            </label>
             <textarea
+              id="order-instructions"
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
               placeholder="Extra napkins, less spicy, etc."
@@ -116,7 +129,7 @@ export default function CheckoutScreen() {
             whileTap={{ scale: 0.98 }}
             className="btn-primary flex h-14 w-full items-center justify-center gap-2 text-base font-semibold shadow-glow-orange disabled:opacity-60"
           >
-            <CheckCircle size={20} /> {createOrder.isPending ? "Placing order…" : "Confirm Order →"}
+            <CheckCircle size={20} aria-hidden="true" /> {createOrder.isPending ? "Placing order…" : "Confirm Order →"}
           </motion.button>
         </div>
 

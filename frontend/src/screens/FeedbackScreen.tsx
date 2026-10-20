@@ -64,7 +64,7 @@ export default function FeedbackScreen() {
         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-success/20 text-success">
           <Check size={32} />
         </div>
-        <h2 className="font-display text-[28px] text-ink">Shukria! 🙏</h2>
+        <h1 className="font-display text-[28px] text-ink">Shukria! 🙏</h1>
         <p className="mt-2 text-sm text-ink-muted">Thank you for dining at Veera Dhabha</p>
         <button
           type="button"
@@ -94,10 +94,13 @@ export default function FeedbackScreen() {
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setRating(key, star)}
+                    aria-label={`${label}: ${star} star${star === 1 ? "" : "s"}`}
+                    aria-pressed={ratings[key] === star}
                     className="text-2xl transition"
                   >
                     <Star
                       size={28}
+                      aria-hidden="true"
                       className={star <= ratings[key] ? "fill-gold text-gold" : "text-cream-deeper"}
                     />
                   </motion.button>
@@ -108,7 +111,11 @@ export default function FeedbackScreen() {
         </div>
 
         <div className="mt-5">
+          <label htmlFor="feedback-comment" className="sr-only">
+            Additional comments
+          </label>
           <textarea
+            id="feedback-comment"
             value={comment}
             onChange={(event) => setComment(event.target.value)}
             className="h-24 w-full rounded-[12px] border border-primary/20 bg-cream p-3 text-sm outline-none transition focus:border-primary"
