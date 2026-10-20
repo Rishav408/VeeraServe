@@ -65,6 +65,12 @@ def _save_cart(state: AgentState, ctx: ToolContext) -> None:
     state["cart"] = ctx.cart.as_list()
 
 
+def _record_call(state: AgentState, tool: str, args: dict[str, Any]) -> None:
+    calls = list(state.get("tool_calls") or [])
+    calls.append({"tool": tool, "args": args})
+    state["tool_calls"] = calls
+
+
 def _price_text(price: int | None) -> str:
     return f"₹{price}" if price is not None else "price on request"
 
@@ -86,6 +92,7 @@ def _clean_query(message: str) -> str:
 def load_memory(state: AgentState, config: RunnableConfig) -> AgentState:
     state["memory"] = memory.load_preferences(_db(config), state.get("user_id"))
     state.setdefault("history", [])
+    state["tool_calls"] = []
     return state
 
 
@@ -141,6 +148,7 @@ def menu_node(state: AgentState, config: RunnableConfig) -> AgentState:
     ctx = _context(state, db)
     query = _clean_query(state.get("user_message", ""))
     result = call_tool("search_menu", ctx, {"query": query})
+    _record_call(state, "search_menu", {"query": query})
 
     items = (result.data or {}).get("items", [])
     state["tool_results"] = [{"tool": "search_menu", **result.model_dump()}]
@@ -170,9 +178,9 @@ def recommend_node(state: AgentState, config: RunnableConfig) -> AgentState:
         dietary = None
 
     spice_pref = 3 if ("spicy" in message or "hot" in message) else (1 if "mild" in message else None)
-    result = call_tool(
-        "get_recommendations", ctx, {"dietary": dietary, "spice_pref": spice_pref}
-    )
+    args = {"dietary": dietary, "spice_pref": spice_pref}
+    result = call_tool("get_recommendations", ctx, args)
+    _record_call(state, "get_recommendations", args)
     recs = (result.data or {}).get("recommendations", [])
     state["tool_results"] = [{"tool": "get_recommendations", **result.model_dump()}]
     state["retrieved"] = recs
@@ -201,7 +209,9 @@ def ordering_node(state: AgentState, config: RunnableConfig) -> AgentState:
 
     if pending and intents.is_affirmative(message):
         ctx.confirmed = True
-        result = call_tool("place_order", ctx, pending.get("order_args", {}))
+        order_args = pending.get("order_args", {})
+        result = call_tool("place_order", ctx, order_args)
+        _record_call(state, "place_order", order_args)
         state["tool_results"] = [{"tool": "place_order", **result.model_dump()}]
         if result.ok:
             order = (result.data or {}).get("order", {})
@@ -230,9 +240,11 @@ def ordering_node(state: AgentState, config: RunnableConfig) -> AgentState:
     quantity = intents.extract_quantity(message)
     for item in matches:
         call_tool("add_to_cart", ctx, {"item_id": item.id, "quantity": quantity})
+        _record_call(state, "add_to_cart", {"item_id": item.id, "quantity": quantity})
     _save_cart(state, ctx)
 
     summary_result = call_tool("place_order", ctx, {"payment_method": "cash"})
+    _record_call(state, "place_order", {"payment_method": "cash"})
     state["tool_results"] = [{"tool": "add_to_cart", **summary_result.model_dump()}]
     summary = (summary_result.data or {}).get("summary", {})
     state["pending_confirmation"] = {
@@ -253,6 +265,7 @@ def status_node(state: AgentState, config: RunnableConfig) -> AgentState:
     db = _db(config)
     ctx = _context(state, db)
     result = call_tool("get_order_status", ctx, {})
+    _record_call(state, "get_order_status", {})
     state["tool_results"] = [{"tool": "get_order_status", **result.model_dump()}]
     if result.ok:
         data = result.data or {}
@@ -295,10 +308,12 @@ def vision_node(state: AgentState, config: RunnableConfig) -> AgentState:
     candidates = _image_candidates(db, description)
     if candidates:
         tool_record: dict[str, Any] = {"tool": "get_recommendations", "ok": True, "data": None}
+        _record_call(state, "get_recommendations", {"query": description})
     else:
         result = call_tool("search_menu", ctx, {"query": description})
         candidates = (result.data or {}).get("items", [])
         tool_record = {"tool": "search_menu", **result.model_dump()}
+        _record_call(state, "search_menu", {"query": description})
 
     state["tool_results"] = [tool_record]
     state["retrieved"] = candidates[:3]

@@ -302,10 +302,14 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
 
 ## Phase P8 — Evaluation, Polish & Delivery
 
-- [ ] **P8.1 — Evaluation harness (groundedness & tool accuracy)**
+- [x] **P8.1 — Evaluation harness (groundedness & tool accuracy)**
   - Evaluation harness skeleton under `evaluation/harness/` per `evaluation/EVALUATION.md`.
   - Groundedness/hallucination evaluation set + runner.
   - Tool-call accuracy set + runner.
+  - Built: `evaluation/harness/common.py` (in-memory DB, dataset loading, result writing), `groundedness.py` (rupee/dish/target checks), `run_grounding.py` (`--mode agent|llm-rag|llm-no-rag`, `--repeat`, `--strict`), `run_tools.py` (ordered call + tolerant-arg matching), `llm_answer.py` (direct-LLM ablation modes).
+  - Datasets: `evaluation/datasets/grounding.json` (48 positive item refs + 16 negative traps) and `evaluation/datasets/tools.json` (40 utterances, incl. multi-turn confirmation and no-tool cases).
+  - Agent nodes now record `tool_calls` (name + args) per turn for M-3 scoring; `load_memory` resets the list each turn.
+  - Baseline recorded: `evaluation/results/grounding-agent.json` (groundedness 1.000, hallucination 0.000, refusal 1.000) and `tools.json` (accuracy 1.000); tests in `backend/tests/test_eval_harness.py` (7).
   Commit: `Update - P8.1 - eval harness, groundedness and tool accuracy`
 
 - [ ] **P8.2 — Task success, STT WER & latency**

@@ -1,0 +1,662 @@
+{
+  "suite": "grounding",
+  "mode": "agent",
+  "dataset_version": "1.0.0",
+  "repeat": 1,
+  "items": 64,
+  "records": [
+    {
+      "id": "g-001",
+      "kind": "price",
+      "question": "How much is Classic Mac and Cheese?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Classic Mac and Cheese (veg) — ₹265."
+    },
+    {
+      "id": "g-002",
+      "kind": "availability",
+      "question": "Do you have Jalapeno Pune Creamy Vegetable Pasta?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Jalapeno Pune Creamy Vegetable Pasta (veg) — ₹290."
+    },
+    {
+      "id": "g-003",
+      "kind": "about",
+      "question": "Tell me about Penne Alla Vodka",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Penne Alla Vodka (veg) — ₹265."
+    },
+    {
+      "id": "g-004",
+      "kind": "price",
+      "question": "How much is Spaghetti AOP?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Spaghetti AOP (veg) — ₹310."
+    },
+    {
+      "id": "g-005",
+      "kind": "availability",
+      "question": "Do you have Grilled Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Grilled Chicken (non-veg) — ₹390."
+    },
+    {
+      "id": "g-006",
+      "kind": "about",
+      "question": "Tell me about Triple Veg Schezwan Fried Rice",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Triple Veg Schezwan Fried Rice (veg) — ₹310."
+    },
+    {
+      "id": "g-007",
+      "kind": "price",
+      "question": "How much is Veg Manchurian Fried Rice?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Veg Manchurian Fried Rice (veg) — ₹310."
+    },
+    {
+      "id": "g-008",
+      "kind": "availability",
+      "question": "Do you have Tangra Chilli Chicken Egg Noodles?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Tangra Chilli Chicken Egg Noodles (non-veg) — ₹399."
+    },
+    {
+      "id": "g-009",
+      "kind": "about",
+      "question": "Tell me about Triple Chicken Schezwan Fried Rice",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Triple Chicken Schezwan Fried Rice (non-veg) — ₹399."
+    },
+    {
+      "id": "g-010",
+      "kind": "price",
+      "question": "How much is Roti?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Butter Roti (veg) — ₹40; Roti (veg) — ₹30."
+    },
+    {
+      "id": "g-011",
+      "kind": "availability",
+      "question": "Do you have Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Butter Garlic Naan (veg) — ₹65; Butter Laccha Naan (veg) — ₹65; Butter Naan (veg) — ₹45; Cheese Chilli Garlic Naan (veg) — ₹210; Naan (veg) — ₹40."
+    },
+    {
+      "id": "g-012",
+      "kind": "about",
+      "question": "Tell me about Butter Naan",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Butter Naan (veg) — ₹45."
+    },
+    {
+      "id": "g-013",
+      "kind": "price",
+      "question": "How much is Butter Laccha Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Butter Laccha Naan (veg) — ₹65."
+    },
+    {
+      "id": "g-014",
+      "kind": "availability",
+      "question": "Do you have Butter Garlic Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Butter Garlic Naan (veg) — ₹65."
+    },
+    {
+      "id": "g-015",
+      "kind": "about",
+      "question": "Tell me about Warqi Paratha",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Warqi Paratha (veg) — ₹99."
+    },
+    {
+      "id": "g-016",
+      "kind": "price",
+      "question": "How much is Cheese Chilli Garlic Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Cheese Chilli Garlic Naan (veg) — ₹210."
+    },
+    {
+      "id": "g-017",
+      "kind": "availability",
+      "question": "Do you have Amritsari Paneer Lababdar?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Amritsari Paneer Lababdar (veg) — ₹350."
+    },
+    {
+      "id": "g-018",
+      "kind": "about",
+      "question": "Tell me about Pindi Chole",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Pindi Chole (veg) — ₹350."
+    },
+    {
+      "id": "g-019",
+      "kind": "price",
+      "question": "How much is Veg Diwani Handi?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Veg Diwani Handi (veg) — ₹350."
+    },
+    {
+      "id": "g-020",
+      "kind": "availability",
+      "question": "Do you have Dal Bukhara?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Dal Bukhara (veg) — ₹310."
+    },
+    {
+      "id": "g-021",
+      "kind": "about",
+      "question": "Tell me about Dal Tadka",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Dal Tadka (veg) — ₹285."
+    },
+    {
+      "id": "g-022",
+      "kind": "price",
+      "question": "How much is Butter Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Butter Chicken (non-veg) — ₹385; Butter Chicken Pizza (non-veg) — ₹410."
+    },
+    {
+      "id": "g-023",
+      "kind": "availability",
+      "question": "Do you have Chicken Saoji Rassa?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Chicken Saoji Rassa (non-veg) — ₹385."
+    },
+    {
+      "id": "g-024",
+      "kind": "about",
+      "question": "Tell me about Saoji Mutton Rassa",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Saoji Mutton Rassa (non-veg) — ₹499."
+    },
+    {
+      "id": "g-025",
+      "kind": "price",
+      "question": "How much is Chicken Lababdar?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Chicken Lababdar (non-veg) — ₹385."
+    },
+    {
+      "id": "g-026",
+      "kind": "availability",
+      "question": "Do you have Ghee Roast Prawns?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Ghee Roast Prawns (non-veg) — ₹410."
+    },
+    {
+      "id": "g-027",
+      "kind": "about",
+      "question": "Tell me about Thecha Paneer Chilli",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Thecha Paneer Chilli (veg) — ₹310."
+    },
+    {
+      "id": "g-028",
+      "kind": "price",
+      "question": "How much is Old Style Paneer Chilli?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Old Style Paneer Chilli (veg) — ₹310."
+    },
+    {
+      "id": "g-029",
+      "kind": "availability",
+      "question": "Do you have Korean Chilli Mushroom?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Korean Chilli Mushroom (veg) — ₹310."
+    },
+    {
+      "id": "g-030",
+      "kind": "about",
+      "question": "Tell me about Veg Crystal Momos",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Veg Crystal Momos (veg) — ₹310."
+    },
+    {
+      "id": "g-031",
+      "kind": "price",
+      "question": "How much is Veg Dragon Roll?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Veg Dragon Roll (veg) — ₹310."
+    },
+    {
+      "id": "g-032",
+      "kind": "availability",
+      "question": "Do you have Veg Manchurian Dry?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Veg Manchurian Dry (veg) — ₹310."
+    },
+    {
+      "id": "g-033",
+      "kind": "about",
+      "question": "Tell me about Tandoori Soya Chaap",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Tandoori Soya Chaap (veg) — ₹310."
+    },
+    {
+      "id": "g-034",
+      "kind": "price",
+      "question": "How much is Roasted Veg Paneer Tikka Sandwich?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Roasted Veg Paneer Tikka Sandwich (veg) — ₹310."
+    },
+    {
+      "id": "g-035",
+      "kind": "availability",
+      "question": "Do you have Pesto Chicken Pizza?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Pesto Chicken Pizza (non-veg) — ₹410."
+    },
+    {
+      "id": "g-036",
+      "kind": "about",
+      "question": "Tell me about Butter Chicken Pizza",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Butter Chicken Pizza (non-veg) — ₹410."
+    },
+    {
+      "id": "g-037",
+      "kind": "price",
+      "question": "How much is Korean Chicken Chilli?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Korean Chicken Chilli (non-veg) — ₹399."
+    },
+    {
+      "id": "g-038",
+      "kind": "availability",
+      "question": "Do you have Schezwan Chicken Lollipop?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Schezwan Chicken Lollipop (non-veg) — ₹399."
+    },
+    {
+      "id": "g-039",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Momos",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Chicken Tikka Momos (non-veg) — ₹399."
+    },
+    {
+      "id": "g-040",
+      "kind": "price",
+      "question": "How much is Burnchilli Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Burnchilli Chicken (non-veg) — ₹399."
+    },
+    {
+      "id": "g-041",
+      "kind": "availability",
+      "question": "Do you have Kerala Style Fish Fry?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Kerala Style Fish Fry (non-veg) — ₹399."
+    },
+    {
+      "id": "g-042",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Supreme",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Chicken Tikka Supreme (non-veg) — ₹399."
+    },
+    {
+      "id": "g-043",
+      "kind": "price",
+      "question": "How much is Redbull?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Redbull (veg) — ₹199."
+    },
+    {
+      "id": "g-044",
+      "kind": "availability",
+      "question": "Do you have Canned Juices?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Canned Juices (veg) — ₹99."
+    },
+    {
+      "id": "g-045",
+      "kind": "about",
+      "question": "Tell me about Soda",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Soda (veg) — ₹99."
+    },
+    {
+      "id": "g-046",
+      "kind": "price",
+      "question": "How much is Coke?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Coke (veg) — ₹49; Diet Coke (veg) — ₹99; LITT (Gin, Vodka, Tequila, Rum, Triple Sec, Coke) (veg) — ₹499."
+    },
+    {
+      "id": "g-047",
+      "kind": "availability",
+      "question": "Do you have Diet Coke?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Diet Coke (veg) — ₹99."
+    },
+    {
+      "id": "g-048",
+      "kind": "about",
+      "question": "Tell me about Water",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Here's what I found: Elevate (Gin, Tangerine, Orange Juice, Mint, Sparkling Water) (veg) — ₹349; Sweet Sin (Tequila, Watermelon, Mint, Salt) (veg) — ₹349; Tonic Water (veg) — ₹149; Water (veg) — ₹49."
+    },
+    {
+      "id": "g-049",
+      "kind": "negative",
+      "question": "Do you have sushi?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'sushi'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-050",
+      "kind": "negative",
+      "question": "How much is beef wellington?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'beef wellington'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-051",
+      "kind": "negative",
+      "question": "Do you have lobster?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'lobster'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-052",
+      "kind": "negative",
+      "question": "Tell me about biryani",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'biryani'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-053",
+      "kind": "negative",
+      "question": "Do you have ramen?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'ramen'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-054",
+      "kind": "negative",
+      "question": "How much is lasagna?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'lasagna'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-055",
+      "kind": "negative",
+      "question": "Do you have falafel?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'falafel'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-056",
+      "kind": "negative",
+      "question": "Tell me about shawarma",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'shawarma'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-057",
+      "kind": "negative",
+      "question": "How much is tiramisu?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'tiramisu'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-058",
+      "kind": "negative",
+      "question": "Do you have cheesecake?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'cheesecake'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-059",
+      "kind": "negative",
+      "question": "How much is a hot dog?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'a hot dog'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-060",
+      "kind": "negative",
+      "question": "Do you have tacos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'tacos'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-061",
+      "kind": "negative",
+      "question": "Tell me about paella",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'paella'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-062",
+      "kind": "negative",
+      "question": "Do you have risotto?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'risotto'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-063",
+      "kind": "negative",
+      "question": "How much is pad thai?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'pad thai'. Want me to suggest something from the menu?"
+    },
+    {
+      "id": "g-064",
+      "kind": "negative",
+      "question": "Do you have nachos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sorry, we don't have anything matching 'nachos'. Want me to suggest something from the menu?"
+    }
+  ],
+  "metrics": {
+    "groundedness": 1.0,
+    "hallucination": 0.0,
+    "refusal": 1.0,
+    "accuracy": 1.0
+  },
+  "targets": {
+    "groundedness": 0.95,
+    "hallucination": 0.05,
+    "refusal": 0.95
+  },
+  "generated_at": "2026-10-20T13:20:07.213800+00:00",
+  "git_revision": "a48cdd6"
+}

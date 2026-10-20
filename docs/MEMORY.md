@@ -38,6 +38,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | D-12 | RAG vector store is **Chroma** (persistent local client), embeddings from LM Studio (`nomic-embed-text`). | Persistent, zero-service, Python-native; simplest path to grounded retrieval (resolves O-3). | Accepted |
 | D-13 | Chat replies stream over **SSE** (`POST /api/v1/chat`); the deterministic graph reply is authoritative and any LLM rephrasing is **verification-gated** (fallback to the template when it introduces an ungrounded price). Voice is **faster-whisper** in-process; TTS is browser `speechSynthesis`. | Keeps the demo honest and offline: streamed, grounded output that degrades safely when the model is unavailable (implements D-8). | Accepted |
 | D-14 | The **database is the runtime source of truth** for the menu. Startup seeding is **add-only** (bootstrap from `data/menu.seed.json`, never overwrite existing rows), and Chroma is re-indexed **from the DB** (`reindex_menu`) after seeding and after every admin mutation. Refines D-7 (the seed stays the canonical *initial* catalogue). | Admin CRUD edits must persist and propagate to the diner menu and the agent; keeps a single definition of menu data while making it editable at runtime. | Accepted |
+| D-15 | Evaluation harness conventions: (a) the shipped **agent path is measured as-is** (Mode `agent`) while the **RAG ablation** uses direct-LLM modes (`llm-rag` vs `llm-no-rag`) so retrieval value is isolated from the deterministic tools; (b) groundedness passes only if **every ₹ amount is a real menu price** and the requested dish/price is present, while negative traps must be **refused without a price**; (c) tool accuracy scores an **ordered subsequence** of expected calls with exact ids/quantities and substring matching for free-text args (extra chained calls are allowed); (d) agent nodes record `tool_calls` (name + args) per turn for scoring. | The deterministic graph is DB-grounded by construction, so measuring it alone cannot show retrieval's contribution; explicit, documented scoring rules keep M-1–M-3 reproducible and auditable. | Accepted |
 
 ### Superseded decisions
 
@@ -137,6 +138,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P7.2: added a `status` filter to `GET /api/v1/orders` (validated) and rebuilt the admin order screen on the API with status filter tabs, timelines, and forward-only "Mark <next>" transitions. | TASKS P7.2 |
 | (rev) | Phase P7.3: added `GET /api/v1/analytics/dashboard` (`app/services/analytics.py`, admin-only) computing revenue, order counts, 7-day trend, top items, peak hours and ratings from the DB; rebuilt `AdminDashboardScreen` on it and deleted the random charts and the mock store (`AppDataContext`, `data/demoData.ts`, `data/menu.ts`). | TASKS P7.3 |
 | (rev) | Phase P7.4: added a persisted `Feedback.acknowledged` flag (with a startup column backfill for existing SQLite dev DBs) and `PATCH /api/v1/feedback/{id}/acknowledge`; built the admin feedback inbox and role-gated admin navigation. Gate 7 met. | TASKS P7.4 |
+| (rev) | Phase P8.1: built the evaluation harness (`evaluation/harness/`: in-memory seeded DB, grounding checks, tool-call matching, result JSON writer) with `grounding.json` (48 positives + 16 traps) and `tools.json` (40 utterances); agent nodes now record per-turn `tool_calls` (name + args). Baseline agent run: groundedness 1.000, hallucination 0.000, refusal 1.000, tool accuracy 1.000. | TASKS P8.1, D-15 |
 
 ---
 
@@ -552,6 +554,23 @@ YYYY-MM-DD — Session summary
   fabricated analytics remain (random charts and the mock store were deleted in P7.3).
 - **Verification:** backend `pytest` 102 passed + 3 live skipped; frontend `tsc`/lint/build pass,
   14 tests (3 new feedback-inbox tests).
+
+### Session 29 — Evaluation harness (P8.1)
+
+- **Completed:** Phase P8.1 — the first metric harnesses. `evaluation/harness/common.py` builds a
+  fresh in-memory seeded DB, loads versioned datasets, resolves canonical dish names/prices, and writes
+  result JSON with git revision and timestamp. `groundedness.py` checks that every ₹ amount is a real
+  menu price, that answerable replies name the dish with its price, and that traps are refused without
+  a price. `run_grounding.py` runs the 64-item set in `agent` mode or in direct-LLM ablation modes
+  (`llm-rag`/`llm-no-rag`), with `--repeat` and `--strict`. `run_tools.py` scores the 40-utterance set
+  by ordered expected-call subsequence with exact ids/quantities and substring matching for text args;
+  agent nodes now record per-turn `tool_calls` (name + args), reset at the start of each turn.
+- **Decisions:** D-15 — agent path measured as shipped; ablation isolates retrieval via direct LLM;
+  explicit tolerance rules for M-1–M-3.
+- **Open items opened/closed:** none (O-7 resolved in shape: 48 positive item references + 16 traps).
+- **Verification:** baseline agent run `groundedness=1.000`, `hallucination=0.000`, `refusal=1.000`,
+  `tool accuracy=1.000`; results in `evaluation/results/`. Backend `pytest` 109 passed + 3 live skipped
+  (7 new harness tests).
 
 ---
 

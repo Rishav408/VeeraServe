@@ -121,6 +121,20 @@ Location: `evaluation/harness/` (see `../architecture/FOLDER_STRUCTURE.md`).
 - `run_latency.py` — M-7, M-8.
 - `run_safety.py` — M-9.
 
+Implemented in P8.1 (run from the repository root):
+
+```powershell
+python -m evaluation.harness.run_grounding                  # M-1, M-2 on the shipped agent
+python -m evaluation.harness.run_grounding --mode llm-rag   # ablation: retrieval-grounded LLM
+python -m evaluation.harness.run_grounding --mode llm-no-rag
+python -m evaluation.harness.run_tools                      # M-3
+```
+
+Options: `--limit N`, `--repeat N` (grounding), `--strict` (non-zero exit when a target is missed), and
+`--out NAME`. Each run uses a fresh in-memory database seeded from `data/menu.seed.json`; the LLM modes
+require LM Studio and the Chroma index. Results are named `<out>-<mode>.json` (grounding) or
+`<out>.json` (tools). Unmeasured metrics are never reported.
+
 Outputs are written to `evaluation/results/` as JSON/CSV with run metadata. Results are consumed by
 this document and by `../ACADEMIC_REPORT.md`.
 

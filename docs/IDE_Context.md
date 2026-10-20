@@ -143,7 +143,7 @@ These are known and must be fixed during the indicated phase:
 | Chat streaming | `backend/app/api/chat.py`, `backend/app/agent/streaming.py` | SSE turn stream: tool/token/cart events (P6.5) |
 | Multimodal | `backend/app/llm/vision.py`, `backend/app/services/transcription.py` | Image → description; audio → text (P6.5) |
 | Chat UI | `frontend/src/lib/chatStream.ts`, `frontend/src/context/ChatContext.tsx` | Streamed chat client + cart sync (P6.5) |
-| Evaluation harness | `evaluation/` (code) + `docs/evaluation/` | Not implemented |
+| Evaluation harness | `evaluation/harness/{common,groundedness,run_grounding,run_tools,llm_answer}.py`, `evaluation/datasets/` | M-1–M-3 runners + versioned sets; ablation modes (P8.1) |
 
 ---
 
@@ -320,6 +320,15 @@ These are known and must be fixed during the indicated phase:
   analytics aggregation and feedback acknowledgement. Backend `pytest` 102 passed + 3 live skipped;
   frontend 14 tests, typecheck/lint/build pass. **Gate 7 met.**
 - **Next:** Phase P8 (evaluation harness + metrics M-1..M-9; completes Gate 6's groundedness metric).
+
+### Session 29 — Evaluation harness (P8.1)
+- Built `evaluation/harness/` (in-memory seeded DB, groundedness checks, ordered tool-call matching,
+  result JSON writer) with versioned `grounding.json` (48 positives + 16 traps) and `tools.json` (40
+  utterances). Grounding runs in `agent` mode or direct-LLM `llm-rag`/`llm-no-rag` for the P8.3
+  ablation. Agent nodes now record per-turn `tool_calls` (name + args) for M-3. Baseline agent run:
+  groundedness 1.000, hallucination 0.000, refusal 1.000, tool accuracy 1.000. Backend `pytest` 109
+  passed + 3 live skipped (7 harness tests). Decision D-15.
+- **Next:** P8.2 (task-success scenarios, STT WER, latency).
 
 ---
 
