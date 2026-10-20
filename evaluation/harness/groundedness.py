@@ -28,13 +28,13 @@ class Verdict:
     hallucinated: bool
 
 
-def _quoted_prices(reply: str) -> list[int]:
+def quoted_prices(reply: str) -> list[int]:
     return [int(value) for value in PRICE_PATTERN.findall(reply)]
 
 
 def check_reply(reply: str, item: dict, valid_prices: set[int]) -> Verdict:
     text = reply.lower()
-    amounts = _quoted_prices(reply)
+    amounts = quoted_prices(reply)
     reasons: list[str] = []
 
     fabricated = [amount for amount in amounts if amount not in valid_prices]

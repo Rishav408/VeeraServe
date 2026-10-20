@@ -36,8 +36,7 @@ def load_dataset(name: str) -> dict[str, Any]:
         return json.load(handle)
 
 
-def build_database() -> Session:
-    """Return a fresh in-memory database seeded from the canonical menu."""
+def build_session_factory() -> sessionmaker[Session]:
     engine = create_engine(
         "sqlite://",
         connect_args={"check_same_thread": False},
@@ -45,9 +44,14 @@ def build_database() -> Session:
     )
     Base.metadata.create_all(engine)
     factory = sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
-    session = factory()
-    seed_menu(session)
-    return session
+    with factory() as session:
+        seed_menu(session)
+    return factory
+
+
+def build_database() -> Session:
+    """Return a fresh in-memory database seeded from the canonical menu."""
+    return build_session_factory()()
 
 
 def ensure_user(db: Session, email: str = EVAL_USER_EMAIL) -> int:

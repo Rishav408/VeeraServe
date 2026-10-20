@@ -15,6 +15,9 @@ from evaluation.harness.common import (  # noqa: E402
 )
 from evaluation.harness.groundedness import check_reply  # noqa: E402
 from evaluation.harness.run_grounding import _agent_reply  # noqa: E402
+from evaluation.harness.run_latency import _percentile  # noqa: E402
+from evaluation.harness.run_scenarios import run as run_scenarios  # noqa: E402
+from evaluation.harness.run_stt import tokens, word_errors  # noqa: E402
 from evaluation.harness.run_tools import _run, calls_match  # noqa: E402
 
 
@@ -29,6 +32,10 @@ def test_datasets_reference_real_menu_items() -> None:
     for item in tools:
         for call in item.get("expected") or []:
             assert call["tool"] in TOOLS
+
+    scenarios = load_dataset("scenarios")["items"]
+    assert len(scenarios) >= 20
+    assert len({scenario["id"] for scenario in scenarios}) == len(scenarios)
 
 
 def test_check_reply_accepts_grounded_answer() -> None:
@@ -103,3 +110,23 @@ def test_tool_runner_records_expected_call_end_to_end() -> None:
     greeting = dataset["t-036"]
     calls, _ = _run(db, greeting, "test-tools-greeting", user_id)
     assert calls == []
+
+
+def test_wer_normalizes_number_words() -> None:
+    assert tokens("Track my order number twenty five")[-1] == "25"
+    assert word_errors("I want two roti", "I want 2 roti") == (0, 4)
+    errors, words = word_errors("add one dal tadka", "add 1 dal tadka")
+    assert errors == 0
+    assert words == 4
+
+
+def test_latency_percentile_uses_nearest_rank() -> None:
+    values = [0.1, 0.2, 0.3, 0.4, 0.5]
+    assert _percentile(values, 50) == 0.3
+    assert _percentile(values, 90) == 0.5
+
+
+def test_scenario_runs_end_to_end() -> None:
+    payload = run_scenarios(limit=1)
+    assert payload["items"] == 1
+    assert payload["records"][0]["ok"], payload["records"][0]["reasons"]

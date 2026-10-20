@@ -143,7 +143,7 @@ These are known and must be fixed during the indicated phase:
 | Chat streaming | `backend/app/api/chat.py`, `backend/app/agent/streaming.py` | SSE turn stream: tool/token/cart events (P6.5) |
 | Multimodal | `backend/app/llm/vision.py`, `backend/app/services/transcription.py` | Image → description; audio → text (P6.5) |
 | Chat UI | `frontend/src/lib/chatStream.ts`, `frontend/src/context/ChatContext.tsx` | Streamed chat client + cart sync (P6.5) |
-| Evaluation harness | `evaluation/harness/{common,groundedness,run_grounding,run_tools,llm_answer}.py`, `evaluation/datasets/` | M-1–M-3 runners + versioned sets; ablation modes (P8.1) |
+| Evaluation harness | `evaluation/harness/{common,groundedness,run_grounding,run_tools,run_scenarios,run_stt,run_latency,llm_answer}.py`, `evaluation/datasets/` | M-1–M-5, M-7–M-8 runners + versioned sets; ablation modes (P8.1–P8.2) |
 
 ---
 
@@ -329,6 +329,14 @@ These are known and must be fixed during the indicated phase:
   groundedness 1.000, hallucination 0.000, refusal 1.000, tool accuracy 1.000. Backend `pytest` 109
   passed + 3 live skipped (7 harness tests). Decision D-15.
 - **Next:** P8.2 (task-success scenarios, STT WER, latency).
+
+### Session 30 — Task success, STT WER & latency (P8.2)
+- Added `run_scenarios.py` (25 goals through the live chat/staff API with state assertions),
+  `run_stt.py` (25 SAPI clips, number-normalised WER), and `run_latency.py` (36 timed turns).
+  Results: task success 1.000; STT corpus WER 0.181 (target 0.15 missed, disclosed); latency median
+  0.015 s / p90 0.018 s on the deterministic path. Backend `pytest` 112 passed + 3 live skipped.
+  Decision D-16.
+- **Next:** P8.3 (no-RAG vs RAG ablation, ≥3 recorded runs, EVALUATION §7).
 
 ---
 

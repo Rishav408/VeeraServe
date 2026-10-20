@@ -52,6 +52,10 @@ Each claim maps to a metric family below.
 Test sets are fixed, reviewed, and versioned before use. Sets must include **negative cases**
 (non-existent dishes, ambiguous requests) to expose hallucination.
 
+> **Disclosure (P8.2):** the audio set currently in `evaluation/datasets/audio/` is **synthesised
+> with Windows SAPI** (16 kHz mono) as an offline, reproducible baseline. It is easier than real
+> speech, so it is a lower bound on expected WER; human-recorded clips remain the protocol target.
+
 ---
 
 ## 4. Metric definitions
@@ -128,12 +132,19 @@ python -m evaluation.harness.run_grounding                  # M-1, M-2 on the sh
 python -m evaluation.harness.run_grounding --mode llm-rag   # ablation: retrieval-grounded LLM
 python -m evaluation.harness.run_grounding --mode llm-no-rag
 python -m evaluation.harness.run_tools                      # M-3
+python -m evaluation.harness.run_scenarios                  # M-4 (live API + state checks)
+python -m evaluation.harness.run_stt                        # M-5 (requires the audio clips)
+python -m evaluation.harness.run_latency                    # M-7, M-8 (36 timed turns)
 ```
 
-Options: `--limit N`, `--repeat N` (grounding), `--strict` (non-zero exit when a target is missed), and
-`--out NAME`. Each run uses a fresh in-memory database seeded from `data/menu.seed.json`; the LLM modes
-require LM Studio and the Chroma index. Results are named `<out>-<mode>.json` (grounding) or
-`<out>.json` (tools). Unmeasured metrics are never reported.
+Options: `--limit N`, `--repeat N` (grounding/latency), `--strict` (non-zero exit when a target is
+missed), and `--out NAME`. Each run uses a fresh in-memory database seeded from `data/menu.seed.json`;
+the LLM modes require LM Studio and the Chroma index. Results are named `<out>-<mode>.json`
+(grounding) or `<out>.json` (other suites). Unmeasured metrics are never reported.
+
+Scenario runs also use a fresh in-memory DB through a FastAPI `TestClient`, so they exercise the real
+routers and auth. Latency is measured inside `iter_turn_events` (the real turn pipeline) and excludes
+browser/network transit.
 
 Outputs are written to `evaluation/results/` as JSON/CSV with run metadata. Results are consumed by
 this document and by `../ACADEMIC_REPORT.md`.
@@ -167,6 +178,12 @@ this document and by `../ACADEMIC_REPORT.md`.
 - Small local models may underperform larger hosted models; results are reported for the local setup
   used, and generalisation beyond it is not claimed.
 - Human-rated metrics (M-6) depend on rater judgement; the rubric must be recorded.
+- M-5 currently uses synthetic SAPI audio; real human speech is likely harder. Corpus WER is also
+  inflated by out-of-vocabulary dish names (`base` frequently mis-spells them), so per-clip median WER
+  is reported alongside the corpus figure.
+- M-7/M-8 are measured inside the streaming pipeline, not in a browser. On the deterministic path the
+  reply is composed by the graph and then chunked, so time-to-first-token is close to full-response
+  time; enabling optional LLM polishing adds model time to both.
 
 ---
 

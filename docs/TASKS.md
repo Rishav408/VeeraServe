@@ -312,10 +312,13 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Baseline recorded: `evaluation/results/grounding-agent.json` (groundedness 1.000, hallucination 0.000, refusal 1.000) and `tools.json` (accuracy 1.000); tests in `backend/tests/test_eval_harness.py` (7).
   Commit: `Update - P8.1 - eval harness, groundedness and tool accuracy`
 
-- [ ] **P8.2 — Task success, STT WER & latency**
+- [x] **P8.2 — Task success, STT WER & latency**
   - End-to-end task-success scenarios + runner.
   - STT word-error-rate set + runner.
   - Latency measurement (first-token and full-response).
+  - Built: `run_scenarios.py` (25 scripted goals driven through the live API — chat + staff status updates — with state checks on orders/items/totals/status/preferences/grounded prices), `run_stt.py` (25-clip manifest under `evaluation/datasets/audio/`, number-normalised WER), and `run_latency.py` (12 prompts × 3 repeats; median/p90 for first token and full response).
+  - Results: task success 1.000 (25/25); STT corpus WER 0.181 (target ≤ 0.15 — **missed**, driven by out-of-vocabulary dish names; median clip WER 0.000); latency median/p90 0.015 s / 0.018 s for both first token and full response on the deterministic graph path.
+  - Note: M-5 uses **SAPI-synthesised** clips as a clean, reproducible baseline; human-recorded audio remains the protocol target.
   Commit: `Update - P8.2 - task success, WER and latency`
 
 - [ ] **P8.3 — Grounding ablation & recorded results**

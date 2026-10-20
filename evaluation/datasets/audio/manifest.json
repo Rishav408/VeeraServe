@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "description": "STT word-error-rate set (M-5). Clips are synthesized offline with Windows SAPI (clean English) as a reproducible smoke baseline; human-recorded clips remain the protocol target.",
+  "source": "Windows SAPI text-to-speech, 16 kHz mono WAV",
+  "items": [
+    { "id": "a-001", "file": "clips/a-001.wav", "transcript": "I would like two butter chicken please" },
+    { "id": "a-002", "file": "clips/a-002.wav", "transcript": "Add one dal tadka to my cart" },
+    { "id": "a-003", "file": "clips/a-003.wav", "transcript": "How much is the butter naan" },
+    { "id": "a-004", "file": "clips/a-004.wav", "transcript": "Do you have paneer bhurji bao" },
+    { "id": "a-005", "file": "clips/a-005.wav", "transcript": "Recommend something spicy" },
+    { "id": "a-006", "file": "clips/a-006.wav", "transcript": "Suggest a veg dish" },
+    { "id": "a-007", "file": "clips/a-007.wav", "transcript": "Where is my order" },
+    { "id": "a-008", "file": "clips/a-008.wav", "transcript": "What is the status of my order" },
+    { "id": "a-009", "file": "clips/a-009.wav", "transcript": "I want three roti" },
+    { "id": "a-010", "file": "clips/a-010.wav", "transcript": "Can I get a coke" },
+    { "id": "a-011", "file": "clips/a-011.wav", "transcript": "Tell me about ghee roast prawns" },
+    { "id": "a-012", "file": "clips/a-012.wav", "transcript": "Is the dal bukhara available" },
+    { "id": "a-013", "file": "clips/a-013.wav", "transcript": "Add two korean chicken chilli" },
+    { "id": "a-014", "file": "clips/a-014.wav", "transcript": "I will have one water" },
+    { "id": "a-015", "file": "clips/a-015.wav", "transcript": "Show me the veg manchurian dry" },
+    { "id": "a-016", "file": "clips/a-016.wav", "transcript": "What is the price of pindi chole" },
+    { "id": "a-017", "file": "clips/a-017.wav", "transcript": "Order one paneer bhurji bao" },
+    { "id": "a-018", "file": "clips/a-018.wav", "transcript": "Do you have sushi" },
+    { "id": "a-019", "file": "clips/a-019.wav", "transcript": "I am vegetarian" },
+    { "id": "a-020", "file": "clips/a-020.wav", "transcript": "Add one butter chicken and one dal tadka" },
+    { "id": "a-021", "file": "clips/a-021.wav", "transcript": "Please recommend a mild dish" },
+    { "id": "a-022", "file": "clips/a-022.wav", "transcript": "Track my order number twenty five" },
+    { "id": "a-023", "file": "clips/a-023.wav", "transcript": "How much does the cheese chilli garlic naan cost" },
+    { "id": "a-024", "file": "clips/a-024.wav", "transcript": "Can I order two warqi paratha" },
+    { "id": "a-025", "file": "clips/a-025.wav", "transcript": "Bring me one schezwan chicken lollipop" }
+  ]
+}

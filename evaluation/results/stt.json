@@ -1,0 +1,223 @@
+{
+  "suite": "stt",
+  "dataset_version": "1.0.0",
+  "source": "Windows SAPI text-to-speech, 16 kHz mono WAV",
+  "model": {
+    "size": "base",
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "items": 25,
+  "records": [
+    {
+      "id": "a-001",
+      "reference": "I would like two butter chicken please",
+      "hypothesis": "I would like to butter chicken please.",
+      "errors": 1,
+      "words": 7,
+      "wer": 0.1429
+    },
+    {
+      "id": "a-002",
+      "reference": "Add one dal tadka to my cart",
+      "hypothesis": "Add one deltadka to my cart.",
+      "errors": 2,
+      "words": 7,
+      "wer": 0.2857
+    },
+    {
+      "id": "a-003",
+      "reference": "How much is the butter naan",
+      "hypothesis": "How much is the butter none?",
+      "errors": 1,
+      "words": 6,
+      "wer": 0.1667
+    },
+    {
+      "id": "a-004",
+      "reference": "Do you have paneer bhurji bao",
+      "hypothesis": "Do you have paint or burgee bow?",
+      "errors": 4,
+      "words": 6,
+      "wer": 0.6667
+    },
+    {
+      "id": "a-005",
+      "reference": "Recommend something spicy",
+      "hypothesis": "recommend something spicy",
+      "errors": 0,
+      "words": 3,
+      "wer": 0.0
+    },
+    {
+      "id": "a-006",
+      "reference": "Suggest a veg dish",
+      "hypothesis": "Suggest a veg dish.",
+      "errors": 0,
+      "words": 4,
+      "wer": 0.0
+    },
+    {
+      "id": "a-007",
+      "reference": "Where is my order",
+      "hypothesis": "Where is my order?",
+      "errors": 0,
+      "words": 4,
+      "wer": 0.0
+    },
+    {
+      "id": "a-008",
+      "reference": "What is the status of my order",
+      "hypothesis": "What is the status of my order?",
+      "errors": 0,
+      "words": 7,
+      "wer": 0.0
+    },
+    {
+      "id": "a-009",
+      "reference": "I want three roti",
+      "hypothesis": "I want 3 roti.",
+      "errors": 0,
+      "words": 4,
+      "wer": 0.0
+    },
+    {
+      "id": "a-010",
+      "reference": "Can I get a coke",
+      "hypothesis": "Can I get a coke?",
+      "errors": 0,
+      "words": 5,
+      "wer": 0.0
+    },
+    {
+      "id": "a-011",
+      "reference": "Tell me about ghee roast prawns",
+      "hypothesis": "Tell me about giroced prawns.",
+      "errors": 2,
+      "words": 6,
+      "wer": 0.3333
+    },
+    {
+      "id": "a-012",
+      "reference": "Is the dal bukhara available",
+      "hypothesis": "Is the Dell Bokara available?",
+      "errors": 2,
+      "words": 5,
+      "wer": 0.4
+    },
+    {
+      "id": "a-013",
+      "reference": "Add two korean chicken chilli",
+      "hypothesis": "Add 2 Korean Chicken Chili",
+      "errors": 1,
+      "words": 5,
+      "wer": 0.2
+    },
+    {
+      "id": "a-014",
+      "reference": "I will have one water",
+      "hypothesis": "I will have one water.",
+      "errors": 0,
+      "words": 5,
+      "wer": 0.0
+    },
+    {
+      "id": "a-015",
+      "reference": "Show me the veg manchurian dry",
+      "hypothesis": "Show me the veg manchurian dry.",
+      "errors": 0,
+      "words": 6,
+      "wer": 0.0
+    },
+    {
+      "id": "a-016",
+      "reference": "What is the price of pindi chole",
+      "hypothesis": "What is the price of Pindichol?",
+      "errors": 2,
+      "words": 7,
+      "wer": 0.2857
+    },
+    {
+      "id": "a-017",
+      "reference": "Order one paneer bhurji bao",
+      "hypothesis": "Order one painter, Burjibo.",
+      "errors": 3,
+      "words": 5,
+      "wer": 0.6
+    },
+    {
+      "id": "a-018",
+      "reference": "Do you have sushi",
+      "hypothesis": "Do you have sushi?",
+      "errors": 0,
+      "words": 4,
+      "wer": 0.0
+    },
+    {
+      "id": "a-019",
+      "reference": "I am vegetarian",
+      "hypothesis": "I am vegetarian.",
+      "errors": 0,
+      "words": 3,
+      "wer": 0.0
+    },
+    {
+      "id": "a-020",
+      "reference": "Add one butter chicken and one dal tadka",
+      "hypothesis": "Add 1 butter chicken and 1 Dal Tadka.",
+      "errors": 0,
+      "words": 8,
+      "wer": 0.0
+    },
+    {
+      "id": "a-021",
+      "reference": "Please recommend a mild dish",
+      "hypothesis": "Please recommend a mild dish.",
+      "errors": 0,
+      "words": 5,
+      "wer": 0.0
+    },
+    {
+      "id": "a-022",
+      "reference": "Track my order number twenty five",
+      "hypothesis": "Track my order number 25",
+      "errors": 0,
+      "words": 5,
+      "wer": 0.0
+    },
+    {
+      "id": "a-023",
+      "reference": "How much does the cheese chilli garlic naan cost",
+      "hypothesis": "How much does the cheese chili garlic non-cost?",
+      "errors": 2,
+      "words": 9,
+      "wer": 0.2222
+    },
+    {
+      "id": "a-024",
+      "reference": "Can I order two warqi paratha",
+      "hypothesis": "Can I order to work I paratha?",
+      "errors": 3,
+      "words": 6,
+      "wer": 0.5
+    },
+    {
+      "id": "a-025",
+      "reference": "Bring me one schezwan chicken lollipop",
+      "hypothesis": "Bring me one skis one chicken lollipop.",
+      "errors": 2,
+      "words": 6,
+      "wer": 0.3333
+    }
+  ],
+  "metrics": {
+    "wer": 0.1812,
+    "mean_wer": 0.1655,
+    "median_wer": 0.0
+  },
+  "targets": {
+    "wer": 0.15
+  },
+  "generated_at": "2026-10-20T13:29:31.795905+00:00",
+  "git_revision": "bcc2b56"
+}
