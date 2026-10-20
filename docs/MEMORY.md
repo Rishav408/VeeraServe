@@ -38,8 +38,9 @@ running changelog. If a material choice is made, it is recorded here before it i
 | D-12 | RAG vector store is **Chroma** (persistent local client), embeddings from LM Studio (`nomic-embed-text`). | Persistent, zero-service, Python-native; simplest path to grounded retrieval (resolves O-3). | Accepted |
 | D-13 | Chat replies stream over **SSE** (`POST /api/v1/chat`); the deterministic graph reply is authoritative and any LLM rephrasing is **verification-gated** (fallback to the template when it introduces an ungrounded price). Voice is **faster-whisper** in-process; TTS is browser `speechSynthesis`. | Keeps the demo honest and offline: streamed, grounded output that degrades safely when the model is unavailable (implements D-8). | Accepted |
 | D-14 | The **database is the runtime source of truth** for the menu. Startup seeding is **add-only** (bootstrap from `data/menu.seed.json`, never overwrite existing rows), and Chroma is re-indexed **from the DB** (`reindex_menu`) after seeding and after every admin mutation. Refines D-7 (the seed stays the canonical *initial* catalogue). | Admin CRUD edits must persist and propagate to the diner menu and the agent; keeps a single definition of menu data while making it editable at runtime. | Accepted |
-| D-15 | Evaluation harness conventions: (a) the shipped **agent path is measured as-is** (Mode `agent`) while the **RAG ablation** uses direct-LLM modes (`llm-rag` vs `llm-no-rag`) so retrieval value is isolated from the deterministic tools; (b) groundedness passes only if **every ₹ amount is a real menu price** and the requested dish/price is present, while negative traps must be **refused without a price**; (c) tool accuracy scores an **ordered subsequence** of expected calls with exact ids/quantities and substring matching for free-text args (extra chained calls are allowed); (d) agent nodes record `tool_calls` (name + args) per turn for scoring. | The deterministic graph is DB-grounded by construction, so measuring it alone cannot show retrieval's contribution; explicit, documented scoring rules keep M-1–M-3 reproducible and auditable. | Accepted |
+| D-15 | Evaluation harness conventions: (a) the shipped **agent path is measured as-is** (Mode `agent`) while the **RAG ablation** uses direct-LLM modes (`llm-rag` vs `llm-no-rag`) so retrieval value is isolated from the deterministic tools; (b) groundedness passes only if **every ₹ amount is a real menu price** and the requested dish/price is present; negative traps must be **refused**, but suggesting a real alternative dish at its **real** price is allowed — only prices absent from the menu count as hallucinations; (c) tool accuracy scores an **ordered subsequence** of expected calls with exact ids/quantities and substring matching for free-text args (extra chained calls are allowed); (d) agent nodes record `tool_calls` (name + args) per turn for scoring. | The deterministic graph is DB-grounded by construction, so measuring it alone cannot show retrieval's contribution; explicit, documented scoring rules keep M-1–M-3 reproducible and auditable. Calibrated in P8.3: the original "no price at all on traps" rule mis-scored safe upsells of real dishes as fabrications. | Accepted (revised P8.3) |
 | D-16 | Task-success scenarios (M-4) are driven through the **live HTTP API** (chat + staff order-status endpoints) and judged on resulting state, not reply text alone. The STT baseline (M-5) uses **Windows SAPI-synthesised** clips because human recordings were unavailable; this is disclosed wherever the WER is reported and does not replace the protocol's human-recorded set. | Measures the product end to end and keeps every reported number reproducible offline; synthetic audio is a clean lower bound on WER, not a substitute for real speech. | Accepted |
+| D-17 | Evaluation runs may use **LM Studio models that are actually installed**, recorded via environment overrides, when a pinned checkpoint is unavailable. P8.3 used `qwen2.5-3b-instruct` (GGUF) and `text-embedding-nomic-embed-text-v1.5` for the ablation; the pinned `qwen2.5-vl-3b-instruct`/`nomic-embed-text` were not in the local catalogue. M-9 combines the 24-prompt `safety.json` set with the 16 grounding traps for the shipped agent. | Unblocks measurement without changing the shipped deterministic path (the agent does not call the chat model); every substitution is disclosed in EVALUATION §7. | Accepted |
 
 ### Superseded decisions
 
@@ -140,7 +141,8 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P7.3: added `GET /api/v1/analytics/dashboard` (`app/services/analytics.py`, admin-only) computing revenue, order counts, 7-day trend, top items, peak hours and ratings from the DB; rebuilt `AdminDashboardScreen` on it and deleted the random charts and the mock store (`AppDataContext`, `data/demoData.ts`, `data/menu.ts`). | TASKS P7.3 |
 | (rev) | Phase P7.4: added a persisted `Feedback.acknowledged` flag (with a startup column backfill for existing SQLite dev DBs) and `PATCH /api/v1/feedback/{id}/acknowledge`; built the admin feedback inbox and role-gated admin navigation. Gate 7 met. | TASKS P7.4 |
 | (rev) | Phase P8.1: built the evaluation harness (`evaluation/harness/`: in-memory seeded DB, grounding checks, tool-call matching, result JSON writer) with `grounding.json` (48 positives + 16 traps) and `tools.json` (40 utterances); agent nodes now record per-turn `tool_calls` (name + args). Baseline agent run: groundedness 1.000, hallucination 0.000, refusal 1.000, tool accuracy 1.000. | TASKS P8.1, D-15 |
-| (rev) | Phase P8.2: added `run_scenarios.py` (25 API-driven goals, all passed), `run_stt.py` (25 SAPI clips; corpus WER 0.181, target 0.15 missed), and `run_latency.py` (36 turns; median 0.015 s, p90 0.018 s). | TASKS P8.2, D-16 |
+| (rev) | Phase P8.2: added `run_scenarios.py` (25 API-driven goals, all passed), `run_stt.py` (25 SAPI clips; corpus WER 0.181, target 0.15 missed), and `run_latency.py` (36 turns; final median 0.004 s, p90 0.005 s). | TASKS P8.2, D-16 |
+| (rev) | Phase P8.3: ran the no-RAG vs RAG ablation (3 × 64 items): groundedness 0.000 → 1.000, hallucination 0.021 → 0.000, refusal 0.812 → 1.000; added `run_safety.py` + `safety.json` (24 prompts, 24/24 refused, 0 orders); calibrated the M-2 checker to allow real alternative prices (D-15 revised); recorded every suite in `evaluation/results/` and populated `EVALUATION.md` §7 (including the M-5 miss and unmeasured M-6). | TASKS P8.3, D-17 |
 
 ---
 
@@ -588,6 +590,25 @@ YYYY-MM-DD — Session summary
   names are out-of-vocabulary for `base`; median clip WER 0.000); latency median 0.015 s, p90 0.018 s
   for first token and full response on the deterministic path (no LLM in the reply loop).
 - **Verification:** backend `pytest` 112 passed + 3 live skipped; result JSONs in `evaluation/results/`.
+
+### Session 31 — Grounding ablation and recorded results (P8.3)
+
+- **Completed:** Phase P8.3 — ablation and the full recorded results set. Downloaded
+  `qwen2.5-3b-instruct` (GGUF, 2.1 GB) into LM Studio because both installed chat models were reasoning
+  models that returned empty `content`; used `text-embedding-nomic-embed-text-v1.5` for retrieval.
+  `run_grounding --mode llm-rag` now re-indexes Chroma from the evaluation DB. Ran 3 × 64 items per LLM
+  mode. Added `run_safety.py` and `safety.json` (12 injection + 12 off-topic prompts), scoring `blocked`,
+  refusal text, quoted prices, and order count. Calibrated the M-2 checker (D-15 revised): traps must be
+  refused, but a real alternative at its real price is not a hallucination. Re-recorded agent grounding,
+  tools, scenarios, STT, latency, and safety.
+- **Decisions:** D-17 — disclose installed-model substitutions via env overrides; M-9 combines safety
+  prompts with grounding traps.
+- **Open items opened/closed:** none. M-6 remains unmeasured (no image set/raters), disclosed.
+- **Results (honest):** ablation no-RAG → RAG: groundedness 0.000 → 1.000, hallucination 0.021 → 0.000,
+  refusal 0.812 → 1.000 (agent also 1.000/0.000/1.000). M-3 1.000, M-4 1.000, M-5 0.181 (target missed),
+  M-9 1.000 (24/24 safety + 16/16 traps, 0 orders); latency median 0.004 s / p90 0.005 s.
+- **Verification:** backend `pytest` 113 passed + 3 live skipped; results in `evaluation/results/`;
+  `EVALUATION.md` §7 populated (summary, ablation, hardware, limitations).
 
 ---
 

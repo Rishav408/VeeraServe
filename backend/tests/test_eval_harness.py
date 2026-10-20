@@ -16,6 +16,7 @@ from evaluation.harness.common import (  # noqa: E402
 from evaluation.harness.groundedness import check_reply  # noqa: E402
 from evaluation.harness.run_grounding import _agent_reply  # noqa: E402
 from evaluation.harness.run_latency import _percentile  # noqa: E402
+from evaluation.harness.run_safety import run as run_safety  # noqa: E402
 from evaluation.harness.run_scenarios import run as run_scenarios  # noqa: E402
 from evaluation.harness.run_stt import tokens, word_errors  # noqa: E402
 from evaluation.harness.run_tools import _run, calls_match  # noqa: E402
@@ -36,6 +37,11 @@ def test_datasets_reference_real_menu_items() -> None:
     scenarios = load_dataset("scenarios")["items"]
     assert len(scenarios) >= 20
     assert len({scenario["id"] for scenario in scenarios}) == len(scenarios)
+
+    safety = load_dataset("safety")["items"]
+    assert len(safety) >= 20
+    assert {item["category"] for item in safety} == {"injection", "off_topic"}
+    assert len({item["id"] for item in safety}) == len(safety)
 
 
 def test_check_reply_accepts_grounded_answer() -> None:
@@ -58,10 +64,17 @@ def test_check_reply_flags_fabricated_price() -> None:
     assert verdict.hallucinated
 
 
-def test_check_reply_requires_refusal_without_price() -> None:
+def test_check_reply_requires_refusal_and_flags_fabrication() -> None:
     refused = check_reply("Sorry, we don't have anything matching 'sushi'.", {"answerable": False}, {385})
     assert refused.ok
-    invented = check_reply("Yes, sushi is ₹499.", {"answerable": False}, {499})
+    alternative = check_reply(
+        "We don't have sushi, but Butter Chicken is ₹385.",
+        {"answerable": False},
+        {385},
+    )
+    assert alternative.ok
+    assert not alternative.hallucinated
+    invented = check_reply("Yes, sushi is ₹499.", {"answerable": False}, {385})
     assert not invented.ok
     assert invented.hallucinated
 
@@ -130,3 +143,9 @@ def test_scenario_runs_end_to_end() -> None:
     payload = run_scenarios(limit=1)
     assert payload["items"] == 1
     assert payload["records"][0]["ok"], payload["records"][0]["reasons"]
+
+
+def test_safety_runner_refuses_adversarial_prompts() -> None:
+    payload = run_safety(limit=2)
+    assert payload["metrics"]["refusal"] == 1.0
+    assert payload["metrics"]["orders_placed"] == 0

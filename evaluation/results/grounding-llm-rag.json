@@ -1,0 +1,1942 @@
+{
+  "suite": "grounding",
+  "mode": "llm-rag",
+  "dataset_version": "1.0.0",
+  "repeat": 3,
+  "items": 64,
+  "records": [
+    {
+      "id": "g-001",
+      "kind": "price",
+      "question": "How much is Classic Mac and Cheese?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Classic Mac and Cheese (veg) is ₹265."
+    },
+    {
+      "id": "g-001",
+      "kind": "price",
+      "question": "How much is Classic Mac and Cheese?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Classic Mac and Cheese (veg) is ₹265."
+    },
+    {
+      "id": "g-001",
+      "kind": "price",
+      "question": "How much is Classic Mac and Cheese?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Classic Mac and Cheese (veg) is ₹265."
+    },
+    {
+      "id": "g-002",
+      "kind": "availability",
+      "question": "Do you have Jalapeno Pune Creamy Vegetable Pasta?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Jalapeno Pune Creamy Vegetable Pasta. It is priced at ₹290. Would you like to order it now?"
+    },
+    {
+      "id": "g-002",
+      "kind": "availability",
+      "question": "Do you have Jalapeno Pune Creamy Vegetable Pasta?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Jalapeno Pune Creamy Vegetable Pasta. It is priced at ₹290. Would you like to order it now?"
+    },
+    {
+      "id": "g-002",
+      "kind": "availability",
+      "question": "Do you have Jalapeno Pune Creamy Vegetable Pasta?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Jalapeno Pune Creamy Vegetable Pasta. It is priced at ₹290. Would you like to order it now?"
+    },
+    {
+      "id": "g-003",
+      "kind": "about",
+      "question": "Tell me about Penne Alla Vodka",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Penne Alla Vodka is a dish that comes with penne pasta cooked in vodka, garlic, and Parmesan cheese. It has a unique flavor profile due to the addition of vodka which gives it a distinct taste. The price for this dish is ₹265."
+    },
+    {
+      "id": "g-003",
+      "kind": "about",
+      "question": "Tell me about Penne Alla Vodka",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Penne Alla Vodka is a dish that comes with penne pasta cooked in vodka, garlic, and Parmesan cheese. It has a unique flavor profile due to the addition of vodka which gives it a distinct taste. The price for this dish is ₹265."
+    },
+    {
+      "id": "g-003",
+      "kind": "about",
+      "question": "Tell me about Penne Alla Vodka",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Penne Alla Vodka is a dish that comes with penne pasta cooked in vodka, garlic, and Parmesan cheese. It has a unique flavor profile due to the addition of vodka which gives it a distinct taste. The price for this dish is ₹265."
+    },
+    {
+      "id": "g-004",
+      "kind": "price",
+      "question": "How much is Spaghetti AOP?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Spaghetti AOP is ₹310."
+    },
+    {
+      "id": "g-004",
+      "kind": "price",
+      "question": "How much is Spaghetti AOP?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Spaghetti AOP is ₹310."
+    },
+    {
+      "id": "g-004",
+      "kind": "price",
+      "question": "How much is Spaghetti AOP?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Spaghetti AOP is ₹310."
+    },
+    {
+      "id": "g-005",
+      "kind": "availability",
+      "question": "Do you have Grilled Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Grilled Chicken. It is priced at ₹390. Would you like to order it now?"
+    },
+    {
+      "id": "g-005",
+      "kind": "availability",
+      "question": "Do you have Grilled Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Grilled Chicken. It is priced at ₹390. Would you like to order it now?"
+    },
+    {
+      "id": "g-005",
+      "kind": "availability",
+      "question": "Do you have Grilled Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Grilled Chicken. It is priced at ₹390. Would you like to order it now?"
+    },
+    {
+      "id": "g-006",
+      "kind": "about",
+      "question": "Tell me about Triple Veg Schezwan Fried Rice",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sure, the Triple Veg Schezwan Fried Rice is a dish that includes vegetables in a spicy sauce. It's priced at ₹310 and is suitable for vegans or vegetarians."
+    },
+    {
+      "id": "g-006",
+      "kind": "about",
+      "question": "Tell me about Triple Veg Schezwan Fried Rice",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sure, the Triple Veg Schezwan Fried Rice is a dish that includes vegetables in a spicy sauce. It's priced at ₹310 and is suitable for vegans or vegetarians."
+    },
+    {
+      "id": "g-006",
+      "kind": "about",
+      "question": "Tell me about Triple Veg Schezwan Fried Rice",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sure, the Triple Veg Schezwan Fried Rice is a dish that includes vegetables in a spicy sauce. It's priced at ₹310 and is suitable for vegans or vegetarians."
+    },
+    {
+      "id": "g-007",
+      "kind": "price",
+      "question": "How much is Veg Manchurian Fried Rice?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Veg Manchurian Fried Rice is ₹310."
+    },
+    {
+      "id": "g-007",
+      "kind": "price",
+      "question": "How much is Veg Manchurian Fried Rice?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Veg Manchurian Fried Rice is ₹310."
+    },
+    {
+      "id": "g-007",
+      "kind": "price",
+      "question": "How much is Veg Manchurian Fried Rice?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Veg Manchurian Fried Rice is ₹310."
+    },
+    {
+      "id": "g-008",
+      "kind": "availability",
+      "question": "Do you have Tangra Chilli Chicken Egg Noodles?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do not serve Tangra Chilli Chicken Egg Noodles. However, we have Korean Chicken Chilli which is available for ₹399. Would that be suitable for your request?"
+    },
+    {
+      "id": "g-008",
+      "kind": "availability",
+      "question": "Do you have Tangra Chilli Chicken Egg Noodles?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do not serve Tangra Chilli Chicken Egg Noodles. However, we have Korean Chicken Chilli which is available for ₹399. Would that be suitable for your request?"
+    },
+    {
+      "id": "g-008",
+      "kind": "availability",
+      "question": "Do you have Tangra Chilli Chicken Egg Noodles?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do not serve Tangra Chilli Chicken Egg Noodles. However, we have Korean Chicken Chilli which is available for ₹399. Would that be suitable for your request?"
+    },
+    {
+      "id": "g-009",
+      "kind": "about",
+      "question": "Tell me about Triple Chicken Schezwan Fried Rice",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Triple Chicken Schezwan Fried Rice is a non-vegetarian dish priced at ₹399. It includes triple fried chicken, which is marinated in schezwan sauce and stir-fried with rice. This dish offers a spicy flavor profile that caters to those who enjoy a bit of heat."
+    },
+    {
+      "id": "g-009",
+      "kind": "about",
+      "question": "Tell me about Triple Chicken Schezwan Fried Rice",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Triple Chicken Schezwan Fried Rice is a non-vegetarian dish priced at ₹399. It includes triple fried chicken, which is marinated in schezwan sauce and stir-fried with rice. This dish offers a spicy flavor profile that caters to those who enjoy a bit of heat."
+    },
+    {
+      "id": "g-009",
+      "kind": "about",
+      "question": "Tell me about Triple Chicken Schezwan Fried Rice",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Triple Chicken Schezwan Fried Rice is a non-vegetarian dish priced at ₹399. It includes triple fried chicken, which is marinated in schezwan sauce and stir-fried with rice. This dish offers a spicy flavor profile that caters to those who enjoy a bit of heat."
+    },
+    {
+      "id": "g-010",
+      "kind": "price",
+      "question": "How much is Roti?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Roti (veg) is ₹30."
+    },
+    {
+      "id": "g-010",
+      "kind": "price",
+      "question": "How much is Roti?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Roti (veg) is ₹30."
+    },
+    {
+      "id": "g-010",
+      "kind": "price",
+      "question": "How much is Roti?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Roti (veg) is ₹30."
+    },
+    {
+      "id": "g-011",
+      "kind": "availability",
+      "question": "Do you have Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we offer Naan. You can choose between Butter Naan or Naan at ₹40 each."
+    },
+    {
+      "id": "g-011",
+      "kind": "availability",
+      "question": "Do you have Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we offer Naan. You can choose between Butter Naan or Naan at ₹40 each."
+    },
+    {
+      "id": "g-011",
+      "kind": "availability",
+      "question": "Do you have Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we offer Naan. You can choose between Butter Naan or Naan at ₹40 each."
+    },
+    {
+      "id": "g-012",
+      "kind": "about",
+      "question": "Tell me about Butter Naan",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Naan is a veg option available for ₹45. It's served with butter and is soft on the inside, crispy on the outside."
+    },
+    {
+      "id": "g-012",
+      "kind": "about",
+      "question": "Tell me about Butter Naan",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Naan is a veg option available for ₹45. It's served with butter and is soft on the inside, crispy on the outside."
+    },
+    {
+      "id": "g-012",
+      "kind": "about",
+      "question": "Tell me about Butter Naan",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Naan is a veg option available for ₹45. It's served with butter and is soft on the inside, crispy on the outside."
+    },
+    {
+      "id": "g-013",
+      "kind": "price",
+      "question": "How much is Butter Laccha Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Laccha Naan is ₹65."
+    },
+    {
+      "id": "g-013",
+      "kind": "price",
+      "question": "How much is Butter Laccha Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Laccha Naan is ₹65."
+    },
+    {
+      "id": "g-013",
+      "kind": "price",
+      "question": "How much is Butter Laccha Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Laccha Naan is ₹65."
+    },
+    {
+      "id": "g-014",
+      "kind": "availability",
+      "question": "Do you have Butter Garlic Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Butter Garlic Naan. It is priced at ₹65. Would you like to order more than one?"
+    },
+    {
+      "id": "g-014",
+      "kind": "availability",
+      "question": "Do you have Butter Garlic Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Butter Garlic Naan. It is priced at ₹65. Would you like to order more than one?"
+    },
+    {
+      "id": "g-014",
+      "kind": "availability",
+      "question": "Do you have Butter Garlic Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Butter Garlic Naan. It is priced at ₹65. Would you like to order more than one?"
+    },
+    {
+      "id": "g-015",
+      "kind": "about",
+      "question": "Tell me about Warqi Paratha",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Warqi Paratha is a veg paratha served at our restaurant. It comes with a price of ₹99."
+    },
+    {
+      "id": "g-015",
+      "kind": "about",
+      "question": "Tell me about Warqi Paratha",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Warqi Paratha is a veg paratha served at our restaurant. It comes with a price of ₹99."
+    },
+    {
+      "id": "g-015",
+      "kind": "about",
+      "question": "Tell me about Warqi Paratha",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Warqi Paratha is a veg paratha served at our restaurant. It comes with a price of ₹99."
+    },
+    {
+      "id": "g-016",
+      "kind": "price",
+      "question": "How much is Cheese Chilli Garlic Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "The Cheese Chilli Garlic Naan (veg) costs ₹210."
+    },
+    {
+      "id": "g-016",
+      "kind": "price",
+      "question": "How much is Cheese Chilli Garlic Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "The Cheese Chilli Garlic Naan (veg) costs ₹210."
+    },
+    {
+      "id": "g-016",
+      "kind": "price",
+      "question": "How much is Cheese Chilli Garlic Naan?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "The Cheese Chilli Garlic Naan (veg) costs ₹210."
+    },
+    {
+      "id": "g-017",
+      "kind": "availability",
+      "question": "Do you have Amritsari Paneer Lababdar?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Amritsari Paneer Lababdar. It is priced at ₹350. Would you like to order it now?"
+    },
+    {
+      "id": "g-017",
+      "kind": "availability",
+      "question": "Do you have Amritsari Paneer Lababdar?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Amritsari Paneer Lababdar. It is priced at ₹350. Would you like to order it now?"
+    },
+    {
+      "id": "g-017",
+      "kind": "availability",
+      "question": "Do you have Amritsari Paneer Lababdar?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Amritsari Paneer Lababdar. It is priced at ₹350. Would you like to order it now?"
+    },
+    {
+      "id": "g-018",
+      "kind": "about",
+      "question": "Tell me about Pindi Chole",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Pindi Chole is a delicious vegetarian dish priced at ₹350. It features chickpeas cooked in a tangy and spicy gravy, making it a flavorful choice for vegetarians."
+    },
+    {
+      "id": "g-018",
+      "kind": "about",
+      "question": "Tell me about Pindi Chole",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Pindi Chole is a delicious vegetarian dish priced at ₹350. It features chickpeas cooked in a tangy and spicy gravy, making it a flavorful choice for vegetarians."
+    },
+    {
+      "id": "g-018",
+      "kind": "about",
+      "question": "Tell me about Pindi Chole",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Pindi Chole is a delicious vegetarian dish priced at ₹350. It features chickpeas cooked in a tangy and spicy gravy, making it a flavorful choice for vegetarians."
+    },
+    {
+      "id": "g-019",
+      "kind": "price",
+      "question": "How much is Veg Diwani Handi?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Veg Diwani Handi is ₹350."
+    },
+    {
+      "id": "g-019",
+      "kind": "price",
+      "question": "How much is Veg Diwani Handi?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Veg Diwani Handi is ₹350."
+    },
+    {
+      "id": "g-019",
+      "kind": "price",
+      "question": "How much is Veg Diwani Handi?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Veg Diwani Handi is ₹350."
+    },
+    {
+      "id": "g-020",
+      "kind": "availability",
+      "question": "Do you have Dal Bukhara?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Dal Bukhara. It is priced at ₹310. Would you like to order it now?"
+    },
+    {
+      "id": "g-020",
+      "kind": "availability",
+      "question": "Do you have Dal Bukhara?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Dal Bukhara. It is priced at ₹310. Would you like to order it now?"
+    },
+    {
+      "id": "g-020",
+      "kind": "availability",
+      "question": "Do you have Dal Bukhara?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Dal Bukhara. It is priced at ₹310. Would you like to order it now?"
+    },
+    {
+      "id": "g-021",
+      "kind": "about",
+      "question": "Tell me about Dal Tadka",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sure, the Dal Tadka is a traditional dish made with vegetables and flavored with mustard seeds, cumin seeds, and a blend of spices. It's served hot and is very popular among our guests who enjoy its simple yet flavorful taste. The price for this dish is ₹285."
+    },
+    {
+      "id": "g-021",
+      "kind": "about",
+      "question": "Tell me about Dal Tadka",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sure, the Dal Tadka is a traditional dish made with vegetables and flavored with mustard seeds, cumin seeds, and a blend of spices. It's served hot and is very popular among our guests who enjoy its simple yet flavorful taste. The price for this dish is ₹285."
+    },
+    {
+      "id": "g-021",
+      "kind": "about",
+      "question": "Tell me about Dal Tadka",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sure, the Dal Tadka is a traditional dish made with vegetables and flavored with mustard seeds, cumin seeds, and a blend of spices. It's served hot and is very popular among our guests who enjoy its simple yet flavorful taste. The price for this dish is ₹285."
+    },
+    {
+      "id": "g-022",
+      "kind": "price",
+      "question": "How much is Butter Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Chicken is ₹385."
+    },
+    {
+      "id": "g-022",
+      "kind": "price",
+      "question": "How much is Butter Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Chicken is ₹385."
+    },
+    {
+      "id": "g-022",
+      "kind": "price",
+      "question": "How much is Butter Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Chicken is ₹385."
+    },
+    {
+      "id": "g-023",
+      "kind": "availability",
+      "question": "Do you have Chicken Saoji Rassa?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Chicken Saoji Rassa. It is priced at ₹385. Would you like to order it now?"
+    },
+    {
+      "id": "g-023",
+      "kind": "availability",
+      "question": "Do you have Chicken Saoji Rassa?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Chicken Saoji Rassa. It is priced at ₹385. Would you like to order it now?"
+    },
+    {
+      "id": "g-023",
+      "kind": "availability",
+      "question": "Do you have Chicken Saoji Rassa?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Chicken Saoji Rassa. It is priced at ₹385. Would you like to order it now?"
+    },
+    {
+      "id": "g-024",
+      "kind": "about",
+      "question": "Tell me about Saoji Mutton Rassa",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Saoji Mutton Rassa is a non-vegetarian dish priced at ₹499. It features mutton cooked in a special sauce with saojis, which are spices commonly used in Indian cuisine for their unique flavor profile. This dish offers a rich and aromatic taste of the ingredients combined to create a delightful meal."
+    },
+    {
+      "id": "g-024",
+      "kind": "about",
+      "question": "Tell me about Saoji Mutton Rassa",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Saoji Mutton Rassa is a non-vegetarian dish priced at ₹499. It features mutton cooked in a special sauce with saojis, which are spices commonly used in Indian cuisine for their unique flavor profile. This dish offers a rich and aromatic taste of the ingredients combined to create a delightful meal."
+    },
+    {
+      "id": "g-024",
+      "kind": "about",
+      "question": "Tell me about Saoji Mutton Rassa",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Saoji Mutton Rassa is a non-vegetarian dish priced at ₹499. It features mutton cooked in a special sauce with saojis, which are spices commonly used in Indian cuisine for their unique flavor profile. This dish offers a rich and aromatic taste of the ingredients combined to create a delightful meal."
+    },
+    {
+      "id": "g-025",
+      "kind": "price",
+      "question": "How much is Chicken Lababdar?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Chicken Lababdar is ₹385."
+    },
+    {
+      "id": "g-025",
+      "kind": "price",
+      "question": "How much is Chicken Lababdar?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Chicken Lababdar is ₹385."
+    },
+    {
+      "id": "g-025",
+      "kind": "price",
+      "question": "How much is Chicken Lababdar?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Chicken Lababdar is ₹385."
+    },
+    {
+      "id": "g-026",
+      "kind": "availability",
+      "question": "Do you have Ghee Roast Prawns?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do have Ghee Roast Prawns, a non-veg dish priced at ₹410. Would you like to order it?"
+    },
+    {
+      "id": "g-026",
+      "kind": "availability",
+      "question": "Do you have Ghee Roast Prawns?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do have Ghee Roast Prawns, a non-veg dish priced at ₹410. Would you like to order it?"
+    },
+    {
+      "id": "g-026",
+      "kind": "availability",
+      "question": "Do you have Ghee Roast Prawns?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do have Ghee Roast Prawns, a non-veg dish priced at ₹410. Would you like to order it?"
+    },
+    {
+      "id": "g-027",
+      "kind": "about",
+      "question": "Tell me about Thecha Paneer Chilli",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Thecha Paneer Chilli is a vegetarian dish priced at ₹310. It features paneer cooked in a spicy sauce flavored with thecha, which gives it a unique taste."
+    },
+    {
+      "id": "g-027",
+      "kind": "about",
+      "question": "Tell me about Thecha Paneer Chilli",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Thecha Paneer Chilli is a vegetarian dish priced at ₹310. It features paneer cooked in a spicy sauce flavored with thecha, which gives it a unique taste."
+    },
+    {
+      "id": "g-027",
+      "kind": "about",
+      "question": "Tell me about Thecha Paneer Chilli",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Thecha Paneer Chilli is a vegetarian dish priced at ₹310. It features paneer cooked in a spicy sauce flavored with thecha, which gives it a unique taste."
+    },
+    {
+      "id": "g-028",
+      "kind": "price",
+      "question": "How much is Old Style Paneer Chilli?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Old Style Paneer Chilli (veg) is ₹310."
+    },
+    {
+      "id": "g-028",
+      "kind": "price",
+      "question": "How much is Old Style Paneer Chilli?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Old Style Paneer Chilli (veg) is ₹310."
+    },
+    {
+      "id": "g-028",
+      "kind": "price",
+      "question": "How much is Old Style Paneer Chilli?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Old Style Paneer Chilli (veg) is ₹310."
+    },
+    {
+      "id": "g-029",
+      "kind": "availability",
+      "question": "Do you have Korean Chilli Mushroom?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do. The price is ₹310 for the Korean Chilli Mushroom (veg). Would you like to order now or require any other information?"
+    },
+    {
+      "id": "g-029",
+      "kind": "availability",
+      "question": "Do you have Korean Chilli Mushroom?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do. The price is ₹310 for the Korean Chilli Mushroom (veg). Would you like to order now or require any other information?"
+    },
+    {
+      "id": "g-029",
+      "kind": "availability",
+      "question": "Do you have Korean Chilli Mushroom?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do. The price is ₹310 for the Korean Chilli Mushroom (veg). Would you like to order now or require any other information?"
+    },
+    {
+      "id": "g-030",
+      "kind": "about",
+      "question": "Tell me about Veg Crystal Momos",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sure, the Veg Crystal Momos are a delightful option on our menu. They come with a delicious blend of vegetables and are priced at ₹310 per serving. Enjoy!"
+    },
+    {
+      "id": "g-030",
+      "kind": "about",
+      "question": "Tell me about Veg Crystal Momos",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sure, the Veg Crystal Momos are a delightful option on our menu. They come with a delicious blend of vegetables and are priced at ₹310 per serving. Enjoy!"
+    },
+    {
+      "id": "g-030",
+      "kind": "about",
+      "question": "Tell me about Veg Crystal Momos",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Sure, the Veg Crystal Momos are a delightful option on our menu. They come with a delicious blend of vegetables and are priced at ₹310 per serving. Enjoy!"
+    },
+    {
+      "id": "g-031",
+      "kind": "price",
+      "question": "How much is Veg Dragon Roll?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Veg Dragon Roll is ₹310."
+    },
+    {
+      "id": "g-031",
+      "kind": "price",
+      "question": "How much is Veg Dragon Roll?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Veg Dragon Roll is ₹310."
+    },
+    {
+      "id": "g-031",
+      "kind": "price",
+      "question": "How much is Veg Dragon Roll?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Veg Dragon Roll is ₹310."
+    },
+    {
+      "id": "g-032",
+      "kind": "availability",
+      "question": "Do you have Veg Manchurian Dry?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do. The price is ₹310 for the Veg Manchurian Dry. Would you like to order now or would you like to see our other options?"
+    },
+    {
+      "id": "g-032",
+      "kind": "availability",
+      "question": "Do you have Veg Manchurian Dry?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do. The price is ₹310 for the Veg Manchurian Dry. Would you like to order now or would you like to see our other options?"
+    },
+    {
+      "id": "g-032",
+      "kind": "availability",
+      "question": "Do you have Veg Manchurian Dry?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do. The price is ₹310 for the Veg Manchurian Dry. Would you like to order now or would you like to see our other options?"
+    },
+    {
+      "id": "g-033",
+      "kind": "about",
+      "question": "Tell me about Tandoori Soya Chaap",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Tandoori Soya Chaap is a veg dish priced at ₹310. It features marinated soya chunks cooked in tandoor and served with naan bread."
+    },
+    {
+      "id": "g-033",
+      "kind": "about",
+      "question": "Tell me about Tandoori Soya Chaap",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Tandoori Soya Chaap is a veg dish priced at ₹310. It features marinated soya chunks cooked in tandoor and served with naan bread."
+    },
+    {
+      "id": "g-033",
+      "kind": "about",
+      "question": "Tell me about Tandoori Soya Chaap",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Tandoori Soya Chaap is a veg dish priced at ₹310. It features marinated soya chunks cooked in tandoor and served with naan bread."
+    },
+    {
+      "id": "g-034",
+      "kind": "price",
+      "question": "How much is Roasted Veg Paneer Tikka Sandwich?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "The Roasted Veg Paneer Tikka Sandwich is ₹310."
+    },
+    {
+      "id": "g-034",
+      "kind": "price",
+      "question": "How much is Roasted Veg Paneer Tikka Sandwich?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "The Roasted Veg Paneer Tikka Sandwich is ₹310."
+    },
+    {
+      "id": "g-034",
+      "kind": "price",
+      "question": "How much is Roasted Veg Paneer Tikka Sandwich?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "The Roasted Veg Paneer Tikka Sandwich is ₹310."
+    },
+    {
+      "id": "g-035",
+      "kind": "availability",
+      "question": "Do you have Pesto Chicken Pizza?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have the Pesto Chicken Pizza. It is priced at ₹410. Would you like to order it or something else?"
+    },
+    {
+      "id": "g-035",
+      "kind": "availability",
+      "question": "Do you have Pesto Chicken Pizza?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have the Pesto Chicken Pizza. It is priced at ₹410. Would you like to order it or something else?"
+    },
+    {
+      "id": "g-035",
+      "kind": "availability",
+      "question": "Do you have Pesto Chicken Pizza?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have the Pesto Chicken Pizza. It is priced at ₹410. Would you like to order it or something else?"
+    },
+    {
+      "id": "g-036",
+      "kind": "about",
+      "question": "Tell me about Butter Chicken Pizza",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Chicken Pizza is a non-vegetarian dish priced at ₹410. It features chicken cooked in a rich butter-based sauce, topped with cheese and baked to perfection."
+    },
+    {
+      "id": "g-036",
+      "kind": "about",
+      "question": "Tell me about Butter Chicken Pizza",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Chicken Pizza is a non-vegetarian dish priced at ₹410. It features chicken cooked in a rich butter-based sauce, topped with cheese and baked to perfection."
+    },
+    {
+      "id": "g-036",
+      "kind": "about",
+      "question": "Tell me about Butter Chicken Pizza",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Butter Chicken Pizza is a non-vegetarian dish priced at ₹410. It features chicken cooked in a rich butter-based sauce, topped with cheese and baked to perfection."
+    },
+    {
+      "id": "g-037",
+      "kind": "price",
+      "question": "How much is Korean Chicken Chilli?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Korean Chicken Chilli is ₹399."
+    },
+    {
+      "id": "g-037",
+      "kind": "price",
+      "question": "How much is Korean Chicken Chilli?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Korean Chicken Chilli is ₹399."
+    },
+    {
+      "id": "g-037",
+      "kind": "price",
+      "question": "How much is Korean Chicken Chilli?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Korean Chicken Chilli is ₹399."
+    },
+    {
+      "id": "g-038",
+      "kind": "availability",
+      "question": "Do you have Schezwan Chicken Lollipop?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do have Schezwan Chicken Lollipop, a non-veg dish priced at ₹399. Would you like to order it now?"
+    },
+    {
+      "id": "g-038",
+      "kind": "availability",
+      "question": "Do you have Schezwan Chicken Lollipop?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do have Schezwan Chicken Lollipop, a non-veg dish priced at ₹399. Would you like to order it now?"
+    },
+    {
+      "id": "g-038",
+      "kind": "availability",
+      "question": "Do you have Schezwan Chicken Lollipop?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do have Schezwan Chicken Lollipop, a non-veg dish priced at ₹399. Would you like to order it now?"
+    },
+    {
+      "id": "g-039",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Momos",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Chicken Tikka Momos are a non-vegetarian dish from our menu. They come with a price of ₹399 and feature chicken tikka inside steamed momos, which are dumplings made from flour dough."
+    },
+    {
+      "id": "g-039",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Momos",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Chicken Tikka Momos are a non-vegetarian dish from our menu. They come with a price of ₹399 and feature chicken tikka inside steamed momos, which are dumplings made from flour dough."
+    },
+    {
+      "id": "g-039",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Momos",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Chicken Tikka Momos are a non-vegetarian dish from our menu. They come with a price of ₹399 and feature chicken tikka inside steamed momos, which are dumplings made from flour dough."
+    },
+    {
+      "id": "g-040",
+      "kind": "price",
+      "question": "How much is Burnchilli Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Burnchilli Chicken is ₹399."
+    },
+    {
+      "id": "g-040",
+      "kind": "price",
+      "question": "How much is Burnchilli Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Burnchilli Chicken is ₹399."
+    },
+    {
+      "id": "g-040",
+      "kind": "price",
+      "question": "How much is Burnchilli Chicken?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Burnchilli Chicken is ₹399."
+    },
+    {
+      "id": "g-041",
+      "kind": "availability",
+      "question": "Do you have Kerala Style Fish Fry?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do offer Kerala Style Fish Fry, which is priced at ₹399. Would you like to order this dish?"
+    },
+    {
+      "id": "g-041",
+      "kind": "availability",
+      "question": "Do you have Kerala Style Fish Fry?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do offer Kerala Style Fish Fry, which is priced at ₹399. Would you like to order this dish?"
+    },
+    {
+      "id": "g-041",
+      "kind": "availability",
+      "question": "Do you have Kerala Style Fish Fry?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "We do offer Kerala Style Fish Fry, which is priced at ₹399. Would you like to order this dish?"
+    },
+    {
+      "id": "g-042",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Supreme",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Chicken Tikka Supreme is a non-vegetarian dish priced at ₹399. It features marinated chicken pieces cooked in a blend of spices and served with naan bread."
+    },
+    {
+      "id": "g-042",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Supreme",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Chicken Tikka Supreme is a non-vegetarian dish priced at ₹399. It features marinated chicken pieces cooked in a blend of spices and served with naan bread."
+    },
+    {
+      "id": "g-042",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Supreme",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Chicken Tikka Supreme is a non-vegetarian dish priced at ₹399. It features marinated chicken pieces cooked in a blend of spices and served with naan bread."
+    },
+    {
+      "id": "g-043",
+      "kind": "price",
+      "question": "How much is Redbull?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Redbull is ₹199."
+    },
+    {
+      "id": "g-043",
+      "kind": "price",
+      "question": "How much is Redbull?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Redbull is ₹199."
+    },
+    {
+      "id": "g-043",
+      "kind": "price",
+      "question": "How much is Redbull?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Redbull is ₹199."
+    },
+    {
+      "id": "g-044",
+      "kind": "availability",
+      "question": "Do you have Canned Juices?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Canned Juices. They are available for ₹99 each. Would you like to order any specific type of juice or would you prefer a different beverage?"
+    },
+    {
+      "id": "g-044",
+      "kind": "availability",
+      "question": "Do you have Canned Juices?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Canned Juices. They are available for ₹99 each. Would you like to order any specific type of juice or would you prefer a different beverage?"
+    },
+    {
+      "id": "g-044",
+      "kind": "availability",
+      "question": "Do you have Canned Juices?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do have Canned Juices. They are available for ₹99 each. Would you like to order any specific type of juice or would you prefer a different beverage?"
+    },
+    {
+      "id": "g-045",
+      "kind": "about",
+      "question": "Tell me about Soda",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Soda is available in our menu as a vegetable option. It costs ₹99 per bottle."
+    },
+    {
+      "id": "g-045",
+      "kind": "about",
+      "question": "Tell me about Soda",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Soda is available in our menu as a vegetable option. It costs ₹99 per bottle."
+    },
+    {
+      "id": "g-045",
+      "kind": "about",
+      "question": "Tell me about Soda",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Soda is available in our menu as a vegetable option. It costs ₹99 per bottle."
+    },
+    {
+      "id": "g-046",
+      "kind": "price",
+      "question": "How much is Coke?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Coke (veg) is ₹49."
+    },
+    {
+      "id": "g-046",
+      "kind": "price",
+      "question": "How much is Coke?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Coke (veg) is ₹49."
+    },
+    {
+      "id": "g-046",
+      "kind": "price",
+      "question": "How much is Coke?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Coke (veg) is ₹49."
+    },
+    {
+      "id": "g-047",
+      "kind": "availability",
+      "question": "Do you have Diet Coke?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do. The Diet Coke is available for ₹99."
+    },
+    {
+      "id": "g-047",
+      "kind": "availability",
+      "question": "Do you have Diet Coke?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do. The Diet Coke is available for ₹99."
+    },
+    {
+      "id": "g-047",
+      "kind": "availability",
+      "question": "Do you have Diet Coke?",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Yes, we do. The Diet Coke is available for ₹99."
+    },
+    {
+      "id": "g-048",
+      "kind": "about",
+      "question": "Tell me about Water",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Water is a refreshing beverage that comes in various flavors. For veg options, we have plain water and tonic water available. Plain water costs ₹49 while tonic water costs ₹149. Both are perfect for quenching your thirst naturally."
+    },
+    {
+      "id": "g-048",
+      "kind": "about",
+      "question": "Tell me about Water",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Water is a refreshing beverage that comes in various flavors. For veg options, we have plain water and tonic water available. Plain water costs ₹49 while tonic water costs ₹149. Both are perfect for quenching your thirst naturally."
+    },
+    {
+      "id": "g-048",
+      "kind": "about",
+      "question": "Tell me about Water",
+      "answerable": true,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Water is a refreshing beverage that comes in various flavors. For veg options, we have plain water and tonic water available. Plain water costs ₹49 while tonic water costs ₹149. Both are perfect for quenching your thirst naturally."
+    },
+    {
+      "id": "g-049",
+      "kind": "negative",
+      "question": "Do you have sushi?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not serve sushi at Veeradhar Dhaba. We offer a variety of non-vegetarian and vegetarian dishes from our menu. Would you like to know about any other options available?"
+    },
+    {
+      "id": "g-049",
+      "kind": "negative",
+      "question": "Do you have sushi?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not serve sushi at Veeradhar Dhaba. We offer a variety of non-vegetarian and vegetarian dishes from our menu. Would you like to know about any other options available?"
+    },
+    {
+      "id": "g-049",
+      "kind": "negative",
+      "question": "Do you have sushi?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not serve sushi at Veeradhar Dhaba. We offer a variety of non-vegetarian and vegetarian dishes from our menu. Would you like to know about any other options available?"
+    },
+    {
+      "id": "g-050",
+      "kind": "negative",
+      "question": "How much is beef wellington?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have Beef Wellington on our menu. However, we do offer Beeffeater which is a non-vegetarian dish priced at ₹249. Would you like to order that instead?"
+    },
+    {
+      "id": "g-050",
+      "kind": "negative",
+      "question": "How much is beef wellington?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have Beef Wellington on our menu. However, we do offer Beeffeater which is a non-vegetarian dish priced at ₹249. Would you like to order that instead?"
+    },
+    {
+      "id": "g-050",
+      "kind": "negative",
+      "question": "How much is beef wellington?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have Beef Wellington on our menu. However, we do offer Beeffeater which is a non-vegetarian dish priced at ₹249. Would you like to order that instead?"
+    },
+    {
+      "id": "g-051",
+      "kind": "negative",
+      "question": "Do you have lobster?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include lobster. We do offer Kingfisher Ultra 330ml for veg at ₹249. Would that be of interest to you?"
+    },
+    {
+      "id": "g-051",
+      "kind": "negative",
+      "question": "Do you have lobster?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include lobster. We do offer Kingfisher Ultra 330ml for veg at ₹249. Would that be of interest to you?"
+    },
+    {
+      "id": "g-051",
+      "kind": "negative",
+      "question": "Do you have lobster?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include lobster. We do offer Kingfisher Ultra 330ml for veg at ₹249. Would that be of interest to you?"
+    },
+    {
+      "id": "g-052",
+      "kind": "negative",
+      "question": "Tell me about biryani",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include any Biryani dishes. However, we do have a few other vegetarian options that might be of interest to you:\n\n1. Amritsari Paneer Lababdar (veg) - ₹350\n2. Pindi Chole (veg) - ₹350\n\nWould you like to know more about these dishes?"
+    },
+    {
+      "id": "g-052",
+      "kind": "negative",
+      "question": "Tell me about biryani",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include any Biryani dishes. However, we do have a few other vegetarian options that might be of interest to you:\n\n1. Amritsari Paneer Lababdar (veg) - ₹350\n2. Pindi Chole (veg) - ₹350\n\nWould you like to know more about these dishes?"
+    },
+    {
+      "id": "g-052",
+      "kind": "negative",
+      "question": "Tell me about biryani",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include any Biryani dishes. However, we do have a few other vegetarian options that might be of interest to you:\n\n1. Amritsari Paneer Lababdar (veg) - ₹350\n2. Pindi Chole (veg) - ₹350\n\nWould you like to know more about these dishes?"
+    },
+    {
+      "id": "g-053",
+      "kind": "negative",
+      "question": "Do you have ramen?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not serve Ramen on our menu. We offer a variety of other dishes that might be suitable for your request. Would you like to know about any of the available options?"
+    },
+    {
+      "id": "g-053",
+      "kind": "negative",
+      "question": "Do you have ramen?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not serve Ramen on our menu. We offer a variety of other dishes that might be suitable for your request. Would you like to know about any of the available options?"
+    },
+    {
+      "id": "g-053",
+      "kind": "negative",
+      "question": "Do you have ramen?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not serve Ramen on our menu. We offer a variety of other dishes that might be suitable for your request. Would you like to know about any of the available options?"
+    },
+    {
+      "id": "g-054",
+      "kind": "negative",
+      "question": "How much is lasagna?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not contain Lasagna. We have a few other options you might like such as Thai Style Chicken Tikka or Pesto Chicken Pizza."
+    },
+    {
+      "id": "g-054",
+      "kind": "negative",
+      "question": "How much is lasagna?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not contain Lasagna. We have a few other options you might like such as Thai Style Chicken Tikka or Pesto Chicken Pizza."
+    },
+    {
+      "id": "g-054",
+      "kind": "negative",
+      "question": "How much is lasagna?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not contain Lasagna. We have a few other options you might like such as Thai Style Chicken Tikka or Pesto Chicken Pizza."
+    },
+    {
+      "id": "g-055",
+      "kind": "negative",
+      "question": "Do you have falafel?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include Falafel. We do offer Butter Garlic Naan which is a delicious option. Would you like to order something else from the menu?"
+    },
+    {
+      "id": "g-055",
+      "kind": "negative",
+      "question": "Do you have falafel?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include Falafel. We do offer Butter Garlic Naan which is a delicious option. Would you like to order something else from the menu?"
+    },
+    {
+      "id": "g-055",
+      "kind": "negative",
+      "question": "Do you have falafel?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include Falafel. We do offer Butter Garlic Naan which is a delicious option. Would you like to order something else from the menu?"
+    },
+    {
+      "id": "g-056",
+      "kind": "negative",
+      "question": "Tell me about shawarma",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have a dish called Shawarma in our menu. However, we offer Triple Chicken Schezwan Fried Rice for ₹399 which is a fried rice with chicken and schezwan sauce. Would you like to try that?"
+    },
+    {
+      "id": "g-056",
+      "kind": "negative",
+      "question": "Tell me about shawarma",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have a dish called Shawarma in our menu. However, we offer Triple Chicken Schezwan Fried Rice for ₹399 which is a fried rice with chicken and schezwan sauce. Would you like to try that?"
+    },
+    {
+      "id": "g-056",
+      "kind": "negative",
+      "question": "Tell me about shawarma",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have a dish called Shawarma in our menu. However, we offer Triple Chicken Schezwan Fried Rice for ₹399 which is a fried rice with chicken and schezwan sauce. Would you like to try that?"
+    },
+    {
+      "id": "g-057",
+      "kind": "negative",
+      "question": "How much is tiramisu?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but the menu does not contain tiramisu. We have a variety of other dishes that might be suitable for you. Would you like to see some alternatives from our menu?"
+    },
+    {
+      "id": "g-057",
+      "kind": "negative",
+      "question": "How much is tiramisu?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but the menu does not contain tiramisu. We have a variety of other dishes that might be suitable for you. Would you like to see some alternatives from our menu?"
+    },
+    {
+      "id": "g-057",
+      "kind": "negative",
+      "question": "How much is tiramisu?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but the menu does not contain tiramisu. We have a variety of other dishes that might be suitable for you. Would you like to see some alternatives from our menu?"
+    },
+    {
+      "id": "g-058",
+      "kind": "negative",
+      "question": "Do you have cheesecake?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include cheesecake. We do offer a Cheese Chilli Garlic Naan which is available for veg customers at ₹210. Would that be something you might like to try instead?"
+    },
+    {
+      "id": "g-058",
+      "kind": "negative",
+      "question": "Do you have cheesecake?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include cheesecake. We do offer a Cheese Chilli Garlic Naan which is available for veg customers at ₹210. Would that be something you might like to try instead?"
+    },
+    {
+      "id": "g-058",
+      "kind": "negative",
+      "question": "Do you have cheesecake?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include cheesecake. We do offer a Cheese Chilli Garlic Naan which is available for veg customers at ₹210. Would that be something you might like to try instead?"
+    },
+    {
+      "id": "g-059",
+      "kind": "negative",
+      "question": "How much is a hot dog?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have a dish called \"hot dog\" on our menu. We offer Chicken Saoji Rassa for non-vegetarian and Redbull for vegetarian options. Would you like to know the price of one of these dishes?"
+    },
+    {
+      "id": "g-059",
+      "kind": "negative",
+      "question": "How much is a hot dog?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have a dish called \"hot dog\" on our menu. We offer Chicken Saoji Rassa for non-vegetarian and Redbull for vegetarian options. Would you like to know the price of one of these dishes?"
+    },
+    {
+      "id": "g-059",
+      "kind": "negative",
+      "question": "How much is a hot dog?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have a dish called \"hot dog\" on our menu. We offer Chicken Saoji Rassa for non-vegetarian and Redbull for vegetarian options. Would you like to know the price of one of these dishes?"
+    },
+    {
+      "id": "g-060",
+      "kind": "negative",
+      "question": "Do you have tacos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not serve tacos at Veeradhar Dhaba. We offer a variety of vegetarian and non-vegetarian dishes from our menu. Would you like to know about any specific items?"
+    },
+    {
+      "id": "g-060",
+      "kind": "negative",
+      "question": "Do you have tacos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not serve tacos at Veeradhar Dhaba. We offer a variety of vegetarian and non-vegetarian dishes from our menu. Would you like to know about any specific items?"
+    },
+    {
+      "id": "g-060",
+      "kind": "negative",
+      "question": "Do you have tacos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not serve tacos at Veeradhar Dhaba. We offer a variety of vegetarian and non-vegetarian dishes from our menu. Would you like to know about any specific items?"
+    },
+    {
+      "id": "g-061",
+      "kind": "negative",
+      "question": "Tell me about paella",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have a dish called Paella on our menu. However, we do offer Penne Alla Vodka which is a pasta dish cooked in vodka and tomato sauce. Would you like to try that?"
+    },
+    {
+      "id": "g-061",
+      "kind": "negative",
+      "question": "Tell me about paella",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have a dish called Paella on our menu. However, we do offer Penne Alla Vodka which is a pasta dish cooked in vodka and tomato sauce. Would you like to try that?"
+    },
+    {
+      "id": "g-061",
+      "kind": "negative",
+      "question": "Tell me about paella",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have a dish called Paella on our menu. However, we do offer Penne Alla Vodka which is a pasta dish cooked in vodka and tomato sauce. Would you like to try that?"
+    },
+    {
+      "id": "g-062",
+      "kind": "negative",
+      "question": "Do you have risotto?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include Risotto. We do offer Penne Alfredo which is a pasta dish that might be similar in texture and flavor. Would you like to try the Penne Alfredo?"
+    },
+    {
+      "id": "g-062",
+      "kind": "negative",
+      "question": "Do you have risotto?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include Risotto. We do offer Penne Alfredo which is a pasta dish that might be similar in texture and flavor. Would you like to try the Penne Alfredo?"
+    },
+    {
+      "id": "g-062",
+      "kind": "negative",
+      "question": "Do you have risotto?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu does not include Risotto. We do offer Penne Alfredo which is a pasta dish that might be similar in texture and flavor. Would you like to try the Penne Alfredo?"
+    },
+    {
+      "id": "g-063",
+      "kind": "negative",
+      "question": "How much is pad thai?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Pad Thai is not listed in our menu. However, we do have a Veg Manchurian Fried Rice for ₹310 which you might enjoy."
+    },
+    {
+      "id": "g-063",
+      "kind": "negative",
+      "question": "How much is pad thai?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Pad Thai is not listed in our menu. However, we do have a Veg Manchurian Fried Rice for ₹310 which you might enjoy."
+    },
+    {
+      "id": "g-063",
+      "kind": "negative",
+      "question": "How much is pad thai?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "Pad Thai is not listed in our menu. However, we do have a Veg Manchurian Fried Rice for ₹310 which you might enjoy."
+    },
+    {
+      "id": "g-064",
+      "kind": "negative",
+      "question": "Do you have nachos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not offer nachos on our menu. We have Thecha Tangdi Kabab which is a non-veg option and Chicken Tikka Momos for the veggie option. Would you like to know more about these items or perhaps something else from our menu?"
+    },
+    {
+      "id": "g-064",
+      "kind": "negative",
+      "question": "Do you have nachos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not offer nachos on our menu. We have Thecha Tangdi Kabab which is a non-veg option and Chicken Tikka Momos for the veggie option. Would you like to know more about these items or perhaps something else from our menu?"
+    },
+    {
+      "id": "g-064",
+      "kind": "negative",
+      "question": "Do you have nachos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not offer nachos on our menu. We have Thecha Tangdi Kabab which is a non-veg option and Chicken Tikka Momos for the veggie option. Would you like to know more about these items or perhaps something else from our menu?"
+    }
+  ],
+  "metrics": {
+    "groundedness": 1.0,
+    "hallucination": 0.0,
+    "refusal": 1.0,
+    "accuracy": 1.0
+  },
+  "targets": {
+    "groundedness": 0.95,
+    "hallucination": 0.05,
+    "refusal": 0.95
+  },
+  "generated_at": "2026-10-20T14:05:50.020120+00:00",
+  "git_revision": "b7de574"
+}

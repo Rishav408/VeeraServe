@@ -46,14 +46,34 @@ def run(mode: str, *, limit: int | None = None, repeat: int = 1) -> dict[str, An
     if limit is not None:
         items = items[:limit]
 
+    if mode == "llm-rag":
+        from app.rag.ingest import reindex_menu
+
+        reindex_menu(db)
+
     records: list[dict[str, Any]] = []
     for item in items:
         for run_index in range(repeat):
-            if mode == "agent":
-                session_id = f"ground-{item['id']}-{run_index}"
-                reply = _agent_reply(db, item["question"], session_id, user_id)
-            else:
-                reply = _llm_reply(db, item["question"], use_rag=mode == "llm-rag")
+            try:
+                if mode == "agent":
+                    session_id = f"ground-{item['id']}-{run_index}"
+                    reply = _agent_reply(db, item["question"], session_id, user_id)
+                else:
+                    reply = _llm_reply(db, item["question"], use_rag=mode == "llm-rag")
+            except Exception as exc:
+                records.append(
+                    {
+                        "id": item["id"],
+                        "kind": item["kind"],
+                        "question": item["question"],
+                        "answerable": item["answerable"],
+                        "ok": False,
+                        "hallucinated": False,
+                        "reasons": [f"error: {exc}"],
+                        "reply": "",
+                    }
+                )
+                continue
             verdict = check_reply(reply, item, prices)
             records.append(
                 {

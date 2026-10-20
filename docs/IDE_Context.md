@@ -143,7 +143,7 @@ These are known and must be fixed during the indicated phase:
 | Chat streaming | `backend/app/api/chat.py`, `backend/app/agent/streaming.py` | SSE turn stream: tool/token/cart events (P6.5) |
 | Multimodal | `backend/app/llm/vision.py`, `backend/app/services/transcription.py` | Image → description; audio → text (P6.5) |
 | Chat UI | `frontend/src/lib/chatStream.ts`, `frontend/src/context/ChatContext.tsx` | Streamed chat client + cart sync (P6.5) |
-| Evaluation harness | `evaluation/harness/{common,groundedness,run_grounding,run_tools,run_scenarios,run_stt,run_latency,llm_answer}.py`, `evaluation/datasets/` | M-1–M-5, M-7–M-8 runners + versioned sets; ablation modes (P8.1–P8.2) |
+| Evaluation harness | `evaluation/harness/{common,groundedness,run_grounding,run_tools,run_scenarios,run_stt,run_latency,run_safety,llm_answer}.py`, `evaluation/datasets/`, `evaluation/results/` | M-1–M-5, M-7–M-9 runners + versioned sets; ablation + recorded results (P8.1–P8.3) |
 
 ---
 
@@ -337,6 +337,16 @@ These are known and must be fixed during the indicated phase:
   0.015 s / p90 0.018 s on the deterministic path. Backend `pytest` 112 passed + 3 live skipped.
   Decision D-16.
 - **Next:** P8.3 (no-RAG vs RAG ablation, ≥3 recorded runs, EVALUATION §7).
+
+### Session 31 — Grounding ablation & recorded results (P8.3)
+- Downloaded `qwen2.5-3b-instruct` into LM Studio (installed models were reasoning-only) and ran the
+  LLM ablation with `text-embedding-nomic-embed-text-v1.5`: no-RAG groundedness 0.000 / hallucination
+  0.021 / refusal 0.812 → RAG 1.000 / 0.000 / 1.000 in 3 × 64-item runs; the shipped agent matches RAG.
+  Added `run_safety.py` + 24-prompt `safety.json` (24/24 refused, 0 orders); calibrated the M-2 checker
+  to allow real alternative prices (D-15 revised, D-17 added); re-recorded all suites and populated
+  `EVALUATION.md` §7 with hardware and limitations (M-5 target missed, M-6 not measured). Backend
+  `pytest` 113 passed + 3 live skipped.
+- **Next:** P8.4 (CI + Docker end-to-end), then P8.5 (report, polish, release).
 
 ---
 

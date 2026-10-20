@@ -6,225 +6,225 @@
     {
       "prompt": "how much is butter chicken",
       "run": 0,
-      "first_token_seconds": 0.0139,
-      "full_response_seconds": 0.0139
+      "first_token_seconds": 0.0048,
+      "full_response_seconds": 0.0048
     },
     {
       "prompt": "do you have dal bukhara",
       "run": 0,
-      "first_token_seconds": 0.0158,
-      "full_response_seconds": 0.0158
+      "first_token_seconds": 0.0042,
+      "full_response_seconds": 0.0042
     },
     {
       "prompt": "recommend something spicy",
       "run": 0,
-      "first_token_seconds": 0.0182,
-      "full_response_seconds": 0.0182
+      "first_token_seconds": 0.0052,
+      "full_response_seconds": 0.0052
     },
     {
       "prompt": "suggest a veg dish",
       "run": 0,
-      "first_token_seconds": 0.0138,
-      "full_response_seconds": 0.0139
+      "first_token_seconds": 0.0054,
+      "full_response_seconds": 0.0054
     },
     {
       "prompt": "surprise me",
       "run": 0,
-      "first_token_seconds": 0.0169,
-      "full_response_seconds": 0.017
+      "first_token_seconds": 0.0047,
+      "full_response_seconds": 0.0047
     },
     {
       "prompt": "add 1 dal tadka",
       "run": 0,
-      "first_token_seconds": 0.0164,
-      "full_response_seconds": 0.0165
+      "first_token_seconds": 0.0048,
+      "full_response_seconds": 0.0048
     },
     {
       "prompt": "where is my order",
       "run": 0,
-      "first_token_seconds": 0.0152,
-      "full_response_seconds": 0.0152
+      "first_token_seconds": 0.0053,
+      "full_response_seconds": 0.0053
     },
     {
       "prompt": "hi",
       "run": 0,
-      "first_token_seconds": 0.0111,
-      "full_response_seconds": 0.0111
+      "first_token_seconds": 0.0033,
+      "full_response_seconds": 0.0033
     },
     {
       "prompt": "what's the weather",
       "run": 0,
-      "first_token_seconds": 0.0111,
-      "full_response_seconds": 0.0111
+      "first_token_seconds": 0.0032,
+      "full_response_seconds": 0.0032
     },
     {
       "prompt": "tell me about ghee roast prawns",
       "run": 0,
-      "first_token_seconds": 0.0127,
-      "full_response_seconds": 0.0127
+      "first_token_seconds": 0.0037,
+      "full_response_seconds": 0.0037
     },
     {
       "prompt": "add 1 butter chicken",
       "run": 0,
-      "first_token_seconds": 0.0161,
-      "full_response_seconds": 0.0161
+      "first_token_seconds": 0.0054,
+      "full_response_seconds": 0.0054
     },
     {
       "prompt": "how much is water",
       "run": 0,
-      "first_token_seconds": 0.0108,
-      "full_response_seconds": 0.0108
+      "first_token_seconds": 0.0037,
+      "full_response_seconds": 0.0037
     },
     {
       "prompt": "how much is butter chicken",
       "run": 1,
-      "first_token_seconds": 0.0136,
-      "full_response_seconds": 0.0136
+      "first_token_seconds": 0.0036,
+      "full_response_seconds": 0.0036
     },
     {
       "prompt": "do you have dal bukhara",
       "run": 1,
-      "first_token_seconds": 0.0159,
-      "full_response_seconds": 0.0159
+      "first_token_seconds": 0.0037,
+      "full_response_seconds": 0.0037
     },
     {
       "prompt": "recommend something spicy",
       "run": 1,
-      "first_token_seconds": 0.0189,
-      "full_response_seconds": 0.0189
+      "first_token_seconds": 0.0051,
+      "full_response_seconds": 0.0051
     },
     {
       "prompt": "suggest a veg dish",
       "run": 1,
-      "first_token_seconds": 0.0192,
-      "full_response_seconds": 0.0192
+      "first_token_seconds": 0.0047,
+      "full_response_seconds": 0.0047
     },
     {
       "prompt": "surprise me",
       "run": 1,
-      "first_token_seconds": 0.017,
-      "full_response_seconds": 0.017
+      "first_token_seconds": 0.0045,
+      "full_response_seconds": 0.0045
     },
     {
       "prompt": "add 1 dal tadka",
       "run": 1,
-      "first_token_seconds": 0.021,
-      "full_response_seconds": 0.021
+      "first_token_seconds": 0.0047,
+      "full_response_seconds": 0.0048
     },
     {
       "prompt": "where is my order",
       "run": 1,
-      "first_token_seconds": 0.0147,
-      "full_response_seconds": 0.0148
+      "first_token_seconds": 0.0037,
+      "full_response_seconds": 0.0037
     },
     {
       "prompt": "hi",
       "run": 1,
-      "first_token_seconds": 0.0098,
-      "full_response_seconds": 0.0098
+      "first_token_seconds": 0.0032,
+      "full_response_seconds": 0.0032
     },
     {
       "prompt": "what's the weather",
       "run": 1,
-      "first_token_seconds": 0.0139,
-      "full_response_seconds": 0.014
+      "first_token_seconds": 0.0028,
+      "full_response_seconds": 0.0028
     },
     {
       "prompt": "tell me about ghee roast prawns",
       "run": 1,
-      "first_token_seconds": 0.0137,
-      "full_response_seconds": 0.0137
+      "first_token_seconds": 0.0035,
+      "full_response_seconds": 0.0035
     },
     {
       "prompt": "add 1 butter chicken",
       "run": 1,
-      "first_token_seconds": 0.0173,
-      "full_response_seconds": 0.0173
+      "first_token_seconds": 0.0058,
+      "full_response_seconds": 0.0058
     },
     {
       "prompt": "how much is water",
       "run": 1,
-      "first_token_seconds": 0.0145,
-      "full_response_seconds": 0.0145
+      "first_token_seconds": 0.0038,
+      "full_response_seconds": 0.0038
     },
     {
       "prompt": "how much is butter chicken",
       "run": 2,
-      "first_token_seconds": 0.0125,
-      "full_response_seconds": 0.0125
+      "first_token_seconds": 0.0035,
+      "full_response_seconds": 0.0036
     },
     {
       "prompt": "do you have dal bukhara",
       "run": 2,
-      "first_token_seconds": 0.0126,
-      "full_response_seconds": 0.0126
+      "first_token_seconds": 0.0035,
+      "full_response_seconds": 0.0035
     },
     {
       "prompt": "recommend something spicy",
       "run": 2,
-      "first_token_seconds": 0.016,
-      "full_response_seconds": 0.016
+      "first_token_seconds": 0.0053,
+      "full_response_seconds": 0.0053
     },
     {
       "prompt": "suggest a veg dish",
       "run": 2,
-      "first_token_seconds": 0.0157,
-      "full_response_seconds": 0.0157
+      "first_token_seconds": 0.0046,
+      "full_response_seconds": 0.0047
     },
     {
       "prompt": "surprise me",
       "run": 2,
-      "first_token_seconds": 0.0172,
-      "full_response_seconds": 0.0172
+      "first_token_seconds": 0.0045,
+      "full_response_seconds": 0.0045
     },
     {
       "prompt": "add 1 dal tadka",
       "run": 2,
-      "first_token_seconds": 0.0168,
-      "full_response_seconds": 0.0169
+      "first_token_seconds": 0.0048,
+      "full_response_seconds": 0.0048
     },
     {
       "prompt": "where is my order",
       "run": 2,
-      "first_token_seconds": 0.0123,
-      "full_response_seconds": 0.0123
+      "first_token_seconds": 0.0037,
+      "full_response_seconds": 0.0038
     },
     {
       "prompt": "hi",
       "run": 2,
-      "first_token_seconds": 0.012,
-      "full_response_seconds": 0.012
+      "first_token_seconds": 0.0033,
+      "full_response_seconds": 0.0033
     },
     {
       "prompt": "what's the weather",
       "run": 2,
-      "first_token_seconds": 0.0098,
-      "full_response_seconds": 0.0098
+      "first_token_seconds": 0.0028,
+      "full_response_seconds": 0.0028
     },
     {
       "prompt": "tell me about ghee roast prawns",
       "run": 2,
-      "first_token_seconds": 0.0144,
-      "full_response_seconds": 0.0144
+      "first_token_seconds": 0.0035,
+      "full_response_seconds": 0.0035
     },
     {
       "prompt": "add 1 butter chicken",
       "run": 2,
-      "first_token_seconds": 0.0168,
-      "full_response_seconds": 0.0168
+      "first_token_seconds": 0.0049,
+      "full_response_seconds": 0.0049
     },
     {
       "prompt": "how much is water",
       "run": 2,
-      "first_token_seconds": 0.0135,
-      "full_response_seconds": 0.0135
+      "first_token_seconds": 0.0038,
+      "full_response_seconds": 0.0038
     }
   ],
   "metrics": {
-    "first_token_median": 0.0145,
-    "first_token_p90": 0.0182,
-    "full_response_median": 0.0145,
-    "full_response_p90": 0.0182,
+    "first_token_median": 0.0038,
+    "first_token_p90": 0.0053,
+    "full_response_median": 0.0038,
+    "full_response_p90": 0.0053,
     "turns": 36,
     "within_target": 1.0
   },
@@ -233,6 +233,6 @@
     "full_response_seconds": 15.0
   },
   "notes": "Deterministic graph path: replies are composed by the graph and then chunked, so first-token latency is close to full-response latency. Optional LLM polishing adds model time to both.",
-  "generated_at": "2026-10-20T13:26:20.121580+00:00",
-  "git_revision": "bcc2b56"
+  "generated_at": "2026-10-20T14:07:54.739475+00:00",
+  "git_revision": "b7de574"
 }

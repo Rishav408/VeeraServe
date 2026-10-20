@@ -1,0 +1,2255 @@
+{
+  "suite": "grounding",
+  "mode": "llm-no-rag",
+  "dataset_version": "1.0.0",
+  "repeat": 3,
+  "items": 64,
+  "records": [
+    {
+      "id": "g-001",
+      "kind": "price",
+      "question": "How much is Classic Mac and Cheese?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹265"
+      ],
+      "reply": "The Classic Mac and Cheese is priced at 150 rupees."
+    },
+    {
+      "id": "g-001",
+      "kind": "price",
+      "question": "How much is Classic Mac and Cheese?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹265"
+      ],
+      "reply": "The Classic Mac and Cheese is priced at 150 rupees."
+    },
+    {
+      "id": "g-001",
+      "kind": "price",
+      "question": "How much is Classic Mac and Cheese?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹265"
+      ],
+      "reply": "The Classic Mac and Cheese is priced at 150 rupees."
+    },
+    {
+      "id": "g-002",
+      "kind": "availability",
+      "question": "Do you have Jalapeno Pune Creamy Vegetable Pasta?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing target dish: Jalapeno Pune Creamy Vegetable Pasta",
+        "missing expected price: ₹290"
+      ],
+      "reply": "I'm sorry, but we do not have that specific dish on our menu at this time. However, we do offer Jalapeno Paneer which might be a suitable alternative for your taste preferences. Would you like to try it?"
+    },
+    {
+      "id": "g-002",
+      "kind": "availability",
+      "question": "Do you have Jalapeno Pune Creamy Vegetable Pasta?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing target dish: Jalapeno Pune Creamy Vegetable Pasta",
+        "missing expected price: ₹290"
+      ],
+      "reply": "I'm sorry, but we do not have that specific dish on our menu at this time. However, we do offer Jalapeno Paneer which might be a suitable alternative for your taste preferences. Would you like to try it?"
+    },
+    {
+      "id": "g-002",
+      "kind": "availability",
+      "question": "Do you have Jalapeno Pune Creamy Vegetable Pasta?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing target dish: Jalapeno Pune Creamy Vegetable Pasta",
+        "missing expected price: ₹290"
+      ],
+      "reply": "I'm sorry, but we do not have that specific dish on our menu at this time. However, we do offer Jalapeno Paneer which might be a suitable alternative for your taste preferences. Would you like to try it?"
+    },
+    {
+      "id": "g-003",
+      "kind": "about",
+      "question": "Tell me about Penne Alla Vodka",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹265"
+      ],
+      "reply": "I'm sorry, but we do not have Penne Alla Vodka on our menu. However, we do have Penne alla vodka which is a similar dish. Would you like to order that instead?"
+    },
+    {
+      "id": "g-003",
+      "kind": "about",
+      "question": "Tell me about Penne Alla Vodka",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹265"
+      ],
+      "reply": "I'm sorry, but we do not have Penne Alla Vodka on our menu at this time. However, we do offer a Pasta Carbonara which is made with pancetta, eggs, cheese, and black pepper. Would you like to try that instead?"
+    },
+    {
+      "id": "g-003",
+      "kind": "about",
+      "question": "Tell me about Penne Alla Vodka",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹265"
+      ],
+      "reply": "I'm sorry, but we do not have Penne Alla Vodka on our menu at this time. However, we do offer a Pasta Carbonara which is made with pancetta, eggs, cheese, and black pepper. Would you like to try that instead?"
+    },
+    {
+      "id": "g-004",
+      "kind": "price",
+      "question": "How much is Spaghetti AOP?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Spaghetti AOP is priced at 120 INR."
+    },
+    {
+      "id": "g-004",
+      "kind": "price",
+      "question": "How much is Spaghetti AOP?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Spaghetti AOP is priced at 120 INR."
+    },
+    {
+      "id": "g-004",
+      "kind": "price",
+      "question": "How much is Spaghetti AOP?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Spaghetti AOP is priced at 120 INR."
+    },
+    {
+      "id": "g-005",
+      "kind": "availability",
+      "question": "Do you have Grilled Chicken?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹390"
+      ],
+      "reply": "Yes, we do have Grilled Chicken on our menu. It is priced at 150 INR. Would you like to order it now?"
+    },
+    {
+      "id": "g-005",
+      "kind": "availability",
+      "question": "Do you have Grilled Chicken?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹390"
+      ],
+      "reply": "Yes, we do have Grilled Chicken on our menu. It is priced at 150 INR. Would you like to order it now?"
+    },
+    {
+      "id": "g-005",
+      "kind": "availability",
+      "question": "Do you have Grilled Chicken?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹390"
+      ],
+      "reply": "Yes, we do have Grilled Chicken on our menu. It is priced at 150 INR. Would you like to order it now?"
+    },
+    {
+      "id": "g-006",
+      "kind": "about",
+      "question": "Tell me about Triple Veg Schezwan Fried Rice",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Sure! Our Triple Veg Schezwan Fried Rice is made with mixed vegetables such as carrots, peas, and corn, stir-fried with rice and seasoned with a spicy schezwan sauce. It's served hot and comes with your choice of either paneer or paneer and egg for an extra protein boost."
+    },
+    {
+      "id": "g-006",
+      "kind": "about",
+      "question": "Tell me about Triple Veg Schezwan Fried Rice",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Sure! Our Triple Veg Schezwan Fried Rice is made with mixed vegetables such as carrots, peas, and corn, all stir-fried in a spicy sauce that includes schezwan sauce for a delightful flavor. It's served with steamed rice. Would you like to order this dish?"
+    },
+    {
+      "id": "g-006",
+      "kind": "about",
+      "question": "Tell me about Triple Veg Schezwan Fried Rice",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Sure! Our Triple Veg Schezwan Fried Rice is made with mixed vegetables such as carrots, peas, and corn, all stir-fried in a spicy sauce that includes schezwan sauce for a delightful flavor. It's served with steamed rice. Would you like to order this dish?"
+    },
+    {
+      "id": "g-007",
+      "kind": "price",
+      "question": "How much is Veg Manchurian Fried Rice?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "The Veg Manchurian Fried Rice costs 120 rupees."
+    },
+    {
+      "id": "g-007",
+      "kind": "price",
+      "question": "How much is Veg Manchurian Fried Rice?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "The Veg Manchurian Fried Rice costs 120 rupees."
+    },
+    {
+      "id": "g-007",
+      "kind": "price",
+      "question": "How much is Veg Manchurian Fried Rice?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "The Veg Manchurian Fried Rice costs 120 rupees."
+    },
+    {
+      "id": "g-008",
+      "kind": "availability",
+      "question": "Do you have Tangra Chilli Chicken Egg Noodles?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Tangra Chilli Chicken Egg Noodles on our menu. However, we do have Chicken Egg Noodles which might be a suitable alternative for your request. Would you like to try that?"
+    },
+    {
+      "id": "g-008",
+      "kind": "availability",
+      "question": "Do you have Tangra Chilli Chicken Egg Noodles?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Tangra Chilli Chicken Egg Noodles on our menu. However, we do offer Chicken Egg Noodles with a tangy sauce that might be close to what you're looking for. Would you like to try that?"
+    },
+    {
+      "id": "g-008",
+      "kind": "availability",
+      "question": "Do you have Tangra Chilli Chicken Egg Noodles?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Tangra Chilli Chicken Egg Noodles on our menu. However, we do offer Chicken Egg Noodles with a tangy sauce that might be close to what you're looking for. Would you like to try that?"
+    },
+    {
+      "id": "g-009",
+      "kind": "about",
+      "question": "Tell me about Triple Chicken Schezwan Fried Rice",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Triple Chicken Schezwan Fried Rice on our menu at this time. However, we can recommend our Chicken Schezwan Fried Rice which is a popular dish that might suit your taste. It features stir-fried rice with chicken pieces and a spicy sauce made from schezwan paste, chili peppers, garlic, ginger, and other spices."
+    },
+    {
+      "id": "g-009",
+      "kind": "about",
+      "question": "Tell me about Triple Chicken Schezwan Fried Rice",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Triple Chicken Schezwan Fried Rice on our menu at this time. However, we can recommend our Chicken Schezwan Fried Rice which is a popular dish that might suit your taste. It includes stir-fried rice with chicken pieces in a spicy sauce flavored with schezwan sauce and other spices."
+    },
+    {
+      "id": "g-009",
+      "kind": "about",
+      "question": "Tell me about Triple Chicken Schezwan Fried Rice",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Triple Chicken Schezwan Fried Rice on our menu at this time. However, we can recommend our Chicken Schezwan Fried Rice which is a popular dish that might suit your taste. It includes stir-fried rice with chicken pieces in a spicy sauce flavored with schezwan sauce and other spices."
+    },
+    {
+      "id": "g-010",
+      "kind": "price",
+      "question": "How much is Roti?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹30"
+      ],
+      "reply": "Roti is served complimentary at Veeradhar Dhaba."
+    },
+    {
+      "id": "g-010",
+      "kind": "price",
+      "question": "How much is Roti?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹30"
+      ],
+      "reply": "Roti is served complimentary at Veeradhar Dhaba."
+    },
+    {
+      "id": "g-010",
+      "kind": "price",
+      "question": "How much is Roti?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹30"
+      ],
+      "reply": "Roti is served complimentary at Veeradhar Dhaba."
+    },
+    {
+      "id": "g-011",
+      "kind": "availability",
+      "question": "Do you have Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹40"
+      ],
+      "reply": "Yes, we do have Naan on our menu. Would you like to order it now?"
+    },
+    {
+      "id": "g-011",
+      "kind": "availability",
+      "question": "Do you have Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹40"
+      ],
+      "reply": "Yes, we do have Naan on our menu. Would you like to order it now?"
+    },
+    {
+      "id": "g-011",
+      "kind": "availability",
+      "question": "Do you have Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹40"
+      ],
+      "reply": "Yes, we do have Naan on our menu. Would you like to order it now?"
+    },
+    {
+      "id": "g-012",
+      "kind": "about",
+      "question": "Tell me about Butter Naan",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹45"
+      ],
+      "reply": "Butter Naan is a soft, fluffy bread that is typically served warm with butter. It's a popular accompaniment to various dishes in Indian cuisine. At Veeradhar Dhaba, we serve our Butter Naan freshly baked and it comes with generous amounts of butter for you to enjoy."
+    },
+    {
+      "id": "g-012",
+      "kind": "about",
+      "question": "Tell me about Butter Naan",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹45"
+      ],
+      "reply": "Butter Naan is a soft, fluffy bread that is typically served warm with butter. It's a popular accompaniment to various dishes in Indian cuisine. At Veeradhar Dhaba, we serve our Butter Naan freshly baked and it comes with generous amounts of butter for you to enjoy."
+    },
+    {
+      "id": "g-012",
+      "kind": "about",
+      "question": "Tell me about Butter Naan",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹45"
+      ],
+      "reply": "Butter Naan is a soft, fluffy bread that is typically served warm with butter. It's a popular accompaniment to various dishes in Indian cuisine. At Veeradhar Dhaba, we serve our Butter Naan freshly baked and it comes with generous amounts of butter for you to enjoy."
+    },
+    {
+      "id": "g-013",
+      "kind": "price",
+      "question": "How much is Butter Laccha Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹65"
+      ],
+      "reply": "The price of Butter Laccha Naan is 150 rupees."
+    },
+    {
+      "id": "g-013",
+      "kind": "price",
+      "question": "How much is Butter Laccha Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹65"
+      ],
+      "reply": "The price of Butter Laccha Naan is 150 rupees."
+    },
+    {
+      "id": "g-013",
+      "kind": "price",
+      "question": "How much is Butter Laccha Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹65"
+      ],
+      "reply": "The price of Butter Laccha Naan is 150 rupees."
+    },
+    {
+      "id": "g-014",
+      "kind": "availability",
+      "question": "Do you have Butter Garlic Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹65"
+      ],
+      "reply": "We do have Butter Garlic Naan on our menu. Would you like to order it now?"
+    },
+    {
+      "id": "g-014",
+      "kind": "availability",
+      "question": "Do you have Butter Garlic Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹65"
+      ],
+      "reply": "We do have Butter Garlic Naan on our menu. Would you like to order it now?"
+    },
+    {
+      "id": "g-014",
+      "kind": "availability",
+      "question": "Do you have Butter Garlic Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹65"
+      ],
+      "reply": "We do have Butter Garlic Naan on our menu. Would you like to order it now?"
+    },
+    {
+      "id": "g-015",
+      "kind": "about",
+      "question": "Tell me about Warqi Paratha",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "Warqi Paratha is a flatbread from our menu. It's made with wheat flour and ghee (clarified butter). Please note that it is served hot and can be enjoyed as a side or as part of your meal. Would you like to know more?"
+    },
+    {
+      "id": "g-015",
+      "kind": "about",
+      "question": "Tell me about Warqi Paratha",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "Warqi Paratha is a flatbread from our menu that features a unique blend of spices including cardamom, saffron, and rose water. It's served hot with ghee (clarified butter) for dipping. This paratha is quite special and not found in many places. Enjoy!"
+    },
+    {
+      "id": "g-015",
+      "kind": "about",
+      "question": "Tell me about Warqi Paratha",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "Warqi Paratha is a flatbread from our menu that features a unique blend of spices including cardamom, saffron, and rose water. It's served hot with ghee (clarified butter) for dipping. This paratha is quite special and not found in many places. Enjoy!"
+    },
+    {
+      "id": "g-016",
+      "kind": "price",
+      "question": "How much is Cheese Chilli Garlic Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹210"
+      ],
+      "reply": "The Cheese Chilli Garlic Naan costs 150 rupees."
+    },
+    {
+      "id": "g-016",
+      "kind": "price",
+      "question": "How much is Cheese Chilli Garlic Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹210"
+      ],
+      "reply": "The Cheese Chilli Garlic Naan costs 150 rupees."
+    },
+    {
+      "id": "g-016",
+      "kind": "price",
+      "question": "How much is Cheese Chilli Garlic Naan?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹210"
+      ],
+      "reply": "The Cheese Chilli Garlic Naan costs 150 rupees."
+    },
+    {
+      "id": "g-017",
+      "kind": "availability",
+      "question": "Do you have Amritsari Paneer Lababdar?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹350"
+      ],
+      "reply": "I'm sorry, but we do not have Amritsari Paneer Lababdar on our menu. However, we do have a traditional Paneer Tikka which might be a suitable alternative for your taste. Would you like to try it?"
+    },
+    {
+      "id": "g-017",
+      "kind": "availability",
+      "question": "Do you have Amritsari Paneer Lababdar?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹350"
+      ],
+      "reply": "I'm sorry, but we do not have Amritsari Paneer Lababdar on our menu. However, we do have a traditional Paneer Tikka which might be a suitable alternative for your taste. Would you like to try it?"
+    },
+    {
+      "id": "g-017",
+      "kind": "availability",
+      "question": "Do you have Amritsari Paneer Lababdar?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹350"
+      ],
+      "reply": "I'm sorry, but we do not have Amritsari Paneer Lababdar on our menu. However, we do have a traditional Paneer Tikka which might be a suitable alternative for your taste. Would you like to try it?"
+    },
+    {
+      "id": "g-018",
+      "kind": "about",
+      "question": "Tell me about Pindi Chole",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹350"
+      ],
+      "reply": "Pindi Chole is a popular vegetarian dish from North India. It consists of chickpeas cooked in a spicy tomato-based gravy with cumin seeds, mustard seeds, and other spices. Garnished with chopped onions and fresh coriander leaves, it's served hot. This dish is typically enjoyed as part of a meal at Veeradhar Dhaba."
+    },
+    {
+      "id": "g-018",
+      "kind": "about",
+      "question": "Tell me about Pindi Chole",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹350"
+      ],
+      "reply": "Pindi Chole is a popular vegetarian dish from North India. It consists of chickpeas cooked in a spicy tomato-based gravy with cumin seeds, mustard seeds, and other spices. Garnished with chopped onions and fresh coriander leaves, it's served hot. This dish is typically enjoyed as part of a meal at Veeradhar Dhaba."
+    },
+    {
+      "id": "g-018",
+      "kind": "about",
+      "question": "Tell me about Pindi Chole",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹350"
+      ],
+      "reply": "Pindi Chole is a popular vegetarian dish from North India. It consists of chickpeas cooked in a spicy tomato-based gravy with cumin seeds, mustard seeds, and other spices. Garnished with chopped onions and fresh coriander leaves, it's served hot. This dish is typically enjoyed as part of a meal at Veeradhar Dhaba."
+    },
+    {
+      "id": "g-019",
+      "kind": "price",
+      "question": "How much is Veg Diwani Handi?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹350"
+      ],
+      "reply": "The Veg Diwani Handi costs 120 Rupees."
+    },
+    {
+      "id": "g-019",
+      "kind": "price",
+      "question": "How much is Veg Diwani Handi?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹350"
+      ],
+      "reply": "The Veg Diwani Handi costs 150 rupees."
+    },
+    {
+      "id": "g-019",
+      "kind": "price",
+      "question": "How much is Veg Diwani Handi?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹350"
+      ],
+      "reply": "The Veg Diwani Handi costs 150 rupees."
+    },
+    {
+      "id": "g-020",
+      "kind": "availability",
+      "question": "Do you have Dal Bukhara?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Yes, we do have Dal Bukhara on our menu. It is priced at 150 INR. Would you like to order it now?"
+    },
+    {
+      "id": "g-020",
+      "kind": "availability",
+      "question": "Do you have Dal Bukhara?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Yes, we do have Dal Bukhara on our menu. It is priced at 150 INR. Would you like to order it now?"
+    },
+    {
+      "id": "g-020",
+      "kind": "availability",
+      "question": "Do you have Dal Bukhara?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Yes, we do have Dal Bukhara on our menu. It is priced at 150 INR. Would you like to order it now?"
+    },
+    {
+      "id": "g-021",
+      "kind": "about",
+      "question": "Tell me about Dal Tadka",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹285"
+      ],
+      "reply": "Sure! The Dal Tadka is a popular vegetarian dish from India. It consists of a simple yet flavorful combination of split chickpeas (dhal) cooked in a mild curry made with cumin seeds, mustard seeds, and a blend of spices including turmeric, coriander powder, and red chili powder. This dish is then served with finely chopped garlic, ginger, and fresh cilantro for garnish. It's typically seasoned with lemon juice or tamarind paste to add a tangy flavor."
+    },
+    {
+      "id": "g-021",
+      "kind": "about",
+      "question": "Tell me about Dal Tadka",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹285"
+      ],
+      "reply": "Sure! The Dal Tadka is a popular vegetarian dish from India. It consists of a simple yet flavorful combination of split chickpeas (dhal) cooked in a mild curry made with cumin seeds, mustard seeds, and a blend of spices like turmeric, coriander powder, and red chili powder. This dish is then served with finely chopped garlic, ginger, and roasted sesame seeds for extra flavor. It's typically garnished with fresh cilantro leaves and a squeeze of lemon juice to enhance the taste."
+    },
+    {
+      "id": "g-021",
+      "kind": "about",
+      "question": "Tell me about Dal Tadka",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹285"
+      ],
+      "reply": "Sure! The Dal Tadka is a popular vegetarian dish from India. It consists of a simple yet flavorful combination of split chickpeas (dhal) cooked in a mild curry made with cumin seeds, mustard seeds, and a blend of spices like turmeric, coriander powder, and red chili powder. This dish is then served with finely chopped garlic, ginger, and roasted sesame seeds for extra flavor. It's typically garnished with fresh cilantro leaves and a squeeze of lemon juice to enhance the taste."
+    },
+    {
+      "id": "g-022",
+      "kind": "price",
+      "question": "How much is Butter Chicken?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹385"
+      ],
+      "reply": "Butter Chicken is priced at 120 Rupees. Would you like to order it now?"
+    },
+    {
+      "id": "g-022",
+      "kind": "price",
+      "question": "How much is Butter Chicken?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹385"
+      ],
+      "reply": "Butter Chicken is priced at 150 rupees. Would you like to order it now?"
+    },
+    {
+      "id": "g-022",
+      "kind": "price",
+      "question": "How much is Butter Chicken?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹385"
+      ],
+      "reply": "Butter Chicken is priced at 150 rupees. Would you like to order it now?"
+    },
+    {
+      "id": "g-023",
+      "kind": "availability",
+      "question": "Do you have Chicken Saoji Rassa?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹385"
+      ],
+      "reply": "Yes, we do have Chicken Saoji Rassa on our menu. It is priced at 120 Rupees. Would you like to order it now?"
+    },
+    {
+      "id": "g-023",
+      "kind": "availability",
+      "question": "Do you have Chicken Saoji Rassa?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹385"
+      ],
+      "reply": "Yes, we do have Chicken Saoji Rassa on our menu. It is priced at 120 Rupees. Would you like to order it now?"
+    },
+    {
+      "id": "g-023",
+      "kind": "availability",
+      "question": "Do you have Chicken Saoji Rassa?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹385"
+      ],
+      "reply": "Yes, we do have Chicken Saoji Rassa on our menu. It is priced at 120 Rupees. Would you like to order it now?"
+    },
+    {
+      "id": "g-024",
+      "kind": "about",
+      "question": "Tell me about Saoji Mutton Rassa",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": true,
+      "reasons": [
+        "fabricated price: ₹150",
+        "missing expected price: ₹499"
+      ],
+      "reply": "Saoji Mutton Rassa is a popular dish from our menu. It features tender mutton cooked in a rich tomato-based sauce with aromatic spices. This dish is served with steamed basmati rice and garnished with fresh cilantro. The price for this delightful meal is ₹150."
+    },
+    {
+      "id": "g-024",
+      "kind": "about",
+      "question": "Tell me about Saoji Mutton Rassa",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": true,
+      "reasons": [
+        "fabricated price: ₹150",
+        "missing expected price: ₹499"
+      ],
+      "reply": "Saoji Mutton Rassa is a popular dish from our menu. It features tender mutton cooked in a rich tomato-based sauce with aromatic spices. This dish is served with steamed basmati rice and garnished with fresh cilantro. The price for this delightful meal is ₹150."
+    },
+    {
+      "id": "g-024",
+      "kind": "about",
+      "question": "Tell me about Saoji Mutton Rassa",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": true,
+      "reasons": [
+        "fabricated price: ₹150",
+        "missing expected price: ₹499"
+      ],
+      "reply": "Saoji Mutton Rassa is a popular dish from our menu. It features tender mutton cooked in a rich tomato-based sauce with aromatic spices. This dish is served with steamed basmati rice and garnished with fresh cilantro. The price for this delightful meal is ₹150."
+    },
+    {
+      "id": "g-025",
+      "kind": "price",
+      "question": "How much is Chicken Lababdar?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹385"
+      ],
+      "reply": "Chicken Lababdar is priced at 150 rupees."
+    },
+    {
+      "id": "g-025",
+      "kind": "price",
+      "question": "How much is Chicken Lababdar?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹385"
+      ],
+      "reply": "Chicken Lababdar is priced at 150 rupees."
+    },
+    {
+      "id": "g-025",
+      "kind": "price",
+      "question": "How much is Chicken Lababdar?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹385"
+      ],
+      "reply": "Chicken Lababdar is priced at 150 rupees."
+    },
+    {
+      "id": "g-026",
+      "kind": "availability",
+      "question": "Do you have Ghee Roast Prawns?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹410"
+      ],
+      "reply": "We do not have Ghee Roast Prawns on our menu at this time. However, we can recommend our Butter Roasted Prawns which is a popular dish. Would you like to try that instead?"
+    },
+    {
+      "id": "g-026",
+      "kind": "availability",
+      "question": "Do you have Ghee Roast Prawns?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹410"
+      ],
+      "reply": "We do not have Ghee Roast Prawns on our menu at this time. However, we can recommend our Butter Roasted Prawns instead. Would you like to try that?"
+    },
+    {
+      "id": "g-026",
+      "kind": "availability",
+      "question": "Do you have Ghee Roast Prawns?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹410"
+      ],
+      "reply": "We do not have Ghee Roast Prawns on our menu at this time. However, we can recommend our Butter Roasted Prawns instead. Would you like to try that?"
+    },
+    {
+      "id": "g-027",
+      "kind": "about",
+      "question": "Tell me about Thecha Paneer Chilli",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "I'm sorry, but \"Thecha Paneer Chilli\" is not listed on our menu. However, we do have a Paneer Tikka Masala that might be similar in taste or could serve as an alternative to your request. Would you like to try the Paneer Tikka Masala?"
+    },
+    {
+      "id": "g-027",
+      "kind": "about",
+      "question": "Tell me about Thecha Paneer Chilli",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "I'm sorry, but we do not have Thecha Paneer Chilli on our menu at this time. However, we do offer a Paneer Tikka Masala which is very popular. Would you like to try that instead?"
+    },
+    {
+      "id": "g-027",
+      "kind": "about",
+      "question": "Tell me about Thecha Paneer Chilli",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "I'm sorry, but we do not have Thecha Paneer Chilli on our menu at this time. However, we do offer a Paneer Tikka Masala which is very popular. Would you like to try that instead?"
+    },
+    {
+      "id": "g-028",
+      "kind": "price",
+      "question": "How much is Old Style Paneer Chilli?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Old Style Paneer Chilli is priced at 150 rupees."
+    },
+    {
+      "id": "g-028",
+      "kind": "price",
+      "question": "How much is Old Style Paneer Chilli?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Old Style Paneer Chilli is priced at 150 rupees."
+    },
+    {
+      "id": "g-028",
+      "kind": "price",
+      "question": "How much is Old Style Paneer Chilli?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Old Style Paneer Chilli is priced at 150 rupees."
+    },
+    {
+      "id": "g-029",
+      "kind": "availability",
+      "question": "Do you have Korean Chilli Mushroom?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "I'm sorry, but we do not have Korean Chilli Mushroom on our menu at this time. However, we do have a Spicy Mushroom that might be of interest to you. It is priced at 150 INR and includes mushrooms cooked in a spicy sauce. Would you like to try it?"
+    },
+    {
+      "id": "g-029",
+      "kind": "availability",
+      "question": "Do you have Korean Chilli Mushroom?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "I'm sorry, but we do not have Korean Chilli Mushroom on our menu at this time. However, we do offer a Spicy Mushroom dish that might be of interest to you. It includes mushrooms with a spicy kick and is priced at 150 INR. Would you like to try it?"
+    },
+    {
+      "id": "g-029",
+      "kind": "availability",
+      "question": "Do you have Korean Chilli Mushroom?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "I'm sorry, but we do not have Korean Chilli Mushroom on our menu at this time. However, we do offer a Spicy Mushroom dish that might be of interest to you. It includes mushrooms with a spicy kick and is priced at 150 INR. Would you like to try it?"
+    },
+    {
+      "id": "g-030",
+      "kind": "about",
+      "question": "Tell me about Veg Crystal Momos",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Sure! Our Veg Crystal Momos are a delightful bite with a crispy exterior and a tender filling that includes vegetables like carrots, peas, and cabbage. They come in a crystal wrapper which gives them their name. Enjoy the perfect balance of flavors and textures."
+    },
+    {
+      "id": "g-030",
+      "kind": "about",
+      "question": "Tell me about Veg Crystal Momos",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Sure! Our Veg Crystal Momos are a delightful bite with a crispy exterior and a tender filling that includes peas, carrots, onions, and potatoes. They come in a crystal wrapper which gives them their name. Enjoy the flavors of these momos as they are served hot."
+    },
+    {
+      "id": "g-030",
+      "kind": "about",
+      "question": "Tell me about Veg Crystal Momos",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Sure! Our Veg Crystal Momos are a delightful bite with a crispy exterior and a tender filling that includes peas, carrots, onions, and potatoes. They come in a crystal wrapper which gives them their name. Enjoy the flavors of these momos as they are served hot."
+    },
+    {
+      "id": "g-031",
+      "kind": "price",
+      "question": "How much is Veg Dragon Roll?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "I'm sorry, but I don't have the price listed for the Veg Dragon Roll on our menu. However, we do have a similar dish called Dragon Roll which you might enjoy. It's priced at 120 INR. Would you like to try that instead?"
+    },
+    {
+      "id": "g-031",
+      "kind": "price",
+      "question": "How much is Veg Dragon Roll?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "I'm sorry, but I don't have the price listed for the Veg Dragon Roll on our menu. However, we do have a similar dish called Dragon Roll which you might enjoy. It's priced at 120 INR. Would you like to try that instead?"
+    },
+    {
+      "id": "g-031",
+      "kind": "price",
+      "question": "How much is Veg Dragon Roll?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "I'm sorry, but I don't have the price listed for the Veg Dragon Roll on our menu. However, we do have a similar dish called Dragon Roll which you might enjoy. It's priced at 120 INR. Would you like to try that instead?"
+    },
+    {
+      "id": "g-032",
+      "kind": "availability",
+      "question": "Do you have Veg Manchurian Dry?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Yes, we do have Veg Manchurian Dry on our menu. It is priced at 120 INR. Would you like to order it now?"
+    },
+    {
+      "id": "g-032",
+      "kind": "availability",
+      "question": "Do you have Veg Manchurian Dry?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Yes, we do have Veg Manchurian Dry on our menu. It is priced at 120 INR. Would you like to order it now?"
+    },
+    {
+      "id": "g-032",
+      "kind": "availability",
+      "question": "Do you have Veg Manchurian Dry?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Yes, we do have Veg Manchurian Dry on our menu. It is priced at 120 INR. Would you like to order it now?"
+    },
+    {
+      "id": "g-033",
+      "kind": "about",
+      "question": "Tell me about Tandoori Soya Chaap",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Certainly! The Tandoori Soya Chaap from our menu is marinated in a blend of spices and cooked in a tandoor, resulting in a flavorful dish. It comes with onion slices, tomato slices, and chutney on a crispy naan bread. Enjoy the delightful taste of this traditional Indian dish."
+    },
+    {
+      "id": "g-033",
+      "kind": "about",
+      "question": "Tell me about Tandoori Soya Chaap",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Certainly! The Tandoori Soya Chaap from our menu is marinated in a blend of spices and yogurt, then cooked in a tandoor to create a flavorful dish. It's served with a side of raita for a balanced taste."
+    },
+    {
+      "id": "g-033",
+      "kind": "about",
+      "question": "Tell me about Tandoori Soya Chaap",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Certainly! The Tandoori Soya Chaap from our menu is marinated in a blend of spices and yogurt, then cooked in a tandoor to create a flavorful dish. It's served with a side of raita for a balanced taste."
+    },
+    {
+      "id": "g-034",
+      "kind": "price",
+      "question": "How much is Roasted Veg Paneer Tikka Sandwich?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Roasted Veg Paneer Tikka Sandwich is priced at 120 rupees."
+    },
+    {
+      "id": "g-034",
+      "kind": "price",
+      "question": "How much is Roasted Veg Paneer Tikka Sandwich?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Roasted Veg Paneer Tikka Sandwich is priced at 120 rupees."
+    },
+    {
+      "id": "g-034",
+      "kind": "price",
+      "question": "How much is Roasted Veg Paneer Tikka Sandwich?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹310"
+      ],
+      "reply": "Roasted Veg Paneer Tikka Sandwich is priced at 120 rupees."
+    },
+    {
+      "id": "g-035",
+      "kind": "availability",
+      "question": "Do you have Pesto Chicken Pizza?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹410"
+      ],
+      "reply": "I'm sorry, but we do not have Pesto Chicken Pizza on our menu. However, we do offer a Chicken Pizza with various toppings including chicken, mozzarella cheese, and tomato sauce. Would you like to try that instead?"
+    },
+    {
+      "id": "g-035",
+      "kind": "availability",
+      "question": "Do you have Pesto Chicken Pizza?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹410"
+      ],
+      "reply": "I'm sorry, but we do not have Pesto Chicken Pizza on our menu. However, we do offer a Chicken Pizza with various toppings including pepperoni, mushrooms, olives, and onions. Would you like to try that instead?"
+    },
+    {
+      "id": "g-035",
+      "kind": "availability",
+      "question": "Do you have Pesto Chicken Pizza?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹410"
+      ],
+      "reply": "I'm sorry, but we do not have Pesto Chicken Pizza on our menu. However, we do offer a Chicken Pizza with various toppings including pepperoni, mushrooms, olives, and onions. Would you like to try that instead?"
+    },
+    {
+      "id": "g-036",
+      "kind": "about",
+      "question": "Tell me about Butter Chicken Pizza",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹410"
+      ],
+      "reply": "I'm sorry, but we do not have a Butter Chicken Pizza on our menu. However, we do have a Butter Chicken Platter which includes Butter Chicken with naan bread and rice. Would you like to order that?"
+    },
+    {
+      "id": "g-036",
+      "kind": "about",
+      "question": "Tell me about Butter Chicken Pizza",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹410"
+      ],
+      "reply": "I'm sorry, but we do not have a Butter Chicken Pizza on our menu. However, we do have a Butter Chicken Platter which includes Butter Chicken with naan bread and rice. Would you like to order that?"
+    },
+    {
+      "id": "g-036",
+      "kind": "about",
+      "question": "Tell me about Butter Chicken Pizza",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹410"
+      ],
+      "reply": "I'm sorry, but we do not have a Butter Chicken Pizza on our menu. However, we do have a Butter Chicken Platter which includes Butter Chicken with naan bread and rice. Would you like to order that?"
+    },
+    {
+      "id": "g-037",
+      "kind": "price",
+      "question": "How much is Korean Chicken Chilli?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Korean Chicken Chilli on our menu. However, we do have Chicken Tikka Masala which you might enjoy. It's priced at 120 INR."
+    },
+    {
+      "id": "g-037",
+      "kind": "price",
+      "question": "How much is Korean Chicken Chilli?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Korean Chicken Chilli on our menu at this time. However, we do have a Spicy Chicken Curry which might be similar to what you are looking for. Would you like to try that instead?"
+    },
+    {
+      "id": "g-037",
+      "kind": "price",
+      "question": "How much is Korean Chicken Chilli?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Korean Chicken Chilli on our menu at this time. However, we do have a Spicy Chicken Curry which might be similar to what you are looking for. Would you like to try that instead?"
+    },
+    {
+      "id": "g-038",
+      "kind": "availability",
+      "question": "Do you have Schezwan Chicken Lollipop?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Schezwan Chicken Lollipop on our menu. However, we do have Schezwan Chicken which might be a suitable alternative. Would you like to order that instead?"
+    },
+    {
+      "id": "g-038",
+      "kind": "availability",
+      "question": "Do you have Schezwan Chicken Lollipop?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Schezwan Chicken Lollipop on our menu. However, we do have Schezwan Chicken which might be a suitable alternative. Would you like to order that instead?"
+    },
+    {
+      "id": "g-038",
+      "kind": "availability",
+      "question": "Do you have Schezwan Chicken Lollipop?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "I'm sorry, but we do not have Schezwan Chicken Lollipop on our menu. However, we do have Schezwan Chicken which might be a suitable alternative. Would you like to order that instead?"
+    },
+    {
+      "id": "g-039",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Momos",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "Certainly! Our Chicken Tikka Momos are prepared with tender pieces of chicken tikka, served in a fluffy dumpling filled with spiced yogurt and herbs. They come with a side of tamarind sauce to enhance the flavors. Enjoy your meal!"
+    },
+    {
+      "id": "g-039",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Momos",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "Certainly! Our Chicken Tikka Momos are a delightful fusion of flavors. Each momo is filled with tender pieces of marinated chicken tikka, wrapped in a soft, steamed dumpling wrapper. The filling is seasoned to perfection and then gently cooked until it's juicy and flavorful. We serve these momos with a side of yogurt sauce for an extra burst of flavor."
+    },
+    {
+      "id": "g-039",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Momos",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "Certainly! Our Chicken Tikka Momos are a delightful fusion of flavors. Each momo is filled with tender pieces of marinated chicken tikka, wrapped in a soft, steamed dumpling wrapper. The filling is seasoned to perfection and then gently cooked until it's juicy and flavorful. We serve these momos with a side of yogurt sauce for an extra burst of flavor."
+    },
+    {
+      "id": "g-040",
+      "kind": "price",
+      "question": "How much is Burnchilli Chicken?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "Burnchilli Chicken is priced at 120 Rupees. Would you like to order it now?"
+    },
+    {
+      "id": "g-040",
+      "kind": "price",
+      "question": "How much is Burnchilli Chicken?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "Burnchilli Chicken is priced at 120 Rupees. Would you like to order more of this dish or something else from our menu?"
+    },
+    {
+      "id": "g-040",
+      "kind": "price",
+      "question": "How much is Burnchilli Chicken?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "Burnchilli Chicken is priced at 120 Rupees. Would you like to order more of this dish or something else from our menu?"
+    },
+    {
+      "id": "g-041",
+      "kind": "availability",
+      "question": "Do you have Kerala Style Fish Fry?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "We do not have Kerala Style Fish Fry on our menu at this time. However, we can serve you our Grilled Fish which is a popular dish here. Would you like to try that instead?"
+    },
+    {
+      "id": "g-041",
+      "kind": "availability",
+      "question": "Do you have Kerala Style Fish Fry?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "We do not have Kerala Style Fish Fry on our menu at this time. However, we can serve you our Grilled Fish which is a popular dish here. Would you like to try that instead?"
+    },
+    {
+      "id": "g-041",
+      "kind": "availability",
+      "question": "Do you have Kerala Style Fish Fry?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "We do not have Kerala Style Fish Fry on our menu at this time. However, we can serve you our Grilled Fish which is a popular dish here. Would you like to try that instead?"
+    },
+    {
+      "id": "g-042",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Supreme",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": true,
+      "reasons": [
+        "fabricated price: ₹120",
+        "missing expected price: ₹399"
+      ],
+      "reply": "Chicken Tikka Supreme is one of our popular dishes. It features marinated pieces of chicken grilled to perfection and served with a side of yogurt sauce and naan bread. The price for this dish is ₹120."
+    },
+    {
+      "id": "g-042",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Supreme",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "Chicken Tikka Supreme is one of our popular dishes. It features marinated chicken pieces grilled to perfection and served with a side of yogurt sauce and naan bread."
+    },
+    {
+      "id": "g-042",
+      "kind": "about",
+      "question": "Tell me about Chicken Tikka Supreme",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹399"
+      ],
+      "reply": "Chicken Tikka Supreme is one of our popular dishes. It features marinated chicken pieces grilled to perfection and served with a side of yogurt sauce and naan bread."
+    },
+    {
+      "id": "g-043",
+      "kind": "price",
+      "question": "How much is Redbull?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹199"
+      ],
+      "reply": "I'm sorry, but we do not have Redbull on our menu. We serve various Indian dishes instead. Would you like to know about any of them?"
+    },
+    {
+      "id": "g-043",
+      "kind": "price",
+      "question": "How much is Redbull?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹199"
+      ],
+      "reply": "I'm sorry, but we do not have Redbull on our menu. We serve various Indian dishes instead. Would you like to know about any of them?"
+    },
+    {
+      "id": "g-043",
+      "kind": "price",
+      "question": "How much is Redbull?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹199"
+      ],
+      "reply": "I'm sorry, but we do not have Redbull on our menu. We serve various Indian dishes instead. Would you like to know about any of them?"
+    },
+    {
+      "id": "g-044",
+      "kind": "availability",
+      "question": "Do you have Canned Juices?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "We do not serve canned juices at Veeradhar Dhaba. However, we have fresh fruit juices that might be of interest to you."
+    },
+    {
+      "id": "g-044",
+      "kind": "availability",
+      "question": "Do you have Canned Juices?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "We do not serve canned juices at Veeradhar Dhaba. However, we have fresh fruit juices that might be of interest to you."
+    },
+    {
+      "id": "g-044",
+      "kind": "availability",
+      "question": "Do you have Canned Juices?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "We do not serve canned juices at Veeradhar Dhaba. However, we have fresh fruit juices that might be of interest to you."
+    },
+    {
+      "id": "g-045",
+      "kind": "about",
+      "question": "Tell me about Soda",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "I'm sorry, but there is no item named \"Soda\" on our menu. We do have various soft drinks like Pepsi, Coca-Cola, and Limca available. Would you like to know more about these options?"
+    },
+    {
+      "id": "g-045",
+      "kind": "about",
+      "question": "Tell me about Soda",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "I'm sorry, but the menu doesn't include any item called \"Soda\". However, we do have a variety of soft drinks available. Would you like to know more about our beverages? We have options such as Pepsi, Coca-Cola, and Sprite."
+    },
+    {
+      "id": "g-045",
+      "kind": "about",
+      "question": "Tell me about Soda",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "I'm sorry, but the menu doesn't include any item called \"Soda\". However, we do have a variety of soft drinks available. Would you like to know more about our beverages? We have options such as Pepsi, Coca-Cola, and Sprite."
+    },
+    {
+      "id": "g-046",
+      "kind": "price",
+      "question": "How much is Coke?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹49"
+      ],
+      "reply": "Coke is priced at 10 rupees."
+    },
+    {
+      "id": "g-046",
+      "kind": "price",
+      "question": "How much is Coke?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹49"
+      ],
+      "reply": "Coke is priced at 10 rupees."
+    },
+    {
+      "id": "g-046",
+      "kind": "price",
+      "question": "How much is Coke?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹49"
+      ],
+      "reply": "Coke is priced at 10 rupees."
+    },
+    {
+      "id": "g-047",
+      "kind": "availability",
+      "question": "Do you have Diet Coke?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "We do not serve Diet Coke at Veeradhar Dhaba. However, we have regular Coke which is a good substitute. Would you like to try that instead?"
+    },
+    {
+      "id": "g-047",
+      "kind": "availability",
+      "question": "Do you have Diet Coke?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "We do not serve Diet Coke at this time. We recommend our regular Coke instead."
+    },
+    {
+      "id": "g-047",
+      "kind": "availability",
+      "question": "Do you have Diet Coke?",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹99"
+      ],
+      "reply": "We do not serve Diet Coke at this time. We recommend our regular Coke instead."
+    },
+    {
+      "id": "g-048",
+      "kind": "about",
+      "question": "Tell me about Water",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹49"
+      ],
+      "reply": "I'm sorry, but \"Water\" is not listed in our menu options. We do have various beverages available such as Tea, Coffee, and Soft Drinks. Would you like to know more about any of these?"
+    },
+    {
+      "id": "g-048",
+      "kind": "about",
+      "question": "Tell me about Water",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹49"
+      ],
+      "reply": "I'm sorry, but \"Water\" is not listed in our menu options. We do have various beverages available such as tea, coffee, and soft drinks. Would you like to know more about those?"
+    },
+    {
+      "id": "g-048",
+      "kind": "about",
+      "question": "Tell me about Water",
+      "answerable": true,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "missing expected price: ₹49"
+      ],
+      "reply": "I'm sorry, but \"Water\" is not listed in our menu options. We do have various beverages available such as tea, coffee, and soft drinks. Would you like to know more about those?"
+    },
+    {
+      "id": "g-049",
+      "kind": "negative",
+      "question": "Do you have sushi?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our current menu doesn't include sushi. We do serve delicious Chicken Tikka Masala and Vegetable Samosas instead. Would you like to see those options?"
+    },
+    {
+      "id": "g-049",
+      "kind": "negative",
+      "question": "Do you have sushi?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include sushi. We do serve delicious Chicken Tikka Masala and Vegetable Samosas instead. Would you like to try one of these options?"
+    },
+    {
+      "id": "g-049",
+      "kind": "negative",
+      "question": "Do you have sushi?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include sushi. We do serve delicious Chicken Tikka Masala and Vegetable Samosas instead. Would you like to try one of these options?"
+    },
+    {
+      "id": "g-050",
+      "kind": "negative",
+      "question": "How much is beef wellington?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but the menu doesn't have Beef Wellington listed. However, we do have Butter Chicken which is priced at 150 INR. Would you like to order that instead?"
+    },
+    {
+      "id": "g-050",
+      "kind": "negative",
+      "question": "How much is beef wellington?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but the menu doesn't have Beef Wellington listed. However, we do have Butter Chicken which is priced at 150. Would you like to order that instead?"
+    },
+    {
+      "id": "g-050",
+      "kind": "negative",
+      "question": "How much is beef wellington?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but the menu doesn't have Beef Wellington listed. However, we do have Butter Chicken which is priced at 150. Would you like to order that instead?"
+    },
+    {
+      "id": "g-051",
+      "kind": "negative",
+      "question": "Do you have lobster?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include lobster. We do serve prawns which are a similar option. Would you like to order any other dishes from our menu?"
+    },
+    {
+      "id": "g-051",
+      "kind": "negative",
+      "question": "Do you have lobster?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include lobster. We do serve prawns which are a similar option. Would you like to order any other dishes from our menu?"
+    },
+    {
+      "id": "g-051",
+      "kind": "negative",
+      "question": "Do you have lobster?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include lobster. We do serve prawns which are a similar option. Would you like to order any other dishes from our menu?"
+    },
+    {
+      "id": "g-052",
+      "kind": "negative",
+      "question": "Tell me about biryani",
+      "answerable": false,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "did not clearly refuse the unavailable dish"
+      ],
+      "reply": "Certainly! At Veeradhar Dhaba, we serve a delicious Biryani that includes basmati rice cooked with aromatic spices and vegetables or meat. It's served hot and is a perfect meal for those looking to enjoy a flavorful dish. Would you like to know more about any specific ingredients or preparation methods?"
+    },
+    {
+      "id": "g-052",
+      "kind": "negative",
+      "question": "Tell me about biryani",
+      "answerable": false,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "did not clearly refuse the unavailable dish"
+      ],
+      "reply": "Certainly! At Veeradhar Dhaba, we serve a delicious Biryani that includes basmati rice cooked with aromatic spices and vegetables or meat. It's served hot and is a perfect meal for those looking to enjoy a flavorful dish. Would you like to know more about any specific ingredients or preparation methods?"
+    },
+    {
+      "id": "g-052",
+      "kind": "negative",
+      "question": "Tell me about biryani",
+      "answerable": false,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "did not clearly refuse the unavailable dish"
+      ],
+      "reply": "Certainly! At Veeradhar Dhaba, we serve a delicious Biryani that includes basmati rice cooked with aromatic spices and vegetables or meat. It's served hot and is a perfect meal for those looking to enjoy a flavorful dish. Would you like to know more about any specific ingredients or preparation methods?"
+    },
+    {
+      "id": "g-053",
+      "kind": "negative",
+      "question": "Do you have ramen?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include ramen. We do serve various Indian dishes instead. Would you like to know about our options?"
+    },
+    {
+      "id": "g-053",
+      "kind": "negative",
+      "question": "Do you have ramen?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include ramen. We do serve various Indian dishes instead. Would you like to know about our options?"
+    },
+    {
+      "id": "g-053",
+      "kind": "negative",
+      "question": "Do you have ramen?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include ramen. We do serve various Indian dishes instead. Would you like to know about our options?"
+    },
+    {
+      "id": "g-054",
+      "kind": "negative",
+      "question": "How much is lasagna?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include lasagna. We do have pasta dishes that you might enjoy instead. Would you like to know about the price of a pasta dish?"
+    },
+    {
+      "id": "g-054",
+      "kind": "negative",
+      "question": "How much is lasagna?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include lasagna. We do have pasta dishes that you might enjoy instead. Would you like to know about any of them?"
+    },
+    {
+      "id": "g-054",
+      "kind": "negative",
+      "question": "How much is lasagna?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include lasagna. We do have pasta dishes that you might enjoy instead. Would you like to know about any of them?"
+    },
+    {
+      "id": "g-055",
+      "kind": "negative",
+      "question": "Do you have falafel?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include falafel. We do have delicious chicken tikka masala that might be a good substitute. Would you like to order that instead?"
+    },
+    {
+      "id": "g-055",
+      "kind": "negative",
+      "question": "Do you have falafel?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include falafel. We do have delicious chicken tikka masala that might be a good substitute. Would you like to order that instead?"
+    },
+    {
+      "id": "g-055",
+      "kind": "negative",
+      "question": "Do you have falafel?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include falafel. We do have delicious chicken tikka masala that might be a good substitute. Would you like to order that instead?"
+    },
+    {
+      "id": "g-056",
+      "kind": "negative",
+      "question": "Tell me about shawarma",
+      "answerable": false,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "did not clearly refuse the unavailable dish"
+      ],
+      "reply": "Certainly! Our Shawarma is made with tender pieces of chicken marinated in a blend of spices and served on a flatbread. It comes with a side of fresh salad and tahini sauce. Would you like to know more or would you like to order it now?"
+    },
+    {
+      "id": "g-056",
+      "kind": "negative",
+      "question": "Tell me about shawarma",
+      "answerable": false,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "did not clearly refuse the unavailable dish"
+      ],
+      "reply": "Certainly! Our Shawarma is made with tender pieces of chicken marinated in our special blend of spices and served on a flatbread. It comes with a side of fresh salad and tahini sauce. Would you like to add some grilled vegetables or pomegranate dressing for an extra touch?"
+    },
+    {
+      "id": "g-056",
+      "kind": "negative",
+      "question": "Tell me about shawarma",
+      "answerable": false,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "did not clearly refuse the unavailable dish"
+      ],
+      "reply": "Certainly! Our Shawarma is made with tender pieces of chicken marinated in our special blend of spices and served on a flatbread. It comes with a side of fresh salad and tahini sauce. Would you like to add some grilled vegetables or pomegranate dressing for an extra touch?"
+    },
+    {
+      "id": "g-057",
+      "kind": "negative",
+      "question": "How much is tiramisu?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include tiramisu. We have other desserts like mango lassi and kulfi that you might enjoy."
+    },
+    {
+      "id": "g-057",
+      "kind": "negative",
+      "question": "How much is tiramisu?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include tiramisu. We have other desserts like mango lassi and kulfi that you might enjoy."
+    },
+    {
+      "id": "g-057",
+      "kind": "negative",
+      "question": "How much is tiramisu?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include tiramisu. We have other desserts like mango lassi and kulfi that you might enjoy."
+    },
+    {
+      "id": "g-058",
+      "kind": "negative",
+      "question": "Do you have cheesecake?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include cheesecake. We do have a variety of desserts such as mango lassi and kulfi. Would you like to try one of those?"
+    },
+    {
+      "id": "g-058",
+      "kind": "negative",
+      "question": "Do you have cheesecake?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include cheesecake. We do have a variety of desserts such as mango lassi and fruit salad that might be suitable alternatives. Would you like to try one of those?"
+    },
+    {
+      "id": "g-058",
+      "kind": "negative",
+      "question": "Do you have cheesecake?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include cheesecake. We do have a variety of desserts such as mango lassi and fruit salad that might be suitable alternatives. Would you like to try one of those?"
+    },
+    {
+      "id": "g-059",
+      "kind": "negative",
+      "question": "How much is a hot dog?",
+      "answerable": false,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "did not clearly refuse the unavailable dish"
+      ],
+      "reply": "A hot dog at Veeradhar Dhaba costs 15 rupees."
+    },
+    {
+      "id": "g-059",
+      "kind": "negative",
+      "question": "How much is a hot dog?",
+      "answerable": false,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "did not clearly refuse the unavailable dish"
+      ],
+      "reply": "A hot dog at Veeradhar Dhaba costs 10 rupees."
+    },
+    {
+      "id": "g-059",
+      "kind": "negative",
+      "question": "How much is a hot dog?",
+      "answerable": false,
+      "ok": false,
+      "hallucinated": false,
+      "reasons": [
+        "did not clearly refuse the unavailable dish"
+      ],
+      "reply": "A hot dog at Veeradhar Dhaba costs 10 rupees."
+    },
+    {
+      "id": "g-060",
+      "kind": "negative",
+      "question": "Do you have tacos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include tacos. We do have some delicious options like Chicken Tikka Masala or Palak Paneer that might be to your liking."
+    },
+    {
+      "id": "g-060",
+      "kind": "negative",
+      "question": "Do you have tacos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include tacos. We do have some delicious options like Chicken Tikka Masala or Palak Paneer that might be to your liking."
+    },
+    {
+      "id": "g-060",
+      "kind": "negative",
+      "question": "Do you have tacos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include tacos. We do have some delicious options like Chicken Tikka Masala or Palak Paneer that might be to your liking."
+    },
+    {
+      "id": "g-061",
+      "kind": "negative",
+      "question": "Tell me about paella",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include Paella. We do have a variety of delicious dishes such as Chicken Tikka Masala, Palak Paneer, and Vegetable Biryani that you might enjoy. Would you like to know more about these options?"
+    },
+    {
+      "id": "g-061",
+      "kind": "negative",
+      "question": "Tell me about paella",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include paella. We do have several other dishes that you might enjoy such as Chicken Tikka Masala or Palak Paneer. Would you like to see those options?"
+    },
+    {
+      "id": "g-061",
+      "kind": "negative",
+      "question": "Tell me about paella",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include paella. We do have several other dishes that you might enjoy such as Chicken Tikka Masala or Palak Paneer. Would you like to see those options?"
+    },
+    {
+      "id": "g-062",
+      "kind": "negative",
+      "question": "Do you have risotto?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include risotto. We do serve delicious paneer tikka masala and butter chicken. Would you like to try one of these dishes instead?"
+    },
+    {
+      "id": "g-062",
+      "kind": "negative",
+      "question": "Do you have risotto?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include risotto. We do serve delicious paneer tikka masala and butter chicken instead. Would you like to see those options?"
+    },
+    {
+      "id": "g-062",
+      "kind": "negative",
+      "question": "Do you have risotto?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include risotto. We do serve delicious paneer tikka masala and butter chicken instead. Would you like to see those options?"
+    },
+    {
+      "id": "g-063",
+      "kind": "negative",
+      "question": "How much is pad thai?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have pad Thai on our menu. However, we do serve Pad Pao which is a similar dish. Would you like to try that instead?"
+    },
+    {
+      "id": "g-063",
+      "kind": "negative",
+      "question": "How much is pad thai?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have pad Thai on our menu. However, we do serve Pad Pao which is a similar dish. Would you like to try that instead?"
+    },
+    {
+      "id": "g-063",
+      "kind": "negative",
+      "question": "How much is pad thai?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but we do not have pad Thai on our menu. However, we do serve Pad Pao which is a similar dish. Would you like to try that instead?"
+    },
+    {
+      "id": "g-064",
+      "kind": "negative",
+      "question": "Do you have nachos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but our menu doesn't include nachos. We do have tandoori chicken and paneer tikka as appetizers that might be of interest to you."
+    },
+    {
+      "id": "g-064",
+      "kind": "negative",
+      "question": "Do you have nachos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but nachos are not listed on our menu today. However, we do have delicious tandoori chicken that would be a great option to share. Would you like to try it?"
+    },
+    {
+      "id": "g-064",
+      "kind": "negative",
+      "question": "Do you have nachos?",
+      "answerable": false,
+      "ok": true,
+      "hallucinated": false,
+      "reasons": [],
+      "reply": "I'm sorry, but nachos are not listed on our menu today. However, we do have delicious tandoori chicken that would be a great option to share. Would you like to try it?"
+    }
+  ],
+  "metrics": {
+    "groundedness": 0.0,
+    "hallucination": 0.0208,
+    "refusal": 0.8125,
+    "accuracy": 0.2031
+  },
+  "targets": {
+    "groundedness": 0.95,
+    "hallucination": 0.05,
+    "refusal": 0.95
+  },
+  "generated_at": "2026-10-20T13:51:48.593696+00:00",
+  "git_revision": "b7de574"
+}

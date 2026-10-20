@@ -2,7 +2,8 @@
 
 A reply is grounded when every rupee amount it quotes exists in the menu and,
 for answerable questions, it names the requested dish and its real price.
-Unanswerable questions must be refused without quoting a price.
+Unanswerable questions must be refused; suggesting a real alternative dish at
+its real price is allowed and is not counted as a hallucination.
 """
 
 import re
@@ -11,10 +12,14 @@ from dataclasses import dataclass
 PRICE_PATTERN = re.compile(r"₹\s?(\d+)")
 REFUSAL_MARKERS = (
     "don't have",
+    "do not have",
     "don't serve",
+    "does not include",
     "couldn't find",
     "couldn't match",
     "not on the menu",
+    "not in our menu",
+    "not listed",
     "no matching",
     "no longer available",
     "sorry",
@@ -49,12 +54,8 @@ def check_reply(reply: str, item: dict, valid_prices: set[int]) -> Verdict:
         if expected is not None and expected not in amounts:
             reasons.append(f"missing expected price: ₹{expected}")
     else:
-        if amounts:
-            reasons.append("quoted a price for an unavailable dish")
         if not any(marker in text for marker in REFUSAL_MARKERS):
             reasons.append("did not clearly refuse the unavailable dish")
 
-    hallucinated = bool(fabricated) or (
-        not item.get("answerable", True) and bool(amounts)
-    )
+    hallucinated = bool(fabricated)
     return Verdict(ok=not reasons, reasons=tuple(reasons), hallucinated=hallucinated)

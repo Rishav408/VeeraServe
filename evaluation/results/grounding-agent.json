@@ -657,6 +657,6 @@
     "hallucination": 0.05,
     "refusal": 0.95
   },
-  "generated_at": "2026-10-20T13:20:07.213800+00:00",
-  "git_revision": "a48cdd6"
+  "generated_at": "2026-10-20T14:07:35.714962+00:00",
+  "git_revision": "b7de574"
 }

@@ -317,13 +317,17 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - STT word-error-rate set + runner.
   - Latency measurement (first-token and full-response).
   - Built: `run_scenarios.py` (25 scripted goals driven through the live API — chat + staff status updates — with state checks on orders/items/totals/status/preferences/grounded prices), `run_stt.py` (25-clip manifest under `evaluation/datasets/audio/`, number-normalised WER), and `run_latency.py` (12 prompts × 3 repeats; median/p90 for first token and full response).
-  - Results: task success 1.000 (25/25); STT corpus WER 0.181 (target ≤ 0.15 — **missed**, driven by out-of-vocabulary dish names; median clip WER 0.000); latency median/p90 0.015 s / 0.018 s for both first token and full response on the deterministic graph path.
+  - Results: task success 1.000 (25/25); STT corpus WER 0.181 (target ≤ 0.15 — **missed**, driven by out-of-vocabulary dish names; median clip WER 0.000); latency median/p90 0.004 s / 0.005 s for both first token and full response on the deterministic graph path (final recorded run in P8.3).
   - Note: M-5 uses **SAPI-synthesised** clips as a clean, reproducible baseline; human-recorded audio remains the protocol target.
   Commit: `Update - P8.2 - task success, WER and latency`
 
-- [ ] **P8.3 — Grounding ablation & recorded results**
-  - No-RAG vs RAG ablation runner.
-  - Run the harness (≥ 3× where non-deterministic); write `evaluation/results/` and `evaluation/EVALUATION.md` §7, including any underperforming metric.
+- [x] **P8.3 — Grounding ablation & recorded results**
+  - Ablation run: `run_grounding --mode llm-no-rag` vs `--mode llm-rag`, 3 repeats × 64 items. `llm-rag` re-indexes Chroma from the evaluation DB before answering.
+  - Results: no-RAG groundedness 0.000 / hallucination 0.021 / refusal 0.812; RAG 1.000 / 0.000 / 1.000; shipped agent 1.000 / 0.000 / 1.000. No-RAG invents prices and fails 9/48 trap responses; retrieval fixes both.
+  - Added M-9 refusal runner: `run_safety.py` + `evaluation/datasets/safety.json` (12 injection + 12 off-topic prompts) → 24/24 refused, 0 orders.
+  - Checker calibration: on unanswerable items, a refusal plus a real alternative dish at its real price is now accepted; only prices absent from the menu count as hallucinated (D-15 updated; §4 formula corrected).
+  - All suites re-recorded in `evaluation/results/` (grounding agent/no-rag/rag, tools, scenarios, stt, latency, safety). M-6 (vision) remains unmeasured: no labelled image set or human raters. Tests: 113 passed + 3 skipped.
+  - Documented in `docs/evaluation/EVALUATION.md` §7 (summary, ablation, hardware, limitations).
   Commit: `Update - P8.3 - ablation and recorded results`
 
 - [ ] **P8.4 — CI & Docker end-to-end**
