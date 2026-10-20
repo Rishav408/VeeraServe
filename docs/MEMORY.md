@@ -41,6 +41,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | D-15 | Evaluation harness conventions: (a) the shipped **agent path is measured as-is** (Mode `agent`) while the **RAG ablation** uses direct-LLM modes (`llm-rag` vs `llm-no-rag`) so retrieval value is isolated from the deterministic tools; (b) groundedness passes only if **every ₹ amount is a real menu price** and the requested dish/price is present; negative traps must be **refused**, but suggesting a real alternative dish at its **real** price is allowed — only prices absent from the menu count as hallucinations; (c) tool accuracy scores an **ordered subsequence** of expected calls with exact ids/quantities and substring matching for free-text args (extra chained calls are allowed); (d) agent nodes record `tool_calls` (name + args) per turn for scoring. | The deterministic graph is DB-grounded by construction, so measuring it alone cannot show retrieval's contribution; explicit, documented scoring rules keep M-1–M-3 reproducible and auditable. Calibrated in P8.3: the original "no price at all on traps" rule mis-scored safe upsells of real dishes as fabrications. | Accepted (revised P8.3) |
 | D-16 | Task-success scenarios (M-4) are driven through the **live HTTP API** (chat + staff order-status endpoints) and judged on resulting state, not reply text alone. The STT baseline (M-5) uses **Windows SAPI-synthesised** clips because human recordings were unavailable; this is disclosed wherever the WER is reported and does not replace the protocol's human-recorded set. | Measures the product end to end and keeps every reported number reproducible offline; synthetic audio is a clean lower bound on WER, not a substitute for real speech. | Accepted |
 | D-17 | Evaluation runs may use **LM Studio models that are actually installed**, recorded via environment overrides, when a pinned checkpoint is unavailable. P8.3 used `qwen2.5-3b-instruct` (GGUF) and `text-embedding-nomic-embed-text-v1.5` for the ablation; the pinned `qwen2.5-vl-3b-instruct`/`nomic-embed-text` were not in the local catalogue. M-9 combines the 24-prompt `safety.json` set with the 16 grounding traps for the shipped agent. | Unblocks measurement without changing the shipped deterministic path (the agent does not call the chat model); every substitution is disclosed in EVALUATION §7. | Accepted |
+| D-18 | **v1 is local-only:** no Docker, Docker Compose, or CI. P8.4 was removed from the plan; the `docker-compose.yml` skeleton was deleted and delivery docs point to the local run (frontend + backend + LM Studio on one machine). Tests and lint run locally. | User decision during P8 (2026-10-20); avoids maintaining unused container/CI infrastructure and keeps the zero-cost local story simple. | Accepted |
 
 ### Superseded decisions
 
@@ -56,7 +57,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | O-2 | Embedding model in LM Studio: `nomic-embed-text` vs `mxbai-embed-large`. | Phase P6 | Default pinned to `nomic-embed-text` (P6.1); validate retrieval quality in P6.2. |
 | O-4 | Text-to-speech: browser `SpeechSynthesis` vs local Piper. | Phase P6 | Browser is zero-install; Piper is more natural but heavier. |
 | O-5 | Auth mechanism: custom JWT vs server session cookie. | Phase P4 | Default proposal: JWT for API simplicity. |
-| O-6 | Demo deployment scope: strictly local Docker vs a hosted demo link. | Phase P8 | Hosted demo complicates the "zero-cost local model" story. |
+| O-6 | Demo deployment scope: strictly local vs a hosted demo link. | Phase P8 | **Resolved (P8.4 dropped):** v1 runs strictly locally (frontend + backend + LM Studio); no Docker/CI. |
 | O-7 | Groundedness evaluation dataset (curated question set size and composition). | Phase P8 | See `evaluation/EVALUATION.md`. |
 | O-8 | Whether to include a multilingual mode (Hindi/Marathi). | Backlog | Nice-to-have; depends on remaining time. |
 
@@ -143,6 +144,7 @@ running changelog. If a material choice is made, it is recorded here before it i
 | (rev) | Phase P8.1: built the evaluation harness (`evaluation/harness/`: in-memory seeded DB, grounding checks, tool-call matching, result JSON writer) with `grounding.json` (48 positives + 16 traps) and `tools.json` (40 utterances); agent nodes now record per-turn `tool_calls` (name + args). Baseline agent run: groundedness 1.000, hallucination 0.000, refusal 1.000, tool accuracy 1.000. | TASKS P8.1, D-15 |
 | (rev) | Phase P8.2: added `run_scenarios.py` (25 API-driven goals, all passed), `run_stt.py` (25 SAPI clips; corpus WER 0.181, target 0.15 missed), and `run_latency.py` (36 turns; final median 0.004 s, p90 0.005 s). | TASKS P8.2, D-16 |
 | (rev) | Phase P8.3: ran the no-RAG vs RAG ablation (3 × 64 items): groundedness 0.000 → 1.000, hallucination 0.021 → 0.000, refusal 0.812 → 1.000; added `run_safety.py` + `safety.json` (24 prompts, 24/24 refused, 0 orders); calibrated the M-2 checker to allow real alternative prices (D-15 revised); recorded every suite in `evaluation/results/` and populated `EVALUATION.md` §7 (including the M-5 miss and unmeasured M-6). | TASKS P8.3, D-17 |
+| (rev) | Scope change: P8.4 (CI + Docker) removed and `docker-compose.yml` deleted; README/architecture/delivery docs now describe the local-only run. No application code changed. | D-18, O-6 |
 
 ---
 
@@ -609,6 +611,15 @@ YYYY-MM-DD — Session summary
   M-9 1.000 (24/24 safety + 16/16 traps, 0 orders); latency median 0.004 s / p90 0.005 s.
 - **Verification:** backend `pytest` 113 passed + 3 live skipped; results in `evaluation/results/`;
   `EVALUATION.md` §7 populated (summary, ablation, hardware, limitations).
+
+### Session 32 — Docker/CI scope dropped
+
+- **Scope change:** the user removed P8.4 (CI + Docker end-to-end) and asked to keep the project
+  non-containerised for now. P8.4 was deleted from `TASKS.md`, Gate 8 no longer requires CI/Docker, and
+  `docker-compose.yml` was deleted. README, ARCHITECTURE, TECH_STACK, FOLDER_STRUCTURE, FEATURES, PRD,
+  ACADEMIC_REPORT, DEMONSTRATION_FLOW, INDEX, and IDE_Context now describe the local-only run.
+- **Decisions:** D-18 — v1 is local-only (no Docker/CI); O-6 closed as strictly local.
+- **Verification:** no application code changed; working tree only docs + compose deletion.
 
 ---
 

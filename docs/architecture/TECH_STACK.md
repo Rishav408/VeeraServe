@@ -35,11 +35,10 @@
 | Speech-to-text | faster-whisper (`base`/`small`) | Voice input |
 | Text-to-speech | Browser `SpeechSynthesis` (see O-4) | Voice output |
 | Auth | JWT (see O-5) + Argon2/bcrypt hashing | Accounts and roles |
-| Containerisation | Docker + Docker Compose | One-command local run |
 | Backend tests | pytest + httpx | Unit/integration/API tests |
 | Front-end tests | Vitest + Testing Library | Component/flow tests |
 | Lint/format | Ruff + Black (Python); ESLint + Prettier (TS) | Code quality |
-| CI | GitHub Actions | Lint, typecheck, test, build |
+| CI | Not used in v1 (local-only) | Tests run locally before commit |
 
 **Version policy:** choose supported, mutually compatible versions when the environment is created,
 pin them in `requirements.txt` / `package-lock.json`, and record the exact versions used. This
@@ -82,7 +81,7 @@ embedding models are loaded in **LM Studio**; speech recognition runs separately
 3. Enable the model's **tool/function-calling** support where available; record which model is loaded.
 4. The backend reads `LLM_BASE_URL`, `LLM_MODEL`, `EMBEDDING_MODEL` (and a dummy `LLM_API_KEY`) from
    `.env`; it never hard-codes the model name.
-5. Because LM Studio is a desktop app, it runs on the **host**, not inside Docker (see §7).
+5. LM Studio is a desktop application; it runs on the same host as the app (no containers).
 
 Model readiness is a runtime precondition: if the LM Studio server is not running, the chat surfaces
 an "AI unavailable" state while the rest of the app still works (`ARCHITECTURE.md` §10).
@@ -132,15 +131,14 @@ for reproducibility:
 
 ---
 
-## 7. Local vs. container run
+## 7. Local run
 
 - **Local dev:** `npm run dev` (front end) and `uvicorn` (backend); LM Studio running on the host with
-  its local server started.
-- **Containerized:** `docker compose up` starts front end, backend, vector store, and database.
-  **LM Studio is not containerized** — the backend reaches the host server at
-  `http://host.docker.internal:1234/v1` (Windows/macOS), configured via `LLM_BASE_URL`.
-- Both paths must be documented and reproducible. The Docker path documents the host-model
-  requirement explicitly so a fresh machine can reproduce it.
+  its local server started at `http://localhost:1234/v1`.
+- **No containers / no CI in v1:** Docker and GitHub Actions were dropped from the P8 scope (local
+  project); Chroma runs embedded and SQLite is the database.
+- The local path must be documented and reproducible so a fresh machine can set up LM Studio and start
+  both processes.
 
 ---
 

@@ -11,7 +11,7 @@ contribution for an evaluator. Each scenario lists the steps, what to say, and w
 
 ## 1. Pre-demo checklist
 
-- [ ] `docker compose up` (or local frontend + backend) is running.
+- [ ] Local frontend (`npm run dev`) and backend (`python main.py`) are running.
 - [ ] LM Studio is running on the host with the local server started and the chat/vision + embedding
       models loaded.
 - [ ] Database seeded from `data/menu.seed.json`.

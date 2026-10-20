@@ -53,7 +53,7 @@ application and database.
 - Keep the system **local-first and zero-cost**.
 - Produce **measurable evidence** (groundedness, tool-call accuracy, STT WER, latency) for the
   academic report.
-- Deliver a professional repository (structure, tests, CI, Docker, honest docs).
+- Deliver a professional repository (structure, tests, honest docs; local run only).
 
 ## 4. Non-goals (initial release)
 
@@ -121,7 +121,7 @@ Requirement IDs are stable and referenced by `TASKS.md` and tests.
 - **Accessibility:** keyboard operability, visible focus, WCAG-AA contrast targets, no colour-only
   meaning.
 - **Maintainability:** TypeScript on the front end, typed Pydantic schemas, tests, lint/format, docs.
-- **Portability:** one-command local run via Docker Compose.
+- **Portability:** documented local setup (backend + frontend + LM Studio); no containers in v1.
 - **Honesty:** simulated behaviour is labelled; no fabricated metrics in the UI or report.
 
 ---
@@ -173,7 +173,7 @@ Metrics are **targets**, not results; actual numbers are recorded only when meas
 6. **M6 — Integrated ordering MVP without AI** (P5).
 7. **M7 — Grounded agentic AI + voice/vision** (P6).
 8. **M8 — Admin console** (P7).
-9. **M9 — Evaluation, CI, Docker, academic report** (P8).
+9. **M9 — Evaluation, polish, academic report** (P8; CI/Docker dropped).
 
 Each milestone maps to a gate in `TASKS.md`.
 

@@ -60,7 +60,6 @@ LM Studio (chat/vision + embeddings, OpenAI-compatible)   faster-whisper (STT)  
 | TTS | browser `SpeechSynthesis` (tentative) |
 | Vector store | Chroma (tentative) |
 | Database | SQLite (dev) / Postgres-ready |
-| Containerisation | Docker + Docker Compose |
 | Testing | pytest + httpx (backend); Vitest + Testing Library (frontend) |
 
 Versions are pinned when the environment is created; exact versions are recorded in
@@ -74,17 +73,12 @@ Versions are pinned when the environment is created; exact versions are recorded
 
 ### 3.1 Repository status
 
-- **Documentation:** v1.0 suite present (16 documents). The previous unrelated documentation has been
-  removed.
-- **Code:** Phases P0 (hygiene) and P1.1–P1.4 (restructure) are complete. The Vite app lives in
-  `frontend/`, the backend is a package under `backend/app/` with centralised settings in
-  `backend/app/core/config.py`, the menu is sourced solely from `data/menu.seed.json`, a
-  `docker-compose.yml` skeleton exists, and the backend exposes `GET /api/v1/health` (with a test).
-  The legacy Ollama chat router is unwired pending its rebuild in P6. The front end is now TypeScript
-  (`strict`; migrated in P2.1) with shared domain types in `frontend/src/types/domain.ts`; `tsc --noEmit`,
-  lint, and build pass. The front end also uses a shared design system (`frontend/src/components/ui/`,
-  tokens in `frontend/src/styles/tokens.css`) and TanStack Query server-state tooling
-  (`frontend/src/lib/`, `frontend/src/hooks/`). Gate 2 is met.
+- **Documentation:** v1.0 suite present (16 documents) plus `evaluation/EVALUATION.md`.
+- **Code:** Phases P0–P7 are complete (Gates 2–7 met) and P8.1–P8.3 are complete: the evaluation
+  harness, the no-RAG/RAG ablation, and all recorded metrics are in `evaluation/`. The app is a React
+  + TypeScript front end (`frontend/`, strict) and a FastAPI backend (`backend/app/`) with a LangGraph
+  agent, Chroma retrieval, SQLite, voice and vision. The project runs locally (no Docker/CI in v1).
+  Gate 8 remains open until P8.5 completes the report and demo assets.
 
 ### 3.2 Verified defects carried from the prototype
 
@@ -100,7 +94,7 @@ These are known and must be fixed during the indicated phase:
 | Checkout discards table, payment, instructions. | P4/P5 |
 | Feedback rating can compute 15/5. | P4/P5 |
 | Hard-coded backend URL; no `.env`. | **Resolved — P1.3** |
-| No tests, CI, Docker, or pinned Python deps. | P0/P8 |
+| No tests, CI, Docker, or pinned Python deps. | **Tests + pins resolved (P8)**; CI/Docker dropped in v1 |
 
 ### 3.3 Module status matrix
 
@@ -111,11 +105,7 @@ These are known and must be fixed during the indicated phase:
 | Frontend app | `frontend/` | Present; moved in P1.1; TypeScript in P2.1 (`strict`, typecheck passes) |
 | Backend API | `backend/app/` | Minimal app + `/api/v1/health` (P1.4); chat router unwired pending P6 |
 | Backend config | `backend/app/core/config.py` | Implemented (P1.3) |
-| Backend tests | `backend/tests/` | Health test added (P1.4) |
-| Docker skeleton | `docker-compose.yml` | Skeleton added in P1.3 (Dockerfiles in P9) |
-| Agent service | `backend/app/services/agent/` | Not implemented |
-| RAG / vector store | `backend/app/services/rag/` | Not implemented |
-| Database models | `backend/app/models/` | Not implemented |
+| Backend tests | `backend/tests/` | 113 passed + 3 live skipped (P8.3) |
 | Admin console | `frontend/src/screens/Admin*.tsx`, `frontend/src/hooks/{useAdminMenu,useAnalytics}.ts` | Menu (P7.1), orders (P7.2), analytics (P7.3) and feedback inbox (P7.4) on the API |
 | Analytics | `backend/app/services/analytics.py`, `backend/app/api/analytics.py`, `frontend/src/hooks/useAnalytics.ts` | DB-derived dashboard metrics (P7.3) |
 | Feedback inbox | `backend/app/api/feedback.py`, `frontend/src/screens/AdminFeedbackScreen.tsx` | Persisted acknowledgement (P7.4) |
@@ -130,7 +120,6 @@ These are known and must be fixed during the indicated phase:
 | Auth guards | `backend/app/api/deps.py` | `get_current_user` / `require_roles` (P4.2) |
 | Orders API | `backend/app/api/orders.py`, `backend/app/services/order.py` | Server-priced orders + status (P4.3) |
 | Feedback/reservations | `backend/app/api/feedback.py`, `backend/app/api/reservations.py` | 1–5 ratings, admin listing (P4.4) |
-| Backend tests | `backend/tests/` | Auth + read/write API suites (26 tests, P4.5) |
 | Frontend auth | `frontend/src/context/AuthContext.tsx`, `frontend/src/lib/apiClient.ts` | JWT client + guards (P5.1) |
 | Catalog hooks | `frontend/src/hooks/useMenu.ts`, `frontend/src/utils/menuMapper.ts` | API menu/categories (P5.2) |
 | Order hooks | `frontend/src/hooks/useOrders.ts` | Create/track/list orders (P5.3) |
@@ -347,6 +336,12 @@ These are known and must be fixed during the indicated phase:
   `EVALUATION.md` §7 with hardware and limitations (M-5 target missed, M-6 not measured). Backend
   `pytest` 113 passed + 3 live skipped.
 - **Next:** P8.4 (CI + Docker end-to-end), then P8.5 (report, polish, release).
+
+### Session 32 — Docker/CI scope dropped
+- By user decision, P8.4 (CI + Docker end-to-end) is **removed** and the project stays local-only:
+  `docker-compose.yml` deleted, docs updated to the local run (frontend + backend + LM Studio), and the
+  P8.4/P9 containerisation items are no longer part of the v1 delivery. No code changes.
+- **Next:** P8.5 (academic report, accessibility pass, demo assets, tag `v1.0`).
 
 ---
 

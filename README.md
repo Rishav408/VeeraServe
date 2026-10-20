@@ -87,15 +87,11 @@ npm install
 npm run dev                     # available at http://localhost:5173
 ```
 
-### Containerized (skeleton)
+### Local run only
 
-```bash
-docker compose up
-```
-
-This is a skeleton defined in `docker-compose.yml` (frontend, backend, chroma, db). Image
-`Dockerfile`s are added in Phase P9. **LM Studio is not containerized** — it runs on the host, and the
-backend reaches it at `LLM_BASE_URL=http://host.docker.internal:1234/v1`.
+The project is not containerised for v1. Run the backend and frontend as above, and keep LM Studio
+running on the host at `http://localhost:1234/v1` (default `LLM_BASE_URL`). CI and Docker are out of
+scope; tests run locally with `pytest` and `npm test`.
 
 ## Project structure (current)
 

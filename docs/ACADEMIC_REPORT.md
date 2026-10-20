@@ -117,7 +117,7 @@ _(To be finalised as code is built.)_ Key implementation notes:
 - Agent control flow expressed as a LangGraph state machine (see `ai/AGENT_DESIGN.md`).
 - Strict JSON-schema fallback for small-model tool-calling unreliability.
 - Streaming responses via SSE.
-- Containerised local run via Docker Compose.
+- Local run only (frontend + backend + LM Studio); Docker/CI are out of scope for v1.
 
 Implementation risks and mitigations are recorded in `MEMORY.md` §4.
 

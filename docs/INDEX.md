@@ -113,7 +113,7 @@ measured, the document says so explicitly (typically "to be populated in P8").
 | Backend | FastAPI, SQLAlchemy, Pydantic |
 | Agent layer | LangGraph (stateful, tool-calling, supervisor pattern) |
 | Data source of truth | `data/menu.seed.json` |
-| Delivery target | Local demo via Docker Compose; academic report as written deliverable |
+| Delivery target | Local demo (frontend + backend + LM Studio on one machine); academic report as written deliverable |
 
 ---
 

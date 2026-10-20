@@ -185,18 +185,20 @@ Admin CRUD extends `/api/v1/menu` with POST/PUT/DELETE (admin role).
 ## 9. Deployment topology (local)
 
 ```text
-docker compose up
-  ├─ frontend   (Vite build served statically, or dev server)
-  ├─ backend    (FastAPI/uvicorn)
-  ├─ chroma     (vector store)  [or embedded in backend]
-  └─ db         (SQLite file for dev; Postgres service optional)
+Local processes (no containers)
+  ├─ frontend   (Vite dev server / static build at http://localhost:5173)
+  └─ backend    (FastAPI/uvicorn at http://localhost:8000)
 
-LM Studio runs on the HOST (it is a desktop application, not containerized).
-The backend reaches it at http://host.docker.internal:1234/v1 (LLM_BASE_URL).
+Backing stores
+  ├─ SQLite file (veeraserve.db)
+  └─ Chroma persistent directory (chroma_db/)
+
+LM Studio runs on the same host (desktop application) and is reached at
+http://localhost:1234/v1 (LLM_BASE_URL).
 ```
 
 The system must be runnable on a single developer machine. Hardware minimums and the LM Studio setup
-steps are documented in `TECH_STACK.md` §3/§7.
+steps are documented in `TECH_STACK.md` §3/§7. Docker/CI are out of scope for v1.
 
 ---
 

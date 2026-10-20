@@ -330,12 +330,6 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Documented in `docs/evaluation/EVALUATION.md` §7 (summary, ablation, hardware, limitations).
   Commit: `Update - P8.3 - ablation and recorded results`
 
-- [ ] **P8.4 — CI & Docker end-to-end**
-  - Backend CI (Ruff/Black lint, pytest) via GitHub Actions.
-  - Front-end CI (ESLint/Prettier, `tsc`, Vitest, build).
-  - Docker Compose end-to-end verified (LM Studio host step documented).
-  Commit: `Update - P8.4 - CI and Docker end-to-end`
-
 - [ ] **P8.5 — Report, polish & release**
   - Populate `ACADEMIC_REPORT.md` results and remove all "to be populated" placeholders.
   - Accessibility + responsive pass across screens.
@@ -343,7 +337,7 @@ Context: build the AI core on LM Studio's OpenAI-compatible API (`ai/AGENT_DESIG
   - Final review: re-verify `INDEX.md` links and `RULES.md` compliance, update `MEMORY.md`, tag `v1.0`.
   Commit: `Update - P8.5 - report, polish and release`
 
-**Checkpoint — Gate 8:** Metrics produced and written up honestly, CI green, one-command Docker run works, report complete, and demo assets ready.
+**Checkpoint — Gate 8:** Metrics produced and written up honestly, report complete, and demo assets ready. CI/Docker are out of scope for v1 (project runs locally).
 
 ---
 

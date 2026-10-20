@@ -128,9 +128,9 @@ Feature IDs are stable: `F-<domain>-<n>`.
 | F-P-4 | Input validation + file size/type limits. | P0 | Security. |
 | F-P-5 | Structured logging + request IDs. | P2 | Debuggability. |
 | F-P-6 | Local model configuration via env. | P0 | Model names/URLs configurable. |
-| F-P-7 | Docker Compose one-command run. | P2 | Portability. |
+| F-P-7 | ~~Docker Compose one-command run.~~ Dropped in v1 (local-only). | — | Not planned. |
 | F-P-8 | Automated tests (unit/integration/eval). | P1 | Quality + academic evidence. |
-| F-P-9 | CI (lint, typecheck, test, build). | P2 | Professional repo. |
+| F-P-9 | ~~CI (lint, typecheck, test, build).~~ Dropped in v1. | — | Not planned. |
 | F-P-10 | Responsive, accessible UI. | P1 | WCAG-AA targets. |
 | F-P-11 | Evaluation harness + metrics report. | P2 | Feeds `EVALUATION.md`. |
 

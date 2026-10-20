@@ -81,7 +81,6 @@ VeeraServe/
 │   └── results/               # generated metric files (not hand-edited)
 │
 ├── scripts/                   # dev helpers (seed, lint, run)
-├── docker-compose.yml
 ├── .gitignore
 ├── .editorconfig
 ├── README.md
